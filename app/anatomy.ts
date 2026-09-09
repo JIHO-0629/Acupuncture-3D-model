@@ -22,8 +22,9 @@ export interface Atlas {version:string;sex?:'male';source?:string;scope?:string;
 export type View = 'three-quarter'|'front'|'back'|'side';
 export interface NeedleHit {id:string;name:string;system:SystemId;distanceMm:number}
 export interface Gb34State {enabled:boolean;debug:boolean;position:[number,number,number];depthMm:number;revision:number}
-export interface RegionFocus {center:[number,number,number];radiusMm:number;revision:number}
-export interface SceneState {inspectorOpen?:boolean;explode:number;visible:SystemId[];selected:string[];isolate:boolean;view:View;rotate:boolean;reset:number;gb34?:Gb34State;regionFocus?:RegionFocus}
+export interface RegionFocus {center:[number,number,number];radiusMm:number;revision:number;viewHint?:'dorsal-foot'}
+export interface AcupunctureState {visible:boolean;selectedCode:string;showAll:boolean;showLines:boolean}
+export interface SceneState {inspectorOpen?:boolean;explode:number;visible:SystemId[];selected:string[];isolate:boolean;view:View;rotate:boolean;reset:number;gb34?:Gb34State;acupuncture?:AcupunctureState;regionFocus?:RegionFocus}
 const OLD_KOREAN_TERMS:Record<string,string>={
  'rectus femoris':'대퇴직근','patella':'슬개골','vastus medialis':'내측광근','vastus intermedius':'중간광근','vastus lateralis':'외측광근',
  'tibia':'경골','fibula':'비골','fibularis longus':'장비골근','fibularis brevis':'단비골근','fibularis tertius':'제3비골근',
