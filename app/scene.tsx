@@ -959,9 +959,10 @@ export default function AnatomyScene({
         return new Set(["skeletal", "arterial", "venous", "nervous"]);
       })();
       const boundary = intersections.find((hit) => dangerousSystems.has(hit.system)),
-        boundaryMm = boundary?.distanceMm ?? null,
-        limitMm = boundaryMm === null ? null : Math.max(0, Math.round(boundaryMm * 0.9 * 10) / 10),
-        depthMm = limitMm === null ? 0 : limitMm * Math.min(100, Math.max(0, config.depthRatio)) / 100,
+        usedConceptualBoundary = !boundary,
+        boundaryMm = boundary?.distanceMm ?? profile.probeDepthMm,
+        limitMm = Math.max(0, Math.round(boundaryMm * 0.9 * 10) / 10),
+        depthMm = limitMm * Math.min(100, Math.max(0, config.depthRatio)) / 100,
         depth = depthMm / 1000,
         totalLength = Math.max(0.025, Math.min(0.075, probeDepth + 0.018)),
         handleLength = 0.018,
@@ -978,12 +979,12 @@ export default function AnatomyScene({
         hits = pathHits.filter((hit) => hit.distanceMm <= depthMm + 0.2);
       needleReport.current?.({
         code: definition.code,
-        available: limitMm !== null && limitMm > 0,
+        available: limitMm > 0,
         limitMm,
         boundaryMm,
         boundaryId: boundary?.id ?? null,
-        boundaryLabel: profile.conceptualBoundary ? profile.label : boundary?.name ?? profile.label,
-        conceptual: profile.conceptualBoundary,
+        boundaryLabel: profile.conceptualBoundary || usedConceptualBoundary ? profile.label : boundary.name,
+        conceptual: profile.conceptualBoundary || usedConceptualBoundary,
         hits,
         pathHits,
       });

@@ -7,6 +7,11 @@ export interface NeedleProfile{
  probeDepthMm:number;
  conceptualBoundary:boolean;
  warning:string;
+ sourceNeedling:string;
+ depthValidation:string;
+ validationSource:string;
+ referenceStructures:string[];
+ pointRisk?:string;
 }
 
 export interface GbPointDefinition{
@@ -73,15 +78,50 @@ export const GB_POINTS:GbPointDefinition[]=[
 
 export const GB_POINT_BY_CODE=new Map(GB_POINTS.map(point=>[point.code,point]));
 
+const NEEDLING_RAW:Record<string,string>={
+ GB1:'직자 0.2~0.3촌; 사자 0.3~0.5촌; 횡자 0.5~1촌',GB2:'직자 0.3~0.5촌; 사자 0.5~0.7촌',GB3:'직자 0.2~0.3촌; 사자 0.3~0.5촌',
+ GB4:'직자 0.2~0.3촌; 사자 0.3~0.5촌',GB5:'직자 0.2~0.3촌; 사자 0.3~0.5촌',GB6:'직자 0.2~0.3촌; 사자 0.3~0.5촌',GB7:'직자 0.2~0.3촌; 사자 0.3~0.5촌',
+ GB8:'직자 0.2~0.3촌; 사자 0.3~0.5촌',GB9:'직자 0.2~0.3촌; 사자 0.3~0.5촌',GB10:'직자 0.2~0.3촌; 사자 0.3~0.5촌',GB11:'직자 0.2~0.3촌; 사자 0.3~0.5촌',
+ GB12:'직자 0.2~0.3촌; 사자 0.3~0.5촌',GB13:'직자 0.2~0.3촌; 사자 0.3~0.5촌',GB14:'직자 0.2~0.3촌; 사자 0.3~0.5촌',GB15:'직자 0.2~0.3촌; 사자 0.3~0.5촌',
+ GB16:'직자 0.2~0.3촌; 사자 0.3~0.5촌',GB17:'직자 0.2~0.3촌; 사자 0.3~0.5촌',GB18:'직자 0.2~0.3촌; 사자 0.3~0.5촌',GB19:'직자 0.2~0.3촌; 사자 0.3~0.5촌',
+ GB20:'직자 0.3~1촌; 사자 0.5~1.5촌',GB21:'직자 0.3~0.5촌',GB22:'사자 0.3~0.5촌',GB23:'사자 0.3~0.5촌',GB24:'사자 0.3~0.5촌',GB25:'직자 0.3~0.5촌',
+ GB26:'직자 0.5~0.8촌; 사자 0.5~1촌',GB27:'직자 0.5~0.8촌; 사자 0.5~1촌',GB28:'직자 0.5~0.8촌; 사자 0.5~1촌',GB29:'직자 1~3촌; 사자 1~3촌',
+ GB30:'직자 1.5~2.5촌',GB31:'직자 0.5~1.5촌; 사자 0.7~1.5촌',GB32:'직자 0.5~1촌; 사자 0.5~1촌',GB33:'직자 0.3~0.5촌; 사자 0.3~0.8촌',
+ GB34:'직자 0.8~1.2촌',GB35:'직자 0.3~0.8촌; 사자 0.5~1촌',GB36:'직자 0.3~0.8촌; 사자 0.5~1.5촌',GB37:'직자 0.5~0.9촌; 사자 0.7~1촌',
+ GB38:'직자 0.5~0.7촌',GB39:'직자 0.3~0.5촌; 사자 0.5~1촌',GB40:'직자 0.3~0.5촌; 사자 0.5~1촌',GB41:'직자 0.3~0.5촌',GB42:'직자 0.1~0.4촌; 사자 0.3~0.5촌',
+ GB43:'직자 0.5촌',GB44:'얕게 약 0.1촌',
+};
+
+const PARTIAL_VALIDATION=new Set(['GB2','GB14','GB20','GB21','GB22','GB23','GB24','GB25','GB30','GB38','GB41','GB43','GB44']);
+const REFERENCE_STRUCTURES:Record<NeedleRegion,string[]>={
+ 'face-scalp':['피부·피하조직','표정근/두피근막','골막·두개골 또는 안와 경계'],
+ neck:['피부·피하조직','승모근·두반극근 계열','후두하부 혈관·신경 및 경추 경계'],
+ thorax:['피부·피하조직','표층근·늑간근','늑골·흉막 개념 경계'],
+ 'flank-abdomen':['피부·피하조직','외복사근·내복사근·복횡근','복막·복강/후복막 장기 경계'],
+ 'pelvis-gluteal':['피부·피하조직','둔근·대퇴근막','골반뼈·혈관 및 신경 인접 경계'],
+ 'thigh-knee':['피부·피하조직','장경인대·대퇴 외측 근육/힘줄','대퇴골·슬관절 및 혈관 경계'],
+ leg:['피부·피하조직','전외측 하퇴근·근막','비골·혈관 및 신경 경계'],
+ 'ankle-foot':['피부·피하조직','폄힘줄·발등 근막/골간근','족근골·중족골 및 발등혈관 경계'],
+ toe:['피부·피하조직','발가락 말단 연부조직','발톱바탕·원위지골 경계'],
+};
+
+function validationFor(code:string){
+ if(code==='GB29')return '불일치 · 수동검수 필요';
+ if(PARTIAL_VALIDATION.has(code))return '부분일치 · 접근법/범위 차이';
+ return 'KMCRIC 범위 일치';
+}
+
 export function needleProfile(code:`GB${number}`):NeedleProfile{
  const number=Number(code.slice(2));
- if(number<=19)return{region:'face-scalp',label:'안구·안와·두개골 위험 경계',probeDepthMm:45,conceptualBoundary:false,warning:'안구·안와·두개골에 접근하면 자동 정지합니다. 특수 자침법은 이번 버전에서 다루지 않습니다.'};
- if(number===20)return{region:'neck',label:'경부 주요 혈관·경추 위험 경계',probeDepthMm:80,conceptualBoundary:false,warning:'경부 혈관과 신경의 위치는 개인차가 큽니다. 비율은 이 참조 모델의 첫 위험 구조를 기준으로 합니다.'};
- if(number<=24)return{region:'thorax',label:'기흉 위험 경계(개념 모델)',probeDepthMm:100,conceptualBoundary:true,warning:'기흉 위험 구역입니다. 흉막은 독립 메시가 없어 늑골·호흡기 구조를 이용한 개념적 경계로만 표시합니다.'};
- if(number<=28)return{region:'flank-abdomen',label:'복벽 안쪽 장기 위험 경계',probeDepthMm:100,conceptualBoundary:false,warning:'복막과 장기의 실제 위치는 체형과 자세에 따라 달라집니다. 모델 경계를 실제 환자에게 적용하지 마십시오.'};
- if(number<=30)return{region:'pelvis-gluteal',label:'골반 장기·혈관·뼈 위험 경계',probeDepthMm:120,conceptualBoundary:false,warning:'신경 타깃을 가정하지 않습니다. GB30의 좌골신경 변이는 현재 모델에 반영되어 있지 않습니다.'};
- if(number<=34)return{region:'thigh-knee',label:'혈관·뼈 안전구역 경계',probeDepthMm:100,conceptualBoundary:false,warning:'안전구역은 개인별로 다릅니다. 문진은 출혈 위험을 확인하며, 혈관 위치는 촉진·도플러·초음파 등으로 별도 확인해야 합니다.'};
- if(number<=39)return{region:'leg',label:'혈관·뼈 안전구역 경계',probeDepthMm:80,conceptualBoundary:false,warning:'하지 혈관과 신경의 주행에는 변이가 있습니다. 모델의 경계를 실제 환자의 안전심도로 사용하지 마십시오.'};
- if(number<=43)return{region:'ankle-foot',label:'힘줄·혈관·뼈 위험 경계',probeDepthMm:25,conceptualBoundary:false,warning:'발목과 발등은 짧은 시뮬레이션 범위만 허용하며 첫 위험 구조 전에 자동 정지합니다.'};
- return{region:'toe',label:'원위지골 위험 경계',probeDepthMm:8,conceptualBoundary:false,warning:'말단부는 매우 얕은 범위만 표시합니다. 발톱뿌리각은 모델에 없어 근사 체표 위치입니다.'};
+ const shared={sourceNeedling:NEEDLING_RAW[code],depthValidation:validationFor(code),validationSource:`https://m.kmcric.com/knowledge/acupoint/GB/${code}`};
+ const finish=(profile:Omit<NeedleProfile,'sourceNeedling'|'depthValidation'|'validationSource'|'referenceStructures'>):NeedleProfile=>({...profile,...shared,referenceStructures:REFERENCE_STRUCTURES[profile.region]});
+ if(number<=19)return finish({region:'face-scalp',label:'안구·안와·두개골 위험 경계',probeDepthMm:45,conceptualBoundary:false,warning:'안구·안와·두개골에 접근하면 자동 정지합니다. 특수 자침 방향은 후속 구현 대상이며 현재 궤적은 체표 법선 직자만 표시합니다.'});
+ if(number===20)return finish({region:'neck',label:'경부 주요 혈관·경추 위험 경계',probeDepthMm:80,conceptualBoundary:false,warning:'경부 혈관과 신경의 위치는 개인차가 큽니다. 비율은 이 참조 모델의 첫 위험 구조를 기준으로 합니다.',pointRisk:'반대쪽 안구 방향 또는 경부 심부를 향한 임의 궤적을 임상 지침으로 사용하지 마십시오.'});
+ if(number<=24)return finish({region:'thorax',label:'기흉 위험 경계(개념 모델)',probeDepthMm:100,conceptualBoundary:true,warning:'기흉 고위험 구역입니다. 흉막은 독립 메시가 없어 늑골·호흡기 구조를 이용한 개념적 경계로만 표시합니다.',pointRisk:'흉막을 실제로 렌더링한 것이 아니며, 모델상 여유가 임상 안전을 뜻하지 않습니다.'});
+ if(number<=28)return finish({region:'flank-abdomen',label:'복벽 안쪽 장기 위험 경계',probeDepthMm:100,conceptualBoundary:false,warning:'복막과 장기의 실제 위치는 체형과 자세에 따라 달라집니다. 모델 경계를 실제 환자에게 적용하지 마십시오.'});
+ if(number<=30)return finish({region:'pelvis-gluteal',label:'골반 장기·혈관·뼈 위험 경계',probeDepthMm:120,conceptualBoundary:false,warning:'신경을 찌르는 것을 목표로 표현하지 않습니다. GB30의 좌골신경은 인접 위험·변이 구조로만 다룹니다.'});
+ if(number<=34)return finish({region:'thigh-knee',label:'혈관·뼈 안전구역 경계',probeDepthMm:100,conceptualBoundary:false,warning:'안전구역은 개인별로 다릅니다. 출혈 위험은 반드시 문진하고, 혈관 위치는 촉진·도플러·초음파 등으로 별도 확인해야 합니다.'});
+ if(number<=39)return finish({region:'leg',label:'혈관·뼈 안전구역 경계',probeDepthMm:80,conceptualBoundary:false,warning:'하지 혈관과 신경의 주행에는 변이가 있습니다. 모델의 경계를 실제 환자의 안전심도로 사용하지 마십시오.'});
+ if(number<=43)return finish({region:'ankle-foot',label:'힘줄·혈관·뼈 위험 경계',probeDepthMm:12,conceptualBoundary:false,warning:'발목과 발등은 매우 짧은 시뮬레이션 범위만 허용하며 첫 위험 구조 또는 개념 상한 전에 자동 정지합니다.'});
+ return finish({region:'toe',label:'원위지골 위험 경계',probeDepthMm:4,conceptualBoundary:true,warning:'말단부는 수 mm의 개념 범위만 표시합니다. 발톱뿌리각은 모델에 없어 근사 체표 위치입니다.'});
 }
