@@ -6,8 +6,8 @@ import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js
 import { createExplosionLayout } from "./explosion-layout";
 import { decodeModelResponse } from "./model-download";
 import { PointerTap } from "./pointer-tap";
-import { SYSTEMS, type Atlas, type NeedleHit, type SceneState } from "./anatomy";
-import { GB_POINTS, type ProjectionMode } from "./gb-points";
+import { SYSTEMS, type Atlas, type NeedleHit, type NeedleReport, type SceneState } from "./anatomy";
+import { GB_POINTS, needleProfile, type ProjectionMode } from "./gb-points";
 interface Props {
   atlas: Atlas;
   state: SceneState;
@@ -15,7 +15,7 @@ interface Props {
   onPointSelect?: (code: string) => void;
   onProgress: (n: number) => void;
   onError: (s: string) => void;
-  onNeedleHits?: (hits: NeedleHit[]) => void;
+  onNeedleReport?: (report: NeedleReport) => void;
 }
 export default function AnatomyScene({
   atlas,
@@ -24,17 +24,17 @@ export default function AnatomyScene({
   onPointSelect,
   onProgress,
   onError,
-  onNeedleHits,
+  onNeedleReport,
 }: Props) {
   const host = useRef<HTMLDivElement>(null),
     latest = useRef(state),
     select = useRef(onSelect),
     pointSelect = useRef(onPointSelect),
-    needleHits = useRef(onNeedleHits);
+    needleReport = useRef(onNeedleReport);
   latest.current = state;
   select.current = onSelect;
   pointSelect.current = onPointSelect;
-  needleHits.current = onNeedleHits;
+  needleReport.current = onNeedleReport;
   useEffect(() => {
     const el = host.current!;
     let disposed = false,
@@ -48,7 +48,7 @@ export default function AnatomyScene({
       layoutKey = "",
       amount = 0;
     let lastState: SceneState | null = null,
-      lastGb34 = "",
+      lastNeedle = "",
       lastAcupuncture = "";
     const abort = new AbortController();
     let renderer: T.WebGLRenderer;
@@ -335,7 +335,7 @@ export default function AnatomyScene({
         if (!disposed) {
           buildToePresentation();
           ready = true;
-          lastGb34 = "";
+          lastNeedle = "";
           lastAcupuncture = "";
           dirty = true;
         }
@@ -783,10 +783,7 @@ export default function AnatomyScene({
           const object = pointObjects.find(
             (item) => item.code === definition.code && item.side === side,
           )!;
-          const source =
-              definition.code === "GB34" && side === "right" && latest.current.gb34
-                ? latest.current.gb34.position
-                : definition.seed,
+          const source = definition.seed,
             seed = new T.Vector3(side === "right" ? source[0] : -source[0], source[1], source[2]),
             boneAnchor = definition.code === "GB44" ? gb44BoneAnchor(side) : null,
             projected = boneAnchor ?? projectToSkin(seed, definition.projection, side);
@@ -904,20 +901,69 @@ export default function AnatomyScene({
         }
       }
     };
-    const updateGb34 = () => {
-      const config = latest.current.gb34,
-        acupuncture = latest.current.acupuncture;
-      if (!config?.enabled || !ready || acupuncture?.selectedCode !== "GB34") {
+    const updateNeedle = () => {
+      const config = latest.current.needle,
+        acupuncture = latest.current.acupuncture,
+        code = acupuncture?.selectedCode as `GB${number}` | undefined,
+        definition = code ? GB_POINTS.find((item) => item.code === code) : undefined;
+      if (!config?.enabled || !ready || !definition) {
         needle.visible = needleHandle.visible = false;
-        needleHits.current?.([]);
         return;
       }
-      const object = pointObjects.find((item) => item.code === "GB34" && item.side === "right");
+      const object = pointObjects.find((item) => item.code === code && item.side === "right");
       if (!object) return;
-      const surface = object.surface,
+      const profile = needleProfile(definition.code),
+        surface = object.surface,
         trajectory = object.normal.clone().negate(),
-        depth = config.depthMm / 1000,
-        totalLength = 0.07,
+        probeDepth = profile.probeDepthMm / 1000;
+      const shaftRadius = 0.00065,
+        referenceAxis = Math.abs(trajectory.y) < 0.9 ? new T.Vector3(0, 1, 0) : new T.Vector3(1, 0, 0),
+        across = new T.Vector3().crossVectors(trajectory, referenceAxis).normalize(),
+        around = new T.Vector3().crossVectors(trajectory, across).normalize(),
+        origins = [
+          surface.clone().addScaledVector(trajectory, 0.00015),
+          surface.clone().addScaledVector(across, shaftRadius).addScaledVector(trajectory, 0.00015),
+          surface.clone().addScaledVector(across, -shaftRadius).addScaledVector(trajectory, 0.00015),
+          surface.clone().addScaledVector(around, shaftRadius).addScaledVector(trajectory, 0.00015),
+          surface.clone().addScaledVector(around, -shaftRadius).addScaledVector(trajectory, 0.00015),
+        ],
+        needleAxisRay = new T.Ray(origins[0], trajectory);
+      const intersections: NeedleHit[] = [];
+      pickers.forEach((mesh, i) => {
+        const part = atlas.parts[i];
+        if (!mesh || part.system === "integumentary") return;
+        worldBox.copy(bounds[i]).expandByScalar(shaftRadius);
+        const boxHit = needleAxisRay.intersectBox(worldBox, hitPoint);
+        if (!boxHit || boxHit.distanceTo(origins[0]) > probeDepth + shaftRadius) return;
+        let nearest = Infinity;
+        for (const origin of origins) {
+          raycaster.set(origin, trajectory);
+          const hit = raycaster.intersectObject(mesh, false)[0];
+          if (hit && hit.distance < nearest) nearest = hit.distance;
+        }
+        if (nearest <= probeDepth)
+          intersections.push({
+            id: part.id,
+            name: part.name,
+            system: part.system,
+            distanceMm: Math.round(nearest * 10000) / 10,
+          });
+      });
+      intersections.sort((a, b) => a.distanceMm - b.distanceMm);
+      const dangerousSystems = (() => {
+        if (profile.region === "face-scalp") return new Set(["skeletal", "sensory", "arterial", "venous", "nervous"]);
+        if (profile.region === "neck") return new Set(["skeletal", "arterial", "venous", "nervous"]);
+        if (profile.region === "thorax") return new Set(["skeletal", "respiratory", "arterial", "venous", "nervous"]);
+        if (profile.region === "flank-abdomen") return new Set(["skeletal", "digestive", "urinary", "reproductive", "arterial", "venous"]);
+        if (profile.region === "pelvis-gluteal") return new Set(["skeletal", "digestive", "urinary", "reproductive", "arterial", "venous", "nervous"]);
+        return new Set(["skeletal", "arterial", "venous", "nervous"]);
+      })();
+      const boundary = intersections.find((hit) => dangerousSystems.has(hit.system)),
+        boundaryMm = boundary?.distanceMm ?? null,
+        limitMm = boundaryMm === null ? null : Math.max(0, Math.round(boundaryMm * 0.9 * 10) / 10),
+        depthMm = limitMm === null ? 0 : limitMm * Math.min(100, Math.max(0, config.depthRatio)) / 100,
+        depth = depthMm / 1000,
+        totalLength = Math.max(0.025, Math.min(0.075, probeDepth + 0.018)),
         handleLength = 0.018,
         midpoint = depth - totalLength / 2,
         handleMidpoint = depth - totalLength + handleLength / 2;
@@ -928,21 +974,19 @@ export default function AnatomyScene({
       needleHandle.scale.set(1, handleLength, 1);
       needleHandle.quaternion.copy(needle.quaternion);
       needle.visible = needleHandle.visible = true;
-      raycaster.set(surface.clone().addScaledVector(trajectory, 0.00015), trajectory);
-      const hits: NeedleHit[] = [];
-      pickers.forEach((mesh, i) => {
-        if (!mesh || atlas.parts[i].system === "integumentary") return;
-        const hit = raycaster.intersectObject(mesh, false)[0];
-        if (hit && hit.distance <= depth + 0.0002)
-          hits.push({
-            id: atlas.parts[i].id,
-            name: atlas.parts[i].name,
-            system: atlas.parts[i].system,
-            distanceMm: Math.round(hit.distance * 10000) / 10,
-          });
+      const pathHits = intersections.filter((hit) => hit.distanceMm <= (limitMm ?? 0) + 0.2),
+        hits = pathHits.filter((hit) => hit.distanceMm <= depthMm + 0.2);
+      needleReport.current?.({
+        code: definition.code,
+        available: limitMm !== null && limitMm > 0,
+        limitMm,
+        boundaryMm,
+        boundaryId: boundary?.id ?? null,
+        boundaryLabel: profile.conceptualBoundary ? profile.label : boundary?.name ?? profile.label,
+        conceptual: profile.conceptualBoundary,
+        hits,
+        pathHits,
       });
-      hits.sort((a, b) => a.distanceMm - b.distanceMm);
-      needleHits.current?.(hits);
     };
     const down = (e: PointerEvent) => {
       hover.hidden = true;
@@ -1103,17 +1147,17 @@ export default function AnatomyScene({
         lastExtent = amount;
         dirty = true;
       }
-      const acupunctureKey = JSON.stringify([s.acupuncture, s.gb34?.position, s.gb34?.revision]);
+      const acupunctureKey = JSON.stringify(s.acupuncture);
       if (acupunctureKey !== lastAcupuncture) {
         updateAcupuncture();
         lastAcupuncture = acupunctureKey;
-        lastGb34 = "";
+        lastNeedle = "";
         dirty = true;
       }
-      const gb34Key = JSON.stringify([s.gb34, s.acupuncture?.selectedCode]);
-      if (gb34Key !== lastGb34) {
-        updateGb34();
-        lastGb34 = gb34Key;
+      const needleKey = JSON.stringify([s.needle, s.acupuncture?.selectedCode]);
+      if (needleKey !== lastNeedle) {
+        updateNeedle();
+        lastNeedle = needleKey;
         dirty = true;
       }
       if (s.view !== lastView || s.reset !== lastReset) {
@@ -1224,20 +1268,9 @@ export default function AnatomyScene({
         ring.visible =
         innerRing.visible =
           amount < 0.5 && !s.isolate;
-      const showToePresentation =
-          s.visible.length === 1 && s.visible[0] === "integumentary" && !s.isolate,
-        focusRightFoot = s.regionFocus?.viewHint === "dorsal-foot";
-      if (toePresentation.visible !== showToePresentation) {
-        toePresentation.visible = showToePresentation;
-        dirty = true;
-      }
-      toePresentation.children.forEach((child) => {
-        const visible = !focusRightFoot || child.userData.toeSide === "right";
-        if (child.visible !== visible) {
-          child.visible = visible;
-          dirty = true;
-        }
-      });
+      // Do not present procedurally inferred toenails or web margins as source anatomy.
+      // GB43/44 remain approximate surface registrations anchored to bundled bones and skin.
+      toePresentation.visible = false;
       markers.visible = amount > 0.75;
       controls.autoRotate = s.rotate && !s.isolate && amount < 0.4;
       controls.autoRotateSpeed = 0.65;
