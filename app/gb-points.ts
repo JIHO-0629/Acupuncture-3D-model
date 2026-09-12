@@ -1,3 +1,5 @@
+import {GB_LANDMARK_SEEDS} from './gb-landmark-seeds';
+
 export type ProjectionMode='head'|'lateral'|'anterior'|'posterior'|'dorsal-foot';
 export type NeedleRegion='face-scalp'|'neck'|'thorax'|'flank-abdomen'|'pelvis-gluteal'|'thigh-knee'|'leg'|'ankle-foot'|'toe';
 
@@ -61,14 +63,14 @@ export const GB_POINTS:GbPointDefinition[]=[
  {code:'GB29',korean:'거료',hanja:'居髎',english:'Juliao',location:'위앞엉덩뼈가시와 대전자 사이 피부 곡선의 중점',basis:'우측 장골과 대퇴골 대전자',seed:[-.135,.910,-.005],projection:'lateral',status:'registered'},
  {code:'GB30',korean:'환도',hanja:'環跳',english:'Huantiao',location:'대전자–천골열공 곡선의 가쪽 1/3 구역',basis:'대퇴골 대전자와 천골',seed:[-.135,.840,-.085],projection:'posterior',status:'review'},
  {code:'GB31',korean:'풍시',hanja:'風市',english:'Fengshi',location:'대전자–오금주름 구간에서 오금 위 9/19',basis:'대퇴골 대전자·장경인대·후면 40% 오금주름',seed:[-.165,.650,-.025],projection:'lateral',status:'registered'},
- {code:'GB32',korean:'중독',hanja:'中瀆',english:'Zhongdu',location:'장경인대 뒤쪽, 오금주름 위 7/19 구역',basis:'장경인대와 후면 40% 오금주름',seed:[-.165,.555,-.030],projection:'lateral',status:'review'},
+ {code:'GB32',korean:'중독',hanja:'中瀆',english:'Zhongdu',location:'장경인대 뒤쪽, 오금주름 위 7촌',basis:'랜드마크 기반 대전자–슬와횡문 19촌 축·장경인대 후연',seed:GB_LANDMARK_SEEDS.GB32!,projection:'lateral',status:'review'},
  {code:'GB33',korean:'슬양관',hanja:'膝陽關',english:'Xiyangguan',location:'대퇴이두근건과 장경인대 사이, 외측상과 위뒤쪽',basis:'대퇴골·대퇴이두근·장경인대',seed:[-.145,.435,-.045],projection:'lateral',status:'registered'},
  {code:'GB34',korean:'양릉천',hanja:'陽陵泉',english:'Yanglingquan',location:'비골두의 앞먼쪽 피부 구역',basis:'비골 근위부·경골 사이의 전외측 구역',seed:[-.122,.414,-.014],projection:'lateral',status:'registered'},
- {code:'GB35',korean:'양교',hanja:'陽交',english:'Yangjiao',location:'비골 뒤쪽, 외과 위 7/16 구역',basis:'비골과 가쪽복사 사이의 후외측 피부 경로',seed:[-.145,.250,-.045],projection:'lateral',status:'review'},
- {code:'GB36',korean:'외구',hanja:'外丘',english:'Waiqiu',location:'비골 앞쪽, 외과 위 7/16 구역',basis:'비골과 가쪽복사 사이의 전외측 피부 경로',seed:[-.145,.250,-.005],projection:'lateral',status:'review'},
- {code:'GB37',korean:'광명',hanja:'光明',english:'Guangming',location:'비골 앞쪽, 외과 위 5/16 구역',basis:'GB34–외과 앞쪽 피부 곡선',seed:[-.140,.180,.000],projection:'lateral',status:'review'},
- {code:'GB38',korean:'양보',hanja:'陽輔',english:'Yangfu',location:'비골 앞쪽, 외과 위 4/16 구역',basis:'GB34–외과 앞쪽 피부 곡선',seed:[-.140,.145,.000],projection:'lateral',status:'review'},
- {code:'GB39',korean:'현종',hanja:'懸鍾',english:'Xuanzhong',location:'비골 앞쪽, 외과 위 3/16 구역',basis:'GB34–외과 앞쪽 피부 곡선',seed:[-.140,.110,.000],projection:'lateral',status:'review'},
+ {code:'GB35',korean:'양교',hanja:'陽交',english:'Yangjiao',location:'비골 뒤쪽, 외과 융기 위 7촌',basis:'랜드마크 기반 슬와횡문–외과 융기 16촌 축·비골 후연',seed:GB_LANDMARK_SEEDS.GB35!,projection:'lateral',status:'review'},
+ {code:'GB36',korean:'외구',hanja:'外丘',english:'Waiqiu',location:'비골 앞쪽, 외과 융기 위 7촌',basis:'랜드마크 기반 슬와횡문–외과 융기 16촌 축·비골 전연',seed:GB_LANDMARK_SEEDS.GB36!,projection:'lateral',status:'review'},
+ {code:'GB37',korean:'광명',hanja:'光明',english:'Guangming',location:'비골 앞쪽, 외과 융기 위 5촌',basis:'랜드마크 기반 슬와횡문–외과 융기 16촌 축·비골 전연',seed:GB_LANDMARK_SEEDS.GB37!,projection:'lateral',status:'review'},
+ {code:'GB38',korean:'양보',hanja:'陽輔',english:'Yangfu',location:'비골 앞쪽, 외과 융기 위 4촌',basis:'랜드마크 기반 슬와횡문–외과 융기 16촌 축·비골 전연',seed:GB_LANDMARK_SEEDS.GB38!,projection:'lateral',status:'review'},
+ {code:'GB39',korean:'현종',hanja:'懸鍾',english:'Xuanzhong',location:'비골 앞쪽, 외과 융기 위 3촌',basis:'랜드마크 기반 슬와횡문–외과 융기 16촌 축·비골 전연',seed:GB_LANDMARK_SEEDS.GB39!,projection:'lateral',status:'review'},
  {code:'GB40',korean:'구허',hanja:'丘墟',english:'Qiuxu',location:'외과의 앞먼쪽, 긴발가락폄근힘줄 가쪽 구역',basis:'비골 원위부와 긴발가락폄근',seed:[-.150,.065,.040],projection:'dorsal-foot',status:'registered'},
  {code:'GB41',korean:'족임읍',hanja:'足臨泣',english:'Zulinqi',location:'제4·5중족골 바닥 연접부 먼쪽 구역',basis:'제4·5중족골과 긴발가락폄근',seed:[-.150,.035,.045],projection:'dorsal-foot',status:'registered'},
  {code:'GB42',korean:'지오회',hanja:'地五會',english:'Diwuhui',location:'제4·5중족골 사이, 제4중족지관절 몸쪽 구역',basis:'제4·5중족골과 제4중족지관절',seed:[-.150,.026,.073],projection:'dorsal-foot',status:'registered'},
