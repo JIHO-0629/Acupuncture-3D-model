@@ -72,7 +72,7 @@ export default function AnatomyScene({
     el.appendChild(renderer.domElement);
     renderer.domElement.setAttribute(
       "aria-label",
-      "Interactive human anatomy. Drag to orbit, pinch or scroll to zoom, and tap a structure to inspect it.",
+      "Interactive human anatomy. Drag to orbit, right-drag to pan, zoom toward the pointer, and tap a structure to inspect it.",
     );
     const scene = new T.Scene(),
       camera = new T.PerspectiveCamera(34, 1, 0.005, 100),
@@ -80,7 +80,13 @@ export default function AnatomyScene({
     camera.position.set(1.4, 1.05, 3.6);
     controls.target.set(0, 0.85, 0);
     controls.enableDamping = true;
-    controls.dampingFactor = 0.085;
+    controls.dampingFactor = 0.1;
+    controls.enablePan = true;
+    controls.screenSpacePanning = true;
+    controls.zoomToCursor = true;
+    controls.zoomSpeed = 0.8;
+    controls.panSpeed = 0.85;
+    controls.rotateSpeed = 0.7;
     controls.minDistance = 0.07;
     controls.maxDistance = 40;
     controls.maxPolarAngle = Math.PI * 0.96;
@@ -1232,7 +1238,14 @@ export default function AnatomyScene({
       if (regionKey !== lastRegion) {
         if (s.regionFocus) {
           camera.clearViewOffset();
-          const center = new T.Vector3().fromArray(s.regionFocus.center),
+          const selectedSurface = s.acupuncture?.selectedCode
+              ? pointObjects.find(
+                  (point) => point.code === s.acupuncture?.selectedCode && point.side === "right",
+                )?.surface
+              : undefined,
+            center = selectedSurface?.lengthSq()
+              ? selectedSurface.clone()
+              : new T.Vector3().fromArray(s.regionFocus.center),
             radius = Math.max(0.025, s.regionFocus.radiusMm / 1000),
             footView = s.regionFocus.viewHint === "dorsal-foot";
           camera.up.set(0, footView ? 0 : 1, footView ? -1 : 0);
