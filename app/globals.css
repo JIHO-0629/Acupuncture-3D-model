@@ -162,3 +162,12 @@ h1 .edition{font-family:inherit;font-weight:500;font-size:10px;letter-spacing:.0
 @media (prefers-reduced-motion:reduce){.strata-core.refuse{animation:none}.strata-now .en,.strata-now .ko{animation:none}}
 .archive-section{display:flex;flex-direction:column;gap:14px;padding-top:4px}
 .archive-section+.archive-section{margin-top:16px;padding-top:16px;border-top:1px solid #18253618}
+
+/* The panel was a fixed 388px, so it kept the same size while the screen grew and ended
+   up a fifth of a large laptop's width. A standing body needs little horizontal room, so
+   the surplus goes to the reading surface, capped before lines get too long. */
+.acupuncture-panel{width:clamp(388px,27vw,560px)}
+@media(max-width:767px){.acupuncture-panel{width:auto}}
+.footer-right{display:flex;align-items:center;gap:14px}
+.byline{color:#8a95a0;letter-spacing:.02em;white-space:nowrap}
+@media(max-width:900px){.byline{display:none}}
