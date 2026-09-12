@@ -87,9 +87,10 @@ export default function AnatomyScene({
     controls.zoomSpeed = 0.8;
     controls.panSpeed = 0.85;
     controls.rotateSpeed = 0.7;
-    controls.minDistance = 0.07;
+    controls.minDistance = 0.015;
     controls.maxDistance = 40;
-    controls.maxPolarAngle = Math.PI * 0.96;
+    controls.minPolarAngle = 0;
+    controls.maxPolarAngle = Math.PI;
     const cameraGoalPosition = camera.position.clone(),
       cameraGoalTarget = controls.target.clone();
     let cameraTransitioning = false;
@@ -1248,7 +1249,7 @@ export default function AnatomyScene({
               : new T.Vector3().fromArray(s.regionFocus.center),
             radius = Math.max(0.025, s.regionFocus.radiusMm / 1000),
             footView = s.regionFocus.viewHint === "dorsal-foot";
-          camera.up.set(0, footView ? 0 : 1, footView ? -1 : 0);
+          camera.up.set(0, 1, 0);
           if (footView) center.x += 0.024;
           const distance =
               Math.max(
@@ -1256,7 +1257,7 @@ export default function AnatomyScene({
                 (radius / (2 * Math.tan(T.MathUtils.degToRad(camera.fov / 2)))) * 2.2,
               ) * (footView ? 1.12 : 1),
             direction = (
-              footView ? new T.Vector3(0, 1, 0.015) : new T.Vector3(-1, 0.08, 0.32)
+              footView ? new T.Vector3(0.18, 0.92, 0.34) : new T.Vector3(-1, 0.08, 0.32)
             ).normalize();
           moveCamera(center, center.clone().addScaledVector(direction, distance));
         }
@@ -1269,7 +1270,7 @@ export default function AnatomyScene({
         platform.visible =
         ring.visible =
         innerRing.visible =
-          amount < 0.5 && !s.isolate;
+          amount < 0.5 && !s.isolate && !s.regionFocus;
       // Do not present the conceptual nail footprint as source anatomy. GB44 remains an
       // explicitly estimated landmark scaled from the bundled fourth-toe phalanges.
       toePresentation.visible = false;
