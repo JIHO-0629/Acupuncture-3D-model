@@ -982,6 +982,9 @@ export default function AnatomyScene({
         conceptual: profile.conceptualBoundary || usedConceptualBoundary,
         hits,
         pathHits,
+        // Everything the shaft meets inside the probe, including what lies past the
+        // boundary. The strata column draws those faded rather than hiding them.
+        allHits: intersections,
       });
     };
     const down = (e: PointerEvent) => {

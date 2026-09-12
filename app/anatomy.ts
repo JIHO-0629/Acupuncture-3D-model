@@ -21,7 +21,20 @@ export interface Concept {id:string;name:string;elements:string[]}
 export interface Atlas {version:string;sex?:'male';source?:string;scope?:string;parts:Part[];concepts:Concept[];chunks:{url:string;bytes:number;gzip?:string;gzipBytes?:number}[];triangles:number}
 export type View = 'three-quarter'|'front'|'back'|'side';
 export interface NeedleHit {id:string;name:string;system:SystemId;distanceMm:number}
-export interface NeedleReport {code:string;available:boolean;limitMm:number|null;boundaryMm:number|null;boundaryId:string|null;boundaryLabel:string;conceptual:boolean;hits:NeedleHit[];pathHits:NeedleHit[]}
+export interface NeedleReport {code:string;available:boolean;limitMm:number|null;boundaryMm:number|null;boundaryId:string|null;boundaryLabel:string;conceptual:boolean;hits:NeedleHit[];pathHits:NeedleHit[];allHits:NeedleHit[]}
+/** How far a structure's depth drifts between people, which decides how much weight a
+ *  reader should put on it. Bone and tendon can be palpated; muscle bulk tracks build;
+ *  vessels, nerves and organ borders move with posture, respiration and individual
+ *  variation, so the model's distance to them is a reference, never a target. */
+export type Variance = 1|2|3;
+const MUSCLE_AS_SKELETAL=/tibialis|fibularis|iliotibial|levator scapulae|subscapularis/i;
+export function varianceOf(name:string,system:SystemId):Variance{
+ if(system==='skeletal')return MUSCLE_AS_SKELETAL.test(name)?2:1;
+ if(system==='connective'||system==='sensory')return 1;
+ if(system==='muscular'||system==='integumentary')return 2;
+ return 3;
+}
+export const VARIANCE_LABEL:Record<Variance,string>={1:'변이 낮음',2:'변이 높음',3:'변이 매우 높음'};
 export interface NeedleState {enabled:boolean;depthRatio:number;revision:number}
 export interface RegionFocus {center:[number,number,number];radiusMm:number;revision:number;viewHint?:'dorsal-foot'}
 export interface AcupunctureState {visible:boolean;selectedCode:string;showAll:boolean;showLines:boolean}
