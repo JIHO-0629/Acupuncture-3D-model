@@ -39,7 +39,11 @@ const KOREAN_ANATOMY_TERMS:Record<string,string>={
  'rectus femoris':'대퇴직근','vastus medialis':'내측광근','vastus intermedius':'중간광근','vastus lateralis':'외측광근','sartorius':'봉공근','gracilis':'박근','pectineus':'치골근','semimembranosus':'반막근','semitendinosus':'반건양근',
  'gastrocnemius':'비복근','medial head of gastrocnemius':'비복근 내측두','lateral head of gastrocnemius':'비복근 외측두','soleus':'가자미근','plantaris':'족척근','popliteus':'슬와근','tibialis anterior':'전경골근','tibialis posterior':'후경골근','fibularis longus':'장비골근','fibularis brevis':'단비골근','fibularis tertius':'제3비골근','peroneus longus':'장비골근','peroneus brevis':'단비골근','peroneus tertius':'제3비골근',
  'extensor digitorum longus':'장지신근','extensor digitorum brevis':'단지신근','extensor hallucis longus':'장무지신근','extensor hallucis brevis':'단무지신근','flexor digitorum longus':'장지굴근','flexor digitorum brevis':'단지굴근','flexor hallucis longus':'장무지굴근','flexor hallucis brevis':'단무지굴근','quadratus plantae':'족저방형근','first lumbrical of foot':'제1충양근','second lumbrical of foot':'제2충양근','third lumbrical of foot':'제3충양근','fourth lumbrical of foot':'제4충양근',
- 'patella':'슬개골','tibia':'경골','fibula':'비골','common fibular nerve':'총비골신경','common peroneal nerve':'총비골신경'
+ 'patella':'슬개골','tibia':'경골','fibula':'비골','common fibular nerve':'총비골신경','common peroneal nerve':'총비골신경',
+ 'temporalis':'측두근','superficial part of masseter':'교근 천부','deep part of masseter':'교근 심부','medial pterygoid':'내측익돌근','upper head of lateral pterygoid':'외측익돌근 상두','lower head of lateral pterygoid':'외측익돌근 하두','aponeurosis of epicranius':'두개건막(모상건막)',
+ 'orbital part of orbicularis oculi':'안륜근 안와부','palpebral part of orbicularis oculi':'안륜근 안검부','orbicularis oris':'구륜근','corrugator supercilii':'추미근','procerus':'눈살근','nasalis':'비근','depressor septi nasi':'비중격하체근','buccinator':'협근',
+ 'levator labii superioris':'상순거근','levator labii superioris alaeque nasi':'상순비익거근','levator anguli oris':'구각거근','depressor anguli oris':'구각하체근','depressor labii inferioris':'하순하체근','zygomaticus major':'대관골근','zygomaticus minor':'소관골근','risorius':'소근','mentalis':'이근',
+ 'latissimus dorsi':'광배근','upper lobe of lung':'폐 상엽','middle lobe of lung':'폐 중엽','lower lobe of lung':'폐 하엽'
 };
 export function bilingualPartName(name:string){
  const prefix=name.match(/^(Right|Left)\s+(.+)$/i),infix=name.match(/^(.+?)\s+of\s+(right|left)\s+(.+)$/i);

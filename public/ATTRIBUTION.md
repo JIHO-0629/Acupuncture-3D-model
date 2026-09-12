@@ -9,11 +9,26 @@ BodyParts3D, © The Database Center for Life Science licensed under CC Attributi
 - English names and relationships: IS-A and PART-OF concept, element, and inclusion tables from the same archive.
 - Publication: Mitsuhashi et al. (2009), BodyParts3D: 3D structure database for anatomical concepts. https://doi.org/10.1093/nar/gkn613
 
-Adaptations: axes and units converted from millimeters/Z-up to meters/Y-up; translated to rest at the stage; geometry simplified using meshoptimizer with 0.2% relative error limit per structure; normals quantized to signed 16-bit; packed into binary chunks; curated display system groupings and colors. The source contains 2,234 individual OBJ meshes; all remain represented. The combined hierarchy contains 3,432 named FMA concepts, which may reference multiple meshes. Original source identity is preserved in the manifest.
+Adaptations: axes and units converted from millimeters/Z-up to meters/Y-up; translated to rest at the stage; geometry simplified using meshoptimizer with 0.2% relative error limit per structure; normals quantized to signed 16-bit; packed into binary chunks; curated display system groupings and colors. The 4.0 source contains 2,234 individual OBJ meshes; all remain represented, alongside 55 meshes recovered from release 3.0 (see below). The combined hierarchy contains 3,482 named FMA concepts, which may reference multiple meshes. Original source identity is preserved in the manifest.
 
 Source OBJ comments mention an older CC BY-SA 2.1 Japan license. The official current database license linked above supersedes that legacy text and explicitly permits redistribution and adaptation under CC BY 4.0.
 
 BodyParts3D represents an adult male reference anatomy based on TARO MRI and anatomical illustration refinements. It is not a complete model of every possible human anatomical structure or variation. This interface is educational and is not a clinical tool.
+
+## Structures recovered from BodyParts3D 3.0
+
+Release 4.0 does not ship the muscles of facial expression, the muscles of mastication, the epicranial aponeurosis, lung surfaces, latissimus dorsi, or rectus abdominis. Release 3.0 still carries them, in the same coordinate frame, so 55 meshes are taken from there and placed on the 4.0 skeleton without any registration or reshaping.
+
+- Source geometry: `BodyParts3D_3.0_obj_99.zip`, BodyParts3D 3.0 (2011-09-15 release).
+- Archive: https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/
+- English names: `parts_list_e.txt` from the same release.
+- Script: [`scripts/add-bp3-structures.mjs`](../scripts/add-bp3-structures.mjs), which lists every recovered structure.
+
+Recovered: temporalis, masseter (superficial and deep parts), medial and lateral pterygoid, epicranial aponeurosis, orbicularis oculi (orbital and palpebral parts), orbicularis oris, corrugator supercilii, procerus, nasalis, depressor septi nasi, buccinator, levator labii superioris, levator labii superioris alaeque nasi, levator anguli oris, depressor anguli oris, depressor labii inferioris, zygomaticus major and minor, risorius, mentalis, latissimus dorsi, rectus abdominis, and the five lung lobes.
+
+The 3.0 OBJ files carry the same legacy CC BY-SA 2.1 Japan comment as the 4.0 files. The current dataset license linked above covers the BodyParts3D database as distributed by DBCLS, including the archived releases.
+
+Still absent from every BodyParts3D release, and therefore not represented here: the pleura, the parietal peritoneum, peripheral nerves outside the orbit (including the sciatic, common fibular, tibial, femoral, and intercostal nerves), the crural, thoracolumbar and gluteal fasciae, and the parotid gland. Lung surfaces stand in for the pleural boundary; they are not pleura.
 
 ## Historical assets (not included in the current release)
 
