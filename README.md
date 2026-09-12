@@ -30,6 +30,8 @@ Open http://localhost:3016. To build the static site, run `npm run build`; the o
 npm run check
 node scripts/validate-atlas.mjs
 node scripts/validate-interactions.mjs
+node scripts/validate-landmarks.mjs
+node scripts/validate-skin-regions.mjs
 npm run build
 ```
 
@@ -48,6 +50,40 @@ This is an educational explorer, not a diagnostic or surgical tool.
 Geometry is merged into batches. Per-structure GPU textures control translation, visibility, and selection, while component geometry supports accurate picking. Exploded layouts pack only the visible pieces. Rendering updates when the scene changes; orbit controls remain responsive without thousands of separate draw calls.
 
 The optional WebMCP tools expose anatomy search and inspection in compatible browsers. The visible interface works without them.
+
+## Acupoint landmarks
+
+Acupoint positions are being moved off hand-placed coordinates and onto rules that name
+anatomical landmarks, because a fixed coordinate cannot follow a bone that tapers. The
+first stage derives the landmarks themselves from the bundled geometry:
+
+```sh
+node scripts/landmarks.mjs        # data/landmarks.json
+node scripts/skin-regions.mjs     # data/skin-regions.json
+```
+
+`landmarks.json` holds 130 records over 97 named landmarks: bony prominences, spinous
+process features from C7 to L5, proportional-axis endpoints, and borders stored as
+polylines so a rule can ask for the anterior edge of the fibula at a given height. Each
+record names the meshes it came from and how it was found.
+
+Quality is recorded on two separate axes because they genuinely differ. `anatomicalConfidence`
+rates the match to the real structure; `frameConfidence` rates fitness as the origin of a WHO
+proportional axis. The umbilicus is the clearest case: as anatomy it is an estimate, but WHO
+defines the abdominal scale as 8 B-cun above and 5 below it, so the 8:5 division of the
+xiphisternal-to-pubic axis *is* the scale origin. Sided pairs also carry the measured
+left/right offset, so a rule can see the uncertainty it inherits.
+
+`skin-regions.json` labels each of the 44,744 skin triangles with the body region beneath it,
+found by casting the triangle's normal inward to the first skeletal structure. Projection has
+to be able to target the chest wall rather than whatever surface a ray reaches first: with the
+arms down, a lateral ray toward the mid-axillary line lands on the upper arm.
+
+Two findings from the validators are worth knowing before writing rules. The `Skin` mesh's
+stored normals are not consistently oriented, so outward is taken from the direction out of
+the nearest bone. And at the fourth intercostal space the arm occludes the mid-axillary line
+almost completely in this standing pose, leaving a single exposed chest wall triangle, so
+points there cannot be projected straight outward.
 
 ## Rebuilding geometry
 
