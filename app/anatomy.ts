@@ -26,12 +26,28 @@ export interface NeedleState {enabled:boolean;depthRatio:number;revision:number}
 export interface RegionFocus {center:[number,number,number];radiusMm:number;revision:number;viewHint?:'dorsal-foot'}
 export interface AcupunctureState {visible:boolean;selectedCode:string;showAll:boolean;showLines:boolean}
 export interface SceneState {inspectorOpen?:boolean;explode:number;visible:SystemId[];selected:string[];isolate:boolean;view:View;rotate:boolean;reset:number;needle?:NeedleState;acupuncture?:AcupunctureState;regionFocus?:RegionFocus}
-const OLD_KOREAN_TERMS:Record<string,string>={
- 'rectus femoris':'대퇴직근','patella':'슬개골','vastus medialis':'내측광근','vastus intermedius':'중간광근','vastus lateralis':'외측광근',
- 'tibia':'경골','fibula':'비골','fibularis longus':'장비골근','fibularis brevis':'단비골근','fibularis tertius':'제3비골근',
- 'gastrocnemius':'비복근','soleus':'가자미근','sartorius':'봉공근','popliteus':'슬와근','tibialis anterior':'전경골근','common fibular nerve':'총비골신경','common peroneal nerve':'총비골신경'
+const KOREAN_ANATOMY_TERMS:Record<string,string>={
+ 'abductor digiti minimi of foot':'소지외전근','abductor hallucis':'무지외전근','adductor brevis':'단내전근','adductor longus':'장내전근','adductor magnus':'대내전근','adductor minimus':'소내전근','adductor hallucis':'무지내전근',
+ 'biceps femoris':'대퇴이두근','long head of biceps femoris':'대퇴이두근 장두','short head of biceps femoris':'대퇴이두근 단두','deltoid':'삼각근','acromial part of deltoid':'삼각근 견봉부','clavicular part of deltoid':'삼각근 쇄골부','spinal part of deltoid':'삼각근 견갑극부',
+ 'diaphragm':'횡격막','external oblique':'외복사근','internal oblique':'내복사근','transversus abdominis':'복횡근','rectus abdominis':'복직근','pyramidalis':'추체근',
+ 'external intercostal muscle':'외늑간근','internal intercostal muscle':'내늑간근','innermost intercostal muscle':'최내늑간근','levatores costarum':'늑골거근','levatores costarum breves':'단늑골거근','levatores costarum longi':'장늑골거근','set of levatores costarum breves':'단늑골거근군','set of levatores costarum longi':'장늑골거근군','serratus anterior':'전거근','serratus posterior inferior':'하후거근','serratus posterior superior':'상후거근','transversus thoracis':'흉횡근',
+ 'pectoralis major':'대흉근','abdominal part of pectoralis major':'대흉근 복부','clavicular part of pectoralis major':'대흉근 쇄골부','sternocostal part of pectoralis major':'대흉근 흉늑부','pectoralis minor':'소흉근',
+ 'sternocleidomastoid':'흉쇄유돌근','trapezius':'승모근','ascending part of trapezius':'승모근 상승부','descending part of trapezius':'승모근 하강부','transverse part of trapezius':'승모근 횡행부','splenius capitis':'두판상근','splenius cervicis':'경판상근','semispinalis capitis':'두반극근','semispinalis cervicis':'경반극근','longissimus capitis':'두최장근','longissimus cervicis':'경최장근','longissimus thoracis':'흉최장근','iliocostalis cervicis':'경장늑근','iliocostalis thoracis':'흉장늑근','iliocostalis lumborum':'요장늑근',
+ 'obliquus capitis inferior':'하두사근','obliquus capitis superior':'상두사근','rectus capitis posterior major':'대후두직근','rectus capitis posterior minor':'소후두직근','anterior scalene':'전사각근','middle scalene':'중사각근','posterior scalene':'후사각근','levator scapulae':'견갑거근','rhomboid major':'대능형근','rhomboid minor':'소능형근',
+ 'inferior oblique':'하사근','inferior rectus':'하직근','lateral rectus':'외직근','levator palpebrae superioris':'상안검거근','medial rectus':'내직근','superior oblique':'상사근','superior rectus':'상직근',
+ 'gluteus maximus':'대둔근','gluteus medius':'중둔근','gluteus minimus':'소둔근','tensor fasciae latae':'대퇴근막장근','piriformis':'이상근','superior gemellus':'상쌍자근','inferior gemellus':'하쌍자근','obturator internus':'내폐쇄근','obturator externus':'외폐쇄근','quadratus femoris':'대퇴방형근','iliacus':'장골근','psoas major':'대요근','psoas minor':'소요근',
+ 'rectus femoris':'대퇴직근','vastus medialis':'내측광근','vastus intermedius':'중간광근','vastus lateralis':'외측광근','sartorius':'봉공근','gracilis':'박근','pectineus':'치골근','semimembranosus':'반막근','semitendinosus':'반건양근',
+ 'gastrocnemius':'비복근','medial head of gastrocnemius':'비복근 내측두','lateral head of gastrocnemius':'비복근 외측두','soleus':'가자미근','plantaris':'족척근','popliteus':'슬와근','tibialis anterior':'전경골근','tibialis posterior':'후경골근','fibularis longus':'장비골근','fibularis brevis':'단비골근','fibularis tertius':'제3비골근','peroneus longus':'장비골근','peroneus brevis':'단비골근','peroneus tertius':'제3비골근',
+ 'extensor digitorum longus':'장지신근','extensor digitorum brevis':'단지신근','extensor hallucis longus':'장무지신근','extensor hallucis brevis':'단무지신근','flexor digitorum longus':'장지굴근','flexor digitorum brevis':'단지굴근','flexor hallucis longus':'장무지굴근','flexor hallucis brevis':'단무지굴근','quadratus plantae':'족저방형근','first lumbrical of foot':'제1충양근','second lumbrical of foot':'제2충양근','third lumbrical of foot':'제3충양근','fourth lumbrical of foot':'제4충양근',
+ 'patella':'슬개골','tibia':'경골','fibula':'비골','common fibular nerve':'총비골신경','common peroneal nerve':'총비골신경'
 };
-export function bilingualPartName(name:string){const match=name.match(/^(Right|Left)\s+(.+)$/i);const side=match?.[1].toLowerCase()==='right'?'우측':match?.[1].toLowerCase()==='left'?'좌측':'';const base=(match?.[2]??name).toLowerCase();const korean=OLD_KOREAN_TERMS[base];return korean?`${name} (${side?`${side} `:''}${korean})`:name;}
+export function bilingualPartName(name:string){
+ const prefix=name.match(/^(Right|Left)\s+(.+)$/i),infix=name.match(/^(.+?)\s+of\s+(right|left)\s+(.+)$/i);
+ const sideWord=prefix?.[1]??infix?.[2],side=sideWord?.toLowerCase()==='right'?'우측':sideWord?.toLowerCase()==='left'?'좌측':'';
+ const base=(prefix?.[2]??(infix?`${infix[1]} of ${infix[3]}`:name)).toLowerCase();
+ const korean=KOREAN_ANATOMY_TERMS[base];
+ return korean?`${name} (${side?`${side} `:''}${korean})`:name;
+}
 export const DEFAULT_VISIBLE:SystemId[] = ['cardiac','sensory','skeletal','muscular','arterial','venous','nervous','respiratory','digestive','urinary','lymphatic','endocrine','reproductive','connective'];
 export const EXPLANATIONS:Record<string,string> = {
  'heart':'A muscular pump in the chest. Its right side sends blood to the lungs; its left side sends blood through the systemic circulation.',
