@@ -85,6 +85,15 @@ export default function AnatomyScene({
     controls.screenSpacePanning = true;
     controls.zoomToCursor = true;
     controls.zoomSpeed = 0.8;
+    // A trackpad streams many small deltas while a mouse sends a few large notches, so one
+    // zoom speed cannot suit both. Detect the notch and raise the speed only for that,
+    // in the capture phase so the value is set before OrbitControls reads it.
+    const TRACKPAD_ZOOM = 0.8, WHEEL_ZOOM = 1.8;
+    const matchZoomToDevice = (event: WheelEvent) => {
+      const notched = event.deltaMode !== 0 || Math.abs(event.deltaY) >= 50;
+      controls.zoomSpeed = notched ? WHEEL_ZOOM : TRACKPAD_ZOOM;
+    };
+    renderer.domElement.addEventListener("wheel", matchZoomToDevice, { capture: true, passive: true });
     controls.panSpeed = 0.85;
     controls.rotateSpeed = 0.7;
     controls.minDistance = 0.015;
@@ -1392,6 +1401,7 @@ export default function AnatomyScene({
       pointCoreMaterial.dispose();
       selectedPointCoreMaterial.dispose();
       hover.remove();
+      renderer.domElement.removeEventListener("wheel", matchZoomToDevice, { capture: true });
       renderer.dispose();
       renderer.domElement.remove();
     };
