@@ -295,6 +295,15 @@ for (const side of SIDES) {
   const fibula = mesh(atlas, sidedName(side, 'fibula'));
   const tibia = mesh(atlas, sidedName(side, 'tibia'));
 
+  point('middle_finger_tip', '가운데손가락 끝', side, () => {
+    const phalanx = mesh(atlas, `Distal phalanx of ${side} middle finger`);
+    return extremeCluster(phalanx, v(0, -1, 0), 0.03);
+  }, {
+    type: 'anatomical', anatomicalConfidence: 'high', frameConfidence: 'high',
+    derivation: 'lowest vertices of the middle-finger distal phalanx in the atlas standing pose; used only to transfer the fingertip height to the lateral thigh for GB31',
+    sources: [`Distal phalanx of ${side} middle finger`],
+  });
+
   point('greater_trochanter', '대전자', side, () => extremeCluster(femur, v(sign, 0, 0), 0.01, frac(femur, 1, 0.8, 1)), {
     type: 'anatomical', anatomicalConfidence: 'high', frameConfidence: 'high',
     derivation: 'most lateral vertices of the upper fifth of the femur', sources: [sidedName(side, 'femur')],
@@ -351,15 +360,35 @@ for (const side of SIDES) {
     }
     return out;
   };
-  curve('fibula_anterior_border', '비골 전연', side, () => sampleBorder(fibula, v(0, 0, 1)), {
+  const sampleFibularBorder = (anterior, count = 24) => {
+    const [lo, hi] = span(fibula, 1);
+    const out = [];
+    for (let i = 0; i <= count; i++) {
+      const y = lo + ((hi - lo) * i) / count;
+      const halfThickness = (hi - lo) / count / 2;
+      const fibulaSection = slab(fibula, 1, y, halfThickness);
+      const tibiaSection = slab(tibia, 1, y, halfThickness * 1.6);
+      if (!fibulaSection.length || !tibiaSection.length) continue;
+      const mean = (points) => points.reduce((sum, point) => sum.add(point), v()).multiplyScalar(1 / points.length);
+      const lateral = mean(fibulaSection).sub(mean(tibiaSection));
+      lateral.y = 0;
+      lateral.normalize();
+      const localAnterior = v(0, 1, 0).cross(lateral).normalize();
+      if (localAnterior.z < 0) localAnterior.negate();
+      const found = extremeInSection(fibula, 1, y, anterior ? localAnterior : localAnterior.negate(), { halfThickness });
+      if (found) out.push(found.point);
+    }
+    return out;
+  };
+  curve('fibula_anterior_border', '비골 전연', side, () => sampleFibularBorder(true), {
     type: 'anatomical', anatomicalConfidence: 'high', frameConfidence: 'high',
-    derivation: 'most anterior fibular vertex in each of 25 horizontal sections along the bone',
-    sources: [sidedName(side, 'fibula')],
+    derivation: 'anterior fibular vertex in each horizontal section, using the tibia-to-fibula vector as the local lateral axis instead of a world XYZ extreme',
+    sources: [sidedName(side, 'fibula'), sidedName(side, 'tibia')],
   });
-  curve('fibula_posterior_border', '비골 후연', side, () => sampleBorder(fibula, v(0, 0, -1)), {
+  curve('fibula_posterior_border', '비골 후연', side, () => sampleFibularBorder(false), {
     type: 'anatomical', anatomicalConfidence: 'high', frameConfidence: 'high',
-    derivation: 'most posterior fibular vertex in each of 25 horizontal sections along the bone',
-    sources: [sidedName(side, 'fibula')],
+    derivation: 'posterior fibular vertex in each horizontal section, using the tibia-to-fibula vector as the local lateral axis instead of a world XYZ extreme',
+    sources: [sidedName(side, 'fibula'), sidedName(side, 'tibia')],
   });
   curve('tibia_medial_border', '경골 내측연', side, () => sampleBorder(tibia, v(-sign, 0, 0)), {
     type: 'anatomical', anatomicalConfidence: 'high', frameConfidence: 'high',

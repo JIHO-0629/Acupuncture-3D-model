@@ -8,7 +8,7 @@ type Point=[number,number,number];
 
 const landmarks=landmarkData.landmarks as Landmark[];
 
-function requirePoint(id:string,side:Side='right'):Point{
+function requirePoint(id:string,side:Side|null='right'):Point{
  const landmark=landmarks.find(item=>item.id===id&&item.side===side);
  if(!landmark||landmark.kind!=='point'||!('point' in landmark))throw new Error(`Required point landmark is missing: ${id}/${side}`);
  return [...landmark.point] as Point;
@@ -35,14 +35,19 @@ function sampleCurveAtHeight(id:string,height:number):Point{
 const poplitealCrease=requirePoint('popliteal_crease');
 const greaterTrochanter=requirePoint('greater_trochanter');
 const lateralMalleolus=requirePoint('lateral_malleolus_prominence');
+const middleFingerTip=requirePoint('middle_finger_tip');
 const thighHeight=(cun:number)=>poplitealCrease[1]+(greaterTrochanter[1]-poplitealCrease[1])*cun/19;
 const legHeight=(cun:number)=>lateralMalleolus[1]+(poplitealCrease[1]-lateralMalleolus[1])*cun/16;
 
 export const GB_LANDMARK_SEEDS:Partial<Record<`GB${number}`,Point>>={
+ GB25:requirePoint('rib_twelfth_free_end'),
+ GB31:sampleCurveAtHeight('iliotibial_tract_posterior_border',middleFingerTip[1]),
  GB32:sampleCurveAtHeight('iliotibial_tract_posterior_border',thighHeight(7)),
  GB35:sampleCurveAtHeight('fibula_posterior_border',legHeight(7)),
  GB36:sampleCurveAtHeight('fibula_anterior_border',legHeight(7)),
  GB37:sampleCurveAtHeight('fibula_anterior_border',legHeight(5)),
  GB38:sampleCurveAtHeight('fibula_anterior_border',legHeight(4)),
  GB39:sampleCurveAtHeight('fibula_anterior_border',legHeight(3)),
+ GB43:requirePoint('interdigital_web_4_5'),
+ GB44:requirePoint('toenail_root_corner_4_lateral'),
 };

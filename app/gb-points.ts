@@ -26,12 +26,20 @@ export interface GbPointDefinition{
  seed:[number,number,number];
  projection:ProjectionMode;
  status:'registered'|'review';
+ primarySource:string;
+ secondarySource:string;
+ verifiedOn:'2026-09-12';
 }
+
+const KMCRIC=(code:`GB${number}`)=>`https://m.kmcric.com/knowledge/acupoint/GB/${code}`;
+const WHO='https://iris.who.int/handle/10665/353407';
+type GbPointInput=Omit<GbPointDefinition,'primarySource'|'secondarySource'|'verifiedOn'>;
+const gb=(point:GbPointInput):GbPointDefinition=>({...point,primarySource:KMCRIC(point.code),secondarySource:WHO,verifiedOn:'2026-09-12'});
 
 // These are editable region seeds, not final acupuncture-point coordinates. The viewer
 // projects each seed onto the bundled BodyParts3D skin at runtime. Their purpose is to
 // identify an anatomical neighbourhood that can be refined against the source meshes.
-export const GB_POINTS:GbPointDefinition[]=[
+const GB_POINT_INPUTS:GbPointInput[]=[
  {code:'GB1',korean:'동자료',hanja:'瞳子髎',english:'Tongziliao',location:'외안각에서 가쪽으로 0.5촌(골도분촌)인 눈확 가쪽 구역',basis:'상·하안검이 귀쪽에서 만나는 외안각 피부 구역',seed:[-.064,1.600,.078],projection:'head',status:'review'},
  {code:'GB2',korean:'청회',hanja:'聽會',english:'Tinghui',location:'이주와 하악골 관절돌기 사이 구역',basis:'외이도 앞쪽 경계와 하악골 관절돌기',seed:[-.073,1.566,.030],projection:'lateral',status:'review'},
  {code:'GB3',korean:'상관',hanja:'上關',english:'Shangguan',location:'관골궁 중점의 위쪽 구역',basis:'관골궁과 측두부 표면',seed:[-.073,1.596,.037],projection:'lateral',status:'registered'},
@@ -56,27 +64,29 @@ export const GB_POINTS:GbPointDefinition[]=[
  {code:'GB22',korean:'연액',hanja:'淵腋',english:'Yuanye',location:'팔을 든 자세의 겨드랑 중심 아래, 제4늑간 높이',basis:'피부를 따르는 가상 중간겨드랑선과 제4늑간',seed:[-.185,1.295,.010],projection:'lateral',status:'registered'},
  {code:'GB23',korean:'첩근',hanja:'輒筋',english:'Zhejin',location:'GB22 앞쪽, 제4늑간 높이의 흉곽 가쪽 구역',basis:'제4·5늑골과 중간겨드랑선',seed:[-.170,1.270,.038],projection:'lateral',status:'registered'},
  {code:'GB24',korean:'일월',hanja:'日月',english:'Riyue',location:'제7늑간, 전정중선 가쪽 흉곽 구역',basis:'제7·8늑골과 늑간 공간',seed:[-.120,1.165,.087],projection:'anterior',status:'registered'},
- {code:'GB25',korean:'경문',hanja:'京門',english:'Jingmen',location:'제12늑골 자유단 아래쪽 구역',basis:'제12늑골 자유단',seed:[-.155,1.080,-.010],projection:'lateral',status:'registered'},
+ {code:'GB25',korean:'경문',hanja:'京門',english:'Jingmen',location:'옆배, 제12늑골 자유단 바로 아래쪽',basis:'제12늑골 자유단 랜드마크·뒤겨드랑선 뒤쪽',seed:GB_LANDMARK_SEEDS.GB25!,projection:'lateral',status:'review'},
  {code:'GB26',korean:'대맥',hanja:'帶脈',english:'Daimai',location:'제11늑골 자유단 아래, 배꼽 중심과 같은 높이',basis:'제11늑골·백선 기반 가상 배꼽 높이',seed:[-.150,1.000,.025],projection:'lateral',status:'review'},
  {code:'GB27',korean:'오추',hanja:'五樞',english:'Wushu',location:'배꼽 아래 3/5 구간, 위앞엉덩뼈가시 안쪽',basis:'백선상의 가상 배꼽·가상 치골결합·우측 장골',seed:[-.095,.925,.070],projection:'anterior',status:'review'},
  {code:'GB28',korean:'유도',hanja:'維道',english:'Weidao',location:'위앞엉덩뼈가시 아래안쪽의 서혜부 구역',basis:'우측 장골 전상부와 서혜인대 경로',seed:[-.120,.885,.055],projection:'anterior',status:'review'},
  {code:'GB29',korean:'거료',hanja:'居髎',english:'Juliao',location:'위앞엉덩뼈가시와 대전자 사이 피부 곡선의 중점',basis:'우측 장골과 대퇴골 대전자',seed:[-.135,.910,-.005],projection:'lateral',status:'registered'},
  {code:'GB30',korean:'환도',hanja:'環跳',english:'Huantiao',location:'대전자–천골열공 곡선의 가쪽 1/3 구역',basis:'대퇴골 대전자와 천골',seed:[-.135,.840,-.085],projection:'posterior',status:'review'},
- {code:'GB31',korean:'풍시',hanja:'風市',english:'Fengshi',location:'대전자–오금주름 구간에서 오금 위 9/19',basis:'대퇴골 대전자·장경인대·후면 40% 오금주름',seed:[-.165,.650,-.025],projection:'lateral',status:'registered'},
+ {code:'GB31',korean:'풍시',hanja:'風市',english:'Fengshi',location:'바로 섰을 때 가운데손가락 끝 높이, 장경인대 뒤쪽 오목한 곳',basis:'모델의 가운데손가락 끝 높이·장경인대 후연',seed:GB_LANDMARK_SEEDS.GB31!,projection:'lateral',status:'review'},
  {code:'GB32',korean:'중독',hanja:'中瀆',english:'Zhongdu',location:'장경인대 뒤쪽, 오금주름 위 7촌',basis:'랜드마크 기반 대전자–슬와횡문 19촌 축·장경인대 후연',seed:GB_LANDMARK_SEEDS.GB32!,projection:'lateral',status:'review'},
  {code:'GB33',korean:'슬양관',hanja:'膝陽關',english:'Xiyangguan',location:'대퇴이두근건과 장경인대 사이, 외측상과 위뒤쪽',basis:'대퇴골·대퇴이두근·장경인대',seed:[-.145,.435,-.045],projection:'lateral',status:'registered'},
  {code:'GB34',korean:'양릉천',hanja:'陽陵泉',english:'Yanglingquan',location:'비골두의 앞먼쪽 피부 구역',basis:'비골 근위부·경골 사이의 전외측 구역',seed:[-.122,.414,-.014],projection:'lateral',status:'registered'},
- {code:'GB35',korean:'양교',hanja:'陽交',english:'Yangjiao',location:'비골 뒤쪽, 외과 융기 위 7촌',basis:'랜드마크 기반 슬와횡문–외과 융기 16촌 축·비골 후연',seed:GB_LANDMARK_SEEDS.GB35!,projection:'lateral',status:'review'},
- {code:'GB36',korean:'외구',hanja:'外丘',english:'Waiqiu',location:'비골 앞쪽, 외과 융기 위 7촌',basis:'랜드마크 기반 슬와횡문–외과 융기 16촌 축·비골 전연',seed:GB_LANDMARK_SEEDS.GB36!,projection:'lateral',status:'review'},
- {code:'GB37',korean:'광명',hanja:'光明',english:'Guangming',location:'비골 앞쪽, 외과 융기 위 5촌',basis:'랜드마크 기반 슬와횡문–외과 융기 16촌 축·비골 전연',seed:GB_LANDMARK_SEEDS.GB37!,projection:'lateral',status:'review'},
- {code:'GB38',korean:'양보',hanja:'陽輔',english:'Yangfu',location:'비골 앞쪽, 외과 융기 위 4촌',basis:'랜드마크 기반 슬와횡문–외과 융기 16촌 축·비골 전연',seed:GB_LANDMARK_SEEDS.GB38!,projection:'lateral',status:'review'},
- {code:'GB39',korean:'현종',hanja:'懸鍾',english:'Xuanzhong',location:'비골 앞쪽, 외과 융기 위 3촌',basis:'랜드마크 기반 슬와횡문–외과 융기 16촌 축·비골 전연',seed:GB_LANDMARK_SEEDS.GB39!,projection:'lateral',status:'review'},
+ {code:'GB35',korean:'양교',hanja:'陽交',english:'Yangjiao',location:'종아리 비골쪽면, 비골 뒤쪽, 외과 융기 위 7촌',basis:'16촌 하퇴축·경골–비골 국소 단면의 비골 후연',seed:GB_LANDMARK_SEEDS.GB35!,projection:'lateral',status:'review'},
+ {code:'GB36',korean:'외구',hanja:'外丘',english:'Waiqiu',location:'종아리 비골쪽면, 비골 앞쪽, 외과 융기 위 7촌',basis:'16촌 하퇴축·경골–비골 국소 단면의 비골 전연',seed:GB_LANDMARK_SEEDS.GB36!,projection:'lateral',status:'review'},
+ {code:'GB37',korean:'광명',hanja:'光明',english:'Guangming',location:'종아리 비골쪽면, 비골 앞쪽, 외과 융기 위 5촌',basis:'16촌 하퇴축·경골–비골 국소 단면의 비골 전연',seed:GB_LANDMARK_SEEDS.GB37!,projection:'lateral',status:'review'},
+ {code:'GB38',korean:'양보',hanja:'陽輔',english:'Yangfu',location:'종아리 비골쪽면, 비골 앞쪽, 외과 융기 위 4촌',basis:'16촌 하퇴축·경골–비골 국소 단면의 비골 전연',seed:GB_LANDMARK_SEEDS.GB38!,projection:'lateral',status:'review'},
+ {code:'GB39',korean:'현종',hanja:'懸鍾',english:'Xuanzhong',location:'종아리 비골쪽면, 비골 앞쪽, 외과 융기 위 3촌',basis:'16촌 하퇴축·경골–비골 국소 단면의 비골 전연',seed:GB_LANDMARK_SEEDS.GB39!,projection:'lateral',status:'review'},
  {code:'GB40',korean:'구허',hanja:'丘墟',english:'Qiuxu',location:'외과의 앞먼쪽, 긴발가락폄근힘줄 가쪽 구역',basis:'비골 원위부와 긴발가락폄근',seed:[-.150,.065,.040],projection:'dorsal-foot',status:'registered'},
  {code:'GB41',korean:'족임읍',hanja:'足臨泣',english:'Zulinqi',location:'제4·5중족골 바닥 연접부 먼쪽 구역',basis:'제4·5중족골과 긴발가락폄근',seed:[-.150,.035,.045],projection:'dorsal-foot',status:'registered'},
  {code:'GB42',korean:'지오회',hanja:'地五會',english:'Diwuhui',location:'제4·5중족골 사이, 제4중족지관절 몸쪽 구역',basis:'제4·5중족골과 제4중족지관절',seed:[-.150,.026,.073],projection:'dorsal-foot',status:'registered'},
- {code:'GB43',korean:'협계',hanja:'俠谿',english:'Xiaxi',location:'넷째·다섯째 발가락이 처음 만나는 발샅 가장자리 구역',basis:'제4·5발가락 피부 web margin',seed:[-.160,.018,.090],projection:'dorsal-foot',status:'review'},
- {code:'GB44',korean:'족규음',hanja:'足竅陰',english:'Zuqiaoyin',location:'넷째발가락 외측 발톱뿌리각 몸쪽 구역',basis:'제4원위지골과 새끼발가락 쪽 발톱 경계',seed:[-.165,.014,.103],projection:'dorsal-foot',status:'review'},
+ {code:'GB43',korean:'협계',hanja:'俠谿',english:'Xiaxi',location:'넷째·다섯째 발가락 사이, 발샅 가장자리의 몸쪽 오목한 곳',basis:'제4·5족지간 물갈퀴연 랜드마크',seed:GB_LANDMARK_SEEDS.GB43!,projection:'dorsal-foot',status:'review'},
+ {code:'GB44',korean:'족규음',hanja:'足竅陰',english:'Zuqiaoyin',location:'넷째발가락 외측 발톱뿌리각에서 몸쪽 0.1촌',basis:'제4족지갑 외측 뿌리각 추정 랜드마크',seed:GB_LANDMARK_SEEDS.GB44!,projection:'dorsal-foot',status:'review'},
 ];
+
+export const GB_POINTS:GbPointDefinition[]=GB_POINT_INPUTS.map(gb);
 
 export const GB_POINT_BY_CODE=new Map(GB_POINTS.map(point=>[point.code,point]));
 

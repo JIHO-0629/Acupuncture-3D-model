@@ -753,20 +753,6 @@ export default function AnatomyScene({
     }
     toePresentation.visible = false;
     scene.add(toePresentation);
-    const gb44BoneAnchor = (side: "right" | "left") => {
-      const frame = toeFrame(side),
-        part = partNamed(`distal phalanx of ${side} fourth toe`);
-      if (!part) return null;
-      const measure = partMeasures(part, frame);
-      return {
-        point: measure.center
-          .clone()
-          .addScaledVector(frame.longitudinal, measure.halfLength * 0.42)
-          .addScaledVector(frame.lateral, measure.halfWidth + 0.0015)
-          .addScaledVector(frame.dorsal, measure.halfHeight + 0.003),
-        normal: frame.dorsal,
-      };
-    };
     const updateAcupuncture = () => {
       const config = latest.current.acupuncture;
       lineGroup.traverse((o) => {
@@ -785,8 +771,7 @@ export default function AnatomyScene({
           )!;
           const source = definition.seed,
             seed = new T.Vector3(side === "right" ? source[0] : -source[0], source[1], source[2]),
-            boneAnchor = definition.code === "GB44" ? gb44BoneAnchor(side) : null,
-            projected = boneAnchor ?? projectToSkin(seed, definition.projection, side);
+            projected = projectToSkin(seed, definition.projection, side);
           object.surface.copy(projected.point);
           object.normal.copy(projected.normal);
           const markerPosition = projected.point.clone().addScaledVector(projected.normal, 0.0026);
