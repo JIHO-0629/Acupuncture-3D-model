@@ -2,7 +2,7 @@
  "source": "atlas.json",
  "generated": "scripts/landmarks.mjs",
  "note": "anatomicalConfidence rates the match to a real structure; frameConfidence rates fitness as the origin of a WHO proportional axis",
- "count": 132,
+ "count": 138,
  "landmarks": [
   {
    "id": "anterior_median_plane",
@@ -2617,25 +2617,86 @@
    "symmetryOffsetMm": 1.2
   },
   {
-   "id": "interdigital_web_4_5",
-   "korean": "제4·5족지간 물갈퀴연",
+   "id": "gb40_ankle_depression",
+   "korean": "GB40 발목 앞가쪽 오목",
    "side": "right",
    "kind": "point",
    "point": [
-    -0.1551,
-    0.00322,
-    0.04892
+    -0.1037,
+    0.07088,
+    0.00937
    ],
    "type": "derived",
    "anatomicalConfidence": "medium",
    "frameConfidence": "high",
-   "derivation": "most proximal skin between the fourth and little proximal phalanges",
+   "derivation": "lateral border of the distal extensor digitorum longus at the anterior extent of the talus, placing the point anterior-distal to the lateral malleolus without a fixed millimetre offset",
    "sources": [
-    "Skin",
+    "Right extensor digitorum longus",
+    "Right talus",
+    "Right fibula"
+   ],
+   "symmetryOffsetMm": 3
+  },
+  {
+   "id": "gb41_metatarsal_depression",
+   "korean": "GB41 제4·5중족골 기저 원위 오목",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.12626,
+    0.04254,
+    0.02694
+   ],
+   "type": "derived",
+   "anatomicalConfidence": "medium",
+   "frameConfidence": "high",
+   "derivation": "fifth extensor-tendon lateral border at the midpoint of the geometry-defined interval from the fourth-fifth metatarsal base junction to their shared distal interspace",
+   "sources": [
+    "Right extensor digitorum longus",
+    "Right fourth metatarsal bone",
+    "Right fifth metatarsal bone"
+   ],
+   "symmetryOffsetMm": 0.9
+  },
+  {
+   "id": "gb42_metatarsal_interspace",
+   "korean": "GB42 제4·5중족골 사이 원위 오목",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.1398,
+    0.01603,
+    0.05534
+   ],
+   "type": "derived",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "midpoint of the facing fourth and fifth metatarsal borders at the distal end of their shared shaft interval, immediately proximal to the fourth metatarsophalangeal joint",
+   "sources": [
+    "Right fourth metatarsal bone",
+    "Right fifth metatarsal bone"
+   ],
+   "symmetryOffsetMm": 0.7
+  },
+  {
+   "id": "interdigital_web_4_5",
+   "korean": "제4·5족지간 물갈퀴연 몸쪽",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.14794,
+    0.0151,
+    0.06439
+   ],
+   "type": "derived",
+   "anatomicalConfidence": "medium",
+   "frameConfidence": "high",
+   "derivation": "midpoint of the facing fourth and fifth proximal-phalanx borders at the proximal start of their shared interval; dorsal skin projection supplies the red-white border surface",
+   "sources": [
     "Proximal phalanx of right fourth toe",
     "Proximal phalanx of right little toe"
    ],
-   "symmetryOffsetMm": 3
+   "symmetryOffsetMm": 0.2
   },
   {
    "id": "toenail_root_corner_4_lateral",
@@ -2643,16 +2704,18 @@
    "side": "right",
    "kind": "point",
    "point": [
-    -0.16413,
-    0.01472,
-    0.0976
+    -0.16047,
+    0.01469,
+    0.09655
    ],
    "type": "estimated",
    "anatomicalConfidence": "low",
    "frameConfidence": "medium",
-   "derivation": "lateral-dorsal corner of the fourth distal phalanx at one fifth of its length; toenails are not modelled in BodyParts3D",
+   "derivation": "lateral-dorsal corner of a conceptual nail footprint scaled only from the fourth distal phalanx; toenails are not modelled in BodyParts3D, so the landmark remains explicitly estimated",
    "sources": [
-    "Distal phalanx of right fourth toe"
+    "Middle phalanx of right fourth toe",
+    "Distal phalanx of right fourth toe",
+    "Distal phalanx of right little toe"
    ],
    "symmetryOffsetMm": 0.1
   },
@@ -3605,25 +3668,86 @@
    "symmetryOffsetMm": 1.2
   },
   {
-   "id": "interdigital_web_4_5",
-   "korean": "제4·5족지간 물갈퀴연",
+   "id": "gb40_ankle_depression",
+   "korean": "GB40 발목 앞가쪽 오목",
    "side": "left",
    "kind": "point",
    "point": [
-    0.15613,
-    0.00529,
-    0.05192
+    0.10485,
+    0.06788,
+    0.00998
    ],
    "type": "derived",
    "anatomicalConfidence": "medium",
    "frameConfidence": "high",
-   "derivation": "most proximal skin between the fourth and little proximal phalanges",
+   "derivation": "lateral border of the distal extensor digitorum longus at the anterior extent of the talus, placing the point anterior-distal to the lateral malleolus without a fixed millimetre offset",
    "sources": [
-    "Skin",
+    "Left extensor digitorum longus",
+    "Left talus",
+    "Left fibula"
+   ],
+   "symmetryOffsetMm": 3
+  },
+  {
+   "id": "gb41_metatarsal_depression",
+   "korean": "GB41 제4·5중족골 기저 원위 오목",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.12718,
+    0.04293,
+    0.02689
+   ],
+   "type": "derived",
+   "anatomicalConfidence": "medium",
+   "frameConfidence": "high",
+   "derivation": "fifth extensor-tendon lateral border at the midpoint of the geometry-defined interval from the fourth-fifth metatarsal base junction to their shared distal interspace",
+   "sources": [
+    "Left extensor digitorum longus",
+    "Left fourth metatarsal bone",
+    "Left fifth metatarsal bone"
+   ],
+   "symmetryOffsetMm": 0.9
+  },
+  {
+   "id": "gb42_metatarsal_interspace",
+   "korean": "GB42 제4·5중족골 사이 원위 오목",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.14053,
+    0.01538,
+    0.05548
+   ],
+   "type": "derived",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "midpoint of the facing fourth and fifth metatarsal borders at the distal end of their shared shaft interval, immediately proximal to the fourth metatarsophalangeal joint",
+   "sources": [
+    "Left fourth metatarsal bone",
+    "Left fifth metatarsal bone"
+   ],
+   "symmetryOffsetMm": 0.7
+  },
+  {
+   "id": "interdigital_web_4_5",
+   "korean": "제4·5족지간 물갈퀴연 몸쪽",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.14792,
+    0.01529,
+    0.06443
+   ],
+   "type": "derived",
+   "anatomicalConfidence": "medium",
+   "frameConfidence": "high",
+   "derivation": "midpoint of the facing fourth and fifth proximal-phalanx borders at the proximal start of their shared interval; dorsal skin projection supplies the red-white border surface",
+   "sources": [
     "Proximal phalanx of left fourth toe",
     "Proximal phalanx of left little toe"
    ],
-   "symmetryOffsetMm": 3
+   "symmetryOffsetMm": 0.2
   },
   {
    "id": "toenail_root_corner_4_lateral",
@@ -3631,16 +3755,18 @@
    "side": "left",
    "kind": "point",
    "point": [
-    0.16407,
-    0.01466,
-    0.09766
+    0.16044,
+    0.01462,
+    0.09657
    ],
    "type": "estimated",
    "anatomicalConfidence": "low",
    "frameConfidence": "medium",
-   "derivation": "lateral-dorsal corner of the fourth distal phalanx at one fifth of its length; toenails are not modelled in BodyParts3D",
+   "derivation": "lateral-dorsal corner of a conceptual nail footprint scaled only from the fourth distal phalanx; toenails are not modelled in BodyParts3D, so the landmark remains explicitly estimated",
    "sources": [
-    "Distal phalanx of left fourth toe"
+    "Middle phalanx of left fourth toe",
+    "Distal phalanx of left fourth toe",
+    "Distal phalanx of left little toe"
    ],
    "symmetryOffsetMm": 0.1
   }

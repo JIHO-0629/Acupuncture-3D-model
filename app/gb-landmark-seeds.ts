@@ -48,6 +48,9 @@ export const GB_LANDMARK_SEEDS:Partial<Record<`GB${number}`,Point>>={
  GB37:sampleCurveAtHeight('fibula_anterior_border',legHeight(5)),
  GB38:sampleCurveAtHeight('fibula_anterior_border',legHeight(4)),
  GB39:sampleCurveAtHeight('fibula_anterior_border',legHeight(3)),
+ GB40:requirePoint('gb40_ankle_depression'),
+ GB41:requirePoint('gb41_metatarsal_depression'),
+ GB42:requirePoint('gb42_metatarsal_interspace'),
  GB43:requirePoint('interdigital_web_4_5'),
  GB44:requirePoint('toenail_root_corner_4_lateral'),
 };

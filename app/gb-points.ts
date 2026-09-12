@@ -79,9 +79,9 @@ const GB_POINT_INPUTS:GbPointInput[]=[
  {code:'GB37',korean:'광명',hanja:'光明',english:'Guangming',location:'종아리 비골쪽면, 비골 앞쪽, 외과 융기 위 5촌',basis:'16촌 하퇴축·경골–비골 국소 단면의 비골 전연',seed:GB_LANDMARK_SEEDS.GB37!,projection:'lateral',status:'review'},
  {code:'GB38',korean:'양보',hanja:'陽輔',english:'Yangfu',location:'종아리 비골쪽면, 비골 앞쪽, 외과 융기 위 4촌',basis:'16촌 하퇴축·경골–비골 국소 단면의 비골 전연',seed:GB_LANDMARK_SEEDS.GB38!,projection:'lateral',status:'review'},
  {code:'GB39',korean:'현종',hanja:'懸鍾',english:'Xuanzhong',location:'종아리 비골쪽면, 비골 앞쪽, 외과 융기 위 3촌',basis:'16촌 하퇴축·경골–비골 국소 단면의 비골 전연',seed:GB_LANDMARK_SEEDS.GB39!,projection:'lateral',status:'review'},
- {code:'GB40',korean:'구허',hanja:'丘墟',english:'Qiuxu',location:'외과의 앞먼쪽, 긴발가락폄근힘줄 가쪽 구역',basis:'비골 원위부와 긴발가락폄근',seed:[-.150,.065,.040],projection:'dorsal-foot',status:'registered'},
- {code:'GB41',korean:'족임읍',hanja:'足臨泣',english:'Zulinqi',location:'제4·5중족골 바닥 연접부 먼쪽 구역',basis:'제4·5중족골과 긴발가락폄근',seed:[-.150,.035,.045],projection:'dorsal-foot',status:'registered'},
- {code:'GB42',korean:'지오회',hanja:'地五會',english:'Diwuhui',location:'제4·5중족골 사이, 제4중족지관절 몸쪽 구역',basis:'제4·5중족골과 제4중족지관절',seed:[-.150,.026,.073],projection:'dorsal-foot',status:'registered'},
+ {code:'GB40',korean:'구허',hanja:'丘墟',english:'Qiuxu',location:'발목 앞가쪽, 장지신근건 가쪽이면서 외과의 앞먼쪽 오목한 곳',basis:'거골 전방 경계 높이·장지신근 원위부 가쪽 경계',seed:GB_LANDMARK_SEEDS.GB40!,projection:'dorsal-foot',status:'review'},
+ {code:'GB41',korean:'족임읍',hanja:'足臨泣',english:'Zulinqi',location:'제4·5중족골 기저 연접부 먼쪽, 제5 장지신근건 가쪽 오목한 곳',basis:'제4·5중족골 기저–원위 골간구간·장지신근 가쪽 경계',seed:GB_LANDMARK_SEEDS.GB41!,projection:'dorsal-foot',status:'review'},
+ {code:'GB42',korean:'지오회',hanja:'地五會',english:'Diwuhui',location:'제4·5중족골 사이, 제4중족지관절 몸쪽 오목한 곳',basis:'제4·5중족골이 함께 존재하는 원위 단면의 마주보는 골연',seed:GB_LANDMARK_SEEDS.GB42!,projection:'dorsal-foot',status:'review'},
  {code:'GB43',korean:'협계',hanja:'俠谿',english:'Xiaxi',location:'넷째·다섯째 발가락 사이, 발샅 가장자리의 몸쪽 오목한 곳',basis:'제4·5족지간 물갈퀴연 랜드마크',seed:GB_LANDMARK_SEEDS.GB43!,projection:'dorsal-foot',status:'review'},
  {code:'GB44',korean:'족규음',hanja:'足竅陰',english:'Zuqiaoyin',location:'넷째발가락 외측 발톱뿌리각에서 몸쪽 0.1촌',basis:'제4족지갑 외측 뿌리각 추정 랜드마크',seed:GB_LANDMARK_SEEDS.GB44!,projection:'dorsal-foot',status:'review'},
 ];
@@ -101,7 +101,7 @@ const NEEDLING_RAW:Record<string,string>={
  GB30:'직자 1.5~2.5촌',GB31:'직자 0.5~1.5촌; 사자 0.7~1.5촌',GB32:'직자 0.5~1촌; 사자 0.5~1촌',GB33:'직자 0.3~0.5촌; 사자 0.3~0.8촌',
  GB34:'직자 0.8~1.2촌',GB35:'직자 0.3~0.8촌; 사자 0.5~1촌',GB36:'직자 0.3~0.8촌; 사자 0.5~1.5촌',GB37:'직자 0.5~0.9촌; 사자 0.7~1촌',
  GB38:'직자 0.5~0.7촌',GB39:'직자 0.3~0.5촌; 사자 0.5~1촌',GB40:'직자 0.3~0.5촌; 사자 0.5~1촌',GB41:'직자 0.3~0.5촌',GB42:'직자 0.1~0.4촌; 사자 0.3~0.5촌',
- GB43:'직자 0.5촌',GB44:'얕게 약 0.1촌',
+ GB43:'직자 0.2~0.3촌; 사자 0.3~0.5촌',GB44:'직자 0.1~0.2촌; 사자 0.1~0.2촌',
 };
 
 const PARTIAL_VALIDATION=new Set(['GB2','GB14','GB20','GB21','GB22','GB23','GB24','GB25','GB30','GB38','GB41','GB43','GB44']);

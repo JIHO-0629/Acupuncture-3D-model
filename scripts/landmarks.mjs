@@ -423,8 +423,54 @@ for (const side of SIDES) {
   // ------------------------------------------------------------ foot
   const mt4 = mesh(atlas, sidedName(side, 'fourth metatarsal bone'));
   const mt5 = mesh(atlas, sidedName(side, 'fifth metatarsal bone'));
+  const talus = mesh(atlas, sidedName(side, 'talus'));
   const proximal = (part) => extremeCluster(part, v(0, 0, -1), 0.05);
   const distal = (part) => extremeCluster(part, v(0, 0, 1), 0.05);
+  const partCenter = (part) => part.box.getCenter(new T.Vector3());
+  const footLongitudinal = distal(mt4).sub(proximal(mt4)).normalize();
+  const footLateral = partCenter(mt5).sub(partCenter(mt4)).normalize();
+  const footDorsal = footLongitudinal.clone().cross(footLateral).normalize();
+  if (footDorsal.y < 0) footDorsal.negate();
+
+  const facingGapAtZ = (medialPart, lateralPart, z) => {
+    const half = Math.min(
+      (medialPart.box.max.z - medialPart.box.min.z) / 18,
+      (lateralPart.box.max.z - lateralPart.box.min.z) / 18,
+    );
+    const medialFacing = extremeInSection(medialPart, 2, z, v(sign, 0, 0), { halfThickness: half });
+    const lateralFacing = extremeInSection(lateralPart, 2, z, v(-sign, 0, 0), { halfThickness: half });
+    if (!medialFacing || !lateralFacing) throw new Error(`no facing foot-bone section at z=${z}`);
+    return medialFacing.point.clone().add(lateralFacing.point).multiplyScalar(0.5);
+  };
+
+  const edl = mesh(atlas, sidedName(side, 'extensor digitorum longus'));
+  const sampleFifthEdlBorder = (count = 36) => {
+    const lo = Math.max(edl.box.min.z, talus.box.min.z);
+    const hi = Math.min(edl.box.max.z, mt5.box.max.z);
+    const out = [];
+    for (let i = 0; i <= count; i++) {
+      const z = lo + ((hi - lo) * i) / count;
+      const found = extremeInSection(edl, 2, z, v(sign, 0, 0), {
+        halfThickness: (hi - lo) / count / 2,
+        filter: (p) => p.y < lateralMalleolusPoint[1],
+      });
+      if (found) out.push(found.point);
+    }
+    return out;
+  };
+  const lateralMalleolusPoint = landmarks.find((item) => item.id === 'lateral_malleolus_prominence' && item.side === side)?.point;
+  if (!lateralMalleolusPoint) throw new Error(`needs lateral_malleolus_prominence/${side}`);
+  const fifthEdlBorder = sampleFifthEdlBorder();
+  const sampleByZ = (samples, z) => {
+    const sorted = [...samples].sort((a, b) => a.z - b.z);
+    for (let index = 1; index < sorted.length; index++) {
+      const lower = sorted[index - 1], upper = sorted[index];
+      if (z > upper.z) continue;
+      const ratio = (z - lower.z) / (upper.z - lower.z || 1);
+      return lower.clone().lerp(upper, Math.max(0, Math.min(1, ratio)));
+    }
+    return sorted.at(-1).clone();
+  };
   point('metatarsal_4_base', '제4중족골 저', side, () => proximal(mt4), {
     type: 'anatomical', anatomicalConfidence: 'high', frameConfidence: 'high',
     derivation: 'most proximal vertices of the fourth metatarsal', sources: [sidedName(side, 'fourth metatarsal bone')],
@@ -447,27 +493,55 @@ for (const side of SIDES) {
     derivation: 'midpoint between the head of the fourth metatarsal and the base of the fourth proximal phalanx',
     sources: [sidedName(side, 'fourth metatarsal bone'), `Proximal phalanx of ${side} fourth toe`],
   });
-  point('interdigital_web_4_5', '제4·5족지간 물갈퀴연', side, () => {
-    const fourth = mesh(atlas, `Proximal phalanx of ${side} fourth toe`);
-    const little = mesh(atlas, `Proximal phalanx of ${side} little toe`);
-    const gap = fourth.box.getCenter(new T.Vector3()).add(little.box.getCenter(new T.Vector3())).multiplyScalar(0.5);
-    const skin = mesh(atlas, 'Skin');
-    // The cleft is the skin between the two toes that reaches furthest back toward the foot.
-    return extremeCluster(skin, v(0, 0, -1), 0.03, (p) =>
-      Math.abs(p.x - gap.x) < 0.008 && Math.abs(p.y - gap.y) < 0.012 && p.z > gap.z - 0.02 && p.z < gap.z + 0.03);
+  const metatarsalSharedDistalZ = Math.min(mt4.box.max.z, mt5.box.max.z);
+  const gb42Gap = facingGapAtZ(mt4, mt5, metatarsalSharedDistalZ);
+  const baseJunction = proximal(mt4).add(proximal(mt5)).multiplyScalar(0.5);
+  const gb41Level = baseJunction.clone().lerp(gb42Gap, 0.5);
+  point('gb40_ankle_depression', 'GB40 발목 앞가쪽 오목', side, () => {
+    const talusAnterior = extreme(talus, footLongitudinal);
+    return sampleByZ(fifthEdlBorder, talusAnterior.z);
   }, {
     type: 'derived', anatomicalConfidence: 'medium', frameConfidence: 'high',
-    derivation: 'most proximal skin between the fourth and little proximal phalanges',
-    sources: ['Skin', `Proximal phalanx of ${side} fourth toe`, `Proximal phalanx of ${side} little toe`],
+    derivation: 'lateral border of the distal extensor digitorum longus at the anterior extent of the talus, placing the point anterior-distal to the lateral malleolus without a fixed millimetre offset',
+    sources: [sidedName(side, 'extensor digitorum longus'), sidedName(side, 'talus'), sidedName(side, 'fibula')],
+  });
+  point('gb41_metatarsal_depression', 'GB41 제4·5중족골 기저 원위 오목', side, () => sampleByZ(fifthEdlBorder, gb41Level.z), {
+    type: 'derived', anatomicalConfidence: 'medium', frameConfidence: 'high',
+    derivation: 'fifth extensor-tendon lateral border at the midpoint of the geometry-defined interval from the fourth-fifth metatarsal base junction to their shared distal interspace',
+    sources: [sidedName(side, 'extensor digitorum longus'), sidedName(side, 'fourth metatarsal bone'), sidedName(side, 'fifth metatarsal bone')],
+  });
+  point('gb42_metatarsal_interspace', 'GB42 제4·5중족골 사이 원위 오목', side, () => gb42Gap, {
+    type: 'derived', anatomicalConfidence: 'high', frameConfidence: 'high',
+    derivation: 'midpoint of the facing fourth and fifth metatarsal borders at the distal end of their shared shaft interval, immediately proximal to the fourth metatarsophalangeal joint',
+    sources: [sidedName(side, 'fourth metatarsal bone'), sidedName(side, 'fifth metatarsal bone')],
+  });
+  point('interdigital_web_4_5', '제4·5족지간 물갈퀴연 몸쪽', side, () => {
+    const fourth = mesh(atlas, `Proximal phalanx of ${side} fourth toe`);
+    const little = mesh(atlas, `Proximal phalanx of ${side} little toe`);
+    const proximalSharedZ = Math.max(fourth.box.min.z, little.box.min.z);
+    return facingGapAtZ(fourth, little, proximalSharedZ);
+  }, {
+    type: 'derived', anatomicalConfidence: 'medium', frameConfidence: 'high',
+    derivation: 'midpoint of the facing fourth and fifth proximal-phalanx borders at the proximal start of their shared interval; dorsal skin projection supplies the red-white border surface',
+    sources: [`Proximal phalanx of ${side} fourth toe`, `Proximal phalanx of ${side} little toe`],
   });
   point('toenail_root_corner_4_lateral', '제4족지갑 외측 뿌리각', side, () => {
     const phalanx = mesh(atlas, `Distal phalanx of ${side} fourth toe`);
-    const box = phalanx.box;
-    return v(sign > 0 ? box.max.x : box.min.x, box.max.y, box.min.z + (box.max.z - box.min.z) * 0.2);
+    const middle = mesh(atlas, `Middle phalanx of ${side} fourth toe`);
+    const longitudinal = partCenter(phalanx).sub(partCenter(middle)).normalize();
+    const lateral = partCenter(mesh(atlas, `Distal phalanx of ${side} little toe`)).sub(partCenter(phalanx)).normalize();
+    const dorsal = longitudinal.clone().cross(lateral).normalize();
+    if (dorsal.y < 0) dorsal.negate();
+    const halfLength = phalanx.box.getSize(new T.Vector3()).dot(new T.Vector3(0, 0, 1)) / 2;
+    const halfWidth = Math.abs(phalanx.box.max.x - phalanx.box.min.x) / 2;
+    return partCenter(phalanx)
+      .addScaledVector(longitudinal, -halfLength * 0.3)
+      .addScaledVector(lateral, halfWidth * 0.7)
+      .addScaledVector(dorsal, phalanx.box.max.y - partCenter(phalanx).y);
   }, {
     type: 'estimated', anatomicalConfidence: 'low', frameConfidence: 'medium',
-    derivation: 'lateral-dorsal corner of the fourth distal phalanx at one fifth of its length; toenails are not modelled in BodyParts3D',
-    sources: [`Distal phalanx of ${side} fourth toe`],
+    derivation: 'lateral-dorsal corner of a conceptual nail footprint scaled only from the fourth distal phalanx; toenails are not modelled in BodyParts3D, so the landmark remains explicitly estimated',
+    sources: [`Middle phalanx of ${side} fourth toe`, `Distal phalanx of ${side} fourth toe`, `Distal phalanx of ${side} little toe`],
   });
 }
 

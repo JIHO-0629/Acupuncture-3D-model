@@ -484,7 +484,10 @@ export default function AnatomyScene({
     const projectionDirection = (seed: T.Vector3, mode: ProjectionMode, side: "right" | "left") => {
       if (mode === "anterior") return new T.Vector3(0, 0, 1);
       if (mode === "posterior") return new T.Vector3(0, 0, -1);
-      if (mode === "dorsal-foot") return new T.Vector3(0, 1, 0.08).normalize();
+      // The atlas foot is planted on the horizontal plane, so its local dorsal axis is +Y.
+      // Keeping this ray strictly dorsal prevents an oblique ray from drifting into an
+      // adjacent metatarsal or toe before it reaches the intended skin region.
+      if (mode === "dorsal-foot") return new T.Vector3(0, 1, 0);
       if (mode === "lateral") return new T.Vector3(side === "right" ? -1 : 1, 0, 0);
       return seed
         .clone()
@@ -1254,8 +1257,8 @@ export default function AnatomyScene({
         ring.visible =
         innerRing.visible =
           amount < 0.5 && !s.isolate;
-      // Do not present procedurally inferred toenails or web margins as source anatomy.
-      // GB43/44 remain approximate surface registrations anchored to bundled bones and skin.
+      // Do not present the conceptual nail footprint as source anatomy. GB44 remains an
+      // explicitly estimated landmark scaled from the bundled fourth-toe phalanges.
       toePresentation.visible = false;
       markers.visible = amount > 0.75;
       controls.autoRotate = s.rotate && !s.isolate && amount < 0.4;

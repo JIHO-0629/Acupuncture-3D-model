@@ -129,6 +129,28 @@ for (const landmark of data.landmarks) {
   for (const p of points) if (!box.containsPoint(new T.Vector3(...p))) fail(`${landmark.id}${landmark.side ? `/${landmark.side}` : ''}: point ${p} lies outside the body`);
 }
 
+// 9. The lateral-foot sequence must progress from ankle to fourth-toe nail root.
+for (const side of ['right', 'left']) {
+  const ids = [
+    'gb40_ankle_depression',
+    'gb41_metatarsal_depression',
+    'gb42_metatarsal_interspace',
+    'interdigital_web_4_5',
+    'toenail_root_corner_4_lateral',
+  ];
+  const points = ids.map((id) => get(id, side));
+  if (points.some((point) => !point)) {
+    fail(`${side}: GB40-GB44 landmark sequence is incomplete`);
+    continue;
+  }
+  for (let index = 1; index < points.length; index++)
+    if (at(points[index]).z <= at(points[index - 1]).z)
+      fail(`${side}: ${ids[index]} is not distal to ${ids[index - 1]}`);
+  const nail = points.at(-1);
+  if (nail.type !== 'estimated' || nail.anatomicalConfidence !== 'low')
+    fail(`${side}: GB44 conceptual nail landmark must remain explicitly low-confidence and estimated`);
+}
+
 console.log(`${data.landmarks.length} landmarks checked`);
 for (const message of warnings) console.log(`  warning  ${message}`);
 if (failures.length) {
