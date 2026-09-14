@@ -179,3 +179,29 @@ h1 .edition{font-family:inherit;font-weight:500;font-size:10px;letter-spacing:.0
 @media(min-width:768px) and (max-height:760px){.auxiliary-tools{top:424px}.detail-sheet{bottom:62px!important;max-height:calc(100dvh - 500px)!important}}
 .atlas-annotation .atlas-annotation-label{width:180px;min-width:180px;transition:left 200ms ease,top 140ms ease;transform:none}.atlas-annotation .atlas-annotation-label.is-left{transform:none;text-align:right}.atlas-annotation .atlas-annotation-label b{font-size:16px;line-height:1.45}.atlas-annotation .atlas-annotation-label small{font-size:13px;line-height:1.4;color:#65765f;font-weight:400}
 .atlas-annotation{position:fixed;inset:0;z-index:20;pointer-events:none;opacity:0;transition:opacity 160ms ease;font-family:'S-Core Dream',Inter,sans-serif;color:#587152}.atlas-annotation.is-visible{opacity:1}.atlas-annotation.is-occluded{opacity:0}.atlas-annotation-line{position:absolute;inset:0;overflow:visible}.atlas-annotation-line polyline{fill:none;stroke:#62795c;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:.78}.atlas-annotation-anchor{position:absolute;width:12px;height:12px;border:1px solid #527449;border-radius:50%;background:#f3f4f1;box-shadow:inset 0 0 0 3px #f3f4f1;transform:translate(-50%,-50%)}.atlas-annotation-anchor:after{content:'';display:block;width:4px;height:4px;margin:3px;border-radius:50%;background:#3f6b3b}.atlas-annotation-label{position:absolute;display:flex;flex-direction:column;gap:4px;min-width:116px;transition:left 120ms cubic-bezier(.2,.7,.2,1),top 120ms cubic-bezier(.2,.7,.2,1),opacity 140ms ease}.atlas-annotation-label.is-left{transform:translateX(-100%);text-align:right}.atlas-annotation-label b{font-size:12px;font-weight:600;white-space:nowrap}.atlas-annotation-label small{font-size:10px;font-weight:300;color:#84907d}.atlas-annotation.is-moving .atlas-annotation-label small{opacity:0}@media(max-width:1100px){.atlas-annotation{display:none}}
+/* Vertical acupoint scrub rail — emphasis is written per frame from JS (opacity/scale/data-active). */
+.acupoint-rail{position:fixed;z-index:21;left:44px;top:150px;width:260px;display:flex;flex-direction:column;gap:4px;color:#26342d;font-family:'S-Core Dream',Inter,ui-sans-serif,sans-serif}
+.acupoint-rail .eyebrow{font-weight:400;color:#71806e;letter-spacing:.12em;padding-left:14px}
+.acupoint-scrubber{--scrub-item:104px;height:calc(var(--scrub-item)*1.4);overflow-y:auto;overscroll-behavior:contain;outline:none;border-radius:6px;scrollbar-width:thin;scrollbar-color:transparent transparent;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 24%,#000 76%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 24%,#000 76%,transparent)}
+.acupoint-scrubber[data-scrolling=true]{scrollbar-color:#26342d33 transparent}
+.acupoint-scrubber::-webkit-scrollbar{width:3px}
+.acupoint-scrubber::-webkit-scrollbar-thumb{background:transparent;border-radius:3px}
+.acupoint-scrubber[data-scrolling=true]::-webkit-scrollbar-thumb{background:#26342d33}
+.acupoint-scrubber:focus-visible{box-shadow:inset 0 0 0 1px #465e4555}
+.scrub-spacer{height:calc(50% - var(--scrub-item)/2)}
+.scrub-card{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;width:100%;height:var(--scrub-item);padding:0 8px 0 14px;border:0;background:none;color:#5f6d64;font:inherit;text-align:left;cursor:pointer;transform-origin:center center;backface-visibility:hidden;will-change:transform,opacity}
+.scrub-card::before{content:'';position:absolute;left:0;top:50%;width:2px;height:0;background:#465e45;transform:translateY(-50%);transition:height .18s ease}
+.scrub-card[data-active=true]{color:#1c2721}
+.scrub-card[data-active=true]::before{height:62%}
+.scrub-card strong{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-size:60px;font-weight:400;line-height:.92;letter-spacing:.02em}
+.scrub-card span{display:flex;align-items:baseline;gap:8px;min-width:0}
+.scrub-card b{font-size:20px;font-weight:600;line-height:1.2;white-space:nowrap}
+.scrub-card small{max-width:150px;overflow:hidden;font-size:11px;font-weight:300;color:#7d8a79;white-space:nowrap;text-overflow:ellipsis}
+.acupoint-rail-meta{display:flex;align-items:center;gap:12px;padding-left:12px;font-family:ui-monospace,'Cascadia Code',Consolas,monospace;font-size:10px;color:#6d8069}
+.acupoint-rail-meta em{font-style:normal;font-variant-numeric:tabular-nums;color:#465e45}
+@media(prefers-reduced-motion:reduce){.scrub-card{will-change:auto}.scrub-card::before{transition:none}}
+@media(max-width:1100px){.acupoint-rail{left:24px}.scrub-card strong{font-size:50px}}
+@media(min-width:768px) and (max-height:760px){.acupoint-scrubber{--scrub-item:92px}.scrub-card strong{font-size:50px}}
+/* Phones: the acupuncture panel spans the full width from the header down, so there is no free
+   side column; the rail stays hidden like the previous identifier (panel ← → navigation remains). */
+@media(max-width:767px){.acupoint-rail{display:none}}
