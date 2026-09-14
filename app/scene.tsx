@@ -7,7 +7,8 @@ import { createExplosionLayout } from "./explosion-layout";
 import { decodeModelResponse } from "./model-download";
 import { PointerTap } from "./pointer-tap";
 import { SYSTEMS, type Atlas, type NeedleHit, type NeedleReport, type SceneState } from "./anatomy";
-import { GB_POINTS, needleProfile, type ProjectionMode } from "./gb-points";
+import { type ProjectionMode } from "./gb-points";
+import {atlasPoints,meridianOf,needleProfile,type AcupointCode} from "./acupoints";
 import type { AnnotationFrame } from "./annotation-overlay";
 interface Props {
   atlas: Atlas;
@@ -468,7 +469,8 @@ export default function AnatomyScene({
       label.visible = false;
       return { label, texture };
     };
-    for (const point of GB_POINTS)
+    const acupoints = atlasPoints(atlas);
+    for (const point of acupoints)
       for (const side of ["right", "left"] as const) {
         const marker = new T.Mesh(pointGeometry, pointMaterial),
           core = new T.Mesh(pointCoreGeometry, pointCoreMaterial),
@@ -521,8 +523,8 @@ export default function AnatomyScene({
         .sub(new T.Vector3(0, 1.59, 0))
         .normalize();
     };
-    const projectToSkin = (seed: T.Vector3, mode: ProjectionMode, side: "right" | "left") => {
-      const outward = projectionDirection(seed, mode, side),
+    const projectToSkin = (seed: T.Vector3, mode: ProjectionMode, side: "right" | "left", direction?:T.Vector3) => {
+      const outward = direction ?? projectionDirection(seed, mode, side),
         origin = seed.clone().addScaledVector(outward, 0.24),
         inward = outward.clone().negate();
       raycaster.set(origin, inward);
@@ -794,14 +796,14 @@ export default function AnatomyScene({
       });
       lineGroup.clear();
       const projectedBySide: { right: T.Vector3[]; left: T.Vector3[] } = { right: [], left: [] };
-      for (const definition of GB_POINTS) {
+      for (const definition of acupoints) {
         for (const side of ["right", "left"] as const) {
           const object = pointObjects.find(
             (item) => item.code === definition.code && item.side === side,
           )!;
           const source = definition.seed,
             seed = new T.Vector3(side === "right" ? source[0] : -source[0], source[1], source[2]),
-            projected = projectToSkin(seed, definition.projection, side);
+            projected = projectToSkin(seed, definition.projection, side, definition.outward ? new T.Vector3(side==='right'?definition.outward[0]:-definition.outward[0],definition.outward[1],definition.outward[2]) : undefined);
           object.surface.copy(projected.point);
           object.normal.copy(projected.normal);
           const markerPosition = projected.point.clone().addScaledVector(projected.normal, 0.0026);
@@ -812,14 +814,15 @@ export default function AnatomyScene({
             .addScaledVector(projected.normal, 0.016)
             .add(new T.Vector3(0, 0.009, 0));
           const selected = config?.selectedCode === definition.code,
-            visible = !!config?.visible && (config.showAll || selected);
+            visible = !!config?.visible && ((config.showAll && meridianOf(definition.code)===meridianOf(config.selectedCode??'GB34')) || selected);
           object.marker.visible = object.core.visible = visible;
           object.label.visible = false;
           object.marker.material = selected ? selectedPointMaterial : pointMaterial;
           object.core.material = selected ? selectedPointCoreMaterial : pointCoreMaterial;
-          object.marker.scale.setScalar(selected ? 1.08 : 1);
-          object.core.scale.setScalar(selected ? 1.08 : 1);
-          projectedBySide[side].push(object.marker.position.clone());
+          const markerScale=(selected ? 1.08 : 1)*(definition.code.startsWith('LI')?.3:1);
+          object.marker.scale.setScalar(markerScale);
+          object.core.scale.setScalar(markerScale);
+          if(meridianOf(definition.code)===meridianOf(config?.selectedCode??'GB34')) projectedBySide[side].push(object.marker.position.clone());
         }
       }
       const addSurfaceGuide = (
@@ -848,7 +851,7 @@ export default function AnatomyScene({
         line.renderOrder = 54;
         lineGroup.add(line);
       };
-      if (config?.visible) {
+      if (config?.visible && meridianOf(config.selectedCode??'GB34')==='GB') {
         addSurfaceGuide(
           [
             [-0.082, 1.615, -0.012],
@@ -919,8 +922,8 @@ export default function AnatomyScene({
     const updateNeedle = () => {
       const config = latest.current.needle,
         acupuncture = latest.current.acupuncture,
-        code = acupuncture?.selectedCode as `GB${number}` | undefined,
-        definition = code ? GB_POINTS.find((item) => item.code === code) : undefined;
+        code = acupuncture?.selectedCode as AcupointCode | undefined,
+        definition = code ? acupoints.find((item) => item.code === code) : undefined;
       if (!config?.enabled || !ready || !definition) {
         needle.visible = needleHandle.visible = false;
         return;
@@ -931,6 +934,11 @@ export default function AnatomyScene({
         surface = object.surface,
         trajectory = object.normal.clone().negate(),
         probeDepth = profile.probeDepthMm / 1000;
+      if(probeDepth<=0){
+        needle.visible=needleHandle.visible=false;
+        needleReport.current?.({code:definition.code,available:false,limitMm:null,boundaryMm:null,boundaryId:null,boundaryLabel:profile.label,conceptual:false,hits:[],pathHits:[],allHits:[]});
+        return;
+      }
       const shaftRadius = 0.00065,
         referenceAxis = Math.abs(trajectory.y) < 0.9 ? new T.Vector3(0, 1, 0) : new T.Vector3(1, 0, 0),
         across = new T.Vector3().crossVectors(trajectory, referenceAxis).normalize(),
@@ -1285,7 +1293,7 @@ export default function AnatomyScene({
                 (radius / (2 * Math.tan(T.MathUtils.degToRad(camera.fov / 2)))) * 2.2,
               ) * (footView ? 1.12 : 1),
             direction = (
-              footView ? new T.Vector3(0.18, 0.92, 0.34) : new T.Vector3(-1, 0.08, 0.32)
+              footView ? new T.Vector3(0.18, 0.92, 0.34) : new T.Vector3().fromArray(acupoints.find(point=>point.code===s.acupuncture?.selectedCode)?.outward??[-1,0.08,0.32])
             ).normalize();
           moveCamera(center, center.clone().addScaledVector(direction, distance));
         }

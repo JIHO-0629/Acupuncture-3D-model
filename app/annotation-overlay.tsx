@@ -62,7 +62,7 @@ export function AnnotationOverlay({ annotation, channel }: { annotation: AtlasAn
         let best: {side:'left'|'right';x:number;y:number;score:number} | null=null;
         for(const candidateSide of ['left','right'] as const) for(const offset of [96,180,280,400,520]) for(const vertical of [-30,-100,50]) {
           const x=clamp(candidateSide==='right'?frame.x+offset:frame.x-offset-180,24,frame.width-204), y=clamp(frame.y+vertical,100,frame.height-92);
-          const overlap=obstacles.reduce((area,r)=>area+Math.max(0,Math.min(x+194,r.right)-Math.max(x-14,r.left))*Math.max(0,Math.min(y+64,r.bottom)-Math.max(y-12,r.top)),0);
+          const overlap=obstacles.reduce((area,r)=>area+(uiRects.includes(r)?100:1)*Math.max(0,Math.min(x+194,r.right)-Math.max(x-14,r.left))*Math.max(0,Math.min(y+64,r.bottom)-Math.max(y-12,r.top)),0);
           const score=overlap*10+offset+Math.abs(vertical+30)*2+(candidateSide!==side?1600:0);
           if(!best||score<best.score) best={side:candidateSide,x,y,score};
         }

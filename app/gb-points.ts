@@ -1,7 +1,7 @@
 import {GB_LANDMARK_SEEDS} from './gb-landmark-seeds';
 
 export type ProjectionMode='head'|'lateral'|'anterior'|'posterior'|'dorsal-foot';
-export type NeedleRegion='face-scalp'|'neck'|'thorax'|'flank-abdomen'|'pelvis-gluteal'|'thigh-knee'|'leg'|'ankle-foot'|'toe';
+export type NeedleRegion='face-scalp'|'neck'|'thorax'|'flank-abdomen'|'pelvis-gluteal'|'thigh-knee'|'leg'|'ankle-foot'|'toe'|'upper-limb';
 
 export interface NeedleProfile{
  region:NeedleRegion;
@@ -106,6 +106,7 @@ const NEEDLING_RAW:Record<string,string>={
 
 const PARTIAL_VALIDATION=new Set(['GB2','GB14','GB20','GB21','GB22','GB23','GB24','GB25','GB30','GB38','GB41','GB43','GB44']);
 const REFERENCE_STRUCTURES:Record<NeedleRegion,string[]>={
+ 'upper-limb':[],
  'face-scalp':['피부·피하조직','표정근/두피근막','골막·두개골 또는 안와 경계'],
  neck:['피부·피하조직','승모근·두반극근 계열','후두하부 혈관·신경 및 경추 경계'],
  thorax:['피부·피하조직','표층근·늑간근','늑골·흉막 개념 경계'],
