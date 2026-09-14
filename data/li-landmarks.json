@@ -52,16 +52,16 @@
  "points": {
   "LI1": {
    "seed": [
-    -0.3016,
-    0.75376,
-    0.07712
+    -0.31218,
+    0.74825,
+    0.0716
    ],
    "outward": [
     -0.80462,
     -0.41959,
     -0.42014
    ],
-   "depthMm": 5.3,
+   "depthMm": 7.8,
    "rule": "distal phalanx radial-dorsal corner at nail root (28% of 19 mm from base) + 0.1 F-cun proximal"
   },
   "LI2": {
@@ -94,16 +94,16 @@
   },
   "LI4": {
    "seed": [
-    -0.30505,
-    0.83312,
-    0.04088
+    -0.30357,
+    0.83248,
+    0.03896
    ],
    "outward": [
-    -0.90642,
-    0.2211,
-    0.35988
+    -0.92466,
+    0.21446,
+    0.31465
    ],
-   "depthMm": 24.4,
+   "depthMm": 22.3,
    "rule": "midpoint of 2nd metacarpal · radial border (palmar-leaning)"
   },
   "LI5": {
@@ -122,16 +122,16 @@
   },
   "LI6": {
    "seed": [
-    -0.27633,
-    0.94866,
-    0.00147
+    -0.27829,
+    0.94884,
+    0.00052
    ],
    "outward": [
     -0.89575,
     0.08103,
     -0.4371
    ],
-   "depthMm": 0,
+   "depthMm": 2.1,
    "rule": "LI5→LI11 line 3/12 B-cun"
   },
   "LI7": {
@@ -220,45 +220,45 @@
   },
   "LI13": {
    "seed": [
-    -0.24399,
-    1.21336,
-    -0.02104
+    -0.24234,
+    1.21345,
+    -0.01724
    ],
    "outward": [
-    -0.97381,
-    0.16511,
-    0.15632
+    -0.95945,
+    0.15549,
+    0.23511
    ],
-   "depthMm": 5.9,
+   "depthMm": 6.9,
    "rule": "LI11→LI15 line at crease + 3 B-cun"
   },
   "LI14": {
    "seed": [
-    -0.23168,
-    1.29126,
-    -0.01996
+    -0.23249,
+    1.2918,
+    -0.02264
    ],
    "outward": [
-    -0.98336,
-    0.17716,
-    0.04018
+    -0.98326,
+    0.18178,
+    -0.01216
    ],
-   "depthMm": 27.4,
-   "rule": "deltoid insertion (lowest deltoid fibres), just anterior · crease+6.7 B-cun"
+   "depthMm": 29.8,
+   "rule": "deltoid V apex (insertion) · crease+6.7 B-cun"
   },
   "LI15": {
    "seed": [
-    -0.18401,
-    1.42082,
-    -0.02024
+    -0.17224,
+    1.41939,
+    -0.00501
    ],
    "outward": [
-    -0.93149,
-    0.23287,
-    0.27945
+    -0.58209,
+    0.24254,
+    0.77611
    ],
-   "depthMm": 10.8,
-   "rule": "midpoint(anterior end of lateral acromion border, greater tubercle) · lateral"
+   "depthMm": 11.7,
+   "rule": "anterior hollow: anterior end of lateral acromion border ↔ front of greater tubercle"
   },
   "LI16": {
    "seed": [

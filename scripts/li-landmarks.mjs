@@ -25,8 +25,12 @@ function toSkin(point, outward) {
   const out = outward.clone().normalize();
   raycaster.set(point.clone().addScaledVector(out, 0.12), out.clone().negate());
   raycaster.far = 0.24;
+  // Prefer skin on the outward side of the anchor: in thin regions (hand) the opposite-side
+  // skin can be nearer and would flip a radial point to the ulnar surface.
+  const hits = raycaster.intersectObject(skin, false);
+  const outwardSide = hits.filter((hit) => { const d = hit.point.clone().sub(point).dot(out); return d >= 0 && d < 0.05; });
   let best = null;
-  for (const hit of raycaster.intersectObject(skin, false)) {
+  for (const hit of outwardSide.length ? outwardSide : hits) {
     if (!best || hit.point.distanceTo(point) < best.point.distanceTo(point)) best = hit;
   }
   if (!best) throw new Error(`no skin hit near ${round(point)}`);
@@ -120,7 +124,8 @@ put('LI3', mc2Head.clone().lerp(mc2Base, 0.18), handRadial.clone().add(handDorsa
 // border of the bone toward the palmar side, not on the dorsal skin of the web.
 // Start from the bone's radial surface: a ray from the shaft centre can snap to ulnar-side skin.
 {
-  const outward = handRadial.clone().add(handDorsal.clone().multiplyScalar(-0.15)).normalize();
+  // A stronger palmar tilt enters the thenar mass (skin 45 mm away); -0.1 keeps the radial border.
+  const outward = handRadial.clone().add(handDorsal.clone().multiplyScalar(-0.1)).normalize();
   const radialSurface = most(slab(mc2, 1, mc2Mid.y, 0.004), outward).addScaledVector(outward, 0.003);
   put('LI4', radialSurface, outward, 'midpoint of 2nd metacarpal · radial border (palmar-leaning)');
 }
@@ -169,8 +174,10 @@ const acromionAnterolateral = extremeCluster(scapula, ANTERIOR, 0.02, (p) => p.x
 const greaterTubercle = extremeCluster(humerus, v(-1, 0.3, 0.3), 0.01, (p) => p.y > humerus.box.max.y - 0.04);
 {
   // Anterior depression just below the acromion, above the humeral head (arm-abducted 견우 hollow).
-  const deep = mid(acromionAnterolateral, greaterTubercle).add(v(0, 0.004, 0));
-  put('LI15', deep, v(-1, 0.25, 0.3), 'midpoint(anterior end of lateral acromion border, greater tubercle) · lateral');
+  // Reviewer photo (2026-09-15): the ANTERIOR hollow under the acromion front (견료 is the posterior one).
+  const tubercleFront = extremeCluster(humerus, v(-0.5, 0.3, 1), 0.01, (p) => p.y > humerus.box.max.y - 0.04);
+  const deep = mid(acromionAnterolateral, tubercleFront).add(v(0, 0.003, 0));
+  put('LI15', deep, v(-0.6, 0.25, 0.8), 'anterior hollow: anterior end of lateral acromion border ↔ front of greater tubercle');
 }
 // LI13 / LI14 — upper arm, on LI11–LI15 line; 9 B-cun axillary fold → crease.
 {
@@ -180,10 +187,12 @@ const greaterTubercle = extremeCluster(humerus, v(-1, 0.3, 0.3), 0.01, (p) => p.
   const y13 = creaseY + 3 * armCun;
   put('LI13', onLineAt(y13), radialFrom(onLineAt(y13), elbowCentre, armAxisTop), 'LI11→LI15 line at crease + 3 B-cun');
   // Deltoid insertion (lowest fibres of the clavicular/acromial parts), just anterior to its border.
-  const insertion = ['Clavicular part of right deltoid', 'Acromial part of right deltoid']
-    .map((n) => extremeCluster(mesh(atlas, n), v(0, -1, 0), 0.02)).reduce((a, b) => (a.y < b.y ? a : b));
-  const deep = insertion.clone().add(v(0, 0.003, 0.004));
-  put('LI14', deep, radialFrom(deep, elbowCentre, armAxisTop), `deltoid insertion (lowest deltoid fibres), just anterior · crease+${((deep.y - creaseY) / armCun).toFixed(1)} B-cun`);
+  // Reviewer photo (2026-09-15): the V apex where the deltoid converges onto its tendon, not the
+  // biceps in front of it. Apex = mean of the lowest acromial and clavicular fibres.
+  const apex = mid(...['Clavicular part of right deltoid', 'Acromial part of right deltoid']
+    .map((n) => extremeCluster(mesh(atlas, n), v(0, -1, 0), 0.02)));
+  const deep = apex.clone().add(v(0, 0.002, 0));
+  put('LI14', deep, radialFrom(deep, elbowCentre, armAxisTop), `deltoid V apex (insertion) · crease+${((deep.y - creaseY) / armCun).toFixed(1)} B-cun`);
 }
 // LI16 — depression between acromial end of clavicle and spine of scapula.
 {
