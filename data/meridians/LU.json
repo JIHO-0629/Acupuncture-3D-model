@@ -1,0 +1,327 @@
+{
+ "id": "LU",
+ "label": "폐경",
+ "name": "수태음폐경",
+ "english": "LUNG MERIDIAN",
+ "primarySource": "https://m.kmcric.com/knowledge/acupoint/LU",
+ "secondarySource": "https://iris.who.int/handle/10665/353407",
+ "scale": {
+  "chestCunMm": 19.4,
+  "armCunMm": 17.8,
+  "forearmCunMm": 22.4,
+  "foldY": 1.3126,
+  "creaseY": 1.1522,
+  "wristY": 0.8839
+ },
+ "generatedBy": "scripts/meridians/lu.mjs",
+ "points": [
+  {
+   "code": "LU1",
+   "korean": "중부",
+   "hanja": "中府",
+   "english": "Zhongfu",
+   "location": "앞가슴부위, 첫째 갈비사이공간과 같은 높이, 빗장아래오목의 가쪽, 앞정중선에서 가쪽으로 6촌. (WHO 기준 · 원본 부가메모 미사용)",
+   "rawLocation": "앞가슴부위, 첫째갈비사이공간과 같은 높이(실제로는 둘째 갈비사이공간에 가깝다), 빗장아래오목의 가쪽, 앞정중선에서 가쪽으로 6촌.",
+   "rawMethod": "仰而取之(누워서), 動脈應手陷中(만졌을때 동맥이 뛰는, 함몰되어 있는곳)",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "주의: WHO와 부가주석 충돌",
+   "whoNote": "WHO 2008: first intercostal space와 같은 높이, infraclavicular fossa 가쪽, anterior median line에서 6 B-cun. 원본의 '(실제로는 둘째 갈비사이공간...)' 메모는 WHO 표준과 충돌하므로 원문은 유지하되 좌표화에는 사용하지 않음.",
+   "manualCheck": "원본에 표준 외 부가메모/상충 가능 표현 존재",
+   "photo": "images/LU/LU01.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.11647,
+    1.37059,
+    0.06169
+   ],
+   "outward": [
+    0,
+    0,
+    1
+   ],
+   "region": "thorax",
+   "depthMm": 58.8,
+   "rule": "level of 1st intercostal space · 6 B-cun lateral · lateral to infraclavicular fossa"
+  },
+  {
+   "code": "LU2",
+   "korean": "운문",
+   "hanja": "雲門",
+   "english": "Yunmen",
+   "location": "앞가슴부위, 빗장아래오목의 오목한 곳, 어깨뼈부리돌기 안쪽, 앞정중선에서 가쪽으로 6촌. (WHO 기준 · 원본 부가메모 미사용)",
+   "rawLocation": "앞가슴부위, 빗장아래오목, 어깨뼈부리돌기 안쪽(실제로는 첫째 갈비사이공간과 같은 높이), 앞정중선에서 가쪽으로 6촌(직선이 아닌 곡선으로 6촌) 오목한 곳.",
+   "rawMethod": "팔을들고 자침한다. \n[자침법] 가슴 바깥 방향으로 사자 5~8푼",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "주의: WHO 표준 우선",
+   "whoNote": "WHO 2008 핵심: infraclavicular fossa의 depression, coracoid process of scapula의 medial, anterior median line에서 6 B-cun. 원본의 '첫째 갈비사이공간' 부가메모는 WHO 핵심 정의가 아니므로 좌표화 시 보조정보로만 취급.",
+   "manualCheck": "원본에 표준 외 부가메모/상충 가능 표현 존재",
+   "photo": "images/LU/LU02.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.11647,
+    1.40146,
+    0.03452
+   ],
+   "outward": [
+    0,
+    0,
+    1
+   ],
+   "region": "thorax",
+   "depthMm": 31.7,
+   "rule": "infraclavicular fossa at coracoid level · 6 B-cun lateral (clavicle-midpoint = 4 B-cun)"
+  },
+  {
+   "code": "LU3",
+   "korean": "천부",
+   "hanja": "天府",
+   "english": "Tianfu",
+   "location": "위팔 앞가쪽면, 위팔두갈래근의 가쪽 모서리 바로 가쪽, 앞겨드랑주름에서 아래쪽으로 3촌.",
+   "rawLocation": "위팔 앞가쪽면, 위팔두갈래근의 가쪽 모서리 바로 가쪽, 앞겨드랑주름에서 아래쪽으로 3촌.",
+   "rawMethod": "",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LU/LU03.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.22242,
+    1.25968,
+    0.00261
+   ],
+   "outward": [
+    -0.7991,
+    0.09423,
+    0.59377
+   ],
+   "region": "upper-arm-R",
+   "depthMm": 5.6,
+   "rule": "just lateral to lateral border of biceps brachii · 3 B-cun below anterior axillary fold"
+  },
+  {
+   "code": "LU4",
+   "korean": "협백",
+   "hanja": "俠白",
+   "english": "Xiabai",
+   "location": "위팔 앞가쪽면, 위팔두갈래근의 가쪽모서리 바로 가쪽, 앞겨드랑주름에서 아래쪽으로 4촌.",
+   "rawLocation": "위팔 앞가쪽면, 위팔두갈래근의 가쪽모서리 바로 가쪽, 앞겨드랑주름에서 아래쪽으로 4촌.",
+   "rawMethod": "",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LU/LU04.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.2337,
+    1.24268,
+    -0.00852
+   ],
+   "outward": [
+    -0.92017,
+    0.13658,
+    0.36692
+   ],
+   "region": "upper-arm-R",
+   "depthMm": 9.8,
+   "rule": "just lateral to lateral border of biceps brachii · 4 B-cun below anterior axillary fold"
+  },
+  {
+   "code": "LU5",
+   "korean": "척택",
+   "hanja": "尺澤",
+   "english": "Chize",
+   "location": "팔꿈치 앞쪽면, 팔오금주름 위, 위팔두갈래근 힘줄의 가쪽 오목한 곳.",
+   "rawLocation": "팔꿈치 앞쪽면, 팔오금주름 위, 위팔두갈래근 힘줄의 가쪽 오목한 곳.",
+   "rawMethod": "[취혈방법] 팔꿈치를(45도)굽힌상태에서 취혈하며, 위팔두갈래근힘줄에 의해 척택(LU5)(바깥쪽)과 곡택(PC3)(안쪽)이 나뉜다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LU/LU05.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.22926,
+    1.15732,
+    0.00297
+   ],
+   "outward": [
+    -0.29309,
+    0.24624,
+    0.92383
+   ],
+   "region": "upper-arm-R",
+   "depthMm": 20.7,
+   "rule": "cubital crease · depression lateral to biceps brachii tendon"
+  },
+  {
+   "code": "LU6",
+   "korean": "공최",
+   "hanja": "孔最",
+   "english": "Kongzui",
+   "location": "아래팔 앞가쪽면, 척택(LU5)과 태연(LU9)을 연결하는 선 위, 손바닥쪽 손목주름에서 위쪽으로 7촌.",
+   "rawLocation": "아래팔 앞가쪽면, 척택(LU5)과 태연(LU9)을 연결하는 선 위, 손바닥쪽 손목주름에서 위쪽으로 7촌.",
+   "rawMethod": "",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LU/LU06.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.24843,
+    1.04449,
+    0.01529
+   ],
+   "outward": [
+    -0.15769,
+    0.22799,
+    0.96081
+   ],
+   "region": "forearm-R",
+   "depthMm": 2.3,
+   "rule": "LU9→LU5 line · 7 B-cun above palmar wrist crease"
+  },
+  {
+   "code": "LU7",
+   "korean": "열결",
+   "hanja": "列缺",
+   "english": "Lieque",
+   "location": "아래팔의 노쪽면, 긴엄지벌림근 힘줄과 짧은엄지폄근 힘줄 사이, 긴엄지벌림근 힘줄고랑 위, 손바닥쪽 손목주름에서 위쪽으로 1.5촌.",
+   "rawLocation": "아래팔의 노쪽면, 긴엄지벌림근 힘줄과 짧은엄지폄근 힘줄 사이, 긴엄지벌림근 힘줄고랑 위, 손바닥쪽 손목주름에서 위쪽으로 1.5촌.",
+   "rawMethod": "[취혈자세] 횡굉굴주 → 앉은 자세에서 굉(=아래팔)이 책 상에 평행하게 팔꿈치를 구부린 자세\n다른 폐경 혈자리와 달리 노뼈의 바깥쪽으로 자침한다. 거의 노뼈에 접하게 자침한다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LU/LU07.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.27752,
+    0.92026,
+    -0.00109
+   ],
+   "outward": [
+    -0.98295,
+    0.18007,
+    -0.03709
+   ],
+   "region": "forearm-R",
+   "depthMm": 13,
+   "rule": "radial aspect · between abductor pollicis longus and extensor pollicis brevis tendons · 1.5 B-cun above wrist crease"
+  },
+  {
+   "code": "LU8",
+   "korean": "경거",
+   "hanja": "經渠",
+   "english": "Jingqu",
+   "location": "아래팔 앞가쪽면, 노뼈붓돌기와 노동맥 사이, 손바닥쪽 손목주름에서 위쪽으로 1촌.",
+   "rawLocation": "아래팔 앞가쪽면, 노뼈붓돌기와 노동맥 사이, 손바닥쪽 손목주름에서 위쪽으로 1촌.",
+   "rawMethod": "손톱으로 노동맥을 살짝 잡아 주고 자침하면 됨",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LU/LU08.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.27265,
+    0.90615,
+    0.02679
+   ],
+   "outward": [
+    -0.10964,
+    0.22055,
+    0.96919
+   ],
+   "region": "forearm-R",
+   "depthMm": 6.1,
+   "rule": "1 B-cun above palmar wrist crease · between radial styloid ridge and radial artery"
+  },
+  {
+   "code": "LU9",
+   "korean": "태연",
+   "hanja": "太淵",
+   "english": "Taiyuan",
+   "location": "손목 앞가쪽면, 노뼈붓돌기와 손배뼈 사이, 긴엄지벌림근힘줄의 자쪽 오목한 곳.",
+   "rawLocation": "손목 앞가쪽면, 노뼈붓돌기와 손배뼈 사이, 긴엄지벌림근힘줄의 자쪽 오목한 곳.",
+   "rawMethod": "",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LU/LU09.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.27615,
+    0.88781,
+    0.03794
+   ],
+   "outward": [
+    0.03719,
+    0.19476,
+    0.98015
+   ],
+   "region": "hand-R",
+   "depthMm": 13.7,
+   "rule": "palmar wrist crease · ulnar to abductor pollicis longus tendon (radial artery)"
+  },
+  {
+   "code": "LU10",
+   "korean": "어제",
+   "hanja": "魚際",
+   "english": "Yuji",
+   "location": "손바닥, 첫째 손허리뼈 중점의 노쪽, 적백육제",
+   "rawLocation": "손바닥, 첫째 손허리뼈 중점의 노쪽, 적백육제",
+   "rawMethod": "",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: red-white flesh border (적백육제)",
+   "photo": "images/LU/LU10.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.31221,
+    0.85822,
+    0.04455
+   ],
+   "outward": [
+    -0.82276,
+    0.54968,
+    0.1446
+   ],
+   "region": "hand-R",
+   "depthMm": 6.4,
+   "rule": "radial to midpoint of 1st metacarpal · red-white flesh border (palmar-radial)"
+  },
+  {
+   "code": "LU11",
+   "korean": "소상",
+   "hanja": "小商",
+   "english": "Shaoshang",
+   "location": "엄지손가락, 끝마디뼈의 노쪽, 엄지손톱 노쪽뿌리각에서 몸 가쪽으로 0.1촌.",
+   "rawLocation": "엄지손가락, 끝마디뼈의 노쪽, 엄지손톱 노쪽뿌리각에서 몸 가쪽으로 0.1촌.",
+   "rawMethod": "[취혈방법] 엄지손톱의 노쪽모서리를 지나는 수직선과 손톱뿌리를 지나는 수평선이 만나는 지점",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: fingernail (수지갑) | 일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "photo": "images/LU/LU11.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.32428,
+    0.81939,
+    0.06568
+   ],
+   "outward": [
+    -0.92187,
+    0.38597,
+    -0.03449
+   ],
+   "region": "hand-R",
+   "depthMm": 9.3,
+   "rule": "thumb distal phalanx · radial nail-root corner + 0.1 F-cun proximal-lateral"
+  }
+ ]
+}

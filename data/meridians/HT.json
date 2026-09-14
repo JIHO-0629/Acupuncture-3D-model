@@ -1,0 +1,269 @@
+{
+ "id": "HT",
+ "label": "심경",
+ "name": "수소음심경",
+ "english": "HEART MERIDIAN",
+ "primarySource": "https://m.kmcric.com/knowledge/acupoint/HT",
+ "secondarySource": "https://iris.who.int/handle/10665/353407",
+ "scale": {
+  "armCunMm": 17.8,
+  "forearmCunMm": 22.4,
+  "creaseY": 1.1522,
+  "wristY": 0.8839
+ },
+ "generatedBy": "scripts/meridians/ht.mjs",
+ "points": [
+  {
+   "code": "HT1",
+   "korean": "극천",
+   "hanja": "極泉",
+   "english": "Jiquan",
+   "location": "겨드랑 중심, 겨드랑동맥이 뛰는 곳.",
+   "rawLocation": "겨드랑 중심, 겨드랑동맥이 뛰는 곳.",
+   "rawMethod": "[시술] 위쪽 겨드랑이를 향해 혈관, 신경 손상 주의\n팔꿈치를 구부리고 팔을 들어 손바닥을 머리 뒤쪽에 두게 한 뒤, 겨드랑동맥이 뛰는 부위를 취혈한다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: center of axilla (액와 중심) | 혈관/신경 변이를 고정 좌표 anchor로 사용 금지; 주변 stable anatomy로 재등록 필요",
+   "photo": "images/HT/HT01.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.16928,
+    1.31534,
+    0.0234
+   ],
+   "outward": [
+    -0.40569,
+    -0.53673,
+    0.73983
+   ],
+   "region": "upper-arm-R",
+   "depthMm": 54.3,
+   "rule": "centre of axilla · skin closest to distal axillary artery (arterial pulse)"
+  },
+  {
+   "code": "HT2",
+   "korean": "청령",
+   "hanja": "靑靈",
+   "english": "Qingling",
+   "location": "위팔 안쪽면, 위팔두갈래근의 안쪽모서리 바로 안쪽, 팔오금주름에서 위쪽으로 3촌.\n극천과 음소해를 연결하는 선에서 위쪽 2/3, 아래로부터 1/3 지점에 위치한다.",
+   "rawLocation": "위팔 안쪽면, 위팔두갈래근의 안쪽모서리 바로 안쪽, 팔오금주름에서 위쪽으로 3촌.\n극천과 음소해를 연결하는 선에서 위쪽 2/3, 아래로부터 1/3 지점에 위치한다.",
+   "rawMethod": "팔꿈치를 구부리고 위팔을 외전한 상태에서 취혈한다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/HT/HT02.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.17102,
+    1.20546,
+    -0.0072
+   ],
+   "outward": [
+    0.72521,
+    -0.19188,
+    0.66125
+   ],
+   "region": "thorax",
+   "depthMm": 1.2,
+   "rule": "just medial to medial border of biceps brachii · 3 B-cun above cubital crease"
+  },
+  {
+   "code": "HT3",
+   "korean": "소해",
+   "hanja": "少海",
+   "english": "Shaohai",
+   "location": "팔꿈치 앞안쪽면, 위팔뼈 안쪽위관절융기 바로 앞쪽, 팔오금주름과 같은 높이.\n팔꿈치를 구부렸을 때, 팔오금주름 안쪽 끝과 위팔뼈 안쪽 위 관절융기를 연결하는 선의 중점에 위치한다.",
+   "rawLocation": "팔꿈치 앞안쪽면, 위팔뼈 안쪽위관절융기 바로 앞쪽, 팔오금주름과 같은 높이.\n팔꿈치를 구부렸을 때, 팔오금주름 안쪽 끝과 위팔뼈 안쪽 위 관절융기를 연결하는 선의 중점에 위치한다.",
+   "rawMethod": "",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/HT/HT03.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.17473,
+    1.15379,
+    -0.02124
+   ],
+   "outward": [
+    0.52886,
+    0.07315,
+    0.84555
+   ],
+   "region": "upper-arm-R",
+   "depthMm": 5.2,
+   "rule": "level of cubital crease · just anterior to medial epicondyle of humerus"
+  },
+  {
+   "code": "HT4",
+   "korean": "영도",
+   "hanja": "靈道",
+   "english": "Lingdao",
+   "location": "아래팔 앞안쪽면, 자쪽손목굽힘근힘줄의 가쪽모서리, 손바닥쪽 손목주름에서 몸쪽으로 1.5촌.",
+   "rawLocation": "아래팔 앞안쪽면, 자쪽손목굽힘근힘줄의 가쪽모서리, 손바닥쪽 손목주름에서 몸쪽으로 1.5촌.",
+   "rawMethod": "",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/HT/HT04.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.22867,
+    0.91748,
+    0.02214
+   ],
+   "outward": [
+    0.35837,
+    0,
+    0.93358
+   ],
+   "region": "forearm-R",
+   "depthMm": 6,
+   "rule": "radial border of flexor carpi ulnaris tendon · 1.5 B-cun proximal to palmar wrist crease"
+  },
+  {
+   "code": "HT5",
+   "korean": "통리",
+   "hanja": "通里",
+   "english": "Tongli",
+   "location": "아래팔 앞안쪽면, 자쪽손목굽힘근힘줄 가쪽, 손바닥쪽 손목주름에서 몸쪽으로 1촌.",
+   "rawLocation": "아래팔 앞안쪽면, 자쪽손목굽힘근힘줄 가쪽, 손바닥쪽 손목주름에서 몸쪽으로 1촌.",
+   "rawMethod": "",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/HT/HT05.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.23256,
+    0.9063,
+    0.02674
+   ],
+   "outward": [
+    0.35837,
+    0,
+    0.93358
+   ],
+   "region": "forearm-R",
+   "depthMm": 8.3,
+   "rule": "radial border of flexor carpi ulnaris tendon · 1 B-cun proximal to palmar wrist crease"
+  },
+  {
+   "code": "HT6",
+   "korean": "음극",
+   "hanja": "陰郄",
+   "english": "Yinxi",
+   "location": "아래팔 앞안쪽면, 자쪽손목굽힘근힘줄 가쪽, 손바닥쪽 손목주름에서 몸쪽으로 0.5촌.",
+   "rawLocation": "아래팔 앞안쪽면, 자쪽손목굽힘근힘줄 가쪽, 손바닥쪽 손목주름에서 몸쪽으로 0.5촌.",
+   "rawMethod": "",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/HT/HT06.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.23288,
+    0.89513,
+    0.02913
+   ],
+   "outward": [
+    0.35837,
+    0,
+    0.93358
+   ],
+   "region": "forearm-R",
+   "depthMm": 9.7,
+   "rule": "radial border of flexor carpi ulnaris tendon · 0.5 B-cun proximal to palmar wrist crease"
+  },
+  {
+   "code": "HT7",
+   "korean": "신문",
+   "hanja": "神門",
+   "english": "Shenmen",
+   "location": "손목 앞안쪽면, 손바닥쪽 손목주름 위에서 자쪽손목굽힘근힘줄의 가쪽모서리.",
+   "rawLocation": "손목 앞안쪽면, 손바닥쪽 손목주름 위에서 자쪽손목굽힘근힘줄의 가쪽모서리.",
+   "rawMethod": "",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/HT/HT07.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.23906,
+    0.88395,
+    0.03754
+   ],
+   "outward": [
+    0.35837,
+    0,
+    0.93358
+   ],
+   "region": "hand-R",
+   "depthMm": 2.9,
+   "rule": "palmar wrist crease · radial border of flexor carpi ulnaris tendon (proximal to pisiform)"
+  },
+  {
+   "code": "HT8",
+   "korean": "소부",
+   "hanja": "少府",
+   "english": "Shaofu",
+   "location": "손바닥, 넷째와 다섯째 손허리뼈 사이, 다섯째 손허리손가락관절의 몸쪽 오목한 곳.",
+   "rawLocation": "손바닥, 넷째와 다섯째 손허리뼈 사이, 다섯째 손허리손가락관절의 몸쪽 오목한 곳.",
+   "rawMethod": "[시술]\n- 너무 위쪽으로 취혈하는 경우가 있는데, 본절 바로 아래보다는 손허리뼈 사이에서 취혈\n- 주먹을 쥘 때, 새끼손가락 끝이 손바닥에 닿는 부위에서 취혈",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/HT/HT08.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.24217,
+    0.82169,
+    0.05174
+   ],
+   "outward": [
+    -0.05973,
+    0.17245,
+    0.98321
+   ],
+   "region": "hand-R",
+   "depthMm": 17.8,
+   "rule": "palm · between 4th and 5th metacarpals · proximal to 5th MCP joint"
+  },
+  {
+   "code": "HT9",
+   "korean": "소충",
+   "hanja": "少衝",
+   "english": "Shaochong",
+   "location": "새끼손가락, 끝마디뼈의 가쪽, 새끼손톱 가쪽 뿌리각에서 몸가쪽으로 1푼.",
+   "rawLocation": "새끼손가락, 끝마디뼈의 가쪽, 새끼손톱 가쪽 뿌리각에서 몸가쪽으로 1푼.",
+   "rawMethod": "[시술법] 점자출혈",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: fingernail (수지갑) | 일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "photo": "images/HT/HT09.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.22386,
+    0.76269,
+    0.06946
+   ],
+   "outward": [
+    -0.69856,
+    -0.56928,
+    -0.43352
+   ],
+   "region": "hand-R",
+   "depthMm": 1.5,
+   "rule": "little finger distal phalanx · radial nail-root corner + 0.1 F-cun proximal-radial"
+  }
+ ]
+}

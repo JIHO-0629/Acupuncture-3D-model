@@ -827,7 +827,7 @@ export default function AnatomyScene({
           object.label.visible = false;
           object.marker.material = selected ? selectedPointMaterial : pointMaterial;
           object.core.material = selected ? selectedPointCoreMaterial : pointCoreMaterial;
-          const markerScale=(selected ? 1.08 : 1)*(definition.code.startsWith('LI')?.3:1);
+          const markerScale=(selected ? 1.08 : 1)*(definition.code.startsWith('GB')?1:.3);
           object.marker.scale.setScalar(markerScale);
           object.core.scale.setScalar(markerScale);
           if(meridianOf(definition.code)===meridianOf(config?.selectedCode??'GB34')) projectedBySide[side].push(object.marker.position.clone());

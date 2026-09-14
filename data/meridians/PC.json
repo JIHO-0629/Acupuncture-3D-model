@@ -1,0 +1,269 @@
+{
+ "id": "PC",
+ "label": "심포경",
+ "name": "수궐음심포경",
+ "english": "PERICARDIUM MERIDIAN",
+ "primarySource": "https://m.kmcric.com/knowledge/acupoint/PC",
+ "secondarySource": "https://iris.who.int/handle/10665/353407",
+ "scale": {
+  "armCunMm": 17.8,
+  "forearmCunMm": 22.4,
+  "creaseY": 1.1522,
+  "wristY": 0.8839
+ },
+ "generatedBy": "scripts/meridians/pc.mjs",
+ "points": [
+  {
+   "code": "PC1",
+   "korean": "천지",
+   "hanja": "天池",
+   "english": "Tianchi",
+   "location": "앞가슴부위, 넷째 갈비사이공간, 앞정중선에서 가쪽으로 5촌.",
+   "rawLocation": "앞가슴부위, 넷째 갈비사이공간, 앞정중선에서 가쪽으로 5촌.",
+   "rawMethod": "[취혈방법] 남성은 유두 가쪽 1⼨부위에서 취혈한다. 斜刺0.3∼0.5⼨(바깥쪽을 향해 사자)",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/PC/PC01.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.09706,
+    1.28783,
+    0.11274
+   ],
+   "outward": [
+    0,
+    0,
+    1
+   ],
+   "region": "thorax",
+   "depthMm": 28.5,
+   "rule": "4th intercostal space · 5 B-cun lateral to anterior median line (clavicle-midpoint = 4 B-cun)"
+  },
+  {
+   "code": "PC2",
+   "korean": "천천",
+   "hanja": "天泉",
+   "english": "Tianquan",
+   "location": "위팔 앞쪽면, 위팔두갈래근의 긴갈래와 짧은갈래 사이, 앞겨드랑주름에서 먼쪽으로 2촌.",
+   "rawLocation": "위팔 앞쪽면, 위팔두갈래근의 긴갈래와 짧은갈래 사이, 앞겨드랑주름에서 먼쪽으로 2촌.",
+   "rawMethod": "[취혈방법]  '위팔을 올린다' =어깨세모근,위팔두갈래근을 수축시킨다 (고랑이 더 잘보이도록 탐할자세 취함)",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/PC/PC02.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.1924,
+    1.27609,
+    0.015
+   ],
+   "outward": [
+    -0.26714,
+    -0.03625,
+    0.96298
+   ],
+   "region": "upper-arm-R",
+   "depthMm": 24.6,
+   "rule": "between long and short heads of biceps brachii · 2 B-cun below anterior axillary fold"
+  },
+  {
+   "code": "PC3",
+   "korean": "곡택",
+   "hanja": "曲澤",
+   "english": "Quze",
+   "location": "팔꿈치 앞쪽면, 팔오금주름 위, 위팔두갈래근힘줄의 안쪽 오목한 곳.",
+   "rawLocation": "팔꿈치 앞쪽면, 팔오금주름 위, 위팔두갈래근힘줄의 안쪽 오목한 곳.",
+   "rawMethod": "[취혈방법] 손바닥이 위쪽을 향하게 하고 팔꿈치를 45°로 굽힌 자세 에서,팔오금주름 위,위팔두갈 래근힘줄의 안쪽에서 취혈한다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/PC/PC03.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.19783,
+    1.15604,
+    0.00488
+   ],
+   "outward": [
+    0.03719,
+    0.19476,
+    0.98015
+   ],
+   "region": "upper-arm-R",
+   "depthMm": 19.5,
+   "rule": "cubital crease · depression medial to biceps brachii tendon"
+  },
+  {
+   "code": "PC4",
+   "korean": "극문",
+   "hanja": "郄門",
+   "english": "Ximen",
+   "location": "아래팔 앞쪽면, 긴손바닥근힘줄과 노쪽손목굽힘근힘줄의 사이, 손바닥쪽 손목주름에서 몸쪽으로 5촌.",
+   "rawLocation": "아래팔 앞쪽면, 긴손바닥근힘줄과 노쪽손목굽힘근힘줄의 사이, 손바닥쪽 손목주름에서 몸쪽으로 5촌.",
+   "rawMethod": "[취혈방법] 주먹을 가볍게 움켜쥐고 손바닥이 위쪽을 향하도록 손목을 돌린채 팔꿈치를 약간 굽히면,긴 손바닥근힘줄과 노쪽손목굽힘근힘줄이 현저하게 드러난다. 긴손바닥근힘줄이 보이지 않을 때에는 노쪽손목굽힘근힘줄 자쪽에서 취혈한다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/PC/PC04.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.22124,
+    0.99635,
+    0.02108
+   ],
+   "outward": [
+    0.03719,
+    0.19476,
+    0.98015
+   ],
+   "region": "forearm-R",
+   "depthMm": 3.4,
+   "rule": "between palmaris longus and flexor carpi radialis tendons · 5 B-cun proximal to palmar wrist crease"
+  },
+  {
+   "code": "PC5",
+   "korean": "간사",
+   "hanja": "間使",
+   "english": "Jianshi",
+   "location": "아래팔 앞쪽면, 긴손바닥근힘줄과 노쪽손목굽힘근힘줄의 사이, 손바닥쪽 손목주름에서 몸쪽으로 3촌.",
+   "rawLocation": "아래팔 앞쪽면, 긴손바닥근힘줄과 노쪽손목굽힘근힘줄의 사이, 손바닥쪽 손목주름에서 몸쪽으로 3촌.",
+   "rawMethod": "[취혈방법] 긴손바닥근힘줄이 보이지 않는다면, 노쪽손목 굽힘근힘줄 자쪽에서 취혈한다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/PC/PC05.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.2338,
+    0.95051,
+    0.02436
+   ],
+   "outward": [
+    0.03719,
+    0.19476,
+    0.98015
+   ],
+   "region": "forearm-R",
+   "depthMm": 0,
+   "rule": "between palmaris longus and flexor carpi radialis tendons · 3 B-cun proximal to palmar wrist crease"
+  },
+  {
+   "code": "PC6",
+   "korean": "내관",
+   "hanja": "內關",
+   "english": "Neiguan",
+   "location": "아래팔 앞쪽면, 긴손바닥근힘줄과 노쪽손목굽힘근힘줄의 사이, 손바닥쪽 손목주름에서 위로 2촌.",
+   "rawLocation": "아래팔 앞쪽면, 긴손바닥근힘줄과 노쪽손목굽힘근힘줄의 사이, 손바닥쪽 손목주름에서 위로 2촌.",
+   "rawMethod": "",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/PC/PC06.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.24117,
+    0.92691,
+    0.02852
+   ],
+   "outward": [
+    0.03719,
+    0.19476,
+    0.98015
+   ],
+   "region": "forearm-R",
+   "depthMm": 1.4,
+   "rule": "between palmaris longus and flexor carpi radialis tendons · 2 B-cun proximal to palmar wrist crease"
+  },
+  {
+   "code": "PC7",
+   "korean": "대릉",
+   "hanja": "大陵",
+   "english": "Daling",
+   "location": "손목 앞쪽면, 긴손바닥근힘줄과 노쪽손목굽힘근힘줄의 사이, 손바닥쪽 손목주름의 중점.",
+   "rawLocation": "손목 앞쪽면, 긴손바닥근힘줄과 노쪽손목굽힘근힘줄의 사이, 손바닥쪽 손목주름의 중점.",
+   "rawMethod": "[취혈방법] 긴손바닥근힘줄과 노쪽손목굽힘근힘줄의 사이, 콩알뼈(pisiformbone)의 몸쪽끝인 神門(HT7)과 같은 높이에서 취혈한다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/PC/PC07.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.25422,
+    0.88528,
+    0.03954
+   ],
+   "outward": [
+    0.03719,
+    0.19476,
+    0.98015
+   ],
+   "region": "hand-R",
+   "depthMm": 3.8,
+   "rule": "midpoint of palmar wrist crease · between palmaris longus and flexor carpi radialis tendons"
+  },
+  {
+   "code": "PC8",
+   "korean": "노궁",
+   "hanja": "勞宮",
+   "english": "Laogong",
+   "location": "손바닥, 둘째와 셋째 손허리뼈의 사이, 손허리손가락관절의 몸쪽 오목한 곳. (대안: 셋째와 넷째 손허리뼈 사이 — 참고만)",
+   "rawLocation": "손바닥, 둘째와 셋째 손허리뼈의 사이, 손허리손가락관절의 몸쪽 오목한 곳.",
+   "rawMethod": "[취혈방법] ※손바닥,셋째와 넷째 손허리뼈의 사이,손허리손가 락관절의 몸쪽 오목한 곳이라는 의견도 있다.\n→논쟁과 상관없이 그냥 손바닥 중심이 핵심.손바 닥활 어딘가를 자극하기만 하면 됨",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "WHO 대안 위치 병기(논쟁혈)",
+   "whoNote": "WHO 2008에서 최종 6개 논쟁혈 중 하나이며 Remarks에 alternative location이 병기됨. 원본은 변경하지 않고 좌표 확정 전 수동 검수 필요.",
+   "manualCheck": "WHO 2008 논쟁혈: alternative location 병기",
+   "photo": "images/PC/PC08.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.2735,
+    0.81425,
+    0.05004
+   ],
+   "outward": [
+    -0.06558,
+    0.26406,
+    0.96227
+   ],
+   "region": "hand-R",
+   "depthMm": 17.9,
+   "rule": "palm · between 2nd and 3rd metacarpals · proximal to MCP joints (WHO/KCMRIC; 3rd–4th alternative noted)"
+  },
+  {
+   "code": "PC9",
+   "korean": "중충",
+   "hanja": "中衝",
+   "english": "Zhongchong",
+   "location": "가운데손가락 끝의 중심. (대안: 가운데손톱 노쪽 뿌리각 — 참고만)",
+   "rawLocation": "가운데손가락, 가운데손가락 끝의 중심.",
+   "rawMethod": "[취혈방법] 삼릉침으로 점자출혈",
+   "classification": "B · 비례촌 보간",
+   "whoStatus": "WHO 대안 위치 병기(논쟁혈)",
+   "whoNote": "WHO 2008에서 최종 6개 논쟁혈 중 하나이며 Remarks에 alternative location이 병기됨. 원본은 변경하지 않고 좌표 확정 전 수동 검수 필요.",
+   "manualCheck": "WHO 2008 논쟁혈: alternative location 병기",
+   "photo": "images/PC/PC09.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.27843,
+    0.73095,
+    0.09402
+   ],
+   "outward": [
+    -0.16431,
+    -0.7003,
+    0.69468
+   ],
+   "region": "hand-R",
+   "depthMm": 0.3,
+   "rule": "centre of the tip of the middle finger (WHO standard; radial nail-root corner alternative noted)"
+  }
+ ]
+}
