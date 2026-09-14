@@ -523,9 +523,16 @@ export default function AnatomyScene({
         .sub(new T.Vector3(0, 1.59, 0))
         .normalize();
     };
+    // Skin pickers never move, so a seed+direction always lands on the same surface. Without this,
+    // every acupoint selection re-raycast all points (both sides) against the full skin (~0.8 s).
+    // Misses are not cached: before the skin chunk loads the seed fallback must be retried.
+    const skinProjectionCache = new Map<string, { point: T.Vector3; normal: T.Vector3 }>();
     const projectToSkin = (seed: T.Vector3, mode: ProjectionMode, side: "right" | "left", direction?:T.Vector3) => {
       const outward = direction ?? projectionDirection(seed, mode, side),
-        origin = seed.clone().addScaledVector(outward, 0.24),
+        cacheKey = `${seed.x},${seed.y},${seed.z}|${outward.x},${outward.y},${outward.z}`,
+        cached = skinProjectionCache.get(cacheKey);
+      if (cached) return { point: cached.point.clone(), normal: cached.normal.clone() };
+      const origin = seed.clone().addScaledVector(outward, 0.24),
         inward = outward.clone().negate();
       raycaster.set(origin, inward);
       let best: T.Intersection | undefined,
@@ -545,6 +552,7 @@ export default function AnatomyScene({
           best?.face?.normal.clone().transformDirection(best.object.matrixWorld).normalize() ??
           outward;
       if (normal.dot(outward) < 0) normal.negate();
+      if (best) skinProjectionCache.set(cacheKey, { point: point.clone(), normal: normal.clone() });
       return { point, normal };
     };
     // Cosmetic surface refinement only. Toe dimensions and nail placement are derived
