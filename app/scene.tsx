@@ -8,6 +8,7 @@ import { decodeModelResponse } from "./model-download";
 import { PointerTap } from "./pointer-tap";
 import { SYSTEMS, type Atlas, type NeedleHit, type NeedleReport, type SceneState } from "./anatomy";
 import { GB_POINTS, needleProfile, type ProjectionMode } from "./gb-points";
+import type { AnnotationFrame } from "./annotation-overlay";
 interface Props {
   atlas: Atlas;
   state: SceneState;
@@ -16,6 +17,7 @@ interface Props {
   onProgress: (n: number) => void;
   onError: (s: string) => void;
   onNeedleReport?: (report: NeedleReport) => void;
+  onAnnotationFrame?: (frame: AnnotationFrame | null) => void;
 }
 export default function AnatomyScene({
   atlas,
@@ -25,16 +27,19 @@ export default function AnatomyScene({
   onProgress,
   onError,
   onNeedleReport,
+  onAnnotationFrame,
 }: Props) {
   const host = useRef<HTMLDivElement>(null),
     latest = useRef(state),
     select = useRef(onSelect),
     pointSelect = useRef(onPointSelect),
-    needleReport = useRef(onNeedleReport);
+    needleReport = useRef(onNeedleReport),
+    annotationFrame = useRef(onAnnotationFrame);
   latest.current = state;
   select.current = onSelect;
   pointSelect.current = onPointSelect;
   needleReport.current = onNeedleReport;
+  annotationFrame.current = onAnnotationFrame;
   useEffect(() => {
     const el = host.current!;
     let disposed = false,
@@ -102,7 +107,7 @@ export default function AnatomyScene({
     controls.maxPolarAngle = Math.PI;
     const cameraGoalPosition = camera.position.clone(),
       cameraGoalTarget = controls.target.clone();
-    let cameraTransitioning = false;
+    let cameraTransitioning = false, isControlling = false;
     const moveCamera = (target: T.Vector3, position: T.Vector3, instant = false) => {
       cameraGoalTarget.copy(target);
       cameraGoalPosition.copy(position);
@@ -118,6 +123,12 @@ export default function AnatomyScene({
     });
     controls.addEventListener("start", () => {
       cameraTransitioning = false;
+      isControlling = true;
+      dirty = true;
+    });
+    controls.addEventListener("end", () => {
+      isControlling = false;
+      dirty = true;
     });
     const pmrem = new T.PMREMGenerator(renderer),
       room = new RoomEnvironment(),
@@ -803,7 +814,7 @@ export default function AnatomyScene({
           const selected = config?.selectedCode === definition.code,
             visible = !!config?.visible && (config.showAll || selected);
           object.marker.visible = object.core.visible = visible;
-          object.label.visible = visible && selected && side === "right";
+          object.label.visible = false;
           object.marker.material = selected ? selectedPointMaterial : pointMaterial;
           object.core.material = selected ? selectedPointCoreMaterial : pointCoreMaterial;
           object.marker.scale.setScalar(selected ? 1.08 : 1);
@@ -1074,7 +1085,12 @@ export default function AnatomyScene({
     renderer.domElement.addEventListener("pointermove", move);
     renderer.domElement.addEventListener("pointerup", up);
     renderer.domElement.addEventListener("pointercancel", cancel);
+    // The skin is the only useful first-hit occluder for a surface anchor; keep this small.
+    let annotationOccluders: T.Mesh[] = [], annotationOccludersLoaded = -1;
     const clock = new T.Clock();
+    const annotationAnchor = new T.Vector3(), annotationProjection = new T.Vector3(), annotationDirection = new T.Vector3(), annotationFacing = new T.Vector3();
+    let annotationCheckedAt = -Infinity, annotationCheckedCode = '', annotationCheckedState: SceneState | null = null, annotationRayOccluded = false;
+    let annotationObstacles: NonNullable<AnnotationFrame['obstacles']> = [];
     let lastExtent = -1;
     const animate = () => {
       if (disposed) return;
@@ -1304,6 +1320,41 @@ export default function AnatomyScene({
         dirty = true;
       }
       controls.update();
+      // OrbitControls changes the pose; rendering normally refreshes its inverse later.
+      // Project against THIS frame's camera, not the previous render's matrix.
+      camera.updateMatrixWorld(true);
+      const selectedPoint = s.acupuncture?.selectedCode ? pointObjects.find((point) => point.code === s.acupuncture?.selectedCode && point.side === "right") : undefined;
+      if (selectedPoint && s.acupuncture?.visible && (dirty || controls.autoRotate)) {
+        const anchor = selectedPoint.marker.getWorldPosition(annotationAnchor), projectedAnchor = annotationProjection.copy(anchor).project(camera), cameraToAnchor = annotationDirection.copy(anchor).sub(camera.position), distanceToAnchor = cameraToAnchor.length(), viewDirection = cameraToAnchor.normalize(), facing = selectedPoint.normal.dot(annotationFacing.copy(camera.position).sub(anchor).normalize()) > .02;
+        const inViewport = projectedAnchor.z >= -1 && projectedAnchor.z <= 1 && Math.abs(projectedAnchor.x) <= 1 && Math.abs(projectedAnchor.y) <= 1;
+        const now = performance.now();
+        // Expensive visibility/layout sampling is capped; exact anchor projection is not.
+        if (now - annotationCheckedAt >= 80 || annotationCheckedCode !== selectedPoint.code || annotationCheckedState !== s) {
+        if (annotationOccludersLoaded !== loaded) {
+          annotationOccluders = pickers.filter((mesh, index): mesh is T.Mesh => !!mesh && atlas.parts[index].system === 'integumentary');
+          annotationOccludersLoaded = loaded;
+        }
+        raycaster.set(camera.position, viewDirection);
+        const nearestSurface = raycaster.intersectObjects(annotationOccluders, false)[0];
+        annotationRayOccluded = !!nearestSurface && nearestSurface.distance < distanceToAnchor - .006;
+        const obstacles: {left:number;right:number;top:number;bottom:number}[] = [];
+        // Project local anatomical bounds, not a single full-body box: gaps stay usable.
+        atlas.parts.forEach((part, index) => {
+          if (part.system === 'integumentary' || data[index * 4 + 3] < .5 || part.bounds[0][1] > anchor.y + .15 || part.bounds[1][1] < anchor.y - .15) return;
+          let left=Infinity,right=-Infinity,top=Infinity,bottom=-Infinity;
+          for (let corner=0;corner<8;corner++) {
+            projected.set(part.bounds[corner&1?1:0][0]+data[index*4],part.bounds[corner&2?1:0][1]+data[index*4+1],part.bounds[corner&4?1:0][2]+data[index*4+2]).project(camera);
+            if (projected.z < -1 || projected.z > 1) continue;
+            const x=(projected.x+1)*el.clientWidth/2,y=(1-projected.y)*el.clientHeight/2;
+            left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y);
+          }
+          if (Number.isFinite(left)) obstacles.push({left,right,top,bottom});
+        });
+        annotationObstacles = obstacles;
+        annotationCheckedAt = now; annotationCheckedCode = selectedPoint.code; annotationCheckedState = s;
+        }
+        annotationFrame.current?.({ id:selectedPoint.code, x:((projectedAnchor.x+1)*el.clientWidth)/2, y:((1-projectedAnchor.y)*el.clientHeight)/2, width:el.clientWidth, height:el.clientHeight, visible:inViewport&&facing&&!annotationRayOccluded, occluded:!facing||annotationRayOccluded, moving:isControlling||cameraTransitioning||controls.autoRotate, obstacles:annotationObstacles });
+      } else if (!selectedPoint || !s.acupuncture?.visible) annotationFrame.current?.(null);
       if (controls.autoRotate) dirty = true;
       if (dirty) {
         renderer.render(scene, camera);
