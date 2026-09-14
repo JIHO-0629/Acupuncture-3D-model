@@ -4,10 +4,10 @@
  "primarySource": "https://m.kmcric.com/knowledge/acupoint/LI",
  "secondarySource": "https://iris.who.int/handle/10665/353407",
  "scale": {
-  "creaseY": 1.1322,
+  "creaseY": 1.1522,
   "axillaryFoldY": 1.3126,
   "armCunMm": 20,
-  "forearmCunMm": 20.7
+  "forearmCunMm": 22.4
  },
  "reference": {
   "lateralEpicondyle": [
@@ -21,19 +21,19 @@
    0.01795
   ],
   "acromionAnterolateral": [
-   -0.15562,
-   1.42441,
-   -0.02129
+   -0.16027,
+   1.42513,
+   -0.02429
   ],
   "greaterTubercle": [
-   -0.18891,
-   1.37691,
-   -0.01923
+   -0.18756,
+   1.40345,
+   -0.02226
   ],
   "LU5": [
-   -0.22049,
-   1.12198,
-   -0.01583
+   -0.22154,
+   1.15224,
+   -0.01524
   ],
   "cricoidY": 1.4721,
   "thyroidTop": 1.509,
@@ -80,198 +80,198 @@
   },
   "LI3": {
    "seed": [
-    -0.29431,
-    0.8105,
-    0.02389
+    -0.30043,
+    0.8135,
+    0.04035
    ],
    "outward": [
-    -0.79489,
-    -0.00091,
-    -0.60675
+    -0.92466,
+    0.21446,
+    0.31465
    ],
-   "depthMm": 16.1,
-   "rule": "2nd metacarpal head → 20% proximal · radial-dorsal"
+   "depthMm": 20.3,
+   "rule": "2nd metacarpal head → 18% proximal · radial border"
   },
   "LI4": {
    "seed": [
-    -0.29122,
-    0.8305,
-    0.01815
+    -0.30505,
+    0.83312,
+    0.04088
    ],
    "outward": [
-    -0.75573,
-    -0.01729,
-    -0.65466
+    -0.90642,
+    0.2211,
+    0.35988
    ],
-   "depthMm": 17.2,
-   "rule": "midpoint of 2nd metacarpal · radial-dorsal"
+   "depthMm": 24.4,
+   "rule": "midpoint of 2nd metacarpal · radial border (palmar-leaning)"
   },
   "LI5": {
    "seed": [
-    -0.28227,
-    0.88418,
-    0.00771
+    -0.28447,
+    0.87848,
+    0.0094
    ],
    "outward": [
-    -0.86548,
-    0.06292,
-    -0.49697
+    -0.77659,
+    0.0186,
+    -0.62973
    ],
-   "depthMm": 22.4,
-   "rule": "scaphoid (snuffbox floor) distal to radial styloid · radial-dorsal"
+   "depthMm": 7.4,
+   "rule": "midpoint(EPL, EPB tendons) 6 mm distal to radial styloid · snuffbox"
   },
   "LI6": {
    "seed": [
-    -0.27632,
-    0.94637,
-    0.00063
+    -0.27633,
+    0.94866,
+    0.00147
    ],
    "outward": [
-    -0.93712,
-    0.11079,
-    -0.33096
+    -0.89575,
+    0.08103,
+    -0.4371
    ],
-   "depthMm": 0.1,
+   "depthMm": 0,
    "rule": "LI5→LI11 line 3/12 B-cun"
   },
   "LI7": {
    "seed": [
-    -0.27549,
-    0.98829,
-    -0.00473
+    -0.27537,
+    0.99603,
+    -0.00512
    ],
    "outward": [
-    -0.96841,
-    0.14283,
-    -0.20441
+    -0.95327,
+    0.12543,
+    -0.27484
    ],
-   "depthMm": 3.4,
+   "depthMm": 4.6,
    "rule": "LI5→LI11 line 5/12 B-cun"
   },
   "LI8": {
    "seed": [
-    -0.27448,
-    1.05156,
-    -0.01115
+    -0.27322,
+    1.06759,
+    -0.0119
    ],
    "outward": [
-    -0.98244,
-    0.18652,
-    -0.0053
+    -0.98256,
+    0.18568,
+    -0.00949
    ],
-   "depthMm": 8.4,
+   "depthMm": 10.5,
    "rule": "LI5→LI11 line 8/12 B-cun"
   },
   "LI9": {
    "seed": [
-    -0.27241,
-    1.07239,
-    -0.01295
+    -0.26801,
+    1.09066,
+    -0.01384
    ],
    "outward": [
-    -0.97814,
-    0.19913,
-    0.05993
+    -0.97638,
+    0.20216,
+    0.07629
    ],
-   "depthMm": 8.4,
+   "depthMm": 8,
    "rule": "LI5→LI11 line 9/12 B-cun"
   },
   "LI10": {
    "seed": [
-    -0.26803,
-    1.09271,
-    -0.01507
+    -0.26238,
+    1.11353,
+    -0.0163
    ],
    "outward": [
-    -0.96979,
-    0.21056,
-    0.12317
+    -0.96349,
+    0.21644,
+    0.15758
    ],
-   "depthMm": 6,
+   "depthMm": 5.1,
    "rule": "LI5→LI11 line 10/12 B-cun"
   },
   "LI11": {
    "seed": [
-    -0.2582,
-    1.1329,
-    -0.02051
+    -0.25208,
+    1.15922,
+    -0.0224
    ],
    "outward": [
-    -0.94814,
-    0.19981,
-    0.24721
+    -0.92814,
+    0.20846,
+    0.30837
    ],
-   "depthMm": 29.1,
+   "depthMm": 27.5,
    "rule": "midpoint(LU5 = lateral biceps tendon at crease, lateral epicondyle)"
   },
   "LI12": {
    "seed": [
-    -0.25233,
-    1.15812,
-    -0.04637
+    -0.24962,
+    1.17537,
+    -0.04553
    ],
    "outward": [
     -0.97815,
     0.15926,
     -0.13366
    ],
-   "depthMm": 21.2,
-   "rule": "lateral supraepicondylar ridge at crease+1 B-cun, 3 mm anterior"
+   "depthMm": 25.9,
+   "rule": "lateral epicondyle → supraepicondylar ridge, LI11 + 1 B-cun, 3 mm anterior"
   },
   "LI13": {
    "seed": [
-    -0.24463,
-    1.19227,
-    -0.01773
+    -0.24399,
+    1.21336,
+    -0.02104
    ],
    "outward": [
-    -0.95122,
-    0.15097,
-    0.26904
+    -0.97381,
+    0.16511,
+    0.15632
    ],
-   "depthMm": 0.4,
+   "depthMm": 5.9,
    "rule": "LI11→LI15 line at crease + 3 B-cun"
   },
   "LI14": {
    "seed": [
-    -0.22289,
-    1.27563,
-    -0.002
+    -0.23168,
+    1.29126,
+    -0.01996
    ],
    "outward": [
-    -0.87611,
-    0.11961,
-    0.46705
+    -0.98336,
+    0.17716,
+    0.04018
    ],
-   "depthMm": 25.9,
-   "rule": "deltoid anterior border at crease + 7 B-cun, just anterior"
+   "depthMm": 27.4,
+   "rule": "deltoid insertion (lowest deltoid fibres), just anterior · crease+6.7 B-cun"
   },
   "LI15": {
    "seed": [
-    -0.19654,
-    1.41158,
-    -0.00691
+    -0.18401,
+    1.42082,
+    -0.02024
    ],
    "outward": [
-    -0.81514,
-    0.36681,
-    0.44833
+    -0.93149,
+    0.23287,
+    0.27945
    ],
-   "depthMm": 29.8,
-   "rule": "midpoint(anterior end of lateral acromion border, greater tubercle)"
+   "depthMm": 10.8,
+   "rule": "midpoint(anterior end of lateral acromion border, greater tubercle) · lateral"
   },
   "LI16": {
    "seed": [
-    -0.13381,
-    1.44282,
-    -0.05753
+    -0.14077,
+    1.43843,
+    -0.0485
    ],
    "outward": [
     0,
     0.98894,
     -0.14834
    ],
-   "depthMm": 21,
+   "depthMm": 16.8,
    "rule": "midpoint(posterior acromial end of clavicle, superior spine of scapula)"
   },
   "LI17": {

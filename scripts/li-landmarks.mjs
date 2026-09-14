@@ -66,7 +66,7 @@ const humeralHead = centroid(humerus, (p) => p.y > humerus.box.max.y - 0.03);
 const forearmAxis = elbowCentre.clone().sub(wristCentre).normalize();
 
 // Cubital crease is taken at the epicondylar level; dorsal wrist crease at the radial styloid.
-const creaseY = lateralEpicondyle.y;
+let creaseY = lateralEpicondyle.y;
 // Upper-arm B-cun: anterior axillary fold → cubital crease = 9 B-cun (WHO 2008 table).
 const pecParts = ['Sternocostal part of right pectoralis major', 'Abdominal part of right pectoralis major', 'Clavicular part of right pectoralis major'].filter((n) => has(atlas, n)).map((n) => mesh(atlas, n));
 let foldY = Infinity;
@@ -75,6 +75,9 @@ for (const part of pecParts) for (let i = 0; i < part.vertexCount; i++) {
   if (part.positions[i * 3] < -0.15) foldY = Math.min(foldY, part.positions[i * 3 + 1]);
 }
 const armCun = (foldY - creaseY) / 9;
+// Reviewer check (2026-09-15): the lateral end of the cubital crease lies ~1 B-cun proximal to the
+// lateral epicondyle on this atlas; the epicondyle itself anchors LI12, not LI11.
+creaseY = lateralEpicondyle.y + armCun;
 const forearmCun = (creaseY - radialStyloid.y) / 12;
 
 // ---------------------------------------------------------------- hand frame
@@ -111,14 +114,24 @@ function put(code, deep, outward, rule) {
   put('LI2', base.clone().lerp(tip, 0.18), perp(handRadial, axis), 'proximal phalanx base (18% distal) · radial side = red-white border');
 }
 // LI3 — dorsum, proximal to the radial side of MCP2.
-put('LI3', mc2Head.clone().lerp(mc2Base, 0.2), handRadial.clone().multiplyScalar(0.8).add(handDorsal), '2nd metacarpal head → 20% proximal · radial-dorsal');
-// LI4 — radial to the midpoint of the 2nd metacarpal (dorsum, not the thenar web).
-put('LI4', mc2Mid, handRadial.clone().multiplyScalar(0.7).add(handDorsal), 'midpoint of 2nd metacarpal · radial-dorsal');
+// LI3 — radial border (red-white junction) proximal to MCP2, not the dorsal skin.
+put('LI3', mc2Head.clone().lerp(mc2Base, 0.18), handRadial.clone().add(handDorsal.clone().multiplyScalar(-0.1)), '2nd metacarpal head → 18% proximal · radial border');
+// LI4 — radial to the midpoint of the 2nd metacarpal. Reviewer check (2026-09-15): on the radial
+// border of the bone toward the palmar side, not on the dorsal skin of the web.
+// Start from the bone's radial surface: a ray from the shaft centre can snap to ulnar-side skin.
+{
+  const outward = handRadial.clone().add(handDorsal.clone().multiplyScalar(-0.15)).normalize();
+  const radialSurface = most(slab(mc2, 1, mc2Mid.y, 0.004), outward).addScaledVector(outward, 0.003);
+  put('LI4', radialSurface, outward, 'midpoint of 2nd metacarpal · radial border (palmar-leaning)');
+}
 // LI5 — anatomical snuffbox: distal to radial styloid, radial end of dorsal wrist crease.
 {
-  const snuff = has(atlas, 'Right scaphoid') ? centroid(mesh(atlas, 'Right scaphoid')) : radialStyloid.clone().addScaledVector(handAxis, -0.01);
+  // Snuffbox = between EPL (ulnar/dorsal wall) and EPB (radial wall), just distal to the styloid.
+  const y = radialStyloid.y - 0.006;
+  const tendonCentre = (name) => centroid(mesh(atlas, name), (p) => Math.abs(p.y - y) < 0.004);
+  const snuff = mid(tendonCentre('Right extensor pollicis longus'), tendonCentre('Right extensor pollicis brevis'));
   const dorsal = perp(v(0, 0, -1), forearmAxis), radial = perp(LATERAL, forearmAxis);
-  put('LI5', snuff, radial.clone().add(dorsal.clone().multiplyScalar(0.55)), 'scaphoid (snuffbox floor) distal to radial styloid · radial-dorsal');
+  put('LI5', snuff, radial.clone().add(dorsal.clone().multiplyScalar(0.8)), 'midpoint(EPL, EPB tendons) 6 mm distal to radial styloid · snuffbox');
 }
 // LI11 — midpoint of LU5 (radial border of biceps tendon at crease) and lateral epicondyle.
 {
@@ -126,7 +139,9 @@ put('LI4', mc2Mid, handRadial.clone().multiplyScalar(0.7).add(handDorsal), 'midp
   const tendon = biceps.flatMap((part) => slab(part, 1, creaseY, 0.012));
   if (!tendon.length) throw new Error('biceps tendon not found at crease level');
   const lu5 = most(tendon, LATERAL);
-  const deep = mid(lu5, lateralEpicondyle);
+  lu5.y = creaseY;
+  const lateralAtCrease = most(atHeight(humerus, creaseY, 0.003), LATERAL);
+  const deep = mid(lu5, lateralAtCrease);
   put('LI11', deep, radialFrom(deep, wristCentre, elbowCentre).add(v(-0.2, 0, 0)), 'midpoint(LU5 = lateral biceps tendon at crease, lateral epicondyle)');
   rules.LU5 = round(lu5);
 }
@@ -141,18 +156,21 @@ put('LI4', mc2Mid, handRadial.clone().multiplyScalar(0.7).add(handDorsal), 'midp
 }
 // LI12 — superior to lateral epicondyle, anterior to lateral supraepicondylar ridge (~1 B-cun above LI11).
 {
+  // Anchored on the lateral epicondyle: KCMRIC "곡지 위로 1촌" along the supraepicondylar ridge.
   const y = creaseY + armCun;
   const ridge = most(atHeight(humerus, y, 0.003), LATERAL);
   const deep = ridge.clone().add(v(0, 0, 0.003));
-  put('LI12', deep, perp(v(-1, 0, -0.1), forearmAxis), `lateral supraepicondylar ridge at crease+1 B-cun, 3 mm anterior`);
+  put('LI12', deep, perp(v(-1, 0, -0.1), forearmAxis), `lateral epicondyle → supraepicondylar ridge, LI11 + 1 B-cun, 3 mm anterior`);
 }
 // LI15 — depression between anterior end of lateral acromion border and greater tubercle.
 // Restrict to the acromion (lateral + highest scapula); a looser box catches the coracoid.
-const acromionAnterolateral = extremeCluster(scapula, ANTERIOR, 0.01, (p) => p.x < -0.15 && p.y > scapula.box.max.y - 0.025);
-const greaterTubercle = extremeCluster(humerus, v(-1, 0, 0.5), 0.01, (p) => p.y > humerus.box.max.y - 0.05);
+// Anterior end of the LATERAL acromion border (not the medial/anterior acromion tip).
+const acromionAnterolateral = extremeCluster(scapula, ANTERIOR, 0.02, (p) => p.x < -0.16 && p.y > scapula.box.max.y - 0.025);
+const greaterTubercle = extremeCluster(humerus, v(-1, 0.3, 0.3), 0.01, (p) => p.y > humerus.box.max.y - 0.04);
 {
-  const deep = mid(acromionAnterolateral, greaterTubercle);
-  put('LI15', deep, v(-1, 0.45, 0.55), 'midpoint(anterior end of lateral acromion border, greater tubercle)');
+  // Anterior depression just below the acromion, above the humeral head (arm-abducted 견우 hollow).
+  const deep = mid(acromionAnterolateral, greaterTubercle).add(v(0, 0.004, 0));
+  put('LI15', deep, v(-1, 0.25, 0.3), 'midpoint(anterior end of lateral acromion border, greater tubercle) · lateral');
 }
 // LI13 / LI14 — upper arm, on LI11–LI15 line; 9 B-cun axillary fold → crease.
 {
@@ -161,17 +179,17 @@ const greaterTubercle = extremeCluster(humerus, v(-1, 0, 0.5), 0.01, (p) => p.y 
   const armAxisTop = humeralHead;
   const y13 = creaseY + 3 * armCun;
   put('LI13', onLineAt(y13), radialFrom(onLineAt(y13), elbowCentre, armAxisTop), 'LI11→LI15 line at crease + 3 B-cun');
-  const y14 = creaseY + 7 * armCun;
-  const deltoid = mesh(atlas, 'Clavicular part of right deltoid');
-  const lowY = Math.max(y14, deltoid.box.min.y + 0.004);
-  const border = most(atHeight(deltoid, lowY, 0.004), v(-0.3, 0, 1));
-  const deep = border.clone().add(v(0, y14 - border.y, 0.004));
-  put('LI14', deep, radialFrom(deep, elbowCentre, armAxisTop), `deltoid anterior border at crease + 7 B-cun, just anterior`);
+  // Deltoid insertion (lowest fibres of the clavicular/acromial parts), just anterior to its border.
+  const insertion = ['Clavicular part of right deltoid', 'Acromial part of right deltoid']
+    .map((n) => extremeCluster(mesh(atlas, n), v(0, -1, 0), 0.02)).reduce((a, b) => (a.y < b.y ? a : b));
+  const deep = insertion.clone().add(v(0, 0.003, 0.004));
+  put('LI14', deep, radialFrom(deep, elbowCentre, armAxisTop), `deltoid insertion (lowest deltoid fibres), just anterior · crease+${((deep.y - creaseY) / armCun).toFixed(1)} B-cun`);
 }
 // LI16 — depression between acromial end of clavicle and spine of scapula.
 {
   const clavEnd = extremeCluster(clavicle, LATERAL, 0.01);
-  const x = clavEnd.x + 0.012;
+  // Keep at the acromial end itself: the V between clavicle end and spine sits beside the acromion.
+  const x = clavEnd.x + 0.004;
   const clavBack = most(slab(clavicle, 0, x, 0.004), v(0, 0.3, -1));
   const spine = most(slab(scapula, 0, x, 0.004, (p) => p.z < clavBack.z - 0.004 && p.y > clavBack.y - 0.03), v(0, 1, 0.3));
   put('LI16', mid(clavBack, spine), v(0, 1, -0.15), 'midpoint(posterior acromial end of clavicle, superior spine of scapula)');
