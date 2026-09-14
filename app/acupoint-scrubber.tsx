@@ -85,6 +85,8 @@ export function AcupointScrubber({points,activeCode,onPointChange,label='경혈 
    const index=indexAt(destination());
    const to=index*m.step;
    if(Math.abs(destination()-to)>1){m.target=clamp(to);if(!m.animating&&!m.reduce){m.current=el.scrollTop;m.animating=true;m.lastFrame=0;m.frame=requestAnimationFrame(tick);}else if(m.reduce){finish();}}
+   // Already aligned (e.g. native/programmatic scroll that needed no glide): hide the scrollbar again.
+   if(!m.animating)el.dataset.scrolling='false';
    commit(index);
   };
   const measure=(keepIndex?:number)=>{
