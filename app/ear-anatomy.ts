@@ -57,6 +57,13 @@ type Mm2=[number,number];
 
 /** Meatus opening on the skin surface: the origin of the auricle frame (metres, right side). */
 const MEATUS_SKIN={lateral:.067,y:1.589,z:-.020};
+/**
+ * Placement correction for the auricle only (metres, superior and anterior).
+ * The sculpted ear sat low and far back against this head's skin: on review it
+ * belongs about 10 mm higher and 8 mm forward of the bony pore. The pore
+ * landmark itself keeps its measured position.
+ */
+const AURICLE_OFFSET={y:.010,z:.008};
 /** Bony pore, 4 mm deep to the skin opening. */
 const MEATUS_PORE_DEPTH=.004;
 /** Long axis leans posteriorly at the top (sagittal plane). */
@@ -255,7 +262,7 @@ export function createExternalEarPresentation(){
   const group=new T.Group();group.name=`${side} auricle`;
   group.matrixAutoUpdate=false;
   group.matrix.makeBasis(new T.Vector3(0,0,1),new T.Vector3(0,1,0),new T.Vector3(sign,0,0));
-  group.matrix.setPosition(sign*MEATUS_SKIN.lateral,MEATUS_SKIN.y,MEATUS_SKIN.z);
+  group.matrix.setPosition(sign*MEATUS_SKIN.lateral,MEATUS_SKIN.y+AURICLE_OFFSET.y,MEATUS_SKIN.z+AURICLE_OFFSET.z);
   // Orientation: flare about the anterior attachment line, lean with the skull,
   // then tilt the long axis posteriorly. (Applied right to left.)
   const pivot=FLARE_PIVOT_MM/1000;
