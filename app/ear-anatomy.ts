@@ -62,9 +62,9 @@ const MEATUS_PORE_DEPTH=.004;
 /** Long axis leans posteriorly at the top (sagittal plane). */
 const POSTERIOR_TILT_DEG=15;
 /** Follows the skull, which widens above the ear: the helix root leans laterally. */
-const LATERAL_LEAN_DEG=14;
+const LATERAL_LEAN_DEG=12;
 /** Auriculocephalic projection about the anterior attachment line. */
-const FLARE_DEG=27;
+const FLARE_DEG=23;
 const FLARE_PIVOT_MM=6;
 
 /** Same values as the integumentary material in scene.tsx, so the ear reads as skin. */
@@ -116,18 +116,21 @@ const CONCHA_CENTRE:Mm2=[-5.5,-1];
 
 /** Relief features (mm). Ridges are Gaussian tubes along polylines; pads and bowls are elliptical. */
 const RIDGES:{points:Mm2[];sigma:number;height:number;fade?:'crus'}[]=[
- {points:[[4,9],[2,14],[-2,21],[-6,27],[-12,30],[-18,27],[-21.5,19],[-23,8],[-22.5,-3],[-20,-11],[-16,-18],[-12,-22]],sigma:2.2,height:3.2}, // helix
- {points:[[-8,-14],[-13,-9],[-16.5,0],[-17,8]],sigma:1.9,height:2.8},            // antihelix stem
- {points:[[-17,8],[-14,12],[-9,13.5],[-3,13]],sigma:1.5,height:2.2},             // inferior crus
- {points:[[-17,8],[-18,15],[-17,21],[-15,25]],sigma:1.4,height:2},               // superior crus
- {points:[[5,8],[1,6],[-3,4.5],[-7,3.5]],sigma:1.5,height:2.4,fade:'crus'},      // crus of helix into the concha
+ {points:[[4,9],[2,14],[-2,21],[-6,27],[-12,30],[-18,27],[-21.5,19],[-23,8],[-22.5,-3],[-20,-11],[-16,-18],[-12,-22]],sigma:2.4,height:4}, // helix roll
+ {points:[[1,11],[-2,17],[-6,23],[-11,26],[-16,23],[-19,16],[-20,7],[-19.5,-3],[-17.5,-10],[-14,-16]],sigma:1.8,height:-1.4}, // scapha groove
+ {points:[[-8,-14],[-13,-9],[-16.5,0],[-17,8]],sigma:2,height:3.4},              // antihelix stem
+ {points:[[-17,8],[-14,12],[-9,13.5],[-3,13]],sigma:1.6,height:2.6},             // inferior crus
+ {points:[[-17,8],[-18,15],[-17,21],[-15,25]],sigma:1.5,height:2.4},             // superior crus
+ {points:[[-14.5,15],[-13,19.5],[-11,22]],sigma:2,height:-.9},                   // triangular fossa
+ {points:[[5,8],[1,6],[-3,4.5],[-7,3.5]],sigma:1.6,height:2.8,fade:'crus'},      // crus of helix into the concha
+ {points:[[3,-7],[0,-9]],sigma:2,height:-1.6},                                    // intertragic notch
 ];
 const PADS:{centre:Mm2;radii:Mm2;height:number}[]=[
- {centre:[3.5,-1],radii:[3.2,5.5],height:5.5},   // tragus
- {centre:[-5,-12],radii:[4.5,3],height:3.5},     // antitragus
- {centre:[-2,-21],radii:[8.5,8],height:2.2},     // lobule
+ {centre:[3.5,-1],radii:[3.2,5.5],height:6},     // tragus
+ {centre:[-5,-12],radii:[4.5,3],height:3.8},     // antitragus
+ {centre:[-2,-21],radii:[8.5,8],height:2.6},     // lobule
 ];
-const CONCHA={centre:CONCHA_CENTRE,radii:[9,11.5] as Mm2,depth:5.5};
+const CONCHA={centre:CONCHA_CENTRE,radii:[9,11.5] as Mm2,depth:6.5};
 const MEATUS={centre:[0,-.5] as Mm2,radius:3.6,depth:3.5};
 
 const smoothstep=(a:number,b:number,x:number)=>{const t=T.MathUtils.clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
@@ -146,9 +149,21 @@ const ellipse=(p:Mm2,centre:Mm2,radii:Mm2)=>{
 };
 
 /** Height of the lateral surface and its shade at an auricle-frame point; t is the normalised radius. */
+/**
+ * Attachment weight: 1 where the auricle grows out of the head (anterior border,
+ * conchal floor, cheek behind the lobule root), 0 along the free margin.
+ */
+const buried=(p:Mm2,t:number)=>{
+ const anterior=T.MathUtils.clamp((p[0]+14)/10,0,1),conchal=1-smoothstep(.35,.55,t);
+ const lobuleFree=smoothstep(-30,-18,p[1]);
+ return Math.max(anterior*lobuleFree,conchal);
+};
 function relief(p:Mm2,t:number){
  const edge=1-smoothstep(.86,1,t),feature=1-smoothstep(.94,1,t),attach=1-smoothstep(4.5,7,p[0]);
- let height=1.6*edge*attach;
+ // Along the anterior attachment the surface dives 3 mm under the skin instead of
+ // ending in a hard outline, so the skin folds into the ear.
+ // The free margin rolls over: the front sheet meets the medial sheet at -1.5 mm.
+ let height=1.6*edge*attach-3*(1-attach)-1.5*smoothstep(.9,1,t);
  for(const ridge of RIDGES){
   const d=polylineDistance(p,ridge.points);
   let h=ridge.height*Math.exp(-(d*d)/(ridge.sigma*ridge.sigma));
@@ -160,7 +175,8 @@ function relief(p:Mm2,t:number){
  height-=CONCHA.depth*bowl;
  const s=Math.hypot(p[0]-MEATUS.centre[0],p[1]-MEATUS.centre[1])/MEATUS.radius,pit=s>=1?0:1-s*s;
  height-=MEATUS.depth*pit;
- const shade=1-.14*bowl-.8*pit;
+ const notch=Math.exp(-(polylineDistance(p,[[3,-7],[0,-9]])**2)/4);
+ const shade=1-.18*bowl-.8*pit-.12*notch;
  return {height,shade};
 }
 
@@ -189,9 +205,11 @@ function buildAuricleGeometry(thetaSegments=112,frontRows=18,backRows=5){
    const {height,shade}=relief(p,t);
    if(front){positions.push(p[0],p[1],height);colors.push(base.r*shade,base.g*shade,base.b*shade);}
    else{
-    // The medial sheet stays medial to the relief, so the conchal bowl and meatus
-    // pit never poke through it.
-    positions.push(p[0],p[1],Math.min(-1.6*(1-smoothstep(.8,1,t)),height-1.5));
+    // Medial sheet: 11 mm deep where the ear is attached (hidden inside the head,
+    // so the auricle emerges from the skin), thinning to a free margin elsewhere,
+    // and always medial to the relief so the bowl and pit never poke through.
+    const bury=buried(p,t),free=-1.5-.4*(1-smoothstep(.85,1,t)),deep=-11;
+    positions.push(p[0],p[1],Math.min(T.MathUtils.lerp(free,deep,bury),height-1.5));
     colors.push(base.r*shade,base.g*shade,base.b*shade);
    }
   }
