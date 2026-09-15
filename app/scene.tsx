@@ -814,7 +814,7 @@ export default function AnatomyScene({
         }
       });
       lineGroup.clear();
-      const projectedBySide: { right: T.Vector3[]; left: T.Vector3[] } = { right: [], left: [] };
+      const projectedBySide: { right: {code:string;point:T.Vector3}[]; left: {code:string;point:T.Vector3}[] } = { right: [], left: [] };
       for (const definition of acupoints) {
         for (const side of ["right", "left"] as const) {
           const object = pointObjects.find(
@@ -841,7 +841,7 @@ export default function AnatomyScene({
           const markerScale=(selected ? 1.08 : 1)*(definition.code.startsWith('GB')?1:.3);
           object.marker.scale.setScalar(markerScale);
           object.core.scale.setScalar(markerScale);
-          if(meridianOf(definition.code)===meridianOf(config?.selectedCode??'GB34')) projectedBySide[side].push(object.marker.position.clone());
+          if(meridianOf(definition.code)===meridianOf(config?.selectedCode??'GB34')) projectedBySide[side].push({code:definition.code,point:object.marker.position.clone()});
         }
       }
       const addSurfaceGuide = (
@@ -924,17 +924,24 @@ export default function AnatomyScene({
       }
       if (config?.visible && config.showAll && config.showLines) {
         for (const side of ["right", "left"] as const) {
-          const curve = new T.CatmullRomCurve3(projectedBySide[side], false, "centripetal", 0.28),
-            geometry = new T.BufferGeometry().setFromPoints(curve.getPoints(220)),
+          const rows=projectedBySide[side], selectedMeridian=meridianOf(config.selectedCode??'GB34');
+          const segments=selectedMeridian==='BL'?
+            [rows.filter(row=>Number(row.code.slice(2))<=40),rows.filter(row=>{const n=Number(row.code.slice(2));return n>=41&&n<=54;}),[rows.find(row=>row.code==='BL40')!,...rows.filter(row=>Number(row.code.slice(2))>=55)]]:
+            [rows];
+          for(const segment of segments){
+            if(segment.length<2)continue;
+            const curve = new T.CatmullRomCurve3(segment.map(row=>row.point), false, "centripetal", 0.28),
+            geometry = new T.BufferGeometry().setFromPoints(curve.getPoints(Math.max(32,segment.length*8))),
             material = new T.LineBasicMaterial({
               color: 0xd6a44f,
               transparent: true,
               opacity: 0.34,
               depthTest: false,
             });
-          const line = new T.Line(geometry, material);
-          line.renderOrder = 55;
-          lineGroup.add(line);
+            const line = new T.Line(geometry, material);
+            line.renderOrder = 55;
+            lineGroup.add(line);
+          }
         }
       }
     };

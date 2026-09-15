@@ -1,0 +1,543 @@
+{
+ "id": "SI",
+ "label": "소장경",
+ "name": "수태양소장경",
+ "english": "SMALL INTESTINE MERIDIAN",
+ "primarySource": "https://m.kmcric.com/knowledge/acupoint/SI",
+ "secondarySource": "https://iris.who.int/handle/10665/353407",
+ "generatedBy": "scripts/meridians/si.mjs",
+ "points": [
+  {
+   "code": "SI1",
+   "korean": "소택",
+   "hanja": "少澤",
+   "english": "Shaoze",
+   "location": "새끼손가락, 끝마디뼈의 자쪽, 새끼손톱 자쪽 뿌리각에서 몸안쪽으로 1분.",
+   "rawLocation": "새끼손가락, 끝마디뼈의 자쪽, 새끼손톱 자쪽 뿌리각에서 몸안쪽으로 1분.",
+   "rawMethod": "[자침] 직자 1푼, 삼릉침으로 점자출혈",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: fingernail (수지갑)",
+   "photo": "images/SI/SI01.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.21994,
+    0.76683,
+    0.0687
+   ],
+   "outward": [
+    0.92468,
+    0,
+    -0.38075
+   ],
+   "region": "hand-R",
+   "depthMm": 3.9,
+   "rule": "little-finger ulnar nail-root corner · 0.1 F-cun proximal"
+  },
+  {
+   "code": "SI2",
+   "korean": "전곡",
+   "hanja": "前谷",
+   "english": "Qiangu",
+   "location": "새끼손가락, 다섯째 손허리손가락관절 자쪽의 먼쪽 오목한 곳, 적백육제.",
+   "rawLocation": "새끼손가락, 다섯째 손허리손가락관절 자쪽의 먼쪽 오목한 곳, 적백육제.",
+   "rawMethod": "[취혈] 손을 약간 굽혔을 때, 새끼손가락의 손바닥쪽 손허리손가락주름 자쪽 끝에서 취혈",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: red-white flesh border (적백육제)",
+   "photo": "images/SI/SI02.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.22299,
+    0.80639,
+    0.04469
+   ],
+   "outward": [
+    0.92468,
+    0,
+    -0.38075
+   ],
+   "region": "hand-R",
+   "depthMm": 5.2,
+   "rule": "distal depression of 5th metacarpophalangeal joint · ulnar red-white border"
+  },
+  {
+   "code": "SI3",
+   "korean": "후계",
+   "hanja": "後谿",
+   "english": "Houxi",
+   "location": "다섯째 손허리손가락관절 자쪽의 몸쪽 오목한 곳, 적백육제.\n손바닥의 먼쪽 가로피부선의 자쪽 끝, 적백육제에서 취혈한다.",
+   "rawLocation": "다섯째 손허리손가락관절 자쪽의 몸쪽 오목한 곳, 적백육제.\n손바닥의 먼쪽 가로피부선의 자쪽 끝, 적백육제에서 취혈한다.",
+   "rawMethod": "[자침] 주먹을 쥔 자세에서 찾고, 살짝 주먹을 쥔 자세에서 손바닥 측으로 자입한다.\n손을 약간 굽힌 상태에서 취혈한다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: red-white flesh border (적백육제)",
+   "photo": "images/SI/SI03.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.22547,
+    0.81542,
+    0.03494
+   ],
+   "outward": [
+    0.92468,
+    0,
+    -0.38075
+   ],
+   "region": "hand-R",
+   "depthMm": 2.9,
+   "rule": "proximal depression of 5th metacarpophalangeal joint · ulnar red-white border"
+  },
+  {
+   "code": "SI4",
+   "korean": "완골",
+   "hanja": "腕骨",
+   "english": "Wangu",
+   "location": "손목 뒤안쪽면, 다섯째 손허리뼈 바닥과 세모뼈 사이의 오목한 곳, 적백육제.\n5번째 손허리뼈와 세모뼈 사이의 오목한 곳, 적백육제에서 취혈한다.",
+   "rawLocation": "손목 뒤안쪽면, 다섯째 손허리뼈 바닥과 세모뼈 사이의 오목한 곳, 적백육제.\n5번째 손허리뼈와 세모뼈 사이의 오목한 곳, 적백육제에서 취혈한다.",
+   "rawMethod": "[자침법] 직자 3~5푼\n손가락을 후계에서 5번째 손허리뼈를 따라 몸쪽으로 밀어 뼈가 튀어나오는 곳까지 확인한 뒤 취혈한다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: red-white flesh border (적백육제)",
+   "photo": "images/SI/SI04.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.22699,
+    0.8586,
+    0.01887
+   ],
+   "outward": [
+    0.92468,
+    0,
+    -0.38075
+   ],
+   "region": "hand-R",
+   "depthMm": 15,
+   "rule": "depression between base of 5th metacarpal and triquetrum · red-white border"
+  },
+  {
+   "code": "SI5",
+   "korean": "양곡",
+   "hanja": "陽谷",
+   "english": "Yanggu",
+   "location": "손목 뒤안쪽면, 자뼈붓돌기와 세모뼈 사이의 오목한 곳.",
+   "rawLocation": "손목 뒤안쪽면, 자뼈붓돌기와 세모뼈 사이의 오목한 곳.",
+   "rawMethod": "[자침법] 직자 3~5푼",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/SI/SI05.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.23047,
+    0.87802,
+    0.01202
+   ],
+   "outward": [
+    0.92468,
+    0,
+    -0.38075
+   ],
+   "region": "hand-R",
+   "depthMm": 6.5,
+   "rule": "dorsal wrist depression between ulnar styloid and triquetrum"
+  },
+  {
+   "code": "SI6",
+   "korean": "양로",
+   "hanja": "養老",
+   "english": "Yanglao",
+   "location": "아래팔 뒤안쪽면, 자뼈머리의 노쪽 오목한 곳 (손바닥을 가슴에 댈 때 나타나는 뼈틈)",
+   "rawLocation": "아래팔 뒤안쪽면, 자뼈머리의 가쪽, 손등쪽 손목주름에서 몸쪽으로 1촌 지점의 오목한 곳.",
+   "rawMethod": "[취혈] 손바닥을 아래로 향하게 하고, 다른 손의 한 손가락으로 자뼈머리의 가장 높은 지점을 누른 상태에서, 손바닥을 가슴쪽으로 돌리면 손가락이 미끄러져 들 어가는 뼈 사이의 틈새에서 취혈",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/SI/SI06.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.22694,
+    0.89128,
+    0.01217
+   ],
+   "outward": [
+    -1,
+    0,
+    0
+   ],
+   "region": "forearm-R",
+   "depthMm": 5.8,
+   "rule": "WHO/KCMRIC: radial side of the head of ulna, in the cleft revealed with palm on chest"
+  },
+  {
+   "code": "SI7",
+   "korean": "지정",
+   "hanja": "支正",
+   "english": "Zhizheng",
+   "location": "아래팔 뒤안쪽면, 자뼈 안쪽모서리와 자쪽손목굽힘근의 사이, 손등쪽 손목주름에서 몸쪽으로 5촌.",
+   "rawLocation": "아래팔 뒤안쪽면, 자뼈 안쪽모서리와 자쪽손목굽힘근의 사이, 손등쪽 손목주름에서 몸쪽으로 5촌.",
+   "rawMethod": "[취혈] 陽谷(SI5)과 小海(SI8)를 연결하는 선의 중점에서 먼쪽으로 1촌 지점에서 취혈한다. 직자 3~5푼",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/SI/SI07.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.20449,
+    0.97907,
+    -0.02219
+   ],
+   "outward": [
+    0.75566,
+    -0.16277,
+    -0.63441
+   ],
+   "region": "forearm-R",
+   "depthMm": 26.7,
+   "rule": "SI5–SI8 line · 5 B-cun proximal to dorsal wrist crease"
+  },
+  {
+   "code": "SI8",
+   "korean": "소해",
+   "hanja": "小海",
+   "english": "Xiaohai",
+   "location": "팔꿈치 뒤안쪽면, 자뼈 팔꿈치머리와 위팔뼈 안쪽위관절융기 사이의 오목한 곳.",
+   "rawLocation": "팔꿈치 뒤안쪽면, 자뼈 팔꿈치머리와 위팔뼈 안쪽위관절융기 사이의 오목한 곳.",
+   "rawMethod": "[취혈] 팔꿈치를 약간 굽혔을 때, 자신경고랑에 해당하는 곳. 손가락으로 그 곳 을 두드리면 전기 통하는 느낌이 새끼손가락까지 전달된다. 직자 2~5푼",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/SI/SI08.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.17486,
+    1.12161,
+    -0.04203
+   ],
+   "outward": [
+    0.6,
+    0,
+    -0.8
+   ],
+   "region": "upper-arm-R",
+   "depthMm": 2.1,
+   "rule": "depression between medial epicondyle of humerus and olecranon"
+  },
+  {
+   "code": "SI9",
+   "korean": "견정",
+   "hanja": "肩貞",
+   "english": "Jianzhen",
+   "location": "팔이음뼈, 어깨관절 아래뒤쪽, 겨드랑주름 뒤쪽 끝에서 위쪽으로 1촌.",
+   "rawLocation": "팔이음뼈, 어깨관절 아래뒤쪽, 겨드랑주름 뒤쪽 끝에서 위쪽으로 1촌.",
+   "rawMethod": "[취혈방법] 팔을 몸통에 붙이고, 뒤겨드랑주름 끝에서 위쪽으로 1촌, 어깨세모근 뒤에서 취혈한다. 직자 1~1.5촌\n[자침] 직자 1~1.5촌",
+   "classification": "B · 비례촌 보간",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "photo": "images/SI/SI09.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.204,
+    1.307,
+    -0.0917
+   ],
+   "outward": [
+    -0.54779,
+    0,
+    -0.83662
+   ],
+   "region": "upper-arm-R",
+   "depthMm": 51.5,
+   "rule": "1 B-cun superior to posterior axillary fold"
+  },
+  {
+   "code": "SI10",
+   "korean": "노수",
+   "hanja": "臑兪",
+   "english": "Naoshu",
+   "location": "팔이음뼈, 겨드랑주름 뒤쪽끝에서 위쪽, 어깨뼈가시 아래쪽 오목한 곳.",
+   "rawLocation": "팔이음뼈, 겨드랑주름 뒤쪽끝에서 위쪽, 어깨뼈가시 아래쪽 오목한 곳.",
+   "rawMethod": "",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/SI/SI10.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.19382,
+    1.34,
+    -0.10049
+   ],
+   "outward": [
+    -0.54779,
+    0,
+    -0.83662
+   ],
+   "region": "upper-arm-R",
+   "depthMm": 54.8,
+   "rule": "depression inferior to scapular spine · arm raised"
+  },
+  {
+   "code": "SI11",
+   "korean": "천종",
+   "hanja": "天宗",
+   "english": "Tianzong",
+   "location": "어깨뼈부위, 어깨뼈가시 중점과 어깨뼈 아래각을 연결하는 선에서 위쪽으로부터 1/3과 아래쪽으로부터 2/3가 되는 지점의 오목한 곳.",
+   "rawLocation": "어깨뼈부위, 어깨뼈가시 중점과 어깨뼈 아래각을 연결하는 선에서 위쪽으로부터 1/3과 아래쪽으로부터 2/3가 되는 지점의 오목한 곳.",
+   "rawMethod": "*어깨뼈가시 오목부위가 골절되거나 관통될 수 있고, 그 안쪽에 갈비, 뒤쪽에 허파 영역 있으니 주의\n어깨뼈를 잘 보이게 하기 위해서, 팔을 굽히고 뒷짐 자세로 하면 잘 보인다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/SI/SI11.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.11858,
+    1.38059,
+    -0.13186
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "shoulder",
+   "depthMm": 80.7,
+   "rule": "centre of infraspinous fossa · scapular triangular reference"
+  },
+  {
+   "code": "SI12",
+   "korean": "병풍",
+   "hanja": "秉風",
+   "english": "Bingfeng",
+   "location": "어깨뼈부위, 가시위오목, 어깨뼈가시 중점 위쪽의 오목한 곳.",
+   "rawLocation": "어깨뼈부위, 가시위오목, 어깨뼈가시 중점 위쪽의 오목한 곳.",
+   "rawMethod": "[자침법] 직자 3~5푼",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/SI/SI12.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.115,
+    1.401,
+    -0.12534
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "shoulder",
+   "depthMm": 50.3,
+   "rule": "centre of supraspinous fossa"
+  },
+  {
+   "code": "SI13",
+   "korean": "곡원",
+   "hanja": "曲垣",
+   "english": "Quyuan",
+   "location": "어깨뼈부위, 어깨뼈가시 안쪽끝 위쪽 오목한 곳.",
+   "rawLocation": "어깨뼈부위, 어깨뼈가시 안쪽끝 위쪽 오목한 곳.",
+   "rawMethod": "※주 : 노수(ST10)와 둘째 등뼈 가시돌기를 연결하는 선의 중점에 위치함\n[자침법] 직자 3~5푼",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/SI/SI13.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.079,
+    1.407,
+    -0.13008
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "shoulder",
+   "depthMm": 51.1,
+   "rule": "medial end of scapular spine · midway from SI10 to T2 spinous process"
+  },
+  {
+   "code": "SI14",
+   "korean": "견외수",
+   "hanja": "肩外兪",
+   "english": "Jianwaishu",
+   "location": "위쪽 등부위, 첫째 등뼈 가시돌기 아래모서리와 같은 높이, 뒤정중선에서 가쪽으로 3촌.",
+   "rawLocation": "위쪽 등부위, 첫째 등뼈 가시돌기 아래모서리와 같은 높이, 뒤정중선에서 가쪽으로 3촌.",
+   "rawMethod": "※주 : 大杼(BL11), 陶道(CV13), 첫째 등뼈가시돌기 아래모서리와 같은 높이에 위 치한다.\n[자침법] 직자 5~8푼 (가슴막 또는 폐 손상을 고려해 깊이 자침하지 않음)",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/SI/SI14.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.034,
+    1.42677,
+    -0.11848
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "thorax",
+   "depthMm": 39.5,
+   "rule": "3 B-cun lateral to inferior border of T1 spinous process"
+  },
+  {
+   "code": "SI15",
+   "korean": "견중수",
+   "hanja": "肩中兪",
+   "english": "Jianzhongshu",
+   "location": "위쪽 등부위, 일곱째 목뼈 가시돌기 아래모서리와 같은 높이, 뒤정중선에서 가쪽으로 2촌.",
+   "rawLocation": "위쪽 등부위, 일곱째 목뼈 가시돌기 아래모서리와 같은 높이, 뒤정중선에서 가쪽으로 2촌.",
+   "rawMethod": "※주 : 大椎(GV14)에서 가쪽으로 2寸에 위치한다.\n∙ 견외수에서 10~11시 방향\n[자침법] 직자 3~5푼 (가슴막 또는 폐 손상을 고려해 깊이 자침하지 않음)",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/SI/SI15.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.05517,
+    1.47157,
+    -0.0809
+   ],
+   "outward": [
+    -0.70256,
+    0.57353,
+    -0.42128
+   ],
+   "region": "shoulder",
+   "depthMm": 18.7,
+   "rule": "2 B-cun lateral to posterior median line · C7 region · nearest posterior neck skin"
+  },
+  {
+   "code": "SI16",
+   "korean": "천창",
+   "hanja": "天窓",
+   "english": "Tianchuang",
+   "location": "목 앞부위, 목빗근의 뒤쪽, 방패연골 위모서리와 같은 높이.",
+   "rawLocation": "목 앞부위, 목빗근의 뒤쪽, 방패연골 위모서리와 같은 높이.",
+   "rawMethod": "∙ 동맥이 느껴짐: 아주 깊은 부위에 온목동ㆍ정맥 ⇒ 조심\n[자침법] 직자 3~5푼",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/SI/SI16.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.05753,
+    1.514,
+    -0.02796
+   ],
+   "outward": [
+    -0.64997,
+    0,
+    -0.75996
+   ],
+   "region": "neck",
+   "depthMm": 7.9,
+   "rule": "posterior border of sternocleidomastoid · level of thyroid cartilage superior border"
+  },
+  {
+   "code": "SI17",
+   "korean": "천용",
+   "hanja": "天容",
+   "english": "Tianrong",
+   "location": "목 앞부위, 턱뼈각 뒤쪽, 목빗근 앞쪽 오목한 곳. (둘째 목뼈 수준)",
+   "rawLocation": "목 앞부위, 턱뼈각 뒤쪽, 목빗근 앞쪽 오목한 곳. (둘째 목뼈 수준)",
+   "rawMethod": "∙ 목빗근, 아래턱각 사이 함몰 지역, 둘째 목뼈 가로돌기가 촉지\n[자침법] 직자 3~5푼, 사자 5푼~1.5촌(혀뿌리를 향해)\n저항을 받으며 머리를 반대쪽으로 돌리면 목빗근이 현저하게 드러난다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/SI/SI17.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.0556,
+    1.535,
+    -0.00795
+   ],
+   "outward": [
+    -0.64997,
+    0,
+    0.75996
+   ],
+   "region": "neck",
+   "depthMm": 17.2,
+   "rule": "depression posterior to angle of mandible · anterior border of sternocleidomastoid"
+  },
+  {
+   "code": "SI18",
+   "korean": "관료",
+   "hanja": "顴髎",
+   "english": "Quanliao",
+   "location": "얼굴, 광대뼈 아래쪽, 가쪽눈구석에서 수직으로 아래쪽 오목한 곳.",
+   "rawLocation": "얼굴, 광대뼈 아래쪽, 가쪽눈구석에서 수직으로 아래쪽 오목한 곳.",
+   "rawMethod": "∙ 광대뼈활 시작 부위, 광대뼈 융기부위: 광대뼈를 염두에 둠\n[자침법] 직자 2~3푼, 사자 5푼~1촌 (아래턱을 향해)",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: canthus (안각)",
+   "photo": "images/SI/SI18.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.05687,
+    1.565,
+    0.04826
+   ],
+   "outward": [
+    -0.49828,
+    0,
+    0.86701
+   ],
+   "region": "face",
+   "depthMm": 7.8,
+   "rule": "directly below lateral canthus · inferior border of zygomatic bone"
+  },
+  {
+   "code": "SI19",
+   "korean": "청궁",
+   "hanja": "聽宮",
+   "english": "Tinggong",
+   "location": "얼굴, 귀구슬 중심의 앞모서리와 아래턱뼈 관절돌기 사이의 오목한 곳.",
+   "rawLocation": "얼굴, 귀구슬 중심의 앞모서리와 아래턱뼈 관절돌기 사이의 오목한 곳.",
+   "rawMethod": "∙ 바로 앞쪽에 귀밑샘, 그리고 턱관절의 관절돌기 있음\n- 귀밑샘은 gland라 감염에 취약하므로 2차 감염이 생기지 않도록 주의 (반드시 귀밑샘을 관통하게 됨)\n∙ 얕은관자동맥과 턱관절의 관절 영역\n[자침법] 직자 3~5푼, 사자 5푼~1촌, (입을 벌리고 약간 아래쪽으로)",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: tragus (이주)",
+   "photo": "images/SI/SI19.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.06854,
+    1.596,
+    -0.004
+   ],
+   "outward": [
+    -1,
+    0,
+    0
+   ],
+   "region": "head",
+   "depthMm": 3.5,
+   "rule": "mouth-open depression between tragus and mandibular condyle · level of centre of tragus"
+  }
+ ]
+}
