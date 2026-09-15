@@ -41,13 +41,26 @@ const gb=(point:GbPointInput):GbPointDefinition=>({...point,primarySource:KMCRIC
 // identify an anatomical neighbourhood that can be refined against the source meshes.
 const GB_POINT_INPUTS:GbPointInput[]=[
  {code:'GB1',korean:'동자료',hanja:'瞳子髎',english:'Tongziliao',location:'외안각에서 가쪽으로 0.5촌(골도분촌)인 눈확 가쪽 구역',basis:'상·하안검이 귀쪽에서 만나는 외안각 피부 구역',seed:[-.064,1.600,.078],projection:'head',status:'review'},
- {code:'GB2',korean:'청회',hanja:'聽會',english:'Tinghui',location:'이주와 하악골 관절돌기 사이 구역',basis:'외이도 앞쪽 경계와 하악골 관절돌기',seed:[-.073,1.566,.030],projection:'lateral',status:'review'},
- {code:'GB3',korean:'상관',hanja:'上關',english:'Shangguan',location:'관골궁 중점의 위쪽 구역',basis:'관골궁과 측두부 표면',seed:[-.073,1.596,.037],projection:'lateral',status:'registered'},
+ // 2026-09-15 photo review (images/GB/GB02.png): 이문(TE21)·청궁(SI19)·청회(GB2) stack
+ // vertically just anterior to the tragus, GB2 lowest at the intertragic notch. The old
+ // seed sat 23 mm below and 34 mm anterior to the notch, out on the cheek over the masseter.
+ // Height now taken from the auricle's intertragic notch (y 1.589); z just anterior to the
+ // tragus (z -.005) and posterior to the mandibular condyle (z -.006).
+ {code:'GB2',korean:'청회',hanja:'聽會',english:'Tinghui',location:'이주간절흔 높이, 하악골 관절돌기 뒤쪽 함요부',basis:'외이 이주간절흔과 하악골 관절돌기',seed:[-.070,1.589,-.002],projection:'lateral',status:'review'},
+ // 2026-09-15 photo review (images/GB/GB03.png): GB3 sits directly above the zygomatic arch,
+ // vertically in line with ST7 하관 below it. The old seed was 9 mm anterior to the arch
+ // midpoint (z .028) and 8 mm above its superior border.
+ {code:'GB3',korean:'상관',hanja:'上關',english:'Shangguan',location:'관골궁 중점의 바로 위쪽 함요부(ST7 하관의 수직 위쪽)',basis:'관골궁 중점 landmark와 측두부 표면',seed:[-.068,1.588,.028],projection:'lateral',status:'registered'},
  {code:'GB4',korean:'함염',hanja:'頷厭',english:'Hanyan',location:'ST8–GB7 피부 곡선의 위쪽 1/4',basis:'측두부 깨물근 경계 곡선',seed:[-.074,1.622,.030],projection:'head',status:'review'},
  {code:'GB5',korean:'현로',hanja:'懸顱',english:'Xuanlu',location:'ST8–GB7 피부 곡선의 중점',basis:'측두부 깨물근 경계 곡선',seed:[-.077,1.626,.018],projection:'head',status:'review'},
  {code:'GB6',korean:'현리',hanja:'懸釐',english:'Xuanli',location:'ST8–GB7 피부 곡선의 위쪽 3/4',basis:'측두부 깨물근 경계 곡선',seed:[-.080,1.622,.004],projection:'head',status:'review'},
- {code:'GB7',korean:'곡빈',hanja:'曲鬢',english:'Qubin',location:'이개첨 수평선과 측두 두발경계선의 교차 구역',basis:'외이 최상단과 가상 측두 두발경계선',seed:[-.081,1.615,-.012],projection:'head',status:'review'},
- {code:'GB8',korean:'솔곡',hanja:'率谷',english:'Shuaigu',location:'이개첨 수직선에서 측두 두발경계선 안쪽 1.5촌(골도분촌)',basis:'외이 최상단과 피부 표면 두발경계선',seed:[-.075,1.662,-.012],projection:'head',status:'review'},
+ // 2026-09-15 photo review (images/GB/GB07.png): the crosshair puts GB7 on the horizontal
+ // line through the auricular apex. The rebuilt auricle's apex is at y 1.6226, so the old
+ // seed (y 1.615) sat 10 mm below the apex line.
+ {code:'GB7',korean:'곡빈',hanja:'曲鬢',english:'Qubin',location:'이개첨 수평선과 측두 두발경계선의 교차 구역',basis:'외이 최상단(y 1.6226)과 가상 측두 두발경계선',seed:[-.081,1.623,-.013],projection:'head',status:'review'},
+ // 2026-09-15 photo review (images/GB/GB08.png): GB8 is directly above the auricular apex.
+ // The apex is at z -.030, so the old seed (z -.012) stood 18 mm anterior to that vertical.
+ {code:'GB8',korean:'솔곡',hanja:'率谷',english:'Shuaigu',location:'이개첨 수직선에서 측두 두발경계선 안쪽 1.5촌(골도분촌)',basis:'외이 최상단(z -.030) 수직선과 피부 표면 두발경계선',seed:[-.075,1.662,-.030],projection:'head',status:'review'},
  {code:'GB9',korean:'천충',hanja:'天衝',english:'Tianchong',location:'이개근 뒤모서리 수직선의 두발경계선 안쪽 구역',basis:'외이 뒤쪽 뿌리와 피부 표면 두발경계선',seed:[-.078,1.644,-.036],projection:'head',status:'review'},
  {code:'GB10',korean:'부백',hanja:'浮白',english:'Fubai',location:'GB9–GB12 곡선의 위쪽 1/3',basis:'유양돌기 뒤모서리를 따르는 피부 곡선',seed:[-.075,1.620,-.055],projection:'head',status:'review'},
  {code:'GB11',korean:'두규음',hanja:'頭竅陰',english:'Touqiaoyin',location:'GB9–GB12 곡선의 위쪽 2/3',basis:'유양돌기 뒤모서리를 따르는 피부 곡선',seed:[-.071,1.598,-.064],projection:'head',status:'review'},
