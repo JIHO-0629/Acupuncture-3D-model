@@ -9,6 +9,7 @@ import { PointerTap } from "./pointer-tap";
 import { SYSTEMS, type Atlas, type NeedleHit, type NeedleReport, type SceneState } from "./anatomy";
 import { type ProjectionMode } from "./gb-points";
 import {atlasPoints,meridianOf,needleProfile,type AcupointCode} from "./acupoints";
+import {createExternalEarPresentation} from "./ear-anatomy";
 import type { AnnotationFrame } from "./annotation-overlay";
 interface Props {
   atlas: Atlas;
@@ -349,6 +350,14 @@ export default function AnatomyScene({
       onProgress(Math.round((loaded / atlas.chunks.length) * 100));
       dirty = true;
     };
+    const earPresentation = createExternalEarPresentation();
+    earPresentation.root.traverse((object) => {
+      if (object instanceof T.Mesh) {
+        object.renderOrder = 25;
+        object.frustumCulled = false;
+      }
+    });
+    scene.add(earPresentation.root);
     (async () => {
       try {
         let cursor = 0;
@@ -1318,6 +1327,7 @@ export default function AnatomyScene({
       // Do not present the conceptual nail footprint as source anatomy. GB44 remains an
       // explicitly estimated landmark scaled from the bundled fourth-toe phalanges.
       toePresentation.visible = false;
+      earPresentation.root.visible = !s.isolate && s.visible.includes("integumentary");
       markers.visible = amount > 0.75;
       controls.autoRotate = s.rotate && !s.isolate && amount < 0.4;
       controls.autoRotateSpeed = 0.65;
