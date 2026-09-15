@@ -7,9 +7,9 @@ import landmarkData from '../data/landmarks.json';
  * BodyParts3D ships one coarse combined "External ear" mesh (FJ2811, 1350 faces
  * for both sides) and the skin mesh has no auricle at all, so the ear-adjacent
  * acupoints (SI19, TE21, GB2, TE17, GB12) had nothing reliable to anchor to.
- * This module builds a clean atlas-grade auricle per side whose geometry is
- * organised around the anatomical anchors those points need, and exposes the
- * anchors as world-frame coordinates for the acupoint pipeline.
+ * This module sculpts one smooth relief surface per side, in the skin's own
+ * material, organised around the anatomical anchors those points need, and
+ * exposes the anchors as world-frame coordinates for the acupoint pipeline.
  *
  * Anchor derivation (measured on the packed atlas, right side, mm):
  * - The external acoustic pore is a hole in the lateral temporal surface at
@@ -20,9 +20,16 @@ import landmarkData from '../data/landmarks.json';
  *   the same height. That is the Frankfort relation the auricle is built on.
  * - Skin over the pore is at |x|≈68, sloping out to 77 at the helix root and in
  *   to 62 at the lobule, so the auricle leans laterally with the skull.
+ * - Lateral canthus (z +52) to tragus (z -13): 65 mm, inside the adult 60–75 mm
+ *   canthus–tragus range; helix apex at brow level (y 1.615), lobule tip at the
+ *   nasal base (y 1.559).
  * The earlier "external_acoustic_meatus" landmark (y 1.619) was the squama
  * above the pore, and "auricular_apex" (y 1.669) the parietal skin: both sat
  * 30 mm too high and are not used here.
+ *
+ * Orientation follows published auricular anthropometry: long-axis inclination
+ * 15–20° posterior, auriculocephalic angle 20–30°, helix–mastoid distance under
+ * 20 mm (Farkas; Journal of Craniofacial Surgery 2022 baseline study).
  */
 
 export const NATIVE_EAR_PART_ID='FJ2811';
@@ -46,18 +53,22 @@ export const EAR_BONY_CONTEXT = [
 export type EarSide='right'|'left';
 type Side=EarSide;
 type Mm=[number,number,number]; // auricle frame, millimetres: [anterior, superior, lateral]
+type Mm2=[number,number];
 
 /** Meatus opening on the skin surface: the origin of the auricle frame (metres, right side). */
 const MEATUS_SKIN={lateral:.067,y:1.589,z:-.020};
 /** Bony pore, 4 mm deep to the skin opening. */
 const MEATUS_PORE_DEPTH=.004;
 /** Long axis leans posteriorly at the top (sagittal plane). */
-const POSTERIOR_TILT_DEG=12;
+const POSTERIOR_TILT_DEG=15;
 /** Follows the skull, which widens above the ear: the helix root leans laterally. */
 const LATERAL_LEAN_DEG=14;
 /** Auriculocephalic projection about the anterior attachment line. */
-const FLARE_DEG=25;
+const FLARE_DEG=27;
 const FLARE_PIVOT_MM=6;
+
+/** Same values as the integumentary material in scene.tsx, so the ear reads as skin. */
+export const EAR_SKIN={color:'#c79d82',roughness:.82,metalness:0};
 
 export const EAR_LANDMARK_IDS=[
  'externalAcousticMeatus','externalAcousticPore','tragus','supratragicNotch','intertragicNotch','antitragus',
@@ -68,19 +79,19 @@ export type EarLandmarkId=(typeof EAR_LANDMARK_IDS)[number];
 export type EarLandmark={id:EarLandmarkId;korean:string;side:Side;point:T.Vector3;type:'auricular'|'bony'|'derived';source:string};
 export type EarLandmarks=Record<Side,Record<EarLandmarkId,EarLandmark>>;
 
-/** Auricle-frame landmark positions (mm). The auricle group maps these to the world frame. */
+/** Auricle-frame landmark positions (mm) on the sculpted surface. */
 const AURICULAR_LANDMARKS:Record<string,{korean:string;at:Mm}>={
- externalAcousticMeatus:{korean:'외이도 입구',at:[0,-.5,-1.5]},
- conchaFloor:{korean:'이갑개 바닥',at:[-5,-2,-2.5]},
+ externalAcousticMeatus:{korean:'외이도 입구',at:[0,-.5,-6]},
+ conchaFloor:{korean:'이갑개 바닥',at:[-5.5,-1,-4]},
  tragus:{korean:'이주',at:[3.5,-1,7]},
- supratragicNotch:{korean:'이주상절흔',at:[5,7,1]},
- intertragicNotch:{korean:'이주간절흔',at:[4.5,-11.5,.5]},
- antitragus:{korean:'대이주',at:[-5,-12,6.6]},
- lobule:{korean:'귓불',at:[-2,-22,3.5]},
- lobuleInferiorTip:{korean:'귓불 하단',at:[-5,-29,1]},
- helixApex:{korean:'이륜 정점',at:[-13,31,5]},
- helixPosterior:{korean:'이륜 후연',at:[-25,8,5]},
- crusOfHelixRoot:{korean:'이륜각 기시',at:[5,7,5]},
+ supratragicNotch:{korean:'이주상절흔',at:[5,6.5,1]},
+ intertragicNotch:{korean:'이주간절흔',at:[2,-7.5,-1]},
+ antitragus:{korean:'대이주',at:[-5,-12,5]},
+ lobule:{korean:'귓불',at:[-2,-21,3.7]},
+ lobuleInferiorTip:{korean:'귓불 하단',at:[-5,-29,.5]},
+ helixApex:{korean:'이륜 정점',at:[-13,30,4.7]},
+ helixPosterior:{korean:'이륜 후연',at:[-23,8,4.7]},
+ crusOfHelixRoot:{korean:'이륜각 기시',at:[5,8,3.7]},
 };
 
 type PointLandmark={id:string;side:Side|null;kind:string;point?:[number,number,number]};
@@ -89,82 +100,136 @@ const registered=(id:string,side:Side)=>{
  if(!found?.point)throw new Error(`Required point landmark is missing: ${id}/${side}`);
  return new T.Vector3().fromArray(found.point);
 };
-
-const meta=(id:string,english:string,korean:string,side:Side)=>({
- earStructure:id,english,korean,side,status:'anatomically-parameterized-unverified',
-});
 const rad=T.MathUtils.degToRad;
 
 /**
- * Auricle outline in the auricle frame (mm, [anterior, superior]). One closed loop:
- * the C-shaped ring is traced from the tragus base up the free edge of the tragus,
- * around the conchal wall (crus root → cymba → posterior wall → antitragus), out
- * through the intertragic notch, then around the outer silhouette (lobule → posterior
- * helix → apex → ascending helix). The straight closing edge is the anterior
- * attachment line against the cheek, so the notch is a real gap in the rim and the
- * concha a real bowl that the separate floor fills.
+ * Outer silhouette in the auricle frame (mm, [anterior, superior]), from the
+ * lobule's anterior attachment along the free margin and back down the straight
+ * attachment line against the cheek. Star-shaped about the conchal centre.
  */
-const OUTLINE:[number,number][]=[
- [6,-9],                       // tragus inferior base (anterior lip of the notch)
- [2.5,-6],[.5,-1],[2,4],       // free posterior edge of the tragus, overlying the meatus
- [2,7],[-3,10],[-9,11],        // crus root and the roof of the cymba conchae
- [-13,6],[-14,-1],[-12,-8],    // posterior conchal wall (antihelix base)
- [-7,-12],[-2,-14],            // antitragus
- [5,-15],                      // posterior lip of the notch at the lobule
- [7,-20],[3,-27],[-5,-29],     // lobule
- [-12,-25],[-18,-19],[-22,-12],// helix tail into the lobule
- [-24,-3],[-25,8],[-23,19],    // posterior helix
- [-20,28],[-13,31],[-6,28],    // superior helix and apex
- [-1,21],[3,13],[5,7],         // ascending helix down to the supratragic notch
+const SILHOUETTE:Mm2[]=[
+ [7,-22],[3,-27],[-5,-29],[-12,-25],[-18,-19],[-22,-12],   // lobule and helix tail
+ [-24,-3],[-25,8],[-23,19],[-20,28],[-13,32],[-6,29],       // posterior and superior helix
+ [-1,22],[3,14],[5,8],[6,0],[7,-10],                        // ascending helix, attachment line
 ];
+const CONCHA_CENTRE:Mm2=[-5.5,-1];
 
-const SKIN_COLOR=0xc9a086,RIDGE_COLOR=0xc19a80,RECESS_COLOR=0x96695c,OPENING_COLOR=0x2a1b19;
+/** Relief features (mm). Ridges are Gaussian tubes along polylines; pads and bowls are elliptical. */
+const RIDGES:{points:Mm2[];sigma:number;height:number;fade?:'crus'}[]=[
+ {points:[[4,9],[2,14],[-2,21],[-6,27],[-12,30],[-18,27],[-21.5,19],[-23,8],[-22.5,-3],[-20,-11],[-16,-18],[-12,-22]],sigma:2.2,height:3.2}, // helix
+ {points:[[-8,-14],[-13,-9],[-16.5,0],[-17,8]],sigma:1.9,height:2.8},            // antihelix stem
+ {points:[[-17,8],[-14,12],[-9,13.5],[-3,13]],sigma:1.5,height:2.2},             // inferior crus
+ {points:[[-17,8],[-18,15],[-17,21],[-15,25]],sigma:1.4,height:2},               // superior crus
+ {points:[[5,8],[1,6],[-3,4.5],[-7,3.5]],sigma:1.5,height:2.4,fade:'crus'},      // crus of helix into the concha
+];
+const PADS:{centre:Mm2;radii:Mm2;height:number}[]=[
+ {centre:[3.5,-1],radii:[3.2,5.5],height:5.5},   // tragus
+ {centre:[-5,-12],radii:[4.5,3],height:3.5},     // antitragus
+ {centre:[-2,-21],radii:[8.5,8],height:2.2},     // lobule
+];
+const CONCHA={centre:CONCHA_CENTRE,radii:[9,11.5] as Mm2,depth:5.5};
+const MEATUS={centre:[0,-.5] as Mm2,radius:3.6,depth:3.5};
+
+const smoothstep=(a:number,b:number,x:number)=>{const t=T.MathUtils.clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
+const segmentDistance=(px:number,py:number,ax:number,ay:number,bx:number,by:number)=>{
+ const dx=bx-ax,dy=by-ay,l=dx*dx+dy*dy,t=l?T.MathUtils.clamp(((px-ax)*dx+(py-ay)*dy)/l,0,1):0;
+ return Math.hypot(px-(ax+dx*t),py-(ay+dy*t));
+};
+const polylineDistance=(p:Mm2,points:Mm2[])=>{
+ let best=Infinity;
+ for(let i=1;i<points.length;i++)best=Math.min(best,segmentDistance(p[0],p[1],points[i-1][0],points[i-1][1],points[i][0],points[i][1]));
+ return best;
+};
+const ellipse=(p:Mm2,centre:Mm2,radii:Mm2)=>{
+ const s=Math.hypot((p[0]-centre[0])/radii[0],(p[1]-centre[1])/radii[1]);
+ return s>=1?0:(1-s*s)*(1-s*s);
+};
+
+/** Height of the lateral surface and its shade at an auricle-frame point; t is the normalised radius. */
+function relief(p:Mm2,t:number){
+ const edge=1-smoothstep(.86,1,t),feature=1-smoothstep(.94,1,t),attach=1-smoothstep(4.5,7,p[0]);
+ let height=1.6*edge*attach;
+ for(const ridge of RIDGES){
+  const d=polylineDistance(p,ridge.points);
+  let h=ridge.height*Math.exp(-(d*d)/(ridge.sigma*ridge.sigma));
+  if(ridge.fade==='crus')h*=T.MathUtils.clamp((p[0]+8)/12,.35,1);
+  height+=h*feature*attach;
+ }
+ for(const pad of PADS)height+=pad.height*ellipse(p,pad.centre,pad.radii)*feature*attach;
+ const bowl=ellipse(p,CONCHA.centre,CONCHA.radii);
+ height-=CONCHA.depth*bowl;
+ const s=Math.hypot(p[0]-MEATUS.centre[0],p[1]-MEATUS.centre[1])/MEATUS.radius,pit=s>=1?0:1-s*s;
+ height-=MEATUS.depth*pit;
+ const shade=1-.14*bowl-.8*pit;
+ return {height,shade};
+}
+
+/** One closed, smooth-shaded auricle: a lateral relief sheet and a flat medial sheet on a polar grid. */
+function buildAuricleGeometry(thetaSegments=112,frontRows=18,backRows=5){
+ const curve=new T.CatmullRomCurve3(SILHOUETTE.map(([x,y])=>new T.Vector3(x,y,0)),true,'centripetal',.5);
+ const polygon=curve.getPoints(240);
+ const [cx,cy]=CONCHA_CENTRE;
+ const radiusAt=(theta:number)=>{
+  const dx=Math.cos(theta),dy=Math.sin(theta);let best=0;
+  for(let i=0;i<polygon.length;i++){
+   const a=polygon[i],b=polygon[(i+1)%polygon.length],ex=b.x-a.x,ey=b.y-a.y,den=dx*ey-dy*ex;
+   if(Math.abs(den)<1e-9)continue;
+   const ox=a.x-cx,oy=a.y-cy,r=(ox*ey-oy*ex)/den,u=(ox*dy-oy*dx)/den;
+   if(r>0&&u>=0&&u<=1)best=Math.max(best,r);
+  }
+  return best;
+ };
+ const radii=Array.from({length:thetaSegments},(_,i)=>radiusAt((i/thetaSegments)*Math.PI*2));
+ const positions:number[]=[],colors:number[]=[],indices:number[]=[];
+ const base=new T.Color(1,1,1);
+ const ring=(row:number,rows:number,front:boolean)=>{
+  const t=row/rows,start=positions.length/3;
+  for(let i=0;i<thetaSegments;i++){
+   const theta=(i/thetaSegments)*Math.PI*2,r=radii[i]*t,p:Mm2=[cx+Math.cos(theta)*r,cy+Math.sin(theta)*r];
+   const {height,shade}=relief(p,t);
+   if(front){positions.push(p[0],p[1],height);colors.push(base.r*shade,base.g*shade,base.b*shade);}
+   else{
+    // The medial sheet stays medial to the relief, so the conchal bowl and meatus
+    // pit never poke through it.
+    positions.push(p[0],p[1],Math.min(-1.6*(1-smoothstep(.8,1,t)),height-1.5));
+    colors.push(base.r*shade,base.g*shade,base.b*shade);
+   }
+  }
+  return start;
+ };
+ const sheet=(rows:number,front:boolean)=>{
+  const starts:number[]=[];
+  for(let row=0;row<=rows;row++)starts.push(ring(row,rows,front));
+  for(let row=0;row<rows;row++)for(let i=0;i<thetaSegments;i++){
+   const j=(i+1)%thetaSegments,a=starts[row]+i,b=starts[row]+j,c=starts[row+1]+i,d=starts[row+1]+j;
+   if(row>0){front?indices.push(a,c,b):indices.push(a,b,c);}
+   front?indices.push(b,c,d):indices.push(b,d,c);
+  }
+  return starts[rows];
+ };
+ const frontRim=sheet(frontRows,true),backRim=sheet(backRows,false);
+ // Stitch the two rims so the margin is watertight.
+ for(let i=0;i<thetaSegments;i++){
+  const j=(i+1)%thetaSegments,a=frontRim+i,b=frontRim+j,c=backRim+i,d=backRim+j;
+  indices.push(a,c,b,b,c,d);
+ }
+ const geometry=new T.BufferGeometry();
+ geometry.setAttribute('position',new T.Float32BufferAttribute(positions,3));
+ geometry.setAttribute('color',new T.Float32BufferAttribute(colors,3));
+ geometry.setIndex(indices);
+ geometry.computeVertexNormals();
+ geometry.computeBoundingSphere();
+ return geometry;
+}
 
 export function createExternalEarPresentation(){
  const root=new T.Group();root.name='External ear presentation';
- const skin=new T.MeshStandardMaterial({color:SKIN_COLOR,roughness:.86,metalness:0}),
-  ridge=new T.MeshStandardMaterial({color:RIDGE_COLOR,roughness:.84,metalness:0}),
-  recess=new T.MeshStandardMaterial({color:RECESS_COLOR,roughness:.95,metalness:0,side:T.DoubleSide}),
-  opening=new T.MeshStandardMaterial({color:OPENING_COLOR,roughness:1,metalness:0});
- const materials=[skin,ridge,recess,opening];
+ const skin=new T.MeshStandardMaterial({...EAR_SKIN,vertexColors:true,side:T.DoubleSide});
+ const materials=[skin];
+ const geometry=buildAuricleGeometry();
+ const geometries=[geometry];
  const sides=new Map<Side,T.Group>();
  const frames=new Map<Side,T.Object3D>();
-
- // Shared geometry: both auricles are the same shape in the auricle frame; the
- // side group carries the mirror, so the left ear is not a shifted copy.
- const shape=new T.Shape();
- shape.moveTo(...OUTLINE[0]);
- shape.splineThru(OUTLINE.slice(1).map(([x,y])=>new T.Vector2(x,y)));
- const plateGeometry=new T.ExtrudeGeometry(shape,{curveSegments:5,steps:1,depth:4,bevelEnabled:true,bevelSegments:3,bevelSize:1.5,bevelThickness:1.5});
- plateGeometry.computeVertexNormals();
- // Concave conchal floor: a spherical cap whose pole points medially, so the bowl
- // is a real depression bounded by the plate's inner walls.
- const capRadius=16,capTheta=.95;
- const floorGeometry=new T.SphereGeometry(capRadius,28,10,0,Math.PI*2,0,capTheta);
- floorGeometry.rotateX(-Math.PI/2); // +y pole → -z (medial)
- const tubeGeometry=(points:Mm[],radius:number)=>{
-  const curve=new T.CatmullRomCurve3(points.map(p=>new T.Vector3(...p)),false,'centripetal',.5);
-  return new T.TubeGeometry(curve,Math.max(16,points.length*6),radius,8,false);
- };
- const geometries:T.BufferGeometry[]=[plateGeometry,floorGeometry];
- const shared={
-  helix:tubeGeometry([[4,8,4.8],[2,13,5],[-2,20,5.1],[-6,26,5.1],[-12,29,5.1],[-19,26,5.1],[-23,18,5.1],[-24.5,8,5.1],[-24,-2,5],[-21,-10,4.8],[-17,-17,4.4],[-13,-21,3.8]],1.8),
-  antihelixStem:tubeGeometry([[-9,-15,4.9],[-14,-9,5.3],[-17.5,0,5.4],[-18,8,5.3]],1.5),
-  antihelixInferiorCrus:tubeGeometry([[-18,8,5.3],[-15,12,5.3],[-9,13.5,5.2],[-3,13,5]],1.15),
-  antihelixSuperiorCrus:tubeGeometry([[-18,8,5.3],[-19,15,5.3],[-18,21,5.1],[-15.5,25,4.9]],1.1),
-  crusOfHelix:tubeGeometry([[5,7,5],[1,5.5,4],[-3,4,3.1],[-7,3,2.4]],1.2),
- };
- Object.values(shared).forEach(g=>geometries.push(g));
- const ellipsoidGeometry=new T.SphereGeometry(1,18,12);
- geometries.push(ellipsoidGeometry);
-
- const ellipsoid=(id:string,en:string,ko:string,side:Side,at:Mm,scale:Mm,material:T.Material)=>{
-  const object=new T.Mesh(ellipsoidGeometry,material);object.position.set(...at);object.scale.set(...scale);
-  object.name=`${en} (${side})`;object.userData=meta(id,en,ko,side);return object;
- };
- const part=(geometry:T.BufferGeometry,id:string,en:string,ko:string,side:Side,material:T.Material)=>{
-  const object=new T.Mesh(geometry,material);object.name=`${en} (${side})`;object.userData=meta(id,en,ko,side);return object;
- };
 
  for(const side of ['right','left'] as const){
   const sign=side==='right'?-1:1;
@@ -188,22 +253,10 @@ export function createExternalEarPresentation(){
   orientation.add(frame);group.add(orientation);root.add(group);
   sides.set(side,group);frames.set(side,frame);
 
-  const plate=part(plateGeometry,'auricle','Auricle','귓바퀴',side,skin);
-  plate.userData.landmarkCarrier=true;
-  frame.add(plate);
-  const floor=part(floorGeometry,'concha','Concha','이갑개',side,recess);
-  floor.position.set(-5,-2,-2.5+capRadius);floor.scale.set(1,1.1,1);
-  frame.add(floor);
-  frame.add(ellipsoid('external-acoustic-meatus','External acoustic meatus opening','외이도 입구',side,[0,-.5,-1.5],[3.4,3,2.6],opening));
-  frame.add(ellipsoid('tragus','Tragus','이주',side,[3.5,-1,3.2],[3,6,3.8],skin));
-  frame.add(ellipsoid('antitragus','Antitragus','대이주',side,[-5,-12,3.2],[4.2,2.6,3.4],ridge));
-  frame.add(ellipsoid('intertragic-notch','Intertragic notch','이주간절흔',side,[4.5,-11.5,-.5],[2.2,3,1.6],recess));
-  frame.add(ellipsoid('lobule','Lobule','귓불',side,[-2,-22,2.5],[7,7.5,4],skin));
-  frame.add(part(shared.helix,'helix','Helix','이륜',side,skin));
-  frame.add(part(shared.antihelixStem,'antihelix','Antihelix','대이륜',side,ridge));
-  frame.add(part(shared.antihelixInferiorCrus,'antihelix','Antihelix (inferior crus)','대이륜 하각',side,ridge));
-  frame.add(part(shared.antihelixSuperiorCrus,'antihelix','Antihelix (superior crus)','대이륜 상각',side,ridge));
-  frame.add(part(shared.crusOfHelix,'crus-of-helix','Crus of helix','이륜각',side,ridge));
+  const auricle=new T.Mesh(geometry,skin);
+  auricle.name=`Auricle (${side})`;
+  auricle.userData={earStructure:'auricle',english:'Auricle',korean:'귓바퀴',side,status:'anatomically-parameterized-unverified',landmarkCarrier:true,relief:EAR_STRUCTURES.map(([id])=>id)};
+  frame.add(auricle);
  }
  root.updateMatrixWorld(true);
 
