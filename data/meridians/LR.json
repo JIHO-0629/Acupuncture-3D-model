@@ -1,0 +1,409 @@
+{
+ "id": "LR",
+ "label": "간경",
+ "name": "족궐음간경",
+ "english": "LIVER MERIDIAN",
+ "primarySource": "https://m.kmcric.com/knowledge/acupoint/LR",
+ "secondarySource": "https://iris.who.int/handle/10665/353407",
+ "scale": {
+  "legCunMm": 26.1,
+  "thighCunMm": 22.5,
+  "trunkCunMm": 20.4,
+  "fCunMm": 18.289
+ },
+ "generatedBy": "scripts/meridians/lr.mjs",
+ "points": [
+  {
+   "code": "LR1",
+   "korean": "대돈",
+   "hanja": "大敦",
+   "english": "Dadun",
+   "location": "엄지발가락 끝마디뼈의 가쪽, 엄지발톱 가쪽 뿌리각에서 몸쪽으로 1푼",
+   "rawLocation": "엄지발가락 끝마디뼈의 가쪽, 엄지발톱 가쪽 뿌리각에서 몸쪽으로 1푼",
+   "rawMethod": "",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: toenail (족지갑) | 일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "photo": "images/LR/LR01.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.12114,
+    0.02059,
+    0.11682
+   ],
+   "outward": [
+    -0.55514,
+    0.82132,
+    -0.13137
+   ],
+   "region": "foot-R",
+   "depthMm": 0.2,
+   "rule": "great toe · 0.1 F-cun proximal-lateral to the lateral corner of the toenail root (nail footprint estimated from the distal phalanx)"
+  },
+  {
+   "code": "LR2",
+   "korean": "행간",
+   "hanja": "行間",
+   "english": "Xingjian",
+   "location": "발등, 첫째와 둘째 발가락 사이, 발샅 가장자리에서 몸쪽, 적백육제",
+   "rawLocation": "발등, 첫째와 둘째 발가락 사이, 발샅 가장자리에서 몸쪽, 적백육제",
+   "rawMethod": "동맥이 약간 느껴지는 곳",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: interdigital web margin (족지간 물갈퀴연), red-white flesh border (적백육제)",
+   "photo": "images/LR/LR02.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.10877,
+    0.03182,
+    0.09328
+   ],
+   "outward": [
+    0,
+    0.95358,
+    0.30113
+   ],
+   "region": "foot-R",
+   "depthMm": 10.7,
+   "rule": "dorsum of the foot · between the 1st and 2nd toes · proximal to the web margin at the red-white flesh border"
+  },
+  {
+   "code": "LR3",
+   "korean": "태충",
+   "hanja": "太衝",
+   "english": "Taichong",
+   "location": "발등, 첫째와 둘째 발허리뼈 사이, 두 발허리뼈의 바닥 연접부에서 먼쪽 오목한 곳, 발등동맥이 뛰는 곳",
+   "rawLocation": "발등, 첫째와 둘째 발허리뼈 사이, 두 발허리뼈의 바닥 연접부에서 먼쪽 오목한 곳, 발등동맥이 뛰는 곳",
+   "rawMethod": "손가락을 행간(LR 2)에서 첫째와 둘째발허리뼈 사이를 따라 그 바닥을 향하여 몸쪽으로 움직일 때 촉지되는 오목한 곳",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LR/LR03.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.09667,
+    0.06341,
+    0.0475
+   ],
+   "outward": [
+    0,
+    0.99504,
+    0.0995
+   ],
+   "region": "foot-R",
+   "depthMm": 15.6,
+   "rule": "between the 1st and 2nd metatarsals · depression distal to the junction of their bases · dorsalis pedis pulse"
+  },
+  {
+   "code": "LR4",
+   "korean": "중봉",
+   "hanja": "中封",
+   "english": "Zhongfeng",
+   "location": "발목 앞안쪽면, 앞정강근 힘줄 안쪽, 안쪽복사 앞쪽의 오목한 곳",
+   "rawLocation": "발목 앞안쪽면, 앞정강근 힘줄 안쪽, 안쪽복사 앞쪽의 오목한 곳",
+   "rawMethod": "발목을 굽힌 상태에서 함몰점을 확인하고, 편 상태에서 취혈한다.\n해계(ST41)와 상구(SP5)의 중간에 위치한다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LR/LR04.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.06091,
+    0.07791,
+    0.0149
+   ],
+   "outward": [
+    0.44897,
+    0.24943,
+    0.85803
+   ],
+   "region": "leg-R",
+   "depthMm": 15.8,
+   "rule": "anteromedial ankle · medial to the tibialis anterior tendon · anterior to the medial malleolus · midway between SP5 and ST41"
+  },
+  {
+   "code": "LR5",
+   "korean": "여구",
+   "hanja": "蠡溝",
+   "english": "Ligou",
+   "location": "종아리 앞안쪽면, 정강뼈 안쪽면의 중앙, 안쪽복사 융기에서 음릉천까지 13촌으로 할 때 안쪽복사 융기 위 5촌, 축빈(KI9)과 같은 높이 (KCMRIC)",
+   "rawLocation": "종아리 앞안쪽면, 정강뼈 안쪽모서리의 중앙, 안쪽복사 융기에서 몸쪽으로 5촌",
+   "rawMethod": "정강뼈 안쪽모서리 중앙, 무릎뼈꼭지~안쪽복사융기를 연결하는 선의 위쪽으로 2/3과 아래쪽으로 1/3이 되는 높이에서 취혈\n축빈(KI9)과 같은 높이, 얕게 자침한다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "photo": "images/LR/LR05.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.06596,
+    0.21657,
+    -0.00412
+   ],
+   "outward": [
+    0.64997,
+    0,
+    0.75996
+   ],
+   "region": "leg-R",
+   "depthMm": 10.9,
+   "rule": "centre of the medial surface of the tibia · 5 B-cun above the medial malleolus prominence (KCMRIC 13 B-cun to SP9)"
+  },
+  {
+   "code": "LR6",
+   "korean": "중도",
+   "hanja": "中都",
+   "english": "Zhongdu",
+   "location": "종아리 앞안쪽면, 정강뼈 안쪽면의 중앙, 안쪽복사 융기에서 음릉천까지 13촌으로 할 때 안쪽복사 융기 위 7촌 (KCMRIC)",
+   "rawLocation": "종아리 앞안쪽면, 정강뼈 안쪽모서리의 중앙, 안쪽복사 융기에서 몸쪽으로 7촌",
+   "rawMethod": "무릎뼈 꼭지~안쪽복사융기를 연결하는 선의 중점에서 아래로 5푼 내려와 자침",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "photo": "images/LR/LR06.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.06991,
+    0.26883,
+    0.00103
+   ],
+   "outward": [
+    0.64997,
+    0,
+    0.75996
+   ],
+   "region": "leg-R",
+   "depthMm": 9.6,
+   "rule": "centre of the medial surface of the tibia · 7 B-cun above the medial malleolus prominence (KCMRIC 13 B-cun to SP9)"
+  },
+  {
+   "code": "LR7",
+   "korean": "슬관",
+   "hanja": "膝關",
+   "english": "Xiguan",
+   "location": "종아리 정강뼈쪽면, 정강뼈 안쪽관절융기 아래쪽, 음릉천(SP9)에서 뒤쪽으로 1촌",
+   "rawLocation": "종아리 정강뼈쪽면, 정강뼈 안쪽관절융기 아래쪽, 음릉천(SP9)에서 뒤쪽으로 1촌",
+   "rawMethod": "",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LR/LR07.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.036,
+    0.42563,
+    -0.05336
+   ],
+   "outward": [
+    0.8,
+    0,
+    -0.6
+   ],
+   "region": "leg-R",
+   "depthMm": 4.3,
+   "rule": "inferior to the medial condyle of the tibia · 1 B-cun posterior to SP9"
+  },
+  {
+   "code": "LR8",
+   "korean": "곡천",
+   "hanja": "曲泉",
+   "english": "Ququan",
+   "location": "무릎 안쪽면, 오금주름의 안쪽끝, 반힘줄근힘줄과 반막근힘줄의 안쪽 오목한 곳 (KCMRIC)",
+   "rawLocation": "무릎 안쪽면, 오금주름의 안쪽끝, 반힘줄근의 힘줄과 두덩정강근 힘줄 사이, 반막근의 힘줄의 안쪽 오목한 곳",
+   "rawMethod": "무릎을 굽혔을 때, 다리오금주름 안쪽 끝에서 두드러지는 반힘줄근과 반막근 사이 오목한 곳에서 취혈",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LR/LR08.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.02736,
+    0.44894,
+    -0.01178
+   ],
+   "outward": [
+    0.97014,
+    0,
+    -0.24254
+   ],
+   "region": "thigh-R",
+   "depthMm": 1.9,
+   "rule": "medial end of the popliteal crease · depression medial to the semitendinosus and semimembranosus tendons (KCMRIC)"
+  },
+  {
+   "code": "LR9",
+   "korean": "음포",
+   "hanja": "陰包",
+   "english": "Yinbao",
+   "location": "넓적다리 안쪽면, 두덩정강근과 넙다리빗근 사이, 무릎뼈 바닥에서 몸쪽으로 4촌",
+   "rawLocation": "넓적다리 안쪽면, 두덩정강근과 넙다리빗근 사이, 무릎뼈 바닥에서 몸쪽으로 4촌",
+   "rawMethod": "근육에 긴장을 준 상태에서 엉덩이를 살짝 굽혀 외전하면, 넙다리빗근이 현저하게 드러남. \n넙다리빗근 뒤에서 취혈\n만지면 오목한 곳",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "photo": "images/LR/LR09.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.02503,
+    0.56897,
+    0.00156
+   ],
+   "outward": [
+    1,
+    0,
+    0
+   ],
+   "region": "thigh-R",
+   "depthMm": 5.7,
+   "rule": "medial thigh · between gracilis and sartorius (posterior to sartorius) · 4 B-cun above the base of the patella"
+  },
+  {
+   "code": "LR10",
+   "korean": "족오리",
+   "hanja": "足五里",
+   "english": "Zuwuli",
+   "location": "넓적다리 안쪽면, 기충(ST30)에서 먼쪽으로 3촌, 넙다리동맥이 뛰는 곳",
+   "rawLocation": "넓적다리 안쪽면, 기충(ST30)에서 먼쪽으로 3촌, 넙다리동맥이 뛰는 곳",
+   "rawMethod": "",
+   "classification": "B · 비례촌 보간",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "혈관/신경 변이를 고정 좌표 anchor로 사용 금지; 주변 stable anatomy로 재등록 필요",
+   "photo": "images/LR/LR10.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.05457,
+    0.82538,
+    0.05964
+   ],
+   "outward": [
+    0,
+    0,
+    1
+   ],
+   "region": "pelvis",
+   "depthMm": 23.1,
+   "rule": "3 B-cun distal to ST30 · over the femoral artery pulse"
+  },
+  {
+   "code": "LR11",
+   "korean": "음렴",
+   "hanja": "陰廉",
+   "english": "Yinlian",
+   "location": "넓적다리 안쪽면, 기충(ST30)에서 먼쪽으로 2촌",
+   "rawLocation": "넓적다리 안쪽면, 기충(ST30)에서 먼쪽으로 2촌",
+   "rawMethod": "엉덩이를 살짝 굽혀 외전하고, 무릎을 굽힌 상태에서 저항에 대항하여 넓적다리를 내전시키면 긴모음근이 현저하게 드러나는데, 그 가쪽에 취혈",
+   "classification": "B · 비례촌 보간",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LR/LR11.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.04524,
+    0.84076,
+    0.05667
+   ],
+   "outward": [
+    0,
+    0,
+    1
+   ],
+   "region": "pelvis",
+   "depthMm": 25.9,
+   "rule": "2 B-cun distal to ST30 · lateral to adductor longus"
+  },
+  {
+   "code": "LR12",
+   "korean": "급맥",
+   "hanja": "急脈",
+   "english": "Jimai",
+   "location": "샅부위, 두덩결합 위모서리와 같은 높이, 앞정중선에서 가쪽으로 2.5촌",
+   "rawLocation": "샅부위, 두덩결합 위모서리와 같은 높이, 앞정중선에서 가쪽으로 2.5촌",
+   "rawMethod": "혈관을 피해서 신중히 자입한다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LR/LR12.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.04937,
+    0.88419,
+    0.07004
+   ],
+   "outward": [
+    -0.48078,
+    0,
+    0.87684
+   ],
+   "region": "pelvis",
+   "depthMm": 7.9,
+   "rule": "groin · level of the superior border of the pubic symphysis · 2.5 B-cun lateral (skin arc)"
+  },
+  {
+   "code": "LR13",
+   "korean": "장문",
+   "hanja": "章門",
+   "english": "Zhangmen",
+   "location": "옆배, 열한째 갈비뼈끝의 아래쪽",
+   "rawLocation": "옆배, 열한째 갈비뼈끝의 아래쪽",
+   "rawMethod": "옆으로 누워 팔을 머리 위쪽으로 올린 자세에서 취혈\n11번째 갈비뼈를 찾은 후, 갈비뼈활 아래모서리 바로 밑에서 11번쨰 갈비뼈끝을 찾아 취혈",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LR/LR13.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.13676,
+    1.0828,
+    -0.00086
+   ],
+   "outward": [
+    -0.99035,
+    0,
+    0.13857
+   ],
+   "region": "thorax",
+   "depthMm": 29,
+   "rule": "lateral abdomen · inferior to the free extremity of the 11th rib"
+  },
+  {
+   "code": "LR14",
+   "korean": "기문",
+   "hanja": "期門",
+   "english": "Qimen",
+   "location": "앞가슴부위, 여섯째 갈비사이공간, 앞정중선에서 가쪽으로 4촌, 불용(ST19)에서 가쪽으로 2촌",
+   "rawLocation": "앞가슴부위, 여섯째 갈비사이공간, 앞정중선에서 가쪽으로 4촌, 불용(ST19)에서 가쪽으로 2촌",
+   "rawMethod": "젖꼭지 중심에서 아래쪽.\n여성의 경우 빗장중간선과 6번째 갈비사이공간이 만나는 지점에서 취혈한다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/LR/LR14.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.07974,
+    1.20868,
+    0.11396
+   ],
+   "outward": [
+    -0.5115,
+    0,
+    0.85928
+   ],
+   "region": "thorax",
+   "depthMm": 8.2,
+   "rule": "6th intercostal space measured on the 4 B-cun line · 4 B-cun lateral (skin arc) · below the nipple"
+  }
+ ]
+}

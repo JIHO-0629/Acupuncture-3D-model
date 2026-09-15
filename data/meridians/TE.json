@@ -1,0 +1,660 @@
+{
+ "id": "TE",
+ "label": "삼초경",
+ "name": "수소양삼초경",
+ "english": "TRIPLE ENERGIZER MERIDIAN",
+ "primarySource": "https://m.kmcric.com/knowledge/acupoint/TE",
+ "secondarySource": "https://iris.who.int/handle/10665/353407",
+ "scale": {
+  "dorsalForearmCunMm": 20.8,
+  "armCunMm": 17.8,
+  "fCunMm": 18.289
+ },
+ "generatedBy": "scripts/meridians/te.mjs",
+ "points": [
+  {
+   "code": "TE1",
+   "korean": "관충",
+   "hanja": "關衝",
+   "english": "Guanchong",
+   "location": "약손가락, 끝마디뼈의 자쪽, 넷째손톱 자쪽 뿌리각에서 몸쪽으로 0.1촌.",
+   "rawLocation": "약손가락, 끝마디뼈의 자쪽, 넷째손톱 자쪽 뿌리각에서 몸쪽으로 0.1촌.",
+   "rawMethod": "[취혈방법] 삼릉침으로 점자출혈",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: fingernail (수지갑) | 일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "photo": "images/TE/TE01.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.2443,
+    0.74938,
+    0.07406
+   ],
+   "outward": [
+    0.62849,
+    0,
+    -0.77782
+   ],
+   "region": "hand-R",
+   "depthMm": 8.6,
+   "rule": "ring finger · ulnar nail-root corner · 0.1 F-cun proximal"
+  },
+  {
+   "code": "TE2",
+   "korean": "액문",
+   "hanja": "液門",
+   "english": "Yemen",
+   "location": "손등, 약손가락과 새끼손가락 사이, 손샅 가장자리 위쪽 오목한 곳.",
+   "rawLocation": "손등, 약손가락과 새끼손가락 사이, 손샅 가장자리 위쪽 오목한 곳.",
+   "rawMethod": "[취혈방법] 주먹을 가볍게 쥐고,손바닥이 아래쪽을 향하게 한 자세에서 약손가락과 새끼손가락이 만나는 지점 위쪽 오목한 곳 적백육제에서 취혈",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: interdigital web margin (수지간 물갈퀴연)",
+   "photo": "images/TE/TE02.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.2371,
+    0.80304,
+    0.03332
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "hand-R",
+   "depthMm": 11.2,
+   "rule": "dorsum of the hand · proximal to the web margin between ring and little fingers · red-white flesh border"
+  },
+  {
+   "code": "TE3",
+   "korean": "중저",
+   "hanja": "中渚",
+   "english": "Zhongzhu",
+   "location": "손등, 넷째와 다섯째 손허리뼈 사이, 넷째손허리손가락관절 몸쪽 오목한 곳.",
+   "rawLocation": "손등, 넷째와 다섯째 손허리뼈 사이, 넷째손허리손가락관절 몸쪽 오목한 곳.",
+   "rawMethod": "[취혈방법] 손을 쥔 상태에서 취혈, 거의 수직으로 자입되도록 한다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/TE/TE03.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.2399,
+    0.81539,
+    0.02632
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "hand-R",
+   "depthMm": 8.8,
+   "rule": "dorsum of the hand · between the 4th and 5th metacarpals · depression proximal to the 4th MCP joint"
+  },
+  {
+   "code": "TE4",
+   "korean": "양지",
+   "hanja": "陽池",
+   "english": "Yangchi",
+   "location": "손목 뒤쪽면, 손등쪽 손목주름 위, 손가락폄근힘줄 자쪽 오목한 곳.",
+   "rawLocation": "손목 뒤쪽면, 손등쪽 손목주름 위, 손가락폄근힘줄 자쪽 오목한 곳.",
+   "rawMethod": "[취혈방법] 손바닥을 아래로 하고,저항을 주면서 손목을 손 등쪽으로 굽히면 손가락폄근힘줄을 더욱 쉽게 촉지할 수 있다.손가락을 넷째와 다섯째 손허리뼈 사이를 따라서 몸쪽으로 움직이다가 손등쪽 손목주름과 만나는 오목한 곳에서 취혈한다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/TE/TE04.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.24361,
+    0.87657,
+    0.00028
+   ],
+   "outward": [
+    -0.03719,
+    -0.19476,
+    -0.98015
+   ],
+   "region": "forearm-R",
+   "depthMm": 7.4,
+   "rule": "dorsal wrist crease · depression ulnar to the extensor digitorum tendon · level with LI5 and SI5"
+  },
+  {
+   "code": "TE5",
+   "korean": "외관",
+   "hanja": "外關",
+   "english": "Waiguan",
+   "location": "아래팔 뒤쪽면, 자뼈와 노뼈 뼈사이공간의 중점, 손등쪽 손목주름에서 몸쪽으로 2촌.",
+   "rawLocation": "아래팔 뒤쪽면, 자뼈와 노뼈 뼈사이공간의 중점, 손등쪽 손목주름에서 몸쪽으로 2촌.",
+   "rawMethod": "[취혈방법] 陽池(TE4)에서 몸쪽으로 2⼨,자뼈와 노뼈 사이의 오목한 곳에서 취혈한다.外關(TE5)에 상응하는 앞쪽 經⽳ 은 內關(PC6)이다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/TE/TE05.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.24755,
+    0.91189,
+    -0.01705
+   ],
+   "outward": [
+    -0.03719,
+    -0.19476,
+    -0.98015
+   ],
+   "region": "forearm-R",
+   "depthMm": 30.6,
+   "rule": "posterior forearm · midpoint of the radius–ulna interosseous space · 2 B-cun proximal to the dorsal wrist crease on TE4–olecranon (12 B-cun) · PC6 counterpart"
+  },
+  {
+   "code": "TE6",
+   "korean": "지구",
+   "hanja": "支溝",
+   "english": "Zhigou",
+   "location": "아래팔 뒤쪽면, 자뼈와 노뼈 뼈사이공간의 중점, 손등쪽 손목주름에서 몸쪽으로 3촌.",
+   "rawLocation": "아래팔 뒤쪽면, 자뼈와 노뼈 뼈사이공간의 중점, 손등쪽 손목주름에서 몸쪽으로 3촌.",
+   "rawMethod": "[취혈방법] 外關(TE5)에서 몸쪽으로 1⼨,會宗(TE7)과 같은 높이,자뼈와 노뼈 사이에서 취혈한다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/TE/TE06.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.25059,
+    0.93225,
+    -0.02398
+   ],
+   "outward": [
+    -0.03719,
+    -0.19476,
+    -0.98015
+   ],
+   "region": "forearm-R",
+   "depthMm": 28.3,
+   "rule": "posterior forearm · midpoint of the radius–ulna interosseous space · 3 B-cun proximal to the dorsal wrist crease on TE4–olecranon (12 B-cun) · level with TE7"
+  },
+  {
+   "code": "TE7",
+   "korean": "회종",
+   "hanja": "會宗",
+   "english": "Huizong",
+   "location": "아래팔 뒤쪽면, 자뼈의 바로 노쪽, 손등쪽 손목주름에서 몸쪽으로 3촌, 지구(TE6)의 자쪽 (KCMRIC)",
+   "rawLocation": "아래팔 뒤쪽면, 자뼈의 바로 노쪽, 손등쪽 손목주름에서 몸쪽으로 3촌.",
+   "rawMethod": "[취혈방법] ⽀溝지구(TE6)의 자쪽(또는 가쪽)에서 취혈한다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/TE/TE07.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.23714,
+    0.93124,
+    -0.02476
+   ],
+   "outward": [
+    -0.03719,
+    -0.19476,
+    -0.98015
+   ],
+   "region": "forearm-R",
+   "depthMm": 33.4,
+   "rule": "posterior forearm · just radial to the ulna · 3 B-cun proximal to the dorsal wrist crease · ulnar to TE6"
+  },
+  {
+   "code": "TE8",
+   "korean": "삼양락",
+   "hanja": "三陽絡",
+   "english": "Sanyangluo",
+   "location": "아래팔 뒤쪽면, 자뼈와 노뼈 뼈사이공간의 중점, 손등쪽 손목주름에서 몸쪽으로 4촌.",
+   "rawLocation": "아래팔 뒤쪽면, 자뼈와 노뼈 뼈사이공간의 중점, 손등쪽 손목주름에서 몸쪽으로 4촌.",
+   "rawMethod": "[취혈방법] 팔 위쪽으로 커다란 맥(얕은층의 혈관)이 교차하는 부분 이 드러난다 노쪽피부정맥과 자쪽피부정맥이 등쪽에서 교차하여 팔등쪽 으로 내려가는 곳",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/TE/TE08.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.2477,
+    0.9512,
+    -0.03209
+   ],
+   "outward": [
+    -0.03719,
+    -0.19476,
+    -0.98015
+   ],
+   "region": "forearm-R",
+   "depthMm": 33.2,
+   "rule": "posterior forearm · midpoint of the radius–ulna interosseous space · 4 B-cun proximal to the dorsal wrist crease on TE4–olecranon (12 B-cun) · junction of the upper 2/3 and lower 1/3 of TE4–olecranon"
+  },
+  {
+   "code": "TE9",
+   "korean": "사독",
+   "hanja": "四瀆",
+   "english": "Sidu",
+   "location": "아래팔 뒤쪽면, 자뼈와 노뼈 뼈사이공간의 중점, 팔꿈치머리 융기에서 먼쪽으로 5촌.",
+   "rawLocation": "아래팔 뒤쪽면, 자뼈와 노뼈 뼈사이공간의 중점, 팔꿈치머리 융기에서 먼쪽으로 5촌.",
+   "rawMethod": "[취혈방법] 陽池(TE4)와 팔꿈치머리 융기를 연결하는 선의 중점에서 몸쪽으로 1⼨지점에서 취혈한다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/TE/TE09.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.23259,
+    1.01038,
+    -0.05496
+   ],
+   "outward": [
+    -0.03719,
+    -0.19476,
+    -0.98015
+   ],
+   "region": "forearm-R",
+   "depthMm": 36.1,
+   "rule": "posterior forearm · midpoint of the radius–ulna interosseous space · 7 B-cun proximal to the dorsal wrist crease on TE4–olecranon (12 B-cun) · 5 B-cun distal to the olecranon prominence"
+  },
+  {
+   "code": "TE10",
+   "korean": "천정",
+   "hanja": "天井",
+   "english": "Tianjing",
+   "location": "팔꿈치 뒤쪽면, 팔꿈치머리 융기에서 몸쪽으로 1촌이 되는 오목한 곳.",
+   "rawLocation": "팔꿈치 뒤쪽면, 팔꿈치머리 융기에서 몸쪽으로 1촌이 되는 오목한 곳.",
+   "rawMethod": "[취혈방법] 팔꿈치를 굽혔을 때,팔꿈치머리오목(olecranon fossa) 에서 취혈한다.\n→자뼈머리가 있는 고랑 지역,위팔세갈래근의 힘줄이 통과하 는 지역\n→팔굽관절면을 보이게 하기 위해 팔꿈치를 굽히게 함",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "photo": "images/TE/TE10.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.20403,
+    1.13686,
+    -0.08197
+   ],
+   "outward": [
+    0.0157,
+    0.08541,
+    -0.99622
+   ],
+   "region": "upper-arm-R",
+   "depthMm": 28.4,
+   "rule": "posterior elbow · depression 1 B-cun proximal to the olecranon prominence (olecranon fossa)"
+  },
+  {
+   "code": "TE11",
+   "korean": "청냉연",
+   "hanja": "淸冷淵",
+   "english": "Qinglengyuan",
+   "location": "위팔 뒤쪽면, 팔꿈치머리 융기와 봉우리각을 연결하는 선 위, 팔꿈치머리 융기에서 몸쪽으로 2촌.",
+   "rawLocation": "위팔 뒤쪽면, 팔꿈치머리 융기와 봉우리각을 연결하는 선 위, 팔꿈치머리 융기에서 몸쪽으로 2촌.",
+   "rawMethod": "[취혈방법] 팔꿈치를 펴고,팔꿈치머리 융기로부터 위쪽으로 2⼨에서 취혈한다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/TE/TE11.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.2017,
+    1.15467,
+    -0.08564
+   ],
+   "outward": [
+    0.0157,
+    0.08541,
+    -0.99622
+   ],
+   "region": "upper-arm-R",
+   "depthMm": 29.4,
+   "rule": "posterior arm · olecranon–acromial angle line · 2 B-cun proximal to the olecranon prominence"
+  },
+  {
+   "code": "TE12",
+   "korean": "소락",
+   "hanja": "消濼",
+   "english": "Xiaoluo",
+   "location": "위팔 뒤쪽면, 팔꿈치머리 융기와 봉우리각을 연결하는 선 위, 팔꿈치머리 융기에서 몸쪽으로 5촌.",
+   "rawLocation": "위팔 뒤쪽면, 팔꿈치머리 융기와 봉우리각을 연결하는 선 위, 팔꿈치머리 융기에서 몸쪽으로 5촌.",
+   "rawMethod": "",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/TE/TE12.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.19332,
+    1.20794,
+    -0.09295
+   ],
+   "outward": [
+    0.0157,
+    0.08541,
+    -0.99622
+   ],
+   "region": "upper-arm-R",
+   "depthMm": 35,
+   "rule": "posterior arm · olecranon–acromial angle line · 5 B-cun proximal to the olecranon prominence"
+  },
+  {
+   "code": "TE13",
+   "korean": "노회",
+   "hanja": "臑會",
+   "english": "Naohui",
+   "location": "위팔 뒤쪽면, 어깨세모근의 뒤모서리 아래뒤쪽, 어깨봉우리각에서 아래쪽으로 3촌.",
+   "rawLocation": "위팔 뒤쪽면, 어깨세모근의 뒤모서리 아래뒤쪽, 어깨봉우리각에서 아래쪽으로 3촌.",
+   "rawMethod": "[참고] 어깨세모근의 아래쪽 경계와 위팔세갈래근이 만 나는 곳",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "photo": "images/TE/TE13.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.19364,
+    1.35917,
+    -0.09968
+   ],
+   "outward": [
+    -0.54779,
+    0,
+    -0.83662
+   ],
+   "region": "upper-arm-R",
+   "depthMm": 43.8,
+   "rule": "posterior arm · posteroinferior to the border of the deltoid · 3 B-cun inferior to the acromial angle"
+  },
+  {
+   "code": "TE14",
+   "korean": "견료",
+   "hanja": "肩髎",
+   "english": "Jianliao",
+   "location": "팔이음뼈(shoulder girdle),봉우리각과 위팔뼈 큰결절(greater tubercleof the humerus)사이의 오목한 곳. (어깨관절면에 존재)",
+   "rawLocation": "팔이음뼈(shoulder girdle),봉우리각과 위팔뼈 큰결절(greater tubercleof the humerus)사이의 오목한 곳. (어깨관절면에 존재)",
+   "rawMethod": "[취혈방법] 팔꿈치를 굽히고 위팔을 외전시키면,어깨뼈봉우리(acromion)앞뒤로 각각 두개의 오목한 곳이 나타난다.肩髎(TE14)는 뒤쪽에 위치하며, 앞쪽에 위치한 肩髃 (LI15)보다 덜 오목하다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/TE/TE14.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.19737,
+    1.39672,
+    -0.08209
+   ],
+   "outward": [
+    -0.6,
+    0,
+    -0.8
+   ],
+   "region": "shoulder",
+   "depthMm": 38.2,
+   "rule": "shoulder girdle · depression between the acromial angle and the greater tubercle (posterior to LI15)"
+  },
+  {
+   "code": "TE15",
+   "korean": "천료",
+   "hanja": "天髎",
+   "english": "Tianliao",
+   "location": "어깨뼈부위, 어깨뼈 위각(superior angleof thescapula)에서 위쪽 오목한 곳",
+   "rawLocation": "어깨뼈부위, 어깨뼈 위각(superior angleof thescapula)에서 위쪽 오목한 곳",
+   "rawMethod": "[취혈방법] 바르게 앉아 팔을 몸통 옆으로 늘어뜨리고, 肩井(GB21)과 曲垣(SI13)의 중간에서 취혈한다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/TE/TE15.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.07346,
+    1.43743,
+    -0.11051
+   ],
+   "outward": [
+    0,
+    0.34894,
+    -0.93715
+   ],
+   "region": "shoulder",
+   "depthMm": 35.4,
+   "rule": "scapular region · depression superior to the superior angle of the scapula (KCMRIC 부위)"
+  },
+  {
+   "code": "TE16",
+   "korean": "천유",
+   "hanja": "天牖",
+   "english": "Tianyou",
+   "location": "목 앞부위, 턱뼈각과 같은 높이, 목빗근의 뒤쪽 오목한 곳 (KCMRIC)",
+   "rawLocation": "목 앞부위, 턱뼈각과 같은 높이,목빗근의 뒤쪽 오목한 곳으로 목빗근 앞쪽의 天容(SI17)과 같은 높이에 위치한다. (둘째 목뼈 수준)",
+   "rawMethod": "",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/TE/TE16.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.05182,
+    1.5285,
+    -0.03747
+   ],
+   "outward": [
+    -0.6,
+    0,
+    -0.8
+   ],
+   "region": "neck",
+   "depthMm": 2.9,
+   "rule": "anterior neck · level of the angle of the mandible · depression posterior to sternocleidomastoid"
+  },
+  {
+   "code": "TE17",
+   "korean": "예풍",
+   "hanja": "翳風",
+   "english": "Yifeng",
+   "location": "목앞부위,귓불(ear lobe)의 뒤쪽,꼭지돌기(ma stoidprocess)아래끝의 앞쪽 오목한 곳",
+   "rawLocation": "목앞부위,귓불(ear lobe)의 뒤쪽,꼭지돌기(ma stoidprocess)아래끝의 앞쪽 오목한 곳",
+   "rawMethod": "[취혈방법] 꼭지돌기와 아래턱각 뒤 사이의 입을 벌렸을 때 드 러나는 함몰공간.세게 눌렀을 때 귀 속으로 뻗어가는 통증이 있는 곳",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: earlobe (이수)",
+   "photo": "images/TE/TE17.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.06247,
+    1.57437,
+    -0.01595
+   ],
+   "outward": [
+    -1,
+    0,
+    0
+   ],
+   "region": "head",
+   "depthMm": 15.3,
+   "rule": "posterior to the ear lobe · depression anterior to the inferior end of the mastoid process (between mastoid and mandibular ramus)"
+  },
+  {
+   "code": "TE18",
+   "korean": "계맥",
+   "hanja": "瘈脈",
+   "english": "Chimai",
+   "location": "머리,꼭지돌기(mastoid process)중심,翳風(TE17)에서 角孫(TE20)을 연결하는 곡선에서 위쪽 으로부터 2/3와 아래쪽으로부터 1/3이 되는 지점.",
+   "rawLocation": "머리,꼭지돌기(mastoid process)중심,翳風(TE17)에서 角孫(TE20)을 연결하는 곡선에서 위쪽 으로부터 2/3와 아래쪽으로부터 1/3이 되는 지점.",
+   "rawMethod": "[취혈방법] 귀 뒤쪽 바나나모양을 3등분",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "photo": "images/TE/TE18.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.0638,
+    1.57633,
+    -0.04388
+   ],
+   "outward": [
+    -1,
+    0,
+    0
+   ],
+   "region": "head",
+   "depthMm": 13.8,
+   "rule": "centre of the mastoid process · TE17–TE20 curve · junction of the upper 2/3 and lower 1/3"
+  },
+  {
+   "code": "TE19",
+   "korean": "노식",
+   "hanja": "顱息",
+   "english": "Luxi",
+   "location": "머리,翳風예풍(TE17)에서 角孫(TE20)을 연결 하는 곡선에서 위쪽으로부터 1/3과 아래쪽으로 부터 2/3가되는 지점.",
+   "rawLocation": "머리,翳風예풍(TE17)에서 角孫(TE20)을 연결 하는 곡선에서 위쪽으로부터 1/3과 아래쪽으로 부터 2/3가되는 지점.",
+   "rawMethod": "[취혈방법] 直刺0.1∼0.2⼨▪斜刺0.1∼0.3⼨",
+   "classification": "B · 비례촌 보간",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "다른 경혈 좌표에 종속된 보간: 기준 경혈 등록 후 계산",
+   "photo": "images/TE/TE19.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.07263,
+    1.60151,
+    -0.04153
+   ],
+   "outward": [
+    -1,
+    0,
+    0
+   ],
+   "region": "head",
+   "depthMm": 22.6,
+   "rule": "TE17–TE20 curve · junction of the upper 1/3 and lower 2/3"
+  },
+  {
+   "code": "TE20",
+   "korean": "각손",
+   "hanja": "角孫",
+   "english": "Jiaosun",
+   "location": "머리,귓바퀴끝(auricular apex)의 바로 위쪽 지 점.",
+   "rawLocation": "머리,귓바퀴끝(auricular apex)의 바로 위쪽 지 점.",
+   "rawMethod": "[취혈방법] 귓바퀴를 앞으로 접어 머리에 눌러 붙일 때,귓바 퀴끝이 머리에 닿는 지점에서 취혈한다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: auricular apex (이개첨)",
+   "photo": "images/TE/TE20.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.07572,
+    1.62796,
+    -0.0298
+   ],
+   "outward": [
+    -0.98894,
+    0.14834,
+    0
+   ],
+   "region": "head",
+   "depthMm": 15.9,
+   "rule": "just superior to the auricular apex (where the folded apex touches the head)"
+  },
+  {
+   "code": "TE21",
+   "korean": "이문",
+   "hanja": "耳門",
+   "english": "Ermen",
+   "location": "얼굴,귀구슬위패임(supratragic notch)과 아래턱뼈 관절돌기(condylar process of themandibl e)사이의 오목한 곳.",
+   "rawLocation": "얼굴,귀구슬위패임(supratragic notch)과 아래턱뼈 관절돌기(condylar process of themandibl e)사이의 오목한 곳.",
+   "rawMethod": "[취혈방법] 입을 약간 벌리고 ,귀구슬위패임 앞쪽의 오목 한 곳,聽宮(SI19)에서 수직으로 위쪽에서 취혈한다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: tragus (이주)",
+   "photo": "images/TE/TE21.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.06916,
+    1.6033,
+    -0.004
+   ],
+   "outward": [
+    -1,
+    0,
+    0
+   ],
+   "region": "head",
+   "depthMm": 5.2,
+   "rule": "depression between the supratragic notch and the condylar process of the mandible · directly superior to SI19"
+  },
+  {
+   "code": "TE22",
+   "korean": "이화료",
+   "hanja": "耳和髎",
+   "english": "Erheliao",
+   "location": "머리, 살쩍머리카락 경계선의 뒤쪽, 귓바퀴뿌리의 앞쪽, 이륜각 기시부 높이 (검수자 결정: 사진 기준), 얕은관자동맥의 뒤쪽",
+   "rawLocation": "머리,관자놀이 머리카락(살쩍머리카락 :관자놀 이쪽 머리카락)경계선의 뒤쪽,귓바퀴뿌리의 앞쪽,얕은 관자동맥의 뒤쪽.",
+   "rawMethod": "[취혈방법] 귀 위끝선과 살쩍머리카락 뒷경계선의 교점 → 얕은관자동맥의 경유지 → 관자근의 경계지역",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: temporal hairline (측두발제), root of auricle (이개근) | 혈관/신경 변이를 고정 좌표 anchor로 사용 금지; 주변 stable anatomy로 재등록 필요",
+   "photo": "images/TE/TE22.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.06827,
+    1.6045,
+    0.00314
+   ],
+   "outward": [
+    -0.98894,
+    0,
+    0.14834
+   ],
+   "region": "head",
+   "depthMm": 4.3,
+   "rule": "posterior to the temple hairline · anterior to the auricular root at the height of the crus of helix root (reviewer decision: photo) · posterior to the superficial temporal artery"
+  },
+  {
+   "code": "TE23",
+   "korean": "사죽공",
+   "hanja": "絲竹空",
+   "english": "Sizhukong",
+   "location": "머리,눈썹 가쪽끝의 오목한 곳",
+   "rawLocation": "머리,눈썹 가쪽끝의 오목한 곳",
+   "rawMethod": "",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: eyebrow (미모)",
+   "photo": "images/TE/TE23.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.05126,
+    1.61637,
+    0.06151
+   ],
+   "outward": [
+    -0.45014,
+    0.15005,
+    0.88026
+   ],
+   "region": "head",
+   "depthMm": 5.3,
+   "rule": "depression at the lateral end of the eyebrow (lateral supraorbital margin) · superior to GB1"
+  }
+ ]
+}
