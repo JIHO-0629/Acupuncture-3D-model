@@ -1,4 +1,5 @@
 import {GB_LANDMARK_SEEDS} from './gb-landmark-seeds';
+import {GB_HEAD_CUN_SEEDS} from './head-cun-seeds';
 
 export type ProjectionMode='head'|'lateral'|'anterior'|'posterior'|'dorsal-foot';
 export type NeedleRegion='face-scalp'|'neck'|'thorax'|'flank-abdomen'|'pelvis-gluteal'|'thigh-knee'|'leg'|'ankle-foot'|'toe'|'upper-limb';
@@ -58,28 +59,26 @@ const GB_POINT_INPUTS:GbPointInput[]=[
  // line through the auricular apex. The rebuilt auricle's apex is at y 1.6226, so the old
  // seed (y 1.615) sat 10 mm below the apex line.
  {code:'GB7',korean:'곡빈',hanja:'曲鬢',english:'Qubin',location:'이개첨 수평선과 측두 두발경계선의 교차 구역',basis:'외이 최상단(y 1.6226)과 가상 측두 두발경계선',seed:[-.081,1.623,-.013],projection:'head',status:'review'},
- // 2026-09-15 definition rebuild (KCMRIC/WHO + images/GB/GB08.png). GB8 = the auricular-apex
- // vertical (z -.0298, measured on the rebuilt auricle) at 1.5촌 above the temporal hairline.
- // The hairline comes from the bundled "Hair of head" mesh: its lowest lateral vertex in that
- // z column is y 1.6134, so 1.5촌 (26.9 mm at 17.94 mm/촌) gives y 1.640. The old seed
- // (y 1.662) was 2.2촌 above the hairline.
- {code:'GB8',korean:'솔곡',hanja:'率谷',english:'Shuaigu',location:'이개첨 수직선, 측두 두발경계선 위 1.5촌(골도분촌)',basis:'외이 최상단 수직선(z -.030)과 Hair of head 메쉬의 측두 발제선(y 1.613)',seed:[-.076,1.640,-.030],projection:'head',status:'review'},
- // GB9 = the auricular-root posterior border vertical (0.5촌 posterior to the GB8 vertical,
- // z -.0388) at 2촌 above the hairline in that column (y 1.5993). Lands 10.6 mm = 0.59촌 from
- // GB8, matching the 0.5촌 teaching rule; the old seed sat 1.7촌 away.
- {code:'GB9',korean:'천충',hanja:'天衝',english:'Tianchong',location:'이개근 뒤모서리 수직선, 두발경계선 위 2촌(골도분촌)',basis:'GB8 수직선 뒤 0.5촌과 Hair of head 메쉬의 발제선(y 1.599)',seed:[-.076,1.635,-.039],projection:'head',status:'review'},
- // GB10/GB11 re-walked along the GB9->GB12 scalp curve (74.0 mm on the skin surface) after
- // GB9 moved. Sampled by arc length, not by straight interpolation.
- {code:'GB10',korean:'부백',hanja:'浮白',english:'Fubai',location:'GB9–GB12 곡선의 위쪽 1/3',basis:'GB9–GB12 두피 표면 곡선(74.0 mm)의 호길이 1/3',seed:[-.078,1.616,-.048],projection:'head',status:'review'},
- {code:'GB11',korean:'두규음',hanja:'頭竅陰',english:'Touqiaoyin',location:'GB9–GB12 곡선의 위쪽 2/3',basis:'GB9–GB12 두피 표면 곡선(74.0 mm)의 호길이 2/3',seed:[-.072,1.593,-.055],projection:'head',status:'review'},
+ // 2026-09-15 head B-cun rebuild: GB8..GB11 and GB13..GB19 come from scripts/head-cun.mjs
+ // (data/head-cun.json). Distances are arc length on the skin, one local WHO scale per segment:
+ // forehead 미간~전발제 3촌 (GB14), scalp 전발제~후발제 12촌 (GB8/9/13/15-18), posterior
+ // 유양돌기간 9촌 (GB19). The previous seeds mixed a 17.9 mm/촌 chord with ~35 mm/촌 spacing.
+ // GB8 stays on the auricular-apex vertical at 1.5촌 above the temporal hairline of the
+ // "Hair of head" mesh; GB9 is 0.5촌 behind it at 2촌 above the hairline; GB10/GB11 are the
+ // arc-length thirds of the GB9–GB12 scalp curve. GB13 keeps its x -.052 column until ST8
+ // supplies the anterior transverse scale (두유~두유 9촌).
+ {code:'GB8',korean:'솔곡',hanja:'率谷',english:'Shuaigu',location:'이개첨 수직선, 측두 두발경계선 위 1.5촌(골도분촌)',basis:'외이 최상단 수직선과 Hair of head 메쉬 측두 발제선, 두피 표면 호길이',seed:GB_HEAD_CUN_SEEDS.GB8,projection:'head',status:'review'},
+ {code:'GB9',korean:'천충',hanja:'天衝',english:'Tianchong',location:'이개근 뒤모서리 수직선, 두발경계선 위 2촌(골도분촌)',basis:'GB8 수직선 뒤 0.5촌과 Hair of head 메쉬 발제선, 두피 표면 호길이',seed:GB_HEAD_CUN_SEEDS.GB9,projection:'head',status:'review'},
+ {code:'GB10',korean:'부백',hanja:'浮白',english:'Fubai',location:'GB9–GB12 곡선의 위쪽 1/3',basis:'GB9–GB12 두피 표면 곡선의 호길이 1/3',seed:GB_HEAD_CUN_SEEDS.GB10,projection:'head',status:'review'},
+ {code:'GB11',korean:'두규음',hanja:'頭竅陰',english:'Touqiaoyin',location:'GB9–GB12 곡선의 위쪽 2/3',basis:'GB9–GB12 두피 표면 곡선의 호길이 2/3',seed:GB_HEAD_CUN_SEEDS.GB11,projection:'head',status:'review'},
  {code:'GB12',korean:'완골',hanja:'完骨',english:'Wangu',location:'유양돌기 아래뒤쪽, C1 높이의 표면 구역',basis:'유양돌기·제1경추·흉쇄유돌근 뒤 경계',seed:[-.067,1.570,-.065],projection:'head',status:'registered'},
- {code:'GB13',korean:'본신',hanja:'本神',english:'Benshen',location:'전발제 안쪽 0.5촌(골도분촌), 전정중선 가쪽 구역',basis:'가상 전발제선과 전정중선',seed:[-.052,1.668,.044],projection:'head',status:'registered'},
- {code:'GB14',korean:'양백',hanja:'陽白',english:'Yangbai',location:'정면 동공중선에서 눈썹 위쪽 구역',basis:'안구 정면 투영 중심과 기존 눈썹 메시',seed:[-.034,1.638,.085],projection:'head',status:'review'},
- {code:'GB15',korean:'두임읍',hanja:'頭臨泣',english:'Toulinqi',location:'동공중선, 전발제 안쪽 0.5촌(골도분촌)',basis:'안구 정면 투영 중심과 가상 전발제선',seed:[-.035,1.670,.071],projection:'head',status:'review'},
- {code:'GB16',korean:'목창',hanja:'目窓',english:'Muchuang',location:'동공중선, 전발제 안쪽 1.5촌(골도분촌)',basis:'두피 표면의 동공중선',seed:[-.037,1.692,.043],projection:'head',status:'review'},
- {code:'GB17',korean:'정영',hanja:'正營',english:'Zhengying',location:'동공중선, 전발제 안쪽 2.5촌(골도분촌)',basis:'두피 표면의 동공중선',seed:[-.038,1.706,.012],projection:'head',status:'review'},
- {code:'GB18',korean:'승영',hanja:'承靈',english:'Chengling',location:'동공중선, 전발제 안쪽 4촌(골도분촌)',basis:'두피 표면의 동공중선',seed:[-.037,1.704,-.027],projection:'head',status:'review'},
- {code:'GB19',korean:'뇌공',hanja:'腦空',english:'Naokong',location:'외후두융기 위쪽, GB20 위 1.5촌(골도분촌) 구역',basis:'후두골과 외후두융기',seed:[-.035,1.680,-.079],projection:'head',status:'registered'},
+ {code:'GB13',korean:'본신',hanja:'本神',english:'Benshen',location:'전발제 위 0.5촌(골도분촌), 전정중선 가쪽 3촌',basis:'Hair of head 메쉬 전발제, 두피 표면 호길이 (가쪽 열은 ST8 구현 전까지 x -.052 유지)',seed:GB_HEAD_CUN_SEEDS.GB13,projection:'head',status:'review'},
+ {code:'GB14',korean:'양백',hanja:'陽白',english:'Yangbai',location:'동공중선, 눈썹 위 1촌(골도분촌)',basis:'눈확위모서리(전두골)와 미간~전발제 3촌 척도, 이마 표면 호길이',seed:GB_HEAD_CUN_SEEDS.GB14,projection:'head',status:'review'},
+ {code:'GB15',korean:'두임읍',hanja:'頭臨泣',english:'Toulinqi',location:'동공중선, 전발제 안쪽 0.5촌(골도분촌)',basis:'동공중선 시상 단면의 Hair of head 발제선, 두피 표면 호길이',seed:GB_HEAD_CUN_SEEDS.GB15,projection:'head',status:'review'},
+ {code:'GB16',korean:'목창',hanja:'目窓',english:'Muchuang',location:'동공중선, 전발제 안쪽 1.5촌(골도분촌)',basis:'동공중선 시상 단면의 Hair of head 발제선, 두피 표면 호길이',seed:GB_HEAD_CUN_SEEDS.GB16,projection:'head',status:'review'},
+ {code:'GB17',korean:'정영',hanja:'正營',english:'Zhengying',location:'동공중선, 전발제 안쪽 2.5촌(골도분촌)',basis:'동공중선 시상 단면의 Hair of head 발제선, 두피 표면 호길이',seed:GB_HEAD_CUN_SEEDS.GB17,projection:'head',status:'review'},
+ {code:'GB18',korean:'승영',hanja:'承靈',english:'Chengling',location:'동공중선, 전발제 안쪽 4촌(골도분촌)',basis:'동공중선 시상 단면의 Hair of head 발제선, 두피 표면 호길이',seed:GB_HEAD_CUN_SEEDS.GB18,projection:'head',status:'review'},
+ {code:'GB19',korean:'뇌공',hanja:'腦空',english:'Naokong',location:'외후두융기 위모서리 높이, 뒤정중선 가쪽 2.25촌(골도분촌)',basis:'후두골 외후두융기와 유양돌기간 9촌 척도, 뒤통수 표면 호길이',seed:GB_HEAD_CUN_SEEDS.GB19,projection:'head',status:'review'},
  // 2026-09-15 definition rebuild (images/GB/GB20.png): the depression between the SCM and
  // trapezius origins, inferior to the occipital bone. Derived from the meshes: at y 1.560,
  // just under the occipital inferior border (y 1.5632), the right SCM's posterior edge is at
