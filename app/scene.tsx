@@ -9,7 +9,7 @@ import { PointerTap } from "./pointer-tap";
 import { SYSTEMS, type Atlas, type NeedleHit, type NeedleReport, type SceneState } from "./anatomy";
 import { type ProjectionMode } from "./gb-points";
 import {atlasPoints,meridianOf,needleProfile,type AcupointCode} from "./acupoints";
-import {createExternalEarPresentation} from "./ear-anatomy";
+import {createExternalEarPresentation, NATIVE_EAR_PART_ID} from "./ear-anatomy";
 import type { AnnotationFrame } from "./annotation-overlay";
 interface Props {
   atlas: Atlas;
@@ -358,6 +358,8 @@ export default function AnatomyScene({
       }
     });
     scene.add(earPresentation.root);
+    geometries.push(...earPresentation.geometries);
+    materials.push(...earPresentation.materials);
     (async () => {
       try {
         let cursor = 0;
@@ -1173,8 +1175,19 @@ export default function AnatomyScene({
             dz = T.MathUtils.lerp(Math.cos(angle) * 0.48, -c.z, t);
           }
           const selected = selection.has(p.id);
+          // The coarse BodyParts3D ear is replaced by the auricle presentation while
+          // that presentation is shown; it returns when selected, isolated or exploded.
+          const replacedByAuricle =
+            p.id === NATIVE_EAR_PART_ID && !selected && !s.isolate && amount < 0.05;
           data.set(
-            [dx, dy, dz, (s.isolate ? selected : visible.has(p.system) || selected) ? 1 : 0],
+            [
+              dx,
+              dy,
+              dz,
+              (s.isolate ? selected : (visible.has(p.system) && !replacedByAuricle) || selected)
+                ? 1
+                : 0,
+            ],
             i * 4,
           );
           selectedData[i * 4] = selected ? 255 : 0;
@@ -1327,7 +1340,13 @@ export default function AnatomyScene({
       // Do not present the conceptual nail footprint as source anatomy. GB44 remains an
       // explicitly estimated landmark scaled from the bundled fourth-toe phalanges.
       toePresentation.visible = false;
-      earPresentation.root.visible = !s.isolate && s.visible.includes("integumentary");
+      // The auricle stands in for the native External ear part (sensory system), so it
+      // follows that system's visibility rather than the skin layer.
+      earPresentation.root.visible =
+        !s.isolate &&
+        amount < 0.05 &&
+        s.visible.includes("sensory") &&
+        !s.selected.includes(NATIVE_EAR_PART_ID);
       markers.visible = amount > 0.75;
       controls.autoRotate = s.rotate && !s.isolate && amount < 0.4;
       controls.autoRotateSpeed = 0.65;
