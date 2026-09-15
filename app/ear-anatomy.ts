@@ -60,10 +60,11 @@ const MEATUS_SKIN={lateral:.067,y:1.589,z:-.020};
 /**
  * Placement correction for the auricle only (metres, superior and anterior).
  * The sculpted ear sat low and far back against this head's skin: on review it
- * belongs about 10 mm higher and 8 mm forward of the bony pore. The pore
- * landmark itself keeps its measured position.
+ * belongs about 7 mm higher and 8 mm forward of the bony pore. Higher than that
+ * and the helix apex runs into the hairline. The pore landmark itself keeps its
+ * measured position.
  */
-const AURICLE_OFFSET={y:.010,z:.008};
+const AURICLE_OFFSET={y:.007,z:.008};
 /** Bony pore, 4 mm deep to the skin opening. */
 const MEATUS_PORE_DEPTH=.004;
 /** Long axis leans posteriorly at the top (sagittal plane). */
