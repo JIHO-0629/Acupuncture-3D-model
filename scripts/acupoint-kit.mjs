@@ -142,6 +142,12 @@ export function meridianWriter(id) {
       points.set(code, { seed: round(nearest.point), outward: round(outward), region: nearest.region, depthMm: nearest.depthMm, rule, ...extra });
       return nearest.point;
     },
+    /** Keep an already verified atlas surface/mucosal point without re-projecting it to Skin. */
+    putDirect(code, surface, outward, region, rule, extra = {}) {
+      if (!source.points.some((item) => item.code === code)) throw new Error(`source row missing: ${code}`);
+      points.set(code, { seed: round(surface), outward: round(outward.clone().normalize()), region, depthMm: 0, rule, projection: 'direct', ...extra });
+      return surface.clone();
+    },
     get: (code) => v(...points.get(code).seed),
     getOutward: (code) => v(...points.get(code).outward),
     write(meta, overrides = {}) {
@@ -153,6 +159,9 @@ export function meridianWriter(id) {
           location: overrides[row.code]?.location ?? row.location,
           rawLocation: row.location, rawMethod: row.method ?? '', classification: row.classification ?? '',
           whoStatus: row.whoStatus ?? '', whoNote: row.whoNote ?? '', manualCheck: row.manualCheck ?? '',
+          needlingStatus: row.needlingStatus ?? 'allowed_unverified',
+          needlingRestriction: row.needlingRestriction ?? '',
+          sourceValidation: row.sourceValidation ?? null,
           photo: `images/${id}/${id}${row.code.slice(id.length).padStart(2, '0')}.png`,
           status: 'implemented_unverified', ...anchor,
         };

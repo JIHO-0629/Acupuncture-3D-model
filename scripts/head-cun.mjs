@@ -148,6 +148,9 @@ const CUN = toEop / 11;
 const posteriorHairline = advance(midline, nearest(midline, eopSkin), overVertex, CUN);
 const AURICULAR_APEX_Z = -0.0298; // app/ear-anatomy.ts builds the apex here (see AURICLE_OFFSET)
 const gv20 = advance(midline, nearest(midline, anteriorHairline), overVertex, 5 * CUN);
+const gvMidline = Object.fromEntries([
+  ['GV18', 8], ['GV19', 6.5], ['GV20', 5], ['GV21', 3.5], ['GV22', 2], ['GV23', 1], ['GV24', 0.5],
+].map(([code, cun]) => [code, round(advance(midline, nearest(midline, anteriorHairline), overVertex, cun * CUN))]));
 
 // ---------------------------------------------------------------- posterior transverse: 유양돌기간 = 9촌
 const mastoidR = landmark('mastoid_process_tip', 'right'), mastoidL = landmark('mastoid_process_tip', 'left');
@@ -249,6 +252,7 @@ const output = {
     anteriorHairlineToEopMm: mm(toEop), cunMm: +(CUN * 1000).toFixed(3),
     hairMeshPosteriorRejected: round(hairMeshPosterior),
     check: { rule: '백회(전발제 뒤 5촌)는 양 이개첨 연결선 위', gv20: round(gv20), auricularApexZ: AURICULAR_APEX_Z, offsetMm: mm(gv20.z - AURICULAR_APEX_Z) },
+    gvMidline,
   },
   forehead: { rule: '미간~전발제 = 3촌 (동공중선)', cunMm: +(foreheadCun * 1000).toFixed(3) },
   posteriorTransverse: { rule: '유양돌기~유양돌기 = 9촌 (뒤통수 피부 호길이)', heightMm: mm(mastoidHeight), cunMm: +(TRANSVERSE_CUN * 1000).toFixed(3) },

@@ -1,0 +1,1187 @@
+{
+ "id": "GV",
+ "label": "독맥",
+ "name": "독맥",
+ "english": "GOVERNOR VESSEL",
+ "primarySource": "https://m.kmcric.com/knowledge/acupoint/GV",
+ "secondarySource": "https://iris.who.int/handle/10665/353407",
+ "generatedBy": "scripts/meridians/gv.mjs",
+ "points": [
+  {
+   "code": "GV1",
+   "korean": "장강",
+   "hanja": "長強",
+   "english": "Changqiang",
+   "location": "꼬리뼈 아래쪽, 꼬리뼈끝과 항문을 연결하는 선의 중점",
+   "rawLocation": "꼬리뼈 아래쪽, 꼬리뼈끝과 항문을 연결하는 선의 중점",
+   "rawMethod": "무릎을 꿇고 엎드리거나, 옆으로 누워서 무릎을 가슴에 대고 취혈\n꼬리뼈를 따라서 놓는다.\n*너무 깊이 자침하면 직장에 손상을 줄 수 있다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "depth_caution",
+   "needlingRestriction": "직장 손상 위험 때문에 깊은 자입 금지.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV01.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    0.85,
+    -0.10033
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "pelvis",
+   "depthMm": 22.3,
+   "rule": "midpoint of coccyx tip and anus · posterior median line",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV2",
+   "korean": "요수",
+   "hanja": "腰兪",
+   "english": "Yaoshu",
+   "location": "뒤정중선 위, 엉치뼈틈새\n+) 교수님은 “바로”는 아니고 꽤 위쪽이라고 하셨음.",
+   "rawLocation": "뒤정중선 위, 엉치뼈틈새\n+) 교수님은 “바로”는 아니고 꽤 위쪽이라고 하셨음.",
+   "rawMethod": "엉치뼈틈새는 항문 바로 위쪽에서 작고 오목하게 촉지된다.\n꼬리뼈는 누르면 들어가고, 엉치뼈는 눌러도 안들어가는데 그 경계의 함몰점.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "일치 + 수업메모 별도",
+   "whoNote": "WHO 표준의 sacral hiatus 기준을 우선. 원본의 교수 메모는 실습 촉지 참고로만 보존.",
+   "manualCheck": "원본에 표준 외 부가메모/상충 가능 표현 존재",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV02.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.0011,
+    0.86154,
+    -0.1099
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "pelvis",
+   "depthMm": 25.1,
+   "rule": "sacral hiatus · posterior median line",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV3",
+   "korean": "요양관",
+   "hanja": "腰陽關",
+   "english": "Yaoyangguan",
+   "location": "뒤정중선 위, 넷째 허리뼈 가시돌기 아래쪽 오목한 곳(L4)",
+   "rawLocation": "뒤정중선 위, 넷째 허리뼈 가시돌기 아래쪽 오목한 곳(L4)",
+   "rawMethod": "양쪽 엉덩뼈능선의 가장 높은 지점을 연결하는 선의 중점에서 넷째 허리뼈 가시돌기를 찾고 \n->그 아래 오목한 곳에 취혈",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV03.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0.00044,
+    1.02549,
+    -0.09524
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "lumbar",
+   "depthMm": 30.2,
+   "rule": "posterior median line · depression inferior to L4 spinous process",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV4",
+   "korean": "명문",
+   "hanja": "命門",
+   "english": "Mingmen",
+   "location": "뒤정중선 위, 둘째 허리뼈 가시돌기 아래쪽 오목한 곳(L2)",
+   "rawLocation": "뒤정중선 위, 둘째 허리뼈 가시돌기 아래쪽 오목한 곳(L2)",
+   "rawMethod": "",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV04.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.00143,
+    1.07043,
+    -0.0944
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "lumbar",
+   "depthMm": 36.8,
+   "rule": "posterior median line · depression inferior to L2 spinous process",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV5",
+   "korean": "현추",
+   "hanja": "懸樞",
+   "english": "Xuanshu",
+   "location": "뒤정중선 위, 첫째 허리뼈 가시돌기 아래쪽 오목한 곳",
+   "rawLocation": "뒤정중선 위, 첫째 허리뼈 가시돌기 아래쪽 오목한 곳",
+   "rawMethod": "엎드려서 취혈한다. \n현추혈 이하에서는 spinal cord가 없다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV05.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0.00051,
+    1.09331,
+    -0.09555
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "lumbar",
+   "depthMm": 33.7,
+   "rule": "posterior median line · depression inferior to L1 spinous process",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV6",
+   "korean": "척중",
+   "hanja": "脊中",
+   "english": "Jizhong",
+   "location": "뒤정중선 위, 열한째 등뼈 가시돌기 아래쪽 오목한 곳(T11)",
+   "rawLocation": "뒤정중선 위, 열한째 등뼈 가시돌기 아래쪽 오목한 곳(T11)",
+   "rawMethod": "척추 21개 → 절반이 10.5이므로 10번째, 11번째 둘 다 중간으로 친다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV06.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.00121,
+    1.15391,
+    -0.09668
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "thorax",
+   "depthMm": 17,
+   "rule": "posterior median line · depression inferior to T11 spinous process",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV7",
+   "korean": "중추",
+   "hanja": "中樞",
+   "english": "Zhongshu",
+   "location": "뒤정중선 위, 열번째 등뼈 가시돌기 아래쪽 오목한 곳 (T10)",
+   "rawLocation": "뒤정중선 위, 열번째 등뼈 가시돌기 아래쪽 오목한 곳 (T10)",
+   "rawMethod": "",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV07.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0.00027,
+    1.17789,
+    -0.09865
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "thorax",
+   "depthMm": 13.9,
+   "rule": "posterior median line · depression inferior to T10 spinous process",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV8",
+   "korean": "근축",
+   "hanja": "筋縮",
+   "english": "Jinsuo",
+   "location": "뒤정중선 위, 아홉째 등뼈 가시돌기 아래쪽 오목한 곳 (T9)",
+   "rawLocation": "뒤정중선 위, 아홉째 등뼈 가시돌기 아래쪽 오목한 곳 (T9)",
+   "rawMethod": "",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV08.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0.00007,
+    1.20475,
+    -0.10243
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "thorax",
+   "depthMm": 15.5,
+   "rule": "posterior median line · depression inferior to T9 spinous process",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV9",
+   "korean": "지양",
+   "hanja": "至陽",
+   "english": "Zhiyang",
+   "location": "뒤정중선 위, 일곱째 등뼈 가시돌기 아래쪽 오목한 곳 (T7)",
+   "rawLocation": "뒤정중선 위, 일곱째 등뼈 가시돌기 아래쪽 오목한 곳 (T7)",
+   "rawMethod": "T7= 양쪽 어깨뼈 아래각과 아래모서리를 지나는 수평선과 뒤정중선이 만나는 지점이 T7",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV09.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.25743,
+    -0.11316
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "thorax",
+   "depthMm": 22.8,
+   "rule": "posterior median line · depression inferior to T7 spinous process",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV10",
+   "korean": "영대",
+   "hanja": "靈臺",
+   "english": "Lingtai",
+   "location": "뒤정중선 위, 여섯째 등뼈 가시돌기 아래쪽 오목한 곳 (T6)",
+   "rawLocation": "뒤정중선 위, 여섯째 등뼈 가시돌기 아래쪽 오목한 곳 (T6)",
+   "rawMethod": "",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV10.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.00092,
+    1.28749,
+    -0.11652
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "thorax",
+   "depthMm": 24.6,
+   "rule": "posterior median line · depression inferior to T6 spinous process",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV11",
+   "korean": "신도",
+   "hanja": "神道",
+   "english": "Shendao",
+   "location": "뒤정중선 위, 다섯째 등뼈 가시돌기 아래쪽 오목한 곳 (T5)",
+   "rawLocation": "뒤정중선 위, 다섯째 등뼈 가시돌기 아래쪽 오목한 곳 (T5)",
+   "rawMethod": "",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV11.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.00025,
+    1.31791,
+    -0.11805
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "thorax",
+   "depthMm": 24.4,
+   "rule": "posterior median line · depression inferior to T5 spinous process",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV12",
+   "korean": "신주",
+   "hanja": "身柱",
+   "english": "Shenzhu",
+   "location": "뒤정중선 위, 셋째 등뼈 가시돌기 아래쪽 오목한 곳(T3)",
+   "rawLocation": "뒤정중선 위, 셋째 등뼈 가시돌기 아래쪽 오목한 곳(T3)",
+   "rawMethod": "T3=어깨뼈가시 안쪽끝을 지나는 수평선과 뒤정중선이 만나는 지점",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV12.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.00151,
+    1.38047,
+    -0.1162
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "thorax",
+   "depthMm": 22.8,
+   "rule": "posterior median line · depression inferior to T3 spinous process",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV13",
+   "korean": "도도",
+   "hanja": "陶道",
+   "english": "Taodao",
+   "location": "뒤정중선 위, 첫째 등뼈 가시돌기 아래쪽 오목한 곳 (T1)",
+   "rawLocation": "뒤정중선 위, 첫째 등뼈 가시돌기 아래쪽 오목한 곳 (T1)",
+   "rawMethod": "",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV13.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0.0002,
+    1.42677,
+    -0.11197
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "thorax",
+   "depthMm": 35.3,
+   "rule": "posterior median line · depression inferior to T1 spinous process",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV14",
+   "korean": "대추",
+   "hanja": "大椎",
+   "english": "Dazhui",
+   "location": "뒤정중선 위, 일곱째 목뼈 가시돌기 아래쪽 오목한 곳 (C7)",
+   "rawLocation": "뒤정중선 위, 일곱째 목뼈 가시돌기 아래쪽 오목한 곳 (C7)",
+   "rawMethod": "앉은 상태에서 목에 힘을 빼고 고개를 숙이면, 목 뒤쪽면에서 가장 높이 튀어나온 곳이 C7 가시돌기고, \n약간 숙이고 목을 좌우로 돌릴 때 움직이지 않는 곳이 T1 가시돌기다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV14.png",
+   "status": "implemented_unverified",
+   "seed": [
+    -0.00375,
+    1.44282,
+    -0.10539
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "thorax",
+   "depthMm": 32.4,
+   "rule": "posterior median line · depression inferior to C7 spinous process",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV15",
+   "korean": "아문",
+   "hanja": "啞門",
+   "english": "Yamen",
+   "location": "뒤정중선, 둘째 목뼈 가시돌기 위쪽 오목한 곳 (C2)",
+   "rawLocation": "뒤정중선, 둘째 목뼈 가시돌기 위쪽 오목한 곳 (C2)",
+   "rawMethod": "목을 뒤로 젖히고 오목한 곳에 자침한다. \n*위로 깊게 자침하지 않는다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "depth_caution",
+   "needlingRestriction": "연수 손상 위험 때문에 위쪽으로 깊게 자입하지 않음.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV15.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.588,
+    -0.1098
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "head",
+   "depthMm": 12.8,
+   "rule": "posterior median line · superior to C2 spinous process and 0.5 B-cun inferior to GV16",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV16",
+   "korean": "풍부",
+   "hanja": "風府",
+   "english": "Fengfu",
+   "location": "바깥뒤통수뼈융기에서 수직으로 아래쪽, 양쪽 등세모근 사이의 오목한 곳",
+   "rawLocation": "바깥뒤통수뼈융기에서 수직으로 아래쪽, 양쪽 등세모근 사이의 오목한 곳",
+   "rawMethod": "뒤통수뼈 바로 밑, 두개골 저부에서 취혈한다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "depth_caution",
+   "needlingRestriction": "연수 손상 위험 때문에 깊은 자입 금지.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV16.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.615,
+    -0.12058
+   ],
+   "outward": [
+    0,
+    0,
+    -1
+   ],
+   "region": "head",
+   "depthMm": 6.6,
+   "rule": "depression between trapezius origins directly inferior to external occipital protuberance",
+   "projection": "posterior"
+  },
+  {
+   "code": "GV17",
+   "korean": "뇌호",
+   "hanja": "腦戶",
+   "english": "Naohu",
+   "location": "뒤정중선 위, 바깥뒤통수뼈융기 위쪽 오목한 곳\n(= 뒤통수점)",
+   "rawLocation": "뒤정중선 위, 바깥뒤통수뼈융기 위쪽 오목한 곳\n(= 뒤통수점)",
+   "rawMethod": "시술시 주의해서 시술한다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV17.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.62808,
+    -0.12253
+   ],
+   "outward": [
+    0,
+    0.24254,
+    -0.97014
+   ],
+   "region": "head",
+   "depthMm": 1.9,
+   "rule": "posterior median line · superior border of external occipital protuberance",
+   "projection": "head"
+  },
+  {
+   "code": "GV18",
+   "korean": "강간",
+   "hanja": "强間",
+   "english": "Qiangjian",
+   "location": "뒤정중선 위, 둘째 목뼈 가시돌기인 뒷머리카락 경계에서 위쪽으로 4촌",
+   "rawLocation": "뒤정중선 위, 둘째 목뼈 가시돌기인 뒷머리카락 경계에서 위쪽으로 4촌",
+   "rawMethod": "뇌호 (GV 17)에서 위로 1.5촌 지점에 위치한다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV18.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.69175,
+    -0.09641
+   ],
+   "outward": [
+    0,
+    0.72589,
+    -0.68781
+   ],
+   "region": "head",
+   "depthMm": 2.1,
+   "rule": "median scalp geodesic · posterior hairline +4 B-cun",
+   "projection": "head"
+  },
+  {
+   "code": "GV19",
+   "korean": "후정",
+   "hanja": "後頂",
+   "english": "Houding",
+   "location": "뒤정중선 위, 후발제에서 위쪽으로 5.5촌",
+   "rawLocation": "뒤정중선 위, 후발제에서 위쪽으로 5.5촌",
+   "rawMethod": "뇌호 (GV 17)~백회(GV 20)의 2/3 지점을 찾는다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV19.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.70911,
+    -0.06619
+   ],
+   "outward": [
+    0,
+    0.8741,
+    -0.48575
+   ],
+   "region": "head",
+   "depthMm": 1.3,
+   "rule": "median scalp geodesic · posterior hairline +5.5 B-cun",
+   "projection": "head"
+  },
+  {
+   "code": "GV20",
+   "korean": "백회",
+   "hanja": "百會",
+   "english": "Baihui",
+   "location": "앞정중선 위, 전발제에서 위쪽으로 5촌\n(백회가 실제로 머리에서 가장 높은 곳은 아니며, 고개를 약간 숙여야 머리에서 가장 높은 점이 된다.)",
+   "rawLocation": "앞정중선 위, 전발제에서 위쪽으로 5촌\n(백회가 실제로 머리에서 가장 높은 곳은 아니며, 고개를 약간 숙여야 머리에서 가장 높은 점이 된다.)",
+   "rawMethod": "취혈 방법 2가지\n1) 전발제에서 후발제까지 연결하는 선의 중점에서 앞쪽으로 1촌 지점의 오목한 곳\n2) ** 귀를 접었을 때, 양쪽 귓바퀴 꼭대기를 연결하는 선의 중점 **\n→ 1번은 전발제·후발제의 경계가 불분명하므로 2번을 더 이용한다.\n이때 귓바퀴 꼭대기에서 수직으로 위로 올라오지 않도록 주의\n이 부위의 뼈가 조금 파여 있어 만지면 오목하게 들어간다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "일치 + 부가메모 별도",
+   "whoNote": "WHO 핵심: anterior median line, anterior hairline에서 5 B-cun superior. 원본의 '머리에서 가장 높은 곳' 관련 메모는 표준 위치 정의가 아니므로 좌표화에 직접 사용하지 않음.",
+   "manualCheck": "원본에 표준 외 부가메모/상충 가능 표현 존재",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV20.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.71695,
+    -0.0321
+   ],
+   "outward": [
+    0,
+    0.96948,
+    -0.24516
+   ],
+   "region": "head",
+   "depthMm": 2.2,
+   "rule": "median scalp geodesic · anterior hairline +5 B-cun",
+   "projection": "head"
+  },
+  {
+   "code": "GV21",
+   "korean": "전정",
+   "hanja": "前頂",
+   "english": "Qianding",
+   "location": "앞정중선 위, 전발제에서 위쪽으로 3.5촌",
+   "rawLocation": "앞정중선 위, 전발제에서 위쪽으로 3.5촌",
+   "rawMethod": "백회 (GV 20)~신회 (GV 22)의 중점부에 위치한다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV21.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.71636,
+    0.00313
+   ],
+   "outward": [
+    0,
+    0.99969,
+    0.02478
+   ],
+   "region": "head",
+   "depthMm": 2.1,
+   "rule": "median scalp geodesic · anterior hairline +3.5 B-cun",
+   "projection": "head"
+  },
+  {
+   "code": "GV22",
+   "korean": "신회",
+   "hanja": "囟會",
+   "english": "Xinhui",
+   "location": "앞정중선 위, 전발제에서 위쪽으로 2촌",
+   "rawLocation": "앞정중선 위, 전발제에서 위쪽으로 2촌",
+   "rawMethod": "전발제에서 5푼 들어간 후, 백회까지 거리의 1/3 지점을 찾는다. (전발제에서 위로 2촌)\n3살 이하는 자침하지 않는다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "conditional_contraindication",
+   "needlingRestriction": "숫구멍이 닫히지 않은 소아(로컬 자료: 3세 이하)는 자침하지 않음.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV22.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.70543,
+    0.03649
+   ],
+   "outward": [
+    0,
+    0.95349,
+    0.30143
+   ],
+   "region": "head",
+   "depthMm": 1.7,
+   "rule": "median scalp geodesic · anterior hairline +2 B-cun",
+   "projection": "head"
+  },
+  {
+   "code": "GV23",
+   "korean": "상성",
+   "hanja": "上星",
+   "english": "Shangxing",
+   "location": "앞정중선 위, 전발제에서 위쪽으로 1촌",
+   "rawLocation": "앞정중선 위, 전발제에서 위쪽으로 1촌",
+   "rawMethod": "",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV23.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.69104,
+    0.05471
+   ],
+   "outward": [
+    0,
+    0.87936,
+    0.47616
+   ],
+   "region": "head",
+   "depthMm": 2,
+   "rule": "median scalp geodesic · anterior hairline +1 B-cun",
+   "projection": "head"
+  },
+  {
+   "code": "GV24",
+   "korean": "신정",
+   "hanja": "神庭",
+   "english": "Shenting",
+   "location": "앞정중선 위, 앞머리발제에서 위로 0.5촌",
+   "rawLocation": "앞정중선 위, 앞머리발제에서 위로 0.5촌",
+   "rawMethod": "앞 머리카락 경계선이 뚜렷하지 않다면 양쪽 눈썹 안쪽끝 사이의 중점에서 위로 3.5촌을 가면 된다.",
+   "classification": "A+B · 해부학+비례",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV24.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.68252,
+    0.06275
+   ],
+   "outward": [
+    0,
+    0.82761,
+    0.5613
+   ],
+   "region": "head",
+   "depthMm": 2.1,
+   "rule": "median scalp geodesic · anterior hairline +0.5 B-cun",
+   "projection": "head"
+  },
+  {
+   "code": "GV25",
+   "korean": "소료",
+   "hanja": "素髎",
+   "english": "Suliao",
+   "location": "얼굴, 코끝",
+   "rawLocation": "얼굴, 코끝",
+   "rawMethod": "큰콧방울연골 부위\n직자하거나, 큰 자극을 주려면 사자",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: apex of nose (비첨)",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV25.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.572,
+    0.10355
+   ],
+   "outward": [
+    0,
+    0,
+    1
+   ],
+   "region": "face",
+   "depthMm": 0.5,
+   "rule": "apex of nose",
+   "projection": "anterior"
+  },
+  {
+   "code": "GV26",
+   "korean": "수구",
+   "hanja": "水溝",
+   "english": "Shuigou",
+   "location": "인중 정중선의 중점",
+   "rawLocation": "인중 정중선의 중점",
+   "rawMethod": "통증을 줄이기 위해 입술을 손으로 잡아 두껍게 하고 취혈한다.",
+   "classification": "B · 비례촌 보간",
+   "whoStatus": "WHO 대안 위치 병기(논쟁혈)",
+   "whoNote": "WHO 2008에서 최종 6개 논쟁혈 중 하나이며 Remarks에 alternative location이 병기됨. 원본은 변경하지 않고 좌표 확정 전 수동 검수 필요.",
+   "manualCheck": "WHO 2008 논쟁혈: alternative location 병기",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV26.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.552,
+    0.0919
+   ],
+   "outward": [
+    0,
+    0,
+    1
+   ],
+   "region": "face",
+   "depthMm": 1.9,
+   "rule": "midline of philtrum · midpoint (WHO alternative: upper one-third / lower two-thirds junction)",
+   "projection": "anterior"
+  },
+  {
+   "code": "GV27",
+   "korean": "태단",
+   "hanja": "兌端",
+   "english": "Duiduan",
+   "location": "윗입술결절의 중점",
+   "rawLocation": "윗입술결절의 중점",
+   "rawMethod": "인중 고랑 아랫부분과 붉은 입술이 이루는 경계선의 중점에서 취혈",
+   "classification": "B · 비례촌 보간",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV27.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.542,
+    0.0894
+   ],
+   "outward": [
+    0,
+    0,
+    1
+   ],
+   "region": "face",
+   "depthMm": 1.4,
+   "rule": "midpoint of tubercle of upper lip",
+   "projection": "anterior"
+  },
+  {
+   "code": "GV28",
+   "korean": "은교",
+   "hanja": "齦交",
+   "english": "Yinjiao",
+   "location": "위입술주름띠와 위잇몸이 만나는 지점",
+   "rawLocation": "위입술주름띠와 위잇몸이 만나는 지점",
+   "rawMethod": "몸과 교차하는 부분\n위입술주름띠와 위잇몸이 만나는 지점에서 취혈한다.\n앉은 자세에서 머리를 젖히고 윗입술을 들어올린 상태에서 취혈한다.",
+   "classification": "A · 해부학 직접",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: superior labial frenulum (상순소대), upper gingiva (상악 치은)",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   },
+   "photo": "images/GV/GV28.png",
+   "status": "implemented_unverified",
+   "seed": [
+    0,
+    1.54132,
+    0.08164
+   ],
+   "outward": [
+    0,
+    0,
+    1
+   ],
+   "region": "oral-mucosa",
+   "depthMm": 0,
+   "rule": "junction of superior labial frenulum and upper gingiva",
+   "projection": "direct"
+  }
+ ]
+}

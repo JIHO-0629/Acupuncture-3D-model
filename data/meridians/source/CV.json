@@ -1,0 +1,681 @@
+{
+ "id": "CV",
+ "meridian": "임맥",
+ "sourceFile": "C:\\Users\\jiho3\\OneDrive\\바탕 화면\\경혈학실습 연습용\\경혈_데이터_405_WHO_해부학검수_재검수판.xlsx",
+ "sheet": "경혈 405",
+ "note": "위치는 KCMRIC→WHO 2008→로컬 이미지 순서로 전수 1:1 검증. method는 로컬 실습 메모를 원문 보존하고 needlingRestriction은 KCMRIC 금기·주의를 별도 구조화함.",
+ "points": [
+  {
+   "code": "CV1",
+   "front": "회음 (會陰) (CV 1)",
+   "korean": "회음",
+   "hanja": "會陰",
+   "english": "Huiyin",
+   "location": "남: 항문과 음낭 뒤모서리 중점\n여: 항문과 뒤대음순연결 중점",
+   "method": "옆으로 눕거나, 무릎을 굽혀서 가슴을 댄 자세에서 항문과 생식기 사이의 중점에서 취혈한다.",
+   "classification": "B · 비례촌 보간",
+   "structures": "",
+   "proportionRule": "명시된 landmark/경혈 사이의 fractional interpolation (1/2, 1/3, 1/4 등 원문 비율 적용)",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "source_conflict",
+   "needlingRestriction": "KCMRIC은 직자법을 제시하지만 고전 문헌의 금침 기록도 병기함.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV2",
+   "front": "곡골 (曲骨) (CV 2)",
+   "korean": "곡골",
+   "hanja": "曲骨",
+   "english": "Qugu",
+   "location": "앞정중선 위, 두덩결합, 즉 횡골 위모서리",
+   "method": "두덩결합을 확인하고 자침한다. \n(손바닥으로 하나씩 눌러서 내려가면 찾을 수 있다. 두덩결합을 누르면 매우 아프다)",
+   "classification": "A · 해부학 직접",
+   "structures": "anterior median line (전정중선) ; pubic symphysis (치골결합)",
+   "proportionRule": "",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "conditional_contraindication",
+   "needlingRestriction": "임신부 자침 부적합/금기 기록.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV3",
+   "front": "중극 (中極) (CV 3)",
+   "korean": "중극",
+   "hanja": "中極",
+   "english": "Zhongji",
+   "location": "배꼽 중심에서 아래쪽으로 4촌",
+   "method": "*임신부는 자침을 신중하게 한다. \n**자침 전에 반드시 배뇨를 시킨다. 특히 여성은 더 주의한다.",
+   "classification": "A+B · 해부학+비례",
+   "structures": "umbilicus (제)",
+   "proportionRule": "umbilicus (제) ↔ superior border of pubic symphysis (치골결합 상연) = 5 B-cun; umbilicus에서 inferior 4/5",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "conditional_contraindication",
+   "needlingRestriction": "임신부는 신중히 자침하고 시술 전 배뇨.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV4",
+   "front": "관원 (關元) (CV 4)",
+   "korean": "관원",
+   "hanja": "關元",
+   "english": "Guanyuan",
+   "location": "배꼽중심에서 아래쪽으로 3촌",
+   "method": "임신부 자침 신중, 자침 전에 배뇨\n*이명이 단전이다.",
+   "classification": "A+B · 해부학+비례",
+   "structures": "umbilicus (제)",
+   "proportionRule": "umbilicus (제) ↔ superior border of pubic symphysis (치골결합 상연) = 5 B-cun; umbilicus에서 inferior 3/5",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "conditional_contraindication",
+   "needlingRestriction": "임신부 금침.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV5",
+   "front": "석문 (石門) (CV 5)",
+   "korean": "석문",
+   "hanja": "石門",
+   "english": "Shimen",
+   "location": "배꼽중심에서 아래쪽으로 2촌",
+   "method": "여자에게는 자침을 금한다(동의보감)->자궁 주의하라는 의미이다.",
+   "classification": "A+B · 해부학+비례",
+   "structures": "umbilicus (제)",
+   "proportionRule": "umbilicus (제) ↔ superior border of pubic symphysis (치골결합 상연) = 5 B-cun; umbilicus에서 inferior 2/5",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "conditional_contraindication",
+   "needlingRestriction": "여성 금침·금구라는 고전 기록이 있어 대상 조건 확인 필요.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV6",
+   "front": "기해 (氣海) (CV 6)",
+   "korean": "기해",
+   "hanja": "氣海",
+   "english": "Qihai",
+   "location": "배꼽중심에서 아래쪽으로 1.5촌, 말랑말랑한 부분이다.",
+   "method": "",
+   "classification": "A+B · 해부학+비례",
+   "structures": "umbilicus (제)",
+   "proportionRule": "umbilicus (제) ↔ superior border of pubic symphysis (치골결합 상연) = 5 B-cun; umbilicus에서 inferior 1.5/5",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV7",
+   "front": "음교 (陰交) (CV 7)",
+   "korean": "음교",
+   "hanja": "陰交",
+   "english": "Yinjiao",
+   "location": "배꼽 중심에서 아래 1촌",
+   "method": "*임산부는 자침시술을 조심한다. (임산부는 명치까지 배가 나온다)",
+   "classification": "A+B · 해부학+비례",
+   "structures": "umbilicus (제)",
+   "proportionRule": "umbilicus (제) ↔ superior border of pubic symphysis (치골결합 상연) = 5 B-cun; umbilicus에서 inferior 1/5",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "conditional_contraindication",
+   "needlingRestriction": "임신부 자침 주의.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV8",
+   "front": "신궐 (神闕) (CV 8)",
+   "korean": "신궐",
+   "hanja": "神闕",
+   "english": "Shenque",
+   "location": "배꼽 중심",
+   "method": "*자침을 금한다.",
+   "classification": "A · 해부학 직접",
+   "structures": "umbilicus (제)",
+   "proportionRule": "",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "absolute_no_needling",
+   "needlingRestriction": "금침혈. 자침하지 않음.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV9",
+   "front": "수분 (水分) (CV 9)",
+   "korean": "수분",
+   "hanja": "水分",
+   "english": "Shuifen",
+   "location": "앞정중선 위, 배꼽 중심에서 위 1촌\n칼몸통결합~배꼽 사이의 길이는 개인차가 커서, 1촌을 잴 때 지촌법은 권장하지 않음",
+   "method": "",
+   "classification": "A+B · 해부학+비례",
+   "structures": "anterior median line (전정중선) ; umbilicus (제)",
+   "proportionRule": "xiphisternal junction (검흉결합) ↔ umbilicus (제) = 8 B-cun; umbilicus에서 superior 1/8",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "conditional_contraindication",
+   "needlingRestriction": "수병 환자 금침·구법 권고라는 고전 기록.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV10",
+   "front": "하완 (下脘) (CV 10)",
+   "korean": "하완",
+   "hanja": "下脘",
+   "english": "Xiawan",
+   "location": "앞정중선 위, 배꼽 중심에서 위 2촌",
+   "method": "직자 5푼~1촌\n더 깊게 하려면 아래로 자침\n간장이나 비장종대, 위십이지장궤양 환자는 자침을 아래쪽을 향해 자입",
+   "classification": "A+B · 해부학+비례",
+   "structures": "anterior median line (전정중선) ; umbilicus (제)",
+   "proportionRule": "xiphisternal junction (검흉결합) ↔ umbilicus (제) = 8 B-cun; umbilicus에서 superior 2/8",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV11",
+   "front": "건리 (建里) (CV 11)",
+   "korean": "건리",
+   "hanja": "建里",
+   "english": "Jianli",
+   "location": "앞정중선 위, 배꼽 중심에서 위 3촌",
+   "method": "간장이나 비장종대, 위십이지장궤양 환자는 자침을 아래쪽을 향해 자입",
+   "classification": "A+B · 해부학+비례",
+   "structures": "anterior median line (전정중선) ; umbilicus (제)",
+   "proportionRule": "xiphisternal junction (검흉결합) ↔ umbilicus (제) = 8 B-cun; umbilicus에서 superior 3/8",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV12",
+   "front": "중완 (中脘) (CV 12)",
+   "korean": "중완",
+   "hanja": "中脘",
+   "english": "Zhongwan",
+   "location": "앞정중선 위, 배꼽 중심에서 위 4촌",
+   "method": "간장이나 비장종대, 위십이지장궤양 환자는 자침을 아래쪽을 향해 자입\n중완침이라고 장침을 쓰는 경우도 있지만 권장하지 않음",
+   "classification": "A+B · 해부학+비례",
+   "structures": "anterior median line (전정중선) ; umbilicus (제)",
+   "proportionRule": "xiphisternal junction (검흉결합) ↔ umbilicus (제) = 8 B-cun; umbilicus에서 superior 4/8",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV13",
+   "front": "상완 (上脘) (CV 13)",
+   "korean": "상완",
+   "hanja": "上脘",
+   "english": "Shangwan",
+   "location": "앞정중선 위, 배꼽 중심에서 위 5촌",
+   "method": "다른 명칭: 위완, 상관\n간장이나 비장종대, 위십이지장궤양 환자는 자침을 아래쪽을 향해 자입",
+   "classification": "A+B · 해부학+비례",
+   "structures": "anterior median line (전정중선) ; umbilicus (제)",
+   "proportionRule": "xiphisternal junction (검흉결합) ↔ umbilicus (제) = 8 B-cun; umbilicus에서 superior 5/8",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV14",
+   "front": "거궐 (巨闕) (CV 14)",
+   "korean": "거궐",
+   "hanja": "巨闕",
+   "english": "Juque",
+   "location": "앞정중선 위, 배꼽 중심에서 위 6촌",
+   "method": "*깊이 직자하거나 위를 향해서 찌르지 않는다. 오른쪽 간, 왼쪽 심장을 주의한다. \n\n간장종대나 심장비대 환자는 자침을 아래쪽을 향해 자입\n심장비대가 있으면 간을 밀어내서 간이 아래로 내려와 있을 수 있으므로 조심",
+   "classification": "A+B · 해부학+비례",
+   "structures": "anterior median line (전정중선) ; umbilicus (제)",
+   "proportionRule": "xiphisternal junction (검흉결합) ↔ umbilicus (제) = 8 B-cun; umbilicus에서 superior 6/8",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "depth_caution",
+   "needlingRestriction": "깊은 직자 및 위쪽 방향 자입 금지.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV15",
+   "front": "구미 (鳩尾) (CV 15)",
+   "korean": "구미",
+   "hanja": "鳩尾",
+   "english": "Jiuwei",
+   "location": "앞정중선 위, 칼몸통결합에서 아래 1촌",
+   "method": "깊이 직자하거나 위쪽으로 사자하지 말 것->오른쪽 간, 왼쪽 심장 주의.\n직접뜸은 신중하거나 금함",
+   "classification": "A+B · 해부학+비례",
+   "structures": "anterior median line (전정중선)",
+   "proportionRule": "WHO B-cun proportional coordinate: 첫 표기 1 B-cun을 원문 기준 landmark/경혈에서 체표상 보간 (직선 mm 환산 금지)",
+   "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "source_conflict",
+   "needlingRestriction": "얕은 자법이 제시되나 고전 금침 기록도 있으며 깊은 직자·상향 사자 금지.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV16",
+   "front": "중정 (中庭) (CV 16)",
+   "korean": "중정",
+   "hanja": "中庭",
+   "english": "Zhongting",
+   "location": "앞정중선 위, 칼몸통결합의 중점\n쭉 가다가 손이 걸리는 지점",
+   "method": "횡자가 기본이다. \n직자로는 조금밖에 들어가지 않는다. 심장을 찌르지 않도록 주의한다.",
+   "classification": "A+B · 해부학+비례",
+   "structures": "anterior median line (전정중선)",
+   "proportionRule": "명시된 landmark/경혈 사이의 fractional interpolation (1/2, 1/3, 1/4 등 원문 비율 적용)",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "depth_caution",
+   "needlingRestriction": "흉골 및 심장 방향의 깊은 직자 금지; 횡자 주의.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV17",
+   "front": "단중 (膻中) (CV 17)",
+   "korean": "단중",
+   "hanja": "膻中",
+   "english": "Shanzhong",
+   "location": "앞가슴부위, 앞정중선 위, 넷째 갈비사이공간과 같은 높이",
+   "method": "양쪽 유두와 정중선이 만나는 곳으로도 할 수 있지만, 여성의 경우는 4번째 갈비사이공간으로 하는 것이 좋다. \n여성은 유두의 위치 변화가 많다.",
+   "classification": "A · 해부학 직접",
+   "structures": "anterior median line (전정중선) ; intercostal space (늑간)",
+   "proportionRule": "",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "source_conflict",
+   "needlingRestriction": "얕은 횡자법이 제시되나 고전 금침 기록도 병기됨.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV18",
+   "front": "옥당 (玉堂) (CV 18)",
+   "korean": "옥당",
+   "hanja": "玉堂",
+   "english": "Yutang",
+   "location": "앞정중선 위, 셋째 갈비사이공간과 같은 높이",
+   "method": "가슴을 펴고 머리를 뒤로 젖힌 자세에서 취혈\n앉아서 하면 힘드니 눕히고 등에 베개 넣어주기\n횡자, 병이 있는 쪽으로 자침",
+   "classification": "A · 해부학 직접",
+   "structures": "anterior median line (전정중선) ; intercostal space (늑간)",
+   "proportionRule": "",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "direction_caution",
+   "needlingRestriction": "흉부 정중선에서 깊은 직자 대신 얕은 횡자 방향 주의.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV19",
+   "front": "자궁 (紫宮) (CV 19)",
+   "korean": "자궁",
+   "hanja": "紫宮",
+   "english": "Zigong",
+   "location": "앞정중선 위, 둘째 갈비사이공간과 같은 높이\n= 복장뼈각 바로 아래",
+   "method": "횡자(보통 아래로 많이 한다)",
+   "classification": "A · 해부학 직접",
+   "structures": "anterior median line (전정중선) ; intercostal space (늑간) ; sternal angle (흉골각)",
+   "proportionRule": "",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "direction_caution",
+   "needlingRestriction": "흉부 정중선에서 깊은 직자 대신 얕은 횡자 방향 주의.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV20",
+   "front": "화개 (華蓋) (CV 20)",
+   "korean": "화개",
+   "hanja": "華蓋",
+   "english": "Huagai",
+   "location": "앞정중선 위, 첫째 갈비사이공간과 같은 높이",
+   "method": "횡자한다.",
+   "classification": "A · 해부학 직접",
+   "structures": "anterior median line (전정중선) ; intercostal space (늑간)",
+   "proportionRule": "",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "direction_caution",
+   "needlingRestriction": "흉부 정중선에서 깊은 직자 대신 얕은 횡자 방향 주의.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV21",
+   "front": "선기 (璇璣) (CV 21)",
+   "korean": "선기",
+   "hanja": "璇璣",
+   "english": "Xuanji",
+   "location": "앞정중선 위, 목아래패임에서 아래쪽으로 1촌",
+   "method": "내려가다가 이쯤에서 오목하게 걸리는 곳에 취혈\n*횡자한다.",
+   "classification": "A+B · 해부학+비례",
+   "structures": "anterior median line (전정중선) ; suprasternal notch (흉골상절흔)",
+   "proportionRule": "WHO B-cun proportional coordinate: 첫 표기 1 B-cun을 원문 기준 landmark/경혈에서 체표상 보간 (직선 mm 환산 금지)",
+   "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "direction_caution",
+   "needlingRestriction": "흉골 위 정중선에서 깊은 직자 대신 횡자 주의.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV22",
+   "front": "천돌 (天突) (CV 22)",
+   "korean": "천돌",
+   "hanja": "天突",
+   "english": "Tiantu",
+   "location": "앞정중선 위, 목아래패임의 중심",
+   "method": "가슴을 펴고 목을 뒤로 젖힌 자세에서 취혈\n이 자세가 아니면 잘 안 들어간다.\n눕히고 등에 베개 놓아주기\n천돌만 자침 시, 앉아서 엉덩이 뒤 20~30cm에 손을 짚은 자세로 해도 됨\n횡자: 먼저 직자로 2~3푼 자입한 후, 다시 아래로 향해 횡자로 바꾸어 복장뼈자루 뒤쪽면과 기관지 앞쪽 사이를 따라 1~1.5촌 자입\n2.5~4cm 정도로 생각보다 깊다.\n직자로 깊게 찌르면 기도를 찌를 수 있으니 주의",
+   "classification": "A · 해부학 직접",
+   "structures": "anterior median line (전정중선) ; suprasternal notch (흉골상절흔)",
+   "proportionRule": "",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "direction_caution",
+   "needlingRestriction": "기관 손상 방지를 위해 직자 후 흉골 뒤를 따라 하향 전환하는 특수 자법; 깊은 직자 금지.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV23",
+   "front": "염천 (廉泉) (CV 23)",
+   "korean": "염천",
+   "hanja": "廉泉",
+   "english": "Lianquan",
+   "location": "앞정중선 위, 방패연골 위 모서리 위쪽, 목뿔뼈 위쪽의 오목한 곳\n고개 들었을 때 방패연골과 턱끝의 중간 정도",
+   "method": "약간 위쪽으로 혀뿌리를 향해 자입\n염천에 침을 놓으면 누가 혀뿌리를 잡는 느낌이 난다. 이는 정상\n머리를 뒤로 약간 젖히면 아래턱뼈와 방패연골 사이에서 목뿔뼈 거친면이 촉지된다.",
+   "classification": "A+B · 해부학+비례",
+   "structures": "anterior median line (전정중선) ; thyroid cartilage (갑상연골) ; hyoid bone (설골)",
+   "proportionRule": "명시된 landmark/경혈 사이의 fractional interpolation (1/2, 1/3, 1/4 등 원문 비율 적용)",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "direction_caution",
+   "needlingRestriction": "혀뿌리 쪽 상향 사자 시 설골·후두 구조 주의.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  },
+  {
+   "code": "CV24",
+   "front": "승장 (承漿) (CV 24)",
+   "korean": "승장",
+   "hanja": "承漿",
+   "english": "Chengjiang",
+   "location": "턱끝입술고랑 가운데 오목한 곳",
+   "method": "입을 약간 벌린 자세에서 취혈",
+   "classification": "B · 비례촌 보간",
+   "structures": "",
+   "proportionRule": "명시된 landmark/경혈 사이의 fractional interpolation (1/2, 1/3, 1/4 등 원문 비율 적용)",
+   "manualCheck": "",
+   "whoStatus": "이상 미탐지(자동 구조대조)",
+   "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "문헌상 절대 금침 표기 없음; 자침 경로·깊이는 3D에서 미검증.",
+   "sourceValidation": {
+    "order": [
+     "KCMRIC",
+     "WHO 2008",
+     "local image"
+    ],
+    "kcmric": "matched",
+    "who": "matched",
+    "localImage": "matched",
+    "checkedOn": "2026-09-16"
+   }
+  }
+ ]
+}

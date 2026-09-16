@@ -481,8 +481,9 @@ export default function AnatomyScene({
       return { label, texture };
     };
     const acupoints = atlasPoints(atlas);
+    const pointSides=(code:string):('right'|'left')[]=>/^(CV|GV)/.test(code)?['right']:['right','left'];
     for (const point of acupoints)
-      for (const side of ["right", "left"] as const) {
+      for (const side of pointSides(point.code)) {
         const marker = new T.Mesh(pointGeometry, pointMaterial),
           core = new T.Mesh(pointCoreGeometry, pointCoreMaterial),
           made = makePointLabel(point.code, side);
@@ -539,6 +540,7 @@ export default function AnatomyScene({
     // Misses are not cached: before the skin chunk loads the seed fallback must be retried.
     const skinProjectionCache = new Map<string, { point: T.Vector3; normal: T.Vector3 }>();
     const projectToSkin = (seed: T.Vector3, mode: ProjectionMode, side: "right" | "left", direction?:T.Vector3) => {
+      if(mode==='direct')return {point:seed.clone(),normal:(direction??new T.Vector3(0,0,1)).clone().normalize()};
       const outward = direction ?? projectionDirection(seed, mode, side),
         cacheKey = `${seed.x},${seed.y},${seed.z}|${outward.x},${outward.y},${outward.z}`,
         cached = skinProjectionCache.get(cacheKey);
@@ -816,7 +818,7 @@ export default function AnatomyScene({
       lineGroup.clear();
       const projectedBySide: { right: {code:string;point:T.Vector3}[]; left: {code:string;point:T.Vector3}[] } = { right: [], left: [] };
       for (const definition of acupoints) {
-        for (const side of ["right", "left"] as const) {
+        for (const side of pointSides(definition.code)) {
           const object = pointObjects.find(
             (item) => item.code === definition.code && item.side === side,
           )!;

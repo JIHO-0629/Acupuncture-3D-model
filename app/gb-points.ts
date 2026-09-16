@@ -1,7 +1,7 @@
 import {GB_LANDMARK_SEEDS} from './gb-landmark-seeds';
 import {GB_HEAD_CUN_SEEDS} from './head-cun-seeds';
 
-export type ProjectionMode='head'|'lateral'|'anterior'|'posterior'|'dorsal-foot';
+export type ProjectionMode='head'|'lateral'|'anterior'|'posterior'|'dorsal-foot'|'direct';
 export type NeedleRegion='face-scalp'|'neck'|'thorax'|'flank-abdomen'|'pelvis-gluteal'|'thigh-knee'|'leg'|'ankle-foot'|'toe'|'upper-limb';
 
 export interface NeedleProfile{
