@@ -16,17 +16,17 @@ import cvData from '../data/meridians/CV.json';
 import gvData from '../data/meridians/GV.json';
 
 export const MERIDIANS = {
- GB:{id:'GB',label:'담경',name:'족소양담경',english:'GALLBLADDER MERIDIAN',count:44,first:'GB34'},
- ST:{id:'ST',label:'위경',name:'족양명위경',english:'STOMACH MERIDIAN',count:45,first:'ST36'},
- LI:{id:'LI',label:'대장경',name:'수양명대장경',english:'LARGE INTESTINE MERIDIAN',count:20,first:'LI4'},
  LU:{id:'LU',label:'폐경',name:'수태음폐경',english:'LUNG MERIDIAN',count:11,first:'LU1'},
- HT:{id:'HT',label:'심경',name:'수소음심경',english:'HEART MERIDIAN',count:9,first:'HT1'},
- PC:{id:'PC',label:'심포경',name:'수궐음심포경',english:'PERICARDIUM MERIDIAN',count:9,first:'PC1'},
+ LI:{id:'LI',label:'대장경',name:'수양명대장경',english:'LARGE INTESTINE MERIDIAN',count:20,first:'LI4'},
+ ST:{id:'ST',label:'위경',name:'족양명위경',english:'STOMACH MERIDIAN',count:45,first:'ST36'},
  SP:{id:'SP',label:'비경',name:'족태음비경',english:'SPLEEN MERIDIAN',count:21,first:'SP6'},
+ HT:{id:'HT',label:'심경',name:'수소음심경',english:'HEART MERIDIAN',count:9,first:'HT1'},
  SI:{id:'SI',label:'소장경',name:'수태양소장경',english:'SMALL INTESTINE MERIDIAN',count:19,first:'SI3'},
  BL:{id:'BL',label:'방광경',name:'족태양방광경',english:'BLADDER MERIDIAN',count:67,first:'BL40'},
  KI:{id:'KI',label:'신경',name:'족소음신경',english:'KIDNEY MERIDIAN',count:27,first:'KI3'},
+ PC:{id:'PC',label:'심포경',name:'수궐음심포경',english:'PERICARDIUM MERIDIAN',count:9,first:'PC1'},
  TE:{id:'TE',label:'삼초경',name:'수소양삼초경',english:'TRIPLE ENERGIZER MERIDIAN',count:23,first:'TE5'},
+ GB:{id:'GB',label:'담경',name:'족소양담경',english:'GALLBLADDER MERIDIAN',count:44,first:'GB34'},
  LR:{id:'LR',label:'간경',name:'족궐음간경',english:'LIVER MERIDIAN',count:14,first:'LR3'},
  CV:{id:'CV',label:'임맥',name:'임맥',english:'CONCEPTION VESSEL',count:24,first:'CV8'},
  GV:{id:'GV',label:'독맥',name:'독맥',english:'GOVERNOR VESSEL',count:28,first:'GV20'},
