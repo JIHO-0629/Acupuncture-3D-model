@@ -20,21 +20,24 @@ const anteromedial = forearmAnterior.clone().addScaledVector(forearmMedial, 0.35
   const artery = mesh(atlas, 'Right axillary artery');
   // Lowest (most distal) third of the axillary artery lies under the axillary vault in the neutral pose.
   const vault = centroid(artery, (p) => p.y < artery.box.min.y + 0.025);
-  // A downward ray slips through the arm–trunk gap and hits the top of the shoulder (first run: 90 mm away),
-  // so the axillary hollow is taken as the closest skin to the artery instead.
-  W.putNearest('HT1', vault, ['thorax', 'shoulder', 'upper-arm-R'], 'centre of axilla · skin closest to distal axillary artery (arterial pulse)');
-  log.ht1 = { vault: vault.toArray().map((n) => +n.toFixed(4)) };
+  const teresMajor = mesh(atlas, 'Right teres major');
+  const posteriorFold = extremeCluster(teresMajor, LATERAL, 0.015, (p) => p.y < teresMajor.box.min.y + 0.04);
+  // BodyParts3D leaves the axillary vault open, so preserve the hollow itself instead of snapping to its anterior rim.
+  const centre = v(vault.x - 0.022, L.foldY, vault.z * 0.65 + posteriorFold.z * 0.35);
+  W.putDirect('HT1', centre, v(0, -1, 0), 'upper-arm-R', 'centre of axillary hollow · midway between anterior and posterior folds · over axillary artery pulse');
+  log.ht1 = { vault: vault.toArray().map((n) => +n.toFixed(4)), posteriorFold: posteriorFold.toArray().map((n) => +n.toFixed(4)) };
 }
 
 // ---------------------------------------------------------------- HT2: medial arm, just medial to biceps medial border, 3 B-cun above crease
 const biceps = ['Long head of right biceps brachii', 'Short head of right biceps brachii'].map((n) => mesh(atlas, n));
 {
   const y = L.creaseY + 3 * L.armCun;
-  const border = most(biceps.flatMap((part) => slab(part, 1, y, 0.004)), armMedial);
-  const deep = border.addScaledVector(armMedial, 0.003).setY(y);
+  const shortHead = centreOf(atHeight(mesh(atlas, 'Short head of right biceps brachii'), y));
+  const brachialis = centreOf(atHeight(mesh(atlas, 'Right brachialis'), y));
+  const deep = mid(shortHead, brachialis).addScaledVector(armMedial, 0.002).setY(y);
   // The medial arm faces the chest wall: its skin is partly labelled thorax. toSkin takes the nearest outward-side hit,
   // which is the arm skin (~1 cm) before the chest wall (~3 cm).
-  W.put('HT2', deep, radialFrom(deep, L.elbowCentre, L.humeralHead), ['upper-arm-R', 'thorax'], 'just medial to medial border of biceps brachii · 3 B-cun above cubital crease');
+  W.put('HT2', deep, radialFrom(deep, L.elbowCentre, L.humeralHead), ['upper-arm-R', 'thorax'], 'junction of short head of biceps brachii and brachialis · 3 B-cun above cubital crease');
 }
 
 // ---------------------------------------------------------------- HT3: anteromedial elbow, just anterior to medial epicondyle, level of cubital crease
@@ -77,7 +80,7 @@ const metacarpalFrame = (name) => {
   const mc4 = metacarpalFrame('Right fourth metacarpal bone'), mc5 = metacarpalFrame('Right fifth metacarpal bone');
   const axis = mid(mc4.axis, mc5.axis).normalize();
   const palmar = palmarNormal(axis);
-  const deep = mid(mc4.head, mc5.head).addScaledVector(axis, 0.012);
+  const deep = mid(mc4.head, mc5.head).addScaledVector(axis, 0.015);
   W.put('HT8', deep, palmar, ['hand-R'], 'palm · between 4th and 5th metacarpals · proximal to 5th MCP joint');
   log.ht8 = { palmar: palmar.toArray().map((n) => +n.toFixed(3)) };
 }

@@ -19,6 +19,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: fingernail (수지갑)",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI01.png",
    "status": "implemented_unverified",
    "seed": [
@@ -47,21 +50,24 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: red-white flesh border (적백육제)",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI02.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.22299,
-    0.80639,
-    0.04469
+    -0.22295,
+    0.81016,
+    0.04848
    ],
    "outward": [
-    0.92468,
+    0.94221,
     0,
-    -0.38075
+    0.33501
    ],
    "region": "hand-R",
-   "depthMm": 5.2,
-   "rule": "distal depression of 5th metacarpophalangeal joint · ulnar red-white border"
+   "depthMm": 9.6,
+   "rule": "distal depression of 5th MCP joint · ulnar red-white border with palmar bias"
   },
   {
    "code": "SI3",
@@ -75,21 +81,24 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: red-white flesh border (적백육제)",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI03.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.22547,
-    0.81542,
-    0.03494
+    -0.22273,
+    0.81683,
+    0.04018
    ],
    "outward": [
-    0.92468,
+    0.94221,
     0,
-    -0.38075
+    0.33501
    ],
    "region": "hand-R",
-   "depthMm": 2.9,
-   "rule": "proximal depression of 5th metacarpophalangeal joint · ulnar red-white border"
+   "depthMm": 15.4,
+   "rule": "proximal depression of 5th MCP joint · ulnar red-white border with palmar bias"
   },
   {
    "code": "SI4",
@@ -103,21 +112,24 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: red-white flesh border (적백육제)",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI04.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.22699,
-    0.8586,
-    0.01887
+    -0.22562,
+    0.86888,
+    0.02859
    ],
    "outward": [
-    0.92468,
+    0.94221,
     0,
-    -0.38075
+    0.33501
    ],
    "region": "hand-R",
-   "depthMm": 15,
-   "rule": "depression between base of 5th metacarpal and triquetrum · red-white border"
+   "depthMm": 16.8,
+   "rule": "bony interval between base of 5th metacarpal and triquetrum · red-white border"
   },
   {
    "code": "SI5",
@@ -131,6 +143,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI05.png",
    "status": "implemented_unverified",
    "seed": [
@@ -159,21 +174,24 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI06.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.22694,
-    0.89128,
-    0.01217
+    -0.22777,
+    0.88928,
+    0.0085
    ],
    "outward": [
-    -1,
+    0.92468,
     0,
-    0
+    -0.38075
    ],
    "region": "forearm-R",
-   "depthMm": 5.8,
-   "rule": "WHO/KCMRIC: radial side of the head of ulna, in the cleft revealed with palm on chest"
+   "depthMm": 13.7,
+   "rule": "radial side of ulnar head · cleft exposed with palm on chest"
   },
   {
    "code": "SI7",
@@ -187,6 +205,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI07.png",
    "status": "implemented_unverified",
    "seed": [
@@ -215,21 +236,24 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI08.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.17486,
-    1.12161,
-    -0.04203
+    -0.17811,
+    1.12859,
+    -0.05868
    ],
    "outward": [
-    0.6,
+    0.54779,
     0,
-    -0.8
+    -0.83662
    ],
-   "region": "upper-arm-R",
-   "depthMm": 2.1,
-   "rule": "depression between medial epicondyle of humerus and olecranon"
+   "region": "forearm-R",
+   "depthMm": 29.6,
+   "rule": "central depression between medial epicondyle of humerus and olecranon"
   },
   {
    "code": "SI9",
@@ -243,12 +267,15 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI09.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.204,
-    1.307,
-    -0.0917
+    -0.17321,
+    1.31953,
+    -0.10325
    ],
    "outward": [
     -0.54779,
@@ -256,8 +283,8 @@
     -0.83662
    ],
    "region": "upper-arm-R",
-   "depthMm": 51.5,
-   "rule": "1 B-cun superior to posterior axillary fold"
+   "depthMm": 49.7,
+   "rule": "1 B-cun superior to posterior axillary fold · posterior to deltoid"
   },
   {
    "code": "SI10",
@@ -271,21 +298,24 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI10.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.19382,
-    1.34,
-    -0.10049
+    -0.16905,
+    1.40975,
+    -0.09495
    ],
    "outward": [
-    -0.54779,
     0,
-    -0.83662
+    0,
+    -1
    ],
-   "region": "upper-arm-R",
-   "depthMm": 54.8,
-   "rule": "depression inferior to scapular spine · arm raised"
+   "region": "shoulder",
+   "depthMm": 48.5,
+   "rule": "depression immediately inferior to lateral scapular spine · arm raised"
   },
   {
    "code": "SI11",
@@ -299,12 +329,15 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI11.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.11858,
-    1.38059,
-    -0.13186
+    -0.13578,
+    1.37057,
+    -0.1313
    ],
    "outward": [
     0,
@@ -312,8 +345,8 @@
     -1
    ],
    "region": "shoulder",
-   "depthMm": 80.7,
-   "rule": "centre of infraspinous fossa · scapular triangular reference"
+   "depthMm": 75.4,
+   "rule": "centre of infraspinous fossa · midpoint below scapular spine toward inferior angle"
   },
   {
    "code": "SI12",
@@ -327,12 +360,15 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI12.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.115,
-    1.401,
-    -0.12534
+    -0.13987,
+    1.40045,
+    -0.11854
    ],
    "outward": [
     0,
@@ -340,8 +376,8 @@
     -1
    ],
    "region": "shoulder",
-   "depthMm": 50.3,
-   "rule": "centre of supraspinous fossa"
+   "depthMm": 41.5,
+   "rule": "centre of supraspinous fossa · superior to midpoint of scapular spine"
   },
   {
    "code": "SI13",
@@ -355,6 +391,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI13.png",
    "status": "implemented_unverified",
    "seed": [
@@ -383,6 +422,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI14.png",
    "status": "implemented_unverified",
    "seed": [
@@ -411,6 +453,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI15.png",
    "status": "implemented_unverified",
    "seed": [
@@ -439,6 +484,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI16.png",
    "status": "implemented_unverified",
    "seed": [
@@ -467,21 +515,24 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI17.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.0556,
-    1.535,
-    -0.00795
+    -0.05318,
+    1.52867,
+    0.01448
    ],
    "outward": [
-    -0.64997,
+    -0.55238,
     0,
-    0.75996
+    0.83359
    ],
-   "region": "neck",
-   "depthMm": 17.2,
-   "rule": "depression posterior to angle of mandible · anterior border of sternocleidomastoid"
+   "region": "face",
+   "depthMm": 15,
+   "rule": "depression immediately posterior to angle of mandible · anterior border of sternocleidomastoid"
   },
   {
    "code": "SI18",
@@ -495,21 +546,24 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: canthus (안각)",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI18.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.05687,
-    1.565,
-    0.04826
+    -0.0378,
+    1.56978,
+    0.0714
    ],
    "outward": [
-    -0.49828,
+    -0.28,
     0,
-    0.86701
+    0.96
    ],
    "region": "face",
-   "depthMm": 7.8,
-   "rule": "directly below lateral canthus · inferior border of zygomatic bone"
+   "depthMm": 14.4,
+   "rule": "inferior border of zygomatic bone · vertically below lateral canthus with medial correction"
   },
   {
    "code": "SI19",
@@ -523,6 +577,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: tragus (이주)",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/SI/SI19.png",
    "status": "implemented_unverified",
    "seed": [

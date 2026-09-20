@@ -25,21 +25,25 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: center of axilla (액와 중심) | 혈관/신경 변이를 고정 좌표 anchor로 사용 금지; 주변 stable anatomy로 재등록 필요",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/HT/HT01.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.16928,
-    1.31534,
-    0.0234
+    -0.16926,
+    1.31262,
+    -0.03226
    ],
    "outward": [
-    -0.40569,
-    -0.53673,
-    0.73983
+    0,
+    -1,
+    0
    ],
    "region": "upper-arm-R",
-   "depthMm": 54.3,
-   "rule": "centre of axilla · skin closest to distal axillary artery (arterial pulse)"
+   "depthMm": 0,
+   "rule": "centre of axillary hollow · midway between anterior and posterior folds · over axillary artery pulse",
+   "projection": "direct"
   },
   {
    "code": "HT2",
@@ -53,21 +57,24 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/HT/HT02.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.17102,
-    1.20546,
-    -0.0072
+    -0.21204,
+    1.20539,
+    0.01066
    ],
    "outward": [
-    0.72521,
-    -0.19188,
-    0.66125
+    -0.39263,
+    -0.00935,
+    0.91965
    ],
-   "region": "thorax",
-   "depthMm": 1.2,
-   "rule": "just medial to medial border of biceps brachii · 3 B-cun above cubital crease"
+   "region": "upper-arm-R",
+   "depthMm": 33.2,
+   "rule": "junction of short head of biceps brachii and brachialis · 3 B-cun above cubital crease"
   },
   {
    "code": "HT3",
@@ -81,6 +88,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/HT/HT03.png",
    "status": "implemented_unverified",
    "seed": [
@@ -109,6 +119,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/HT/HT04.png",
    "status": "implemented_unverified",
    "seed": [
@@ -137,6 +150,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/HT/HT05.png",
    "status": "implemented_unverified",
    "seed": [
@@ -165,6 +181,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/HT/HT06.png",
    "status": "implemented_unverified",
    "seed": [
@@ -193,6 +212,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/HT/HT07.png",
    "status": "implemented_unverified",
    "seed": [
@@ -221,12 +243,15 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/HT/HT08.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.24217,
-    0.82169,
-    0.05174
+    -0.24231,
+    0.82461,
+    0.05104
    ],
    "outward": [
     -0.05973,
@@ -234,7 +259,7 @@
     0.98321
    ],
    "region": "hand-R",
-   "depthMm": 17.8,
+   "depthMm": 17.6,
    "rule": "palm · between 4th and 5th metacarpals · proximal to 5th MCP joint"
   },
   {
@@ -249,6 +274,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: fingernail (수지갑) | 일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/HT/HT09.png",
    "status": "implemented_unverified",
    "seed": [

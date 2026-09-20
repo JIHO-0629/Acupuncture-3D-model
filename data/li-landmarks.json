@@ -263,16 +263,16 @@
   "LI16": {
    "seed": [
     -0.14077,
-    1.43843,
-    -0.0485
+    1.43959,
+    -0.0631
    ],
    "outward": [
     0,
-    0.98894,
-    -0.14834
+    0.89004,
+    -0.45588
    ],
-   "depthMm": 16.8,
-   "rule": "midpoint(posterior acromial end of clavicle, superior spine of scapula)"
+   "depthMm": 19.9,
+   "rule": "posteriorly biased midpoint(acromial end of clavicle, superior spine of scapula)"
   },
   "LI17": {
    "seed": [

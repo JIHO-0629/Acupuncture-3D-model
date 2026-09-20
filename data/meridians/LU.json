@@ -27,6 +27,9 @@
    "whoStatus": "주의: WHO와 부가주석 충돌",
    "whoNote": "WHO 2008: first intercostal space와 같은 높이, infraclavicular fossa 가쪽, anterior median line에서 6 B-cun. 원본의 '(실제로는 둘째 갈비사이공간...)' 메모는 WHO 표준과 충돌하므로 원문은 유지하되 좌표화에는 사용하지 않음.",
    "manualCheck": "원본에 표준 외 부가메모/상충 가능 표현 존재",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/LU/LU01.png",
    "status": "implemented_unverified",
    "seed": [
@@ -55,12 +58,15 @@
    "whoStatus": "주의: WHO 표준 우선",
    "whoNote": "WHO 2008 핵심: infraclavicular fossa의 depression, coracoid process of scapula의 medial, anterior median line에서 6 B-cun. 원본의 '첫째 갈비사이공간' 부가메모는 WHO 핵심 정의가 아니므로 좌표화 시 보조정보로만 취급.",
    "manualCheck": "원본에 표준 외 부가메모/상충 가능 표현 존재",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/LU/LU02.png",
    "status": "implemented_unverified",
    "seed": [
     -0.11647,
-    1.40146,
-    0.03452
+    1.41289,
+    0.01631
    ],
    "outward": [
     0,
@@ -68,8 +74,8 @@
     1
    ],
    "region": "thorax",
-   "depthMm": 31.7,
-   "rule": "infraclavicular fossa at coracoid level · 6 B-cun lateral (clavicle-midpoint = 4 B-cun)"
+   "depthMm": 13.5,
+   "rule": "infraclavicular fossa immediately inferior to clavicle · medial to coracoid · 6 B-cun lateral"
   },
   {
    "code": "LU3",
@@ -83,6 +89,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/LU/LU03.png",
    "status": "implemented_unverified",
    "seed": [
@@ -111,6 +120,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/LU/LU04.png",
    "status": "implemented_unverified",
    "seed": [
@@ -139,12 +151,15 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/LU/LU05.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.22926,
-    1.15732,
-    0.00297
+    -0.22923,
+    1.16029,
+    0.00285
    ],
    "outward": [
     -0.29309,
@@ -152,8 +167,8 @@
     0.92383
    ],
    "region": "upper-arm-R",
-   "depthMm": 20.7,
-   "rule": "cubital crease · depression lateral to biceps brachii tendon"
+   "depthMm": 20.5,
+   "rule": "immediately superior to cubital crease · depression lateral to biceps brachii tendon"
   },
   {
    "code": "LU6",
@@ -167,12 +182,15 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/LU/LU06.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.24843,
-    1.04449,
-    0.01529
+    -0.24839,
+    1.04619,
+    0.01509
    ],
    "outward": [
     -0.15769,
@@ -180,7 +198,7 @@
     0.96081
    ],
    "region": "forearm-R",
-   "depthMm": 2.3,
+   "depthMm": 2.5,
    "rule": "LU9→LU5 line · 7 B-cun above palmar wrist crease"
   },
   {
@@ -195,6 +213,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/LU/LU07.png",
    "status": "implemented_unverified",
    "seed": [
@@ -223,6 +244,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/LU/LU08.png",
    "status": "implemented_unverified",
    "seed": [
@@ -251,6 +275,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/LU/LU09.png",
    "status": "implemented_unverified",
    "seed": [
@@ -279,12 +306,15 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: red-white flesh border (적백육제)",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/LU/LU10.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.31221,
-    0.85822,
-    0.04455
+    -0.30682,
+    0.86677,
+    0.03918
    ],
    "outward": [
     -0.82276,
@@ -292,8 +322,8 @@
     0.1446
    ],
    "region": "hand-R",
-   "depthMm": 6.4,
-   "rule": "radial to midpoint of 1st metacarpal · red-white flesh border (palmar-radial)"
+   "depthMm": 18.1,
+   "rule": "radial to exact midpoint of 1st metacarpal · red-white flesh border (palmar-radial)"
   },
   {
    "code": "LU11",
@@ -307,6 +337,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: fingernail (수지갑) | 일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/LU/LU11.png",
    "status": "implemented_unverified",
    "seed": [

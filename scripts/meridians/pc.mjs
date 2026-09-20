@@ -75,7 +75,8 @@ const metacarpalFrame = (name) => {
   const mc2 = metacarpalFrame('Right second metacarpal bone'), mc3 = metacarpalFrame('Right third metacarpal bone');
   const axis = mid(mc2.axis, mc3.axis).normalize();
   const palmar = palmarNormal(axis);
-  const deep = mid(mc2.head, mc3.head).addScaledVector(axis, 0.012);
+  // Small proximal correction requested after local visual review.
+  const deep = mid(mc2.head, mc3.head).addScaledVector(axis, 0.015);
   W.put('PC8', deep, palmar, ['hand-R'], 'palm · between 2nd and 3rd metacarpals · proximal to MCP joints (WHO/KCMRIC; 3rd–4th alternative noted)');
   log.pc8 = { palmar: palmar.toArray().map((n) => +n.toFixed(3)) };
 }
@@ -85,7 +86,9 @@ const metacarpalFrame = (name) => {
   const dp = mesh(atlas, 'Distal phalanx of right middle finger');
   const tip = extremeCluster(dp, v(0, -1, 0.7), 0.03), base = extremeCluster(dp, v(0, 1, -0.7), 0.03);
   const axis = tip.clone().sub(base).normalize();
-  W.put('PC9', tip, axis, ['hand-R'], 'centre of the tip of the middle finger (WHO standard; radial nail-root corner alternative noted)');
+  const mc3 = metacarpalFrame('Right third metacarpal bone');
+  const palmar = palmarNormal(mc3.axis);
+  W.put('PC9', tip, axis.clone().multiplyScalar(0.9).addScaledVector(palmar, 0.35).normalize(), ['hand-R'], 'centre of middle-finger tip with slight palmar bias (WHO standard; radial nail-root corner alternative noted)');
 }
 
 const english = { PC1: 'Tianchi', PC2: 'Tianquan', PC3: 'Quze', PC4: 'Ximen', PC5: 'Jianshi', PC6: 'Neiguan', PC7: 'Daling', PC8: 'Laogong', PC9: 'Zhongchong' };

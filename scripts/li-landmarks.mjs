@@ -201,7 +201,8 @@ const greaterTubercle = extremeCluster(humerus, v(-1, 0.3, 0.3), 0.01, (p) => p.
   const x = clavEnd.x + 0.004;
   const clavBack = most(slab(clavicle, 0, x, 0.004), v(0, 0.3, -1));
   const spine = most(slab(scapula, 0, x, 0.004, (p) => p.z < clavBack.z - 0.004 && p.y > clavBack.y - 0.03), v(0, 1, 0.3));
-  put('LI16', mid(clavBack, spine), v(0, 1, -0.15), 'midpoint(posterior acromial end of clavicle, superior spine of scapula)');
+  // Reviewer: the marker read too anterior. Bias the clavicle-spine interval 8 mm posteriorly.
+  put('LI16', mid(clavBack, spine).add(v(0, 0, -0.008)), v(0, 0.82, -0.42).normalize(), 'posteriorly biased midpoint(acromial end of clavicle, superior spine of scapula)');
 }
 // LI17 / LI18 — neck, relative to SCM borders.
 {

@@ -24,8 +24,11 @@ const chestRegions = ['thorax', 'shoulder'];
 // Pure anterior ray: the chest skin is ~3–5 cm in front of the coracoid, and any tilt would shift the level/6 B-cun line.
 const chestOut = v(0, 0, 1);
 // LU2: depression of the infraclavicular fossa, medial to the coracoid process, 6 B-cun lateral to the midline.
-const lu2 = v(sixCunX, coracoid.y, coracoid.z);
-W.put('LU2', lu2, chestOut, chestRegions, 'infraclavicular fossa at coracoid level · 6 B-cun lateral (clavicle-midpoint = 4 B-cun)');
+const clavicleAtSixCun = slab(clavicle, 0, sixCunX, 0.008);
+const clavicleUnderside = most(clavicleAtSixCun, DOWN);
+// Reviewer photo: the first pass sat too low in the fossa. Keep the point immediately below the clavicle.
+const lu2 = v(sixCunX, clavicleUnderside.y - 0.004, coracoid.z);
+W.put('LU2', lu2, chestOut, chestRegions, 'infraclavicular fossa immediately inferior to clavicle · medial to coracoid · 6 B-cun lateral');
 // LU1: level of the 1st intercostal space (between 1st and 2nd costal cartilages at the sternal border), 6 B-cun lateral.
 const cc1Low = extremeCluster(mesh(atlas, 'Right first costal cartilage'), DOWN, 0.02);
 const cc2Top = extremeCluster(mesh(atlas, 'Right second costal cartilage'), UP, 0.02);
@@ -48,8 +51,8 @@ for (const [code, cun] of [['LU3', 3], ['LU4', 4]]) {
 const forearmLateral = perp(LATERAL, L.forearmAxis), forearmAnterior = perp(ANTERIOR, L.forearmAxis);
 {
   const tendon = most(biceps.flatMap((part) => slab(part, 1, L.creaseY, 0.006)), armLateral);
-  const deep = tendon.addScaledVector(armLateral, 0.004).setY(L.creaseY);
-  W.put('LU5', deep, forearmAnterior.clone().addScaledVector(forearmLateral, 0.35), ['upper-arm-R', 'forearm-R'], 'cubital crease · depression lateral to biceps brachii tendon');
+  const deep = tendon.addScaledVector(armLateral, 0.004).setY(L.creaseY + 0.003);
+  W.put('LU5', deep, forearmAnterior.clone().addScaledVector(forearmLateral, 0.35), ['upper-arm-R', 'forearm-R'], 'immediately superior to cubital crease · depression lateral to biceps brachii tendon');
 }
 
 // ---------------------------------------------------------------- wrist and forearm: LU9, LU8, LU7, LU6
@@ -95,8 +98,8 @@ const wristRegions = ['forearm-R', 'hand-R'];
   const axis = base.clone().sub(head).normalize();
   const border = perp(LATERAL, axis).add(perp(ANTERIOR, axis).multiplyScalar(0.35)).normalize();
   const midpoint = mid(head, base);
-  const surface = most(slab(mc1, 1, midpoint.y, 0.004), border).addScaledVector(border, 0.003);
-  W.put('LU10', surface, border, ['hand-R'], 'radial to midpoint of 1st metacarpal · red-white flesh border (palmar-radial)');
+  // Project from the shaft midpoint itself; choosing the most radial slab vertex made the midpoint read too distal.
+  W.put('LU10', midpoint, border, ['hand-R'], 'radial to exact midpoint of 1st metacarpal · red-white flesh border (palmar-radial)');
 }
 {
   // LU11: thumb distal phalanx, 0.1 F-cun proximal-lateral to the radial corner of the thumbnail.

@@ -25,6 +25,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/PC/PC01.png",
    "status": "implemented_unverified",
    "seed": [
@@ -53,6 +56,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/PC/PC02.png",
    "status": "implemented_unverified",
    "seed": [
@@ -81,6 +87,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/PC/PC03.png",
    "status": "implemented_unverified",
    "seed": [
@@ -109,6 +118,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/PC/PC04.png",
    "status": "implemented_unverified",
    "seed": [
@@ -137,6 +149,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/PC/PC05.png",
    "status": "implemented_unverified",
    "seed": [
@@ -165,6 +180,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/PC/PC06.png",
    "status": "implemented_unverified",
    "seed": [
@@ -193,6 +211,9 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/PC/PC07.png",
    "status": "implemented_unverified",
    "seed": [
@@ -221,12 +242,15 @@
    "whoStatus": "WHO 대안 위치 병기(논쟁혈)",
    "whoNote": "WHO 2008에서 최종 6개 논쟁혈 중 하나이며 Remarks에 alternative location이 병기됨. 원본은 변경하지 않고 좌표 확정 전 수동 검수 필요.",
    "manualCheck": "WHO 2008 논쟁혈: alternative location 병기",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/PC/PC08.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.2735,
-    0.81425,
-    0.05004
+    -0.27328,
+    0.81712,
+    0.04918
    ],
    "outward": [
     -0.06558,
@@ -234,7 +258,7 @@
     0.96227
    ],
    "region": "hand-R",
-   "depthMm": 17.9,
+   "depthMm": 17.8,
    "rule": "palm · between 2nd and 3rd metacarpals · proximal to MCP joints (WHO/KCMRIC; 3rd–4th alternative noted)"
   },
   {
@@ -249,21 +273,24 @@
    "whoStatus": "WHO 대안 위치 병기(논쟁혈)",
    "whoNote": "WHO 2008에서 최종 6개 논쟁혈 중 하나이며 Remarks에 alternative location이 병기됨. 원본은 변경하지 않고 좌표 확정 전 수동 검수 필요.",
    "manualCheck": "WHO 2008 논쟁혈: alternative location 병기",
+   "needlingStatus": "allowed_unverified",
+   "needlingRestriction": "",
+   "sourceValidation": null,
    "photo": "images/PC/PC09.png",
    "status": "implemented_unverified",
    "seed": [
-    -0.27843,
-    0.73095,
-    0.09402
+    -0.27861,
+    0.73049,
+    0.09506
    ],
    "outward": [
-    -0.16431,
-    -0.7003,
-    0.69468
+    -0.15571,
+    -0.47269,
+    0.86736
    ],
    "region": "hand-R",
-   "depthMm": 0.3,
-   "rule": "centre of the tip of the middle finger (WHO standard; radial nail-root corner alternative noted)"
+   "depthMm": 1.5,
+   "rule": "centre of middle-finger tip with slight palmar bias (WHO standard; radial nail-root corner alternative noted)"
   }
  ]
 }
