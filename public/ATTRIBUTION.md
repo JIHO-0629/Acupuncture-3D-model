@@ -17,7 +17,7 @@ BodyParts3D represents an adult male reference anatomy based on TARO MRI and ana
 
 ## Structures recovered from BodyParts3D 3.0
 
-Release 4.0 does not ship the muscles of facial expression, the muscles of mastication, the epicranial aponeurosis, lung surfaces, latissimus dorsi, or rectus abdominis. Release 3.0 still carries them, in the same coordinate frame, so 55 meshes are taken from there and placed on the 4.0 skeleton without any registration or reshaping.
+Release 4.0 does not ship the muscles of facial expression, the muscles of mastication, the epicranial aponeurosis, lung surfaces, latissimus dorsi, or rectus abdominis. Release 3.0 still carries them, so 55 meshes are taken from there. The higher-detail masseter replacement is registered to the 4.0 skeleton with a similarity fit derived from the release-3.0 and release-4.0 mandible and bilateral zygomatic bones; the other recovered structures retain the legacy placement.
 
 - Source geometry: `BodyParts3D_3.0_obj_99.zip`, BodyParts3D 3.0 (2011-09-15 release).
 - Masseter refinement: the left/right superficial and deep masseter meshes use the higher-detail `BodyParts3D_3.0_obj_95.zip` geometry without further simplification.

@@ -3,6 +3,7 @@
  * Usage: node scripts/replace-bp3-masseter.mjs OBJ_DIRECTORY
  */
 import fs from 'node:fs';
+import {gzipSync} from 'node:zlib';
 
 const PARTS=[
  ['FMA49001','Superficial part of right masseter'],
@@ -12,6 +13,11 @@ const PARTS=[
 ];
 const source=process.argv[2];
 if(!source)throw new Error('Usage: node scripts/replace-bp3-masseter.mjs OBJ_DIRECTORY');
+
+// Release 3.0 and 4.0 use different body-coordinate generations. A similarity
+// fit of the 3.0 mandible and bilateral zygomatic bones to their 4.0 meshes gives
+// this registration (the three independent fits agree within 0.4 mm).
+const REGISTRATION={scale:1.053,offset:[0,-.094,-.0094]};
 
 const modelDir=new URL('../public/models/',import.meta.url);
 const manifestUrl=new URL('atlas.json',modelDir);
@@ -26,7 +32,8 @@ const readObj=id=>{
  for(const line of fs.readFileSync(new URL(`${id}.obj`,sourceRoot),'utf8').split(/\r?\n/)){
   if(line.startsWith('v ')){
    const [x,y,z]=line.trim().split(/\s+/).slice(1,4).map(Number);
-   positions.push(x*.001,z*.001+.0781112,-y*.001-.1);
+   const point=[x*.001,z*.001+.0781112,-y*.001-.1];
+   positions.push(...point.map((value,axis)=>value*REGISTRATION.scale+REGISTRATION.offset[axis]));
   }else if(line.startsWith('vn ')){
    const [x,y,z]=line.trim().split(/\s+/).slice(1,4).map(Number);
    normals.push(Math.round(x*32767),Math.round(z*32767),Math.round(-y*32767));
@@ -67,12 +74,15 @@ for(const [id,name] of PARTS){
 
 const packed=Buffer.concat(segments);
 fs.writeFileSync(new URL(outputName,modelDir),packed);
-manifest.chunks[chunkIndex]={url:outputUrl,bytes:packed.length};
+const compressed=gzipSync(packed,{level:9});
+fs.writeFileSync(new URL(`${outputName}.gz`,modelDir),compressed);
+manifest.chunks[chunkIndex]={url:outputUrl,bytes:packed.length,gzip:`${outputUrl}.gz`,gzipBytes:compressed.length};
 manifest.triangles+=newTriangles-oldTriangles;
 manifest.supplements=(manifest.supplements??[]).filter(item=>item.refinement!=='masseter-95');
 manifest.supplements.push({
  source:'BodyParts3D 3.0',archive:'BodyParts3D_3.0_obj_95.zip',structures:4,triangles:newTriangles,
  reason:'Higher-detail replacement for the superficial and deep masseter meshes',refinement:'masseter-95',
+ registration:'similarity fit from release-3.0 mandible and bilateral zygomatic bones to release 4.0',
 });
 fs.writeFileSync(manifestUrl,JSON.stringify(manifest));
 console.log(JSON.stringify({chunk:outputUrl,bytes:packed.length,oldTriangles,newTriangles},null,2));
