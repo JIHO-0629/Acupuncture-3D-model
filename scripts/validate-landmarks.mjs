@@ -151,6 +151,47 @@ for (const side of ['right', 'left']) {
     fail(`${side}: GB44 conceptual nail landmark must remain explicitly low-confidence and estimated`);
 }
 
+// 8. The restored release-3.0 trunk wall must sit on this body's release-4.0 skeleton.
+//    A mesh imported in the wrong coordinate frame floats clear of every bone it
+//    attaches to, so each structure is measured against the bone it cannot leave.
+const nearestTo = (name, target) => nearestVertex(mesh(atlas, name), target);
+for (const side of ['right', 'left']) {
+  const prefix = side === 'right' ? 'Right' : 'Left';
+  const asis = get('asis', side), symphysis = get('pubic_symphysis_superior');
+  if (asis && symphysis && atlas.byName.has(`${prefix} inguinal ligament`.toLowerCase())) {
+    const ligament = mesh(atlas, `${prefix} inguinal ligament`);
+    // The viewer's right side is -x, so a medial end on its own side keeps this positive.
+    const sign = side === 'right' ? -1 : 1;
+    const ends = [at(asis), at(symphysis)].map((target) => nearestVertex(ligament, target));
+    // BodyParts3D models the ligament as the rolled free edge of the external oblique
+    // aponeurosis, which stands off the bone rather than touching it, and the pubic end
+    // attaches at the tubercle rather than at the symphysis. The measured standoff is
+    // reported; only a gross displacement, which is what a bad import looks like, fails.
+    if (ends[0] > 0.035) fail(`${side} inguinal ligament: ${mm(ends[0])} from the ASIS`);
+    else warn(`${side} inguinal ligament: ${mm(ends[0])} from the ASIS, ${mm(ends[1])} from the superior pubic symphysis`);
+    if (ligament.box.min.y > at(asis).y || ligament.box.max.y < at(symphysis).y)
+      fail(`${side} inguinal ligament: does not span the height between the ASIS and the pubis`);
+    const medial = side === 'right' ? ligament.box.max.x : ligament.box.min.x;
+    if (medial * sign < 0) fail(`${side} inguinal ligament: its medial end crosses the midline`);
+  }
+  // Quadratus lumborum bridges the twelfth rib and the iliac crest; multifidus lies on
+  // the laminae. Both must touch bone, which is the sharpest test of the import frame.
+  for (const [name, bones, limit] of [
+    [`${prefix} quadratus lumborum`, [`${prefix} twelfth rib`, `${prefix} hip bone`], 0.006],
+    [`${prefix} multifidus`, ['Second lumbar vertebra', 'Fourth lumbar vertebra', 'Sacrum'], 0.006],
+  ]) {
+    if (!atlas.byName.has(name.toLowerCase())) continue;
+    const part = mesh(atlas, name);
+    let closest = Infinity;
+    for (const bone of bones) {
+      const target = mesh(atlas, bone);
+      for (let i = 0; i < part.vertexCount; i += 3)
+        closest = Math.min(closest, nearestVertex(target, new T.Vector3(part.positions[i * 3], part.positions[i * 3 + 1], part.positions[i * 3 + 2])));
+    }
+    if (closest > limit) fail(`${name}: ${mm(closest)} from ${bones.join(' / ')}, too far to be attached`);
+  }
+}
+
 console.log(`${data.landmarks.length} landmarks checked`);
 for (const message of warnings) console.log(`  warning  ${message}`);
 if (failures.length) {

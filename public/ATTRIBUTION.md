@@ -9,7 +9,7 @@ BodyParts3D, © The Database Center for Life Science licensed under CC Attributi
 - English names and relationships: IS-A and PART-OF concept, element, and inclusion tables from the same archive.
 - Publication: Mitsuhashi et al. (2009), BodyParts3D: 3D structure database for anatomical concepts. https://doi.org/10.1093/nar/gkn613
 
-Adaptations: axes and units converted from millimeters/Z-up to meters/Y-up; translated to rest at the stage; geometry simplified using meshoptimizer with 0.2% relative error limit per structure; normals quantized to signed 16-bit; packed into binary chunks; curated display system groupings and colors. The 4.0 source contains 2,234 individual OBJ meshes; all remain represented, alongside 55 meshes recovered from release 3.0 (see below). The combined hierarchy contains 3,482 named FMA concepts, which may reference multiple meshes. Original source identity is preserved in the manifest.
+Adaptations: axes and units converted from millimeters/Z-up to meters/Y-up; translated to rest at the stage; geometry simplified using meshoptimizer with 0.2% relative error limit per structure; normals quantized to signed 16-bit; packed into binary chunks; curated display system groupings and colors. The 4.0 source contains 2,234 individual OBJ meshes; all remain represented, alongside 65 meshes recovered from release 3.0 (see below). The combined hierarchy contains 3,492 named FMA concepts, which may reference multiple meshes. Original source identity is preserved in the manifest.
 
 Source OBJ comments mention an older CC BY-SA 2.1 Japan license. The official current database license linked above supersedes that legacy text and explicitly permits redistribution and adaptation under CC BY 4.0.
 
@@ -17,20 +17,23 @@ BodyParts3D represents an adult male reference anatomy based on TARO MRI and ana
 
 ## Structures recovered from BodyParts3D 3.0
 
-Release 4.0 does not ship the muscles of facial expression, the muscles of mastication, the epicranial aponeurosis, lung surfaces, latissimus dorsi, or rectus abdominis. Release 3.0 still carries them, so 55 meshes are taken from there. The higher-detail masseter replacement is registered to the 4.0 skeleton with a similarity fit derived from the release-3.0 and release-4.0 mandible and bilateral zygomatic bones; the other recovered structures retain the legacy placement.
+Release 4.0 does not ship the muscles of facial expression, the muscles of mastication, the epicranial aponeurosis, lung surfaces, latissimus dorsi, rectus abdominis, or the deep trunk wall. Release 3.0 still carries them, so 65 meshes are taken from there. The higher-detail masseter replacement is registered to the 4.0 skeleton with a similarity fit derived from the release-3.0 and release-4.0 mandible and bilateral zygomatic bones; the other recovered structures retain the legacy placement.
 
 - Source geometry: `BodyParts3D_3.0_obj_99.zip`, BodyParts3D 3.0 (2011-09-15 release).
 - Masseter refinement: the left/right superficial and deep masseter meshes use the higher-detail `BodyParts3D_3.0_obj_95.zip` geometry without further simplification.
 - Archive: https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/
 - English names: `parts_list_e.txt` from the same release.
 - Script: [`scripts/add-bp3-structures.mjs`](../scripts/add-bp3-structures.mjs), which lists every recovered structure.
+- Trunk wall script: [`scripts/restore-bp3-trunk-wall.mjs`](../scripts/restore-bp3-trunk-wall.mjs).
 - Masseter replacement script: [`scripts/replace-bp3-masseter.mjs`](../scripts/replace-bp3-masseter.mjs).
 
 Recovered: temporalis, masseter (superficial and deep parts), medial and lateral pterygoid, epicranial aponeurosis, orbicularis oculi (orbital and palpebral parts), orbicularis oris, corrugator supercilii, procerus, nasalis, depressor septi nasi, buccinator, levator labii superioris, levator labii superioris alaeque nasi, levator anguli oris, depressor anguli oris, depressor labii inferioris, zygomaticus major and minor, risorius, mentalis, latissimus dorsi, rectus abdominis, and the five lung lobes.
 
+Also recovered, because a needle through the trunk passes them: internal oblique, transversus abdominis, quadratus lumborum, multifidus, and the inguinal ligament. These ten meshes use the same axis transform as the rest of the 3.0 recovery and need no registration: quadratus lumborum and multifidus reach within 0.6 mm of the 4.0 twelfth rib, hip bone and lumbar vertebrae, every vertex of all ten lies inside the 4.0 skin, and an anterior ray through the flank meets external oblique, internal oblique and transversus abdominis in that order. The inguinal ligament is the modelled free edge of the external oblique aponeurosis and stands 14-17 mm off the ASIS rather than touching it; [`scripts/validate-landmarks.mjs`](../scripts/validate-landmarks.mjs) reports that standoff on every run.
+
 The 3.0 OBJ files carry the same legacy CC BY-SA 2.1 Japan comment as the 4.0 files. The current dataset license linked above covers the BodyParts3D database as distributed by DBCLS, including the archived releases.
 
-Still absent from every BodyParts3D release, and therefore not represented here: the pleura, the parietal peritoneum, peripheral nerves outside the orbit (including the sciatic, common fibular, tibial, femoral, and intercostal nerves), the crural, thoracolumbar and gluteal fasciae, and the parotid gland. Lung surfaces stand in for the pleural boundary; they are not pleura.
+Still absent from every BodyParts3D release, and therefore not represented here: the pleura, the parietal peritoneum, the spinal ligaments including the ligamentum flavum, the joint capsules and bursae, peripheral nerves outside the orbit (including the sciatic, common fibular, tibial, femoral, and intercostal nerves), the crural, thoracolumbar and gluteal fasciae, and the parotid gland. With no peritoneum in the model, transversus abdominis is the innermost surface the abdominal wall has. Lung surfaces stand in for the pleural boundary; they are not pleura.
 
 ## Historical assets (not included in the current release)
 
