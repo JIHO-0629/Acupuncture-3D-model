@@ -266,13 +266,21 @@ export default function AnatomyScene({
     };
     const materialFor = (system: string) => {
       const isSurface = system === "integumentary";
+      // The rib cage is mostly intercostal space, and the lung surface lies against the
+      // inside of the chest wall, so two thirds of it shows through a gap. Drawn opaque it
+      // fills every space and the cage stops reading as ribs, which is the one thing a
+      // thoracic point needs from it. The lung surfaces stand in for the pleural boundary
+      // rather than being source anatomy (public/ATTRIBUTION.md), so they are drawn
+      // translucent. depthWrite stays on: ribs in front still occlude the lung, and the
+      // lung does not blend with itself where it folds.
+      const isBreath = system === "respiratory";
       const m = new T.MeshStandardMaterial({
         color: isSurface ? "#c79d82" : (SYSTEMS.find((s) => s.id === system)?.color ?? "#aebbb8"),
         metalness: isSurface ? 0 : 0.08,
         roughness: isSurface ? 0.82 : 0.53,
         side: T.DoubleSide,
-        transparent: false,
-        opacity: 1,
+        transparent: isBreath,
+        opacity: isBreath ? 0.42 : 1,
         depthWrite: true,
       });
       m.customProgramCacheKey = () => `atlas-${isSurface ? "surface-toe-cut-v2" : "internal"}`;
