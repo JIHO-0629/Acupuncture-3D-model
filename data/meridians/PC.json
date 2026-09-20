@@ -28,7 +28,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/PC/PC01.png",
    "status": "implemented_unverified",
    "seed": [
     -0.09706,
@@ -59,7 +58,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/PC/PC02.png",
    "status": "implemented_unverified",
    "seed": [
     -0.1924,
@@ -90,7 +88,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/PC/PC03.png",
    "status": "implemented_unverified",
    "seed": [
     -0.19783,
@@ -121,7 +118,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/PC/PC04.png",
    "status": "implemented_unverified",
    "seed": [
     -0.22124,
@@ -152,7 +148,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/PC/PC05.png",
    "status": "implemented_unverified",
    "seed": [
     -0.2338,
@@ -183,7 +178,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/PC/PC06.png",
    "status": "implemented_unverified",
    "seed": [
     -0.24117,
@@ -214,7 +208,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/PC/PC07.png",
    "status": "implemented_unverified",
    "seed": [
     -0.25422,
@@ -245,7 +238,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/PC/PC08.png",
    "status": "implemented_unverified",
    "seed": [
     -0.27328,
@@ -276,7 +268,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/PC/PC09.png",
    "status": "implemented_unverified",
    "seed": [
     -0.27861,

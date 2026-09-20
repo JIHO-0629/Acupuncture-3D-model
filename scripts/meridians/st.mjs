@@ -434,15 +434,14 @@ const foot = ['foot-R'];
   const mt2Side = most(pts(mt2, (p) => Math.abs(p.z - z43) < 0.003), LATERAL);
   const mt3Side = most(pts(mt3, (p) => Math.abs(p.z - z43) < 0.003), v(1, 0, 0));
   W.put('ST43', v((mt2Side.x + mt3Side.x) / 2, Math.max(mt2Side.y, mt3Side.y), z43), v(0, 1, 0.1).normalize(), foot,
-    'between the 2nd and 3rd metatarsals · depression immediately proximal to the 2nd MTP joint (reviewer decision: photo yellow point)',
-    { photo: 'images/ST/ST43.jpg' });
+    'between the 2nd and 3rd metatarsals · depression immediately proximal to the 2nd MTP joint (reviewer decision: photo yellow point)');
 
   const pp2 = mesh(atlas, 'Proximal phalanx of right second toe'), pp3 = mesh(atlas, 'Proximal phalanx of right third toe');
   const z44 = Math.max(pp2.box.min.z, pp3.box.min.z) + 0.004;
   const toe2 = most(pts(pp2, (p) => Math.abs(p.z - z44) < 0.003), LATERAL);
   const toe3 = most(pts(pp3, (p) => Math.abs(p.z - z44) < 0.003), v(1, 0, 0));
   W.put('ST44', v((toe2.x + toe3.x) / 2, Math.max(toe2.y, toe3.y), z44), v(0, 0.95, 0.3).normalize(), foot,
-    'between the 2nd and 3rd toes · proximal to the web margin, at the red-white flesh border', { photo: 'images/ST/ST44.jpg' });
+    'between the 2nd and 3rd toes · proximal to the web margin, at the red-white flesh border');
 
   const distal = mesh(atlas, 'Distal phalanx of right second toe'), middle = mesh(atlas, 'Middle phalanx of right second toe');
   const neighbour = exists('Distal phalanx of right third toe') ? mesh(atlas, 'Distal phalanx of right third toe') : mesh(atlas, 'Proximal phalanx of right third toe');
@@ -458,8 +457,7 @@ const foot = ['foot-R'];
   // 0.1 F-cun proximal-lateral to the nail-root corner (toenails are not modelled).
   const nailPoint = corner.addScaledVector(longitudinal, -0.1 * F_CUN * 0.7).addScaledVector(lateral, 0.1 * F_CUN * 0.7);
   W.put('ST45', nailPoint, lateral.clone().multiplyScalar(0.6).add(dorsal.clone().multiplyScalar(0.8)).normalize(), foot,
-    '2nd toe · 0.1 F-cun proximal-lateral to the lateral corner of the toenail root (nail footprint estimated from the distal phalanx)',
-    { photo: 'images/ST/ST45.jpg' });
+    '2nd toe · 0.1 F-cun proximal-lateral to the lateral corner of the toenail root (nail footprint estimated from the distal phalanx)');
 }
 
 const english = ['Chengqi', 'Sibai', 'Juliao', 'Dicang', 'Daying', 'Jiache', 'Xiaguan', 'Touwei', 'Renying', 'Shuitu', 'Qishe', 'Quepen', 'Qihu', 'Kufang', 'Wuyi', 'Yingchuang', 'Ruzhong', 'Rugen', 'Burong', 'Chengman', 'Liangmen', 'Guanmen', 'Taiyi', 'Huaroumen', 'Tianshu', 'Wailing', 'Daju', 'Shuidao', 'Guilai', 'Qichong', 'Biguan', 'Futu', 'Yinshi', 'Liangqiu', 'Dubi', 'Zusanli', 'Shangjuxu', 'Tiaokou', 'Xiajuxu', 'Fenglong', 'Jiexi', 'Chongyang', 'Xiangu', 'Neiting', 'Lidui'];

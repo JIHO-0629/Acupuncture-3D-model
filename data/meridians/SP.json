@@ -19,7 +19,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: toenail (족지갑) | 일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
-   "photo": "images/SP/SP01.png",
    "status": "implemented_unverified",
    "seed": [
     -0.09817,
@@ -47,7 +46,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
-   "photo": "images/SP/SP02.png",
    "status": "implemented_unverified",
    "seed": [
     -0.09151,
@@ -75,7 +73,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: red-white flesh border (적백육제)",
-   "photo": "images/SP/SP03.png",
    "status": "implemented_unverified",
    "seed": [
     -0.0847,
@@ -103,7 +100,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "3D atlas에서 직접 mesh landmark가 없거나 불안정할 수 있음: red-white flesh border (적백육제)",
-   "photo": "images/SP/SP04.png",
    "status": "implemented_unverified",
    "seed": [
     -0.07584,
@@ -131,7 +127,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
-   "photo": "images/SP/SP05.png",
    "status": "implemented_unverified",
    "seed": [
     -0.04874,
@@ -159,7 +154,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
-   "photo": "images/SP/SP06.png",
    "status": "implemented_unverified",
    "seed": [
     -0.04718,
@@ -187,7 +181,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
-   "photo": "images/SP/SP07.png",
    "status": "implemented_unverified",
    "seed": [
     -0.03945,
@@ -215,7 +208,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
-   "photo": "images/SP/SP08.png",
    "status": "implemented_unverified",
    "seed": [
     -0.02724,
@@ -243,7 +235,6 @@
    "whoStatus": "일치 + 수업메모 별도",
    "whoNote": "WHO 핵심 위치는 medial condyle of tibia의 inferior border와 medial border of tibia 사이 depression. 교수 메모/무릎관절면 2촌 메모는 표준 위치 본문과 분리해 보존.",
    "manualCheck": "원본에 표준 외 부가메모/상충 가능 표현 존재 | 일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
-   "photo": "images/SP/SP09.png",
    "status": "implemented_unverified",
    "seed": [
     -0.03092,
@@ -271,7 +262,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "일반 B-cun 보간만 식별됨: 실제 표준 구간/체표 경로를 수동 정의",
-   "photo": "images/SP/SP10.png",
    "status": "implemented_unverified",
    "seed": [
     -0.0365,
@@ -299,7 +289,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
-   "photo": "images/SP/SP11.png",
    "status": "implemented_unverified",
    "seed": [
     -0.02408,
@@ -327,7 +316,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "혈관/신경 변이를 고정 좌표 anchor로 사용 금지; 주변 stable anatomy로 재등록 필요",
-   "photo": "images/SP/SP12.png",
    "status": "implemented_unverified",
    "seed": [
     -0.078,
@@ -355,7 +343,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
-   "photo": "images/SP/SP13.png",
    "status": "implemented_unverified",
    "seed": [
     -0.078,
@@ -383,7 +370,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
-   "photo": "images/SP/SP14.png",
    "status": "implemented_unverified",
    "seed": [
     -0.078,
@@ -411,7 +397,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
-   "photo": "images/SP/SP15.png",
    "status": "implemented_unverified",
    "seed": [
     -0.078,
@@ -439,7 +424,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
-   "photo": "images/SP/SP16.png",
    "status": "implemented_unverified",
    "seed": [
     -0.078,
@@ -467,7 +451,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
-   "photo": "images/SP/SP17.png",
    "status": "implemented_unverified",
    "seed": [
     -0.116,
@@ -495,7 +478,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
-   "photo": "images/SP/SP18.png",
    "status": "implemented_unverified",
    "seed": [
     -0.116,
@@ -523,7 +505,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
-   "photo": "images/SP/SP19.png",
    "status": "implemented_unverified",
    "seed": [
     -0.116,
@@ -551,7 +532,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
-   "photo": "images/SP/SP20.png",
    "status": "implemented_unverified",
    "seed": [
     -0.116,
@@ -579,7 +559,6 @@
    "whoStatus": "이상 미탐지(자동 구조대조)",
    "whoNote": "WHO 2008/TARA의 361 표준혈 체계에 따라 부위·anatomical landmark·B-cun 표현을 자동 구조대조했으며 명백한 충돌은 탐지되지 않음. 원본 문장과 부가메모는 변경하지 않음.",
    "manualCheck": "",
-   "photo": "images/SP/SP21.png",
    "status": "implemented_unverified",
    "seed": [
     -0.16857,

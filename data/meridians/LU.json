@@ -30,7 +30,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/LU/LU01.png",
    "status": "implemented_unverified",
    "seed": [
     -0.11647,
@@ -61,7 +60,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/LU/LU02.png",
    "status": "implemented_unverified",
    "seed": [
     -0.11647,
@@ -92,7 +90,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/LU/LU03.png",
    "status": "implemented_unverified",
    "seed": [
     -0.22242,
@@ -123,7 +120,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/LU/LU04.png",
    "status": "implemented_unverified",
    "seed": [
     -0.2337,
@@ -154,7 +150,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/LU/LU05.png",
    "status": "implemented_unverified",
    "seed": [
     -0.22923,
@@ -185,7 +180,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/LU/LU06.png",
    "status": "implemented_unverified",
    "seed": [
     -0.24839,
@@ -216,7 +210,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/LU/LU07.png",
    "status": "implemented_unverified",
    "seed": [
     -0.27752,
@@ -247,7 +240,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/LU/LU08.png",
    "status": "implemented_unverified",
    "seed": [
     -0.27265,
@@ -278,7 +270,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/LU/LU09.png",
    "status": "implemented_unverified",
    "seed": [
     -0.27615,
@@ -309,7 +300,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/LU/LU10.png",
    "status": "implemented_unverified",
    "seed": [
     -0.30682,
@@ -340,7 +330,6 @@
    "needlingStatus": "allowed_unverified",
    "needlingRestriction": "",
    "sourceValidation": null,
-   "photo": "images/LU/LU11.png",
    "status": "implemented_unverified",
    "seed": [
     -0.32428,

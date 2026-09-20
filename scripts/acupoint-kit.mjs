@@ -162,7 +162,6 @@ export function meridianWriter(id) {
           needlingStatus: row.needlingStatus ?? 'allowed_unverified',
           needlingRestriction: row.needlingRestriction ?? '',
           sourceValidation: row.sourceValidation ?? null,
-          photo: `images/${id}/${id}${row.code.slice(id.length).padStart(2, '0')}.png`,
           status: 'implemented_unverified', ...anchor,
         };
       });
