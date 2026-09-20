@@ -10,6 +10,7 @@ import { SYSTEMS, type Atlas, type NeedleHit, type NeedleReport, type SceneState
 import { type ProjectionMode } from "./gb-points";
 import {atlasPoints,meridianOf,needleProfile,type AcupointCode} from "./acupoints";
 import {createExternalEarPresentation, NATIVE_EAR_PART_ID} from "./ear-anatomy";
+import { buildNailPresentation, type NailBuild } from "./nail-presentation";
 import type { AnnotationFrame } from "./annotation-overlay";
 interface Props {
   atlas: Atlas;
@@ -360,6 +361,7 @@ export default function AnatomyScene({
     scene.add(earPresentation.root);
     geometries.push(...earPresentation.geometries);
     materials.push(...earPresentation.materials);
+    let nailPresentation: NailBuild | null = null;
     (async () => {
       try {
         let cursor = 0;
@@ -373,6 +375,10 @@ export default function AnatomyScene({
         );
         if (!disposed) {
           buildToePresentation();
+          nailPresentation = buildNailPresentation(atlas, pickers);
+          scene.add(nailPresentation.root);
+          geometries.push(...nailPresentation.geometries);
+          materials.push(...nailPresentation.materials);
           ready = true;
           lastNeedle = "";
           lastAcupuncture = "";
@@ -1362,6 +1368,10 @@ export default function AnatomyScene({
         amount < 0.05 &&
         s.visible.includes("integumentary") &&
         !s.selected.includes(NATIVE_EAR_PART_ID);
+      // Nails are skin: they show only with the integumentary layer, never over bone or muscle.
+      if (nailPresentation)
+        nailPresentation.root.visible =
+          !s.isolate && amount < 0.05 && s.visible.includes("integumentary");
       markers.visible = amount > 0.75;
       controls.autoRotate = s.rotate && !s.isolate && amount < 0.4;
       controls.autoRotateSpeed = 0.65;
