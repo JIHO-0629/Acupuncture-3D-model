@@ -266,6 +266,11 @@ export default function AnatomyScene({
       }
       return best;
     };
+    // The knee joint line, taken from this body's own patella rather than a constant.
+    const patellae = atlas.parts.filter((p) => /patella/i.test(p.name));
+    const kneeY = patellae.length ? Math.min(...patellae.map((p) => p.bounds[0][1])) : 0.46;
+    // Side to fade (+1 is the viewer's left), the height below which it applies, coverage.
+    const ghostUniform = { value: new T.Vector3(0, kneeY, 1) };
     const materialFor = (system: string) => {
       const isSurface = system === "integumentary";
       // The rib cage is mostly intercostal space, and the lung surface lies against the
@@ -285,11 +290,12 @@ export default function AnatomyScene({
         opacity: isBreath ? 0.42 : 1,
         depthWrite: true,
       });
-      m.customProgramCacheKey = () => `atlas-${isSurface ? "surface-toe-cut-v2" : "internal"}`;
+      m.customProgramCacheKey = () => `atlas-ghost-${isSurface ? "surface-toe-cut-v3" : "internal-v2"}`;
       m.onBeforeCompile = (shader) => {
         shader.uniforms.partState = { value: partTexture };
         shader.uniforms.selectionState = { value: selectionTexture };
         shader.uniforms.stateWidth = { value: width };
+        shader.uniforms.ghost = ghostUniform;
         shader.vertexShader =
           "attribute float partIndex; uniform sampler2D partState; uniform sampler2D selectionState; uniform float stateWidth; varying float partVisible; varying float partSelected; varying vec3 atlasPosition;\n" +
           shader.vertexShader;
@@ -298,11 +304,20 @@ export default function AnatomyScene({
           "#include <begin_vertex>\natlasPosition = position; vec2 stateUv = vec2((partIndex + 0.5) / stateWidth, 0.5); vec4 state = texture2D(partState, stateUv); transformed += state.xyz; partVisible = state.w; partSelected = texture2D(selectionState, stateUv).r;",
         );
       shader.fragmentShader =
-          "varying float partVisible; varying float partSelected; varying vec3 atlasPosition;\n" +
+          "varying float partVisible; varying float partSelected; varying vec3 atlasPosition;\nuniform vec3 ghost;\n" +
           shader.fragmentShader;
+        // Ghosting is a place, not a part: the skin is one mesh for the whole body, so the
+        // opposite leg cannot be hidden by switching a part off. ghost.x is the side to
+        // fade (+1 for the viewer's left), ghost.y the height below which it applies,
+        // ghost.z its coverage. The coverage is dithered rather than blended, so it needs
+        // no transparent pass, no sorting and no change of material.
+        const GHOST = "\nif (ghost.x != 0.0 && ghost.z < 1.0 && atlasPosition.y < ghost.y && atlasPosition.x * ghost.x > 0.0) {\n"
+          + " if (ghost.z <= 0.0) discard;\n"
+          + " if (fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453) > ghost.z) discard;\n"
+          + "}";
         shader.fragmentShader = shader.fragmentShader.replace(
           "#include <clipping_planes_fragment>",
-          `#include <clipping_planes_fragment>\nif (partVisible < 0.5) discard;${isSurface ? "\nfloat toeX=abs(atlasPosition.x); float toeZ=atlasPosition.z;\nbool gap12=toeZ>0.095&&toeZ<0.142&&abs(toeX-(0.112+0.46*(toeZ-0.095)))<0.00072;\nbool gap23=toeZ>0.090&&toeZ<0.132&&abs(toeX-(0.128+0.55*(toeZ-0.090)))<0.00068;\nbool gap34=toeZ>0.080&&toeZ<0.119&&abs(toeX-(0.143+0.48*(toeZ-0.080)))<0.00065;\nbool gap45=toeZ>0.065&&toeZ<0.101&&abs(toeX-(0.153+0.55*(toeZ-0.065)))<0.00062;\nif(atlasPosition.y<0.085&&(gap12||gap23||gap34||gap45)) discard;" : ""}`,
+          `#include <clipping_planes_fragment>\nif (partVisible < 0.5) discard;${GHOST}${isSurface ? "\nfloat toeX=abs(atlasPosition.x); float toeZ=atlasPosition.z;\nbool gap12=toeZ>0.095&&toeZ<0.142&&abs(toeX-(0.112+0.46*(toeZ-0.095)))<0.00072;\nbool gap23=toeZ>0.090&&toeZ<0.132&&abs(toeX-(0.128+0.55*(toeZ-0.090)))<0.00068;\nbool gap34=toeZ>0.080&&toeZ<0.119&&abs(toeX-(0.143+0.48*(toeZ-0.080)))<0.00065;\nbool gap45=toeZ>0.065&&toeZ<0.101&&abs(toeX-(0.153+0.55*(toeZ-0.065)))<0.00062;\nif(atlasPosition.y<0.085&&(gap12||gap23||gap34||gap45)) discard;" : ""}`,
         );
         shader.fragmentShader = shader.fragmentShader.replace(
           "#include <color_fragment>",
@@ -1388,6 +1403,24 @@ export default function AnatomyScene({
       markers.visible = amount > 0.75;
       controls.autoRotate = s.rotate && !s.isolate && amount < 0.4;
       controls.autoRotateSpeed = 0.65;
+      // A medial point below the knee puts the camera across the midline, inside the other
+      // leg. KI5, KI6, KI8, SP8 and LR8 are blocked outright, and the rest of KI2 to KI9
+      // have the opposite limb filling the frame. The blocking only happens at a distance:
+      // past 75 to 90 mm the camera has already moved through that leg, so it is hidden
+      // while the view is wide and dithers back in as the camera closes on the point.
+      const focusedPoint =
+        s.regionFocus && s.acupuncture?.selectedCode
+          ? acupoints.find((item) => item.code === s.acupuncture?.selectedCode)
+          : undefined;
+      const ghosting = !!focusedPoint && focusedPoint.seed[1] < kneeY && (focusedPoint.outward?.[0] ?? 0) > 0.2;
+      // Points are placed on the viewer's right, which is -x, so the limb in the way is +x.
+      const coverage = ghosting
+        ? T.MathUtils.clamp((0.12 - camera.position.distanceTo(controls.target)) / 0.06, 0, 1)
+        : 1;
+      if (ghostUniform.value.x !== (ghosting ? 1 : 0) || Math.abs(ghostUniform.value.z - coverage) > 0.004) {
+        ghostUniform.value.set(ghosting ? 1 : 0, kneeY, coverage);
+        dirty = true;
+      }
       if (cameraTransitioning) {
         const smoothing = 1 - Math.exp(-9 * dt);
         camera.position.lerp(cameraGoalPosition, smoothing);

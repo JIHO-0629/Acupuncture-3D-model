@@ -30,6 +30,9 @@ export default function Home(){
   const allPoints=useMemo<AcupointDefinition[]>(()=>atlas?atlasPoints(atlas):GB_POINTS,[atlas]);
   const selectedGbPoint=allPoints.find(point=>point.code===state.acupuncture?.selectedCode)??allPoints[33];
   const meridian=MERIDIANS[meridianOf(selectedGbPoint.code)];
+  // Same test the scene uses to fade the opposite limb: a point below the knee whose
+  // surface faces the midline. The knee line is the patella's lower edge on this body.
+  const medialBelowKnee=selectedGbPoint.seed[1]<0.4396&&(selectedGbPoint.outward?.[0]??0)>0.2;
   const meridianPoints=allPoints.filter(point=>meridianOf(point.code)===meridian.id);
   const selectedGbIndex=meridianPoints.findIndex(point=>point.code===selectedGbPoint.code);
   const scrubPoints=useMemo(()=>allPoints.filter(point=>meridianOf(point.code)===meridian.id).map(point=>({code:point.code,primary:point.korean,secondary:`${point.hanja} · ${point.english}`})),[allPoints,meridian.id]);
@@ -95,6 +98,9 @@ export default function Home(){
     <div className="line-toggle"><span>{meridian.id} 경맥 연결선</span><button type="button" className="binary-toggle" role="switch" aria-label={`${meridian.id} 경맥 연결선`} aria-checked={!!state.acupuncture?.showLines} disabled={!state.acupuncture?.showAll} onClick={()=>setState(s=>({...s,acupuncture:{...(s.acupuncture??initial.acupuncture!),showLines:!s.acupuncture?.showLines}}))}><i/></button></div>
     <article className="point-card"><div className="archive-index">01</div><div><h3>Location</h3><p className="point-name">{selectedGbPoint.korean}</p><p>{selectedGbPoint.location}</p><small>등록 기준: {selectedGbPoint.basis}</small>{selectedGbPoint.alternative&&<p><small>대안 위치: {selectedGbPoint.alternative}</small></p>}</div></article>
     {selectedGbPoint.status==='review'&&<p className="registration-note">표면 구역 중심은 검수 대상입니다. 확정 좌표가 아니라 해부학적 기준 구역으로 표시합니다.</p>}
+    {/* The viewer hides the opposite lower leg for these points, so say so: a reviewer must
+        not read a hidden limb as anatomy the model does not have. */}
+    {medialBelowKnee&&<p className="registration-note">내측 혈이라 시선이 반대쪽 다리를 통과합니다. 무릎 아래 반대쪽은 숨기고, 확대하면 다시 나타납니다.</p>}
 
     </div>
     <div className="archive-section">
