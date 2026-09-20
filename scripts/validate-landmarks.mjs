@@ -157,19 +157,18 @@ for (const side of ['right', 'left']) {
 const nearestTo = (name, target) => nearestVertex(mesh(atlas, name), target);
 for (const side of ['right', 'left']) {
   const prefix = side === 'right' ? 'Right' : 'Left';
-  const asis = get('asis', side), symphysis = get('pubic_symphysis_superior');
-  if (asis && symphysis && atlas.byName.has(`${prefix} inguinal ligament`.toLowerCase())) {
+  const asis = get('asis', side), tubercle = get('pubic_tubercle', side);
+  if (asis && tubercle && atlas.byName.has(`${prefix} inguinal ligament`.toLowerCase())) {
     const ligament = mesh(atlas, `${prefix} inguinal ligament`);
     // The viewer's right side is -x, so a medial end on its own side keeps this positive.
     const sign = side === 'right' ? -1 : 1;
-    const ends = [at(asis), at(symphysis)].map((target) => nearestVertex(ligament, target));
-    // BodyParts3D models the ligament as the rolled free edge of the external oblique
-    // aponeurosis, which stands off the bone rather than touching it, and the pubic end
-    // attaches at the tubercle rather than at the symphysis. The measured standoff is
-    // reported; only a gross displacement, which is what a bad import looks like, fails.
-    if (ends[0] > 0.035) fail(`${side} inguinal ligament: ${mm(ends[0])} from the ASIS`);
-    else warn(`${side} inguinal ligament: ${mm(ends[0])} from the ASIS, ${mm(ends[1])} from the superior pubic symphysis`);
-    if (ligament.box.min.y > at(asis).y || ligament.box.max.y < at(symphysis).y)
+    // A ligament is defined by where it attaches. scripts/fit-inguinal-ligament.mjs seats
+    // this one on the ASIS and the pubic tubercle, and both ends must stay there: the
+    // release-3.0 mesh floated 12 mm clear of the pelvis before it was seated.
+    const toAsis = nearestVertex(ligament, at(asis)), toTubercle = nearestVertex(ligament, at(tubercle));
+    if (toAsis > 0.004) fail(`${side} inguinal ligament: ${mm(toAsis)} from the ASIS it attaches to`);
+    if (toTubercle > 0.004) fail(`${side} inguinal ligament: ${mm(toTubercle)} from the pubic tubercle it attaches to`);
+    if (ligament.box.min.y > at(asis).y || ligament.box.max.y < at(tubercle).y)
       fail(`${side} inguinal ligament: does not span the height between the ASIS and the pubis`);
     const medial = side === 'right' ? ligament.box.max.x : ligament.box.min.x;
     if (medial * sign < 0) fail(`${side} inguinal ligament: its medial end crosses the midline`);

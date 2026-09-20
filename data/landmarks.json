@@ -2,7 +2,7 @@
  "source": "atlas.json",
  "generated": "scripts/landmarks.mjs",
  "note": "anatomicalConfidence rates the match to a real structure; frameConfidence rates fitness as the origin of a WHO proportional axis",
- "count": 138,
+ "count": 140,
  "landmarks": [
   {
    "id": "anterior_median_plane",
@@ -1513,6 +1513,25 @@
    "symmetryOffsetMm": 4.3
   },
   {
+   "id": "pubic_tubercle",
+   "korean": "치골결절",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.01932,
+    0.87754,
+    0.03814
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most anterior vertices of the pubic crest, 8-32 mm lateral of the symphysis and within 14 mm of its height",
+   "sources": [
+    "Right hip bone"
+   ],
+   "symmetryOffsetMm": 2.1
+  },
+  {
    "id": "iliac_crest_apex",
    "korean": "장골능 최고점",
    "side": "right",
@@ -1587,6 +1606,25 @@
     "Left hip bone"
    ],
    "symmetryOffsetMm": 4.3
+  },
+  {
+   "id": "pubic_tubercle",
+   "korean": "치골결절",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.01848,
+    0.8796,
+    0.03811
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most anterior vertices of the pubic crest, 8-32 mm lateral of the symphysis and within 14 mm of its height",
+   "sources": [
+    "Left hip bone"
+   ],
+   "symmetryOffsetMm": 2.1
   },
   {
    "id": "iliac_crest_apex",

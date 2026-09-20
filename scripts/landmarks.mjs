@@ -254,6 +254,20 @@ for (const side of SIDES) {
     type: 'anatomical', anatomicalConfidence: 'high', frameConfidence: 'high',
     derivation: 'most anterior vertices of the upper half of the hip bone', sources: [sidedName(side, 'hip bone')],
   });
+  // The inguinal ligament's medial attachment. The tubercle is the small forward knob on
+  // the pubic crest, a couple of centimetres lateral to the symphysis, so it is taken as
+  // the most anterior cluster of the crest band on this side of the midline.
+  point('pubic_tubercle', '치골결절', side, () => {
+    const symphysis = landmarks.find((l) => l.id === 'pubic_symphysis_superior');
+    if (!symphysis) throw new Error('needs pubic_symphysis_superior');
+    const height = symphysis.point[1];
+    return extremeCluster(hip, v(0, 0, 1), 0.02, (p) =>
+      Math.abs(p.y - height) < 0.014 && p.x * sign > 0.008 && p.x * sign < 0.032);
+  }, {
+    type: 'anatomical', anatomicalConfidence: 'high', frameConfidence: 'high',
+    derivation: 'most anterior vertices of the pubic crest, 8-32 mm lateral of the symphysis and within 14 mm of its height',
+    sources: [sidedName(side, 'hip bone')],
+  });
   point('iliac_crest_apex', '장골능 최고점', side, () => extremeCluster(hip, v(0, 1, 0), 0.01), {
     type: 'anatomical', anatomicalConfidence: 'high', frameConfidence: 'high',
     derivation: 'highest vertices of the hip bone', sources: [sidedName(side, 'hip bone')],
