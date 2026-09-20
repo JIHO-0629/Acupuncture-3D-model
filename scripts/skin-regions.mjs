@@ -34,6 +34,12 @@ const REGION_RULES = [
   [/talus|calcaneus|navicular bone|cuboid bone|cuneiform bone|sesamoid bone|metatarsal|toe$/i, 'foot', 'lower-limb'],
 ];
 
+// These limb bands anchor their regions geometrically and did so before
+// scripts/reclassify-parts.mjs moved them out of `skeletal`. The anchor cloud is a
+// landmark set, not a taxonomy, so the region labels must not shift underneath it.
+const RECLASSIFIED_ANCHORS = /^(right|left) (iliotibial tract|tibialis (anterior|posterior)|fibularis (longus|brevis|tertius)|subscapularis|levator scapulae)$/i;
+const anchorsRegions = (part) => part.system === 'skeletal' || RECLASSIFIED_ANCHORS.test(part.name);
+
 const classify = (name) => {
   for (const [pattern, region, group] of REGION_RULES) if (pattern.test(name)) return { region, group };
   return null;
@@ -42,14 +48,14 @@ const classify = (name) => {
 const atlas = loadAtlas();
 const anchors = [];
 for (const part of atlas.parts) {
-  if (part.system !== 'skeletal') continue;
+  if (!anchorsRegions(part)) continue;
   const label = classify(part.name);
   if (!label) continue;
   const side = /^right /i.test(part.name) || / of right /i.test(part.name) ? 'right'
     : /^left /i.test(part.name) || / of left /i.test(part.name) ? 'left' : null;
   anchors.push({ part, ...label, side, object: threeMesh(part) });
 }
-const unmatched = atlas.parts.filter((p) => p.system === 'skeletal' && !classify(p.name));
+const unmatched = atlas.parts.filter((p) => anchorsRegions(p) && !classify(p.name));
 if (unmatched.length) console.error(`unclassified skeletal meshes: ${[...new Set(unmatched.map((p) => p.name))].join(', ')}`);
 
 // Downsampled bone cloud for the fallback, bucketed into a uniform grid.

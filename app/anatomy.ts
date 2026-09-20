@@ -27,9 +27,10 @@ export interface NeedleReport {code:string;available:boolean;limitMm:number|null
  *  vessels, nerves and organ borders move with posture, respiration and individual
  *  variation, so the model's distance to them is a reference, never a target. */
 export type Variance = 1|2|3;
-const MUSCLE_AS_SKELETAL=/tibialis|fibularis|iliotibial|levator scapulae|subscapularis/i;
+// The muscles and the iliotibial tract that used to be filed under 'skeletal' are now
+// classified correctly (scripts/reclassify-parts.mjs), so 'skeletal' means bone again.
 export function varianceOf(name:string,system:SystemId):Variance{
- if(system==='skeletal')return MUSCLE_AS_SKELETAL.test(name)?2:1;
+ if(system==='skeletal')return 1;
  if(system==='connective'||system==='sensory')return 1;
  if(system==='muscular'||system==='integumentary')return 2;
  return 3;
@@ -56,7 +57,7 @@ const KOREAN_ANATOMY_TERMS:Record<string,string>={
  'temporalis':'측두근','superficial part of masseter':'교근 천부','deep part of masseter':'교근 심부','medial pterygoid':'내측익돌근','upper head of lateral pterygoid':'외측익돌근 상두','lower head of lateral pterygoid':'외측익돌근 하두','aponeurosis of epicranius':'두개건막(모상건막)',
  'orbital part of orbicularis oculi':'안륜근 안와부','palpebral part of orbicularis oculi':'안륜근 안검부','orbicularis oris':'구륜근','corrugator supercilii':'추미근','procerus':'눈살근','nasalis':'비근','depressor septi nasi':'비중격하체근','buccinator':'협근',
  'levator labii superioris':'상순거근','levator labii superioris alaeque nasi':'상순비익거근','levator anguli oris':'구각거근','depressor anguli oris':'구각하체근','depressor labii inferioris':'하순하체근','zygomaticus major':'대관골근','zygomaticus minor':'소관골근','risorius':'소근','mentalis':'이근',
- 'latissimus dorsi':'광배근','upper lobe of lung':'폐 상엽','middle lobe of lung':'폐 중엽','lower lobe of lung':'폐 하엽'
+ 'latissimus dorsi':'광배근','subscapularis':'견갑하근','supraspinatus':'극상근','infraspinatus':'극하근','teres major':'대원근','teres minor':'소원근','iliotibial tract':'장경인대','flexor retinaculum of wrist':'굴근지지띠','upper lobe of lung':'폐 상엽','middle lobe of lung':'폐 중엽','lower lobe of lung':'폐 하엽'
 };
 export function bilingualPartName(name:string){
  const prefix=name.match(/^(Right|Left)\s+(.+)$/i),infix=name.match(/^(.+?)\s+of\s+(right|left)\s+(.+)$/i);
