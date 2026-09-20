@@ -210,3 +210,24 @@ h1 .edition{font-family:inherit;font-weight:500;font-size:10px;letter-spacing:.0
    side column; the rail stays hidden like the previous identifier (panel ← → navigation remains). */
 @media(max-width:767px){.acupoint-rail{display:none}}
 .panel-window-actions{display:flex;align-items:center;gap:3px}.panel-move-hint,.panel-collapse-button{border:0;background:none;color:#899682;padding:5px;min-width:28px;min-height:28px}.panel-move-hint{display:flex;align-items:center;gap:4px;font-size:9px;font-weight:400;white-space:nowrap}.panel-collapse-button{display:flex;align-items:center;justify-content:center;cursor:pointer}.panel-collapse-button:hover,.panel-collapse-button:focus-visible,.panel-move-hint:hover,.panel-move-hint:focus-visible{color:#344f30;background:#e8ece5}.acupuncture-panel.is-collapsed{width:min(300px,calc(100vw - 24px))!important;max-height:none!important;padding:16px 18px!important;overflow:hidden}.acupuncture-panel.is-collapsed>:not(.acupuncture-panel-head){display:none}.acupuncture-panel.is-collapsed .acupuncture-panel-head{align-items:center;padding:0;border-bottom:0}.acupuncture-panel.is-collapsed .acupuncture-panel-head .eyebrow,.acupuncture-panel.is-collapsed .acupuncture-panel-head p,.acupuncture-panel.is-collapsed .acupuncture-panel-head [data-slot=badge],.acupuncture-panel.is-collapsed .panel-move-hint span{display:none}.acupuncture-panel.is-collapsed .acupuncture-panel-head h2{margin:0!important;font-size:20px!important;letter-spacing:-.5px!important}.acupuncture-panel.is-collapsed .acupuncture-panel-head-tools{gap:0}.acupuncture-panel.is-collapsed .panel-move-hint{padding-inline:4px}@media(max-width:767px){.acupuncture-panel.is-collapsed,.acupuncture-panel.is-collapsed.is-moved{left:auto!important;right:12px!important;top:108px!important;width:min(300px,calc(100vw - 24px))!important;padding:16px 18px!important}.acupuncture-panel.is-collapsed .panel-move-hint{display:none}}
+
+/* Meridian detent rail — fourteen tabs on one axis.
+   Weight is made of resistance and a step, never of waiting: touch-action keeps the
+   browser off the horizontal axis, and the plate only lifts once a detent is passed. */
+.meridian-rail-shell{margin-top:12px;padding-bottom:11px;border-bottom:1px solid #d4dbcf}
+.meridian-rail{display:grid;grid-template-columns:repeat(14,1fr);align-items:end;height:48px;perspective:520px;touch-action:pan-y;user-select:none;-webkit-user-select:none;outline:none}
+/* The rail owns the keyboard, so the ring belongs to the rail and stays a hairline;
+   the loud 2px ring the rest of the app uses reads as an alarm at this size. */
+.meridian-rail:focus-visible{outline:1px solid #b4c1ad;outline-offset:2px}
+.meridian-tab:focus,.meridian-tab:focus-visible{outline:none}
+.meridian-rail:focus-visible .meridian-tab.engaged span{border-bottom-color:#2f4a2b}
+.meridian-tab{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:1px;height:100%;padding:0 0 6px;border:0;background:none;color:#96a291;font-family:inherit;font-size:10.5px;font-weight:500;letter-spacing:.02em;cursor:pointer;transform-origin:bottom center;transition:transform 140ms cubic-bezier(.2,.72,.2,1),color 140ms ease,opacity 140ms ease}
+.meridian-tab i{font-style:normal;font-size:7.5px;font-weight:400;line-height:1;letter-spacing:-.02em;color:#a9b5a2;transition:color 140ms ease}
+.meridian-tab.engaged i{color:#5c7a55}
+.meridian-tab span{display:block;padding:3px 0 4px;width:100%;text-align:center;border-bottom:1px solid transparent;transition:border-color 140ms ease,background 140ms ease}
+.meridian-tab.pressed{transform:translateY(2px)}
+.meridian-tab.engaged{color:#2f4a2b;transform:rotateX(-12deg) translateY(-4px)}
+.meridian-tab.engaged span{border-bottom-color:#4a6b44;background:linear-gradient(#ffffff00,#ffffffcc)}
+.meridian-tab:disabled{opacity:.4;cursor:default}
+.meridian-caption{margin:9px 0 0;font-size:12px;font-weight:500;color:#344f30;font-variant-numeric:tabular-nums}
+@media(max-width:767px){.meridian-rail{height:52px}.meridian-tab{font-size:10px}}
