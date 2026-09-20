@@ -83,7 +83,7 @@ export default function AnatomyScene({
       "Interactive human anatomy. Drag to orbit, right-drag to pan, zoom toward the pointer, and tap a structure to inspect it.",
     );
     const scene = new T.Scene(),
-      camera = new T.PerspectiveCamera(34, 1, 0.005, 100),
+      camera = new T.PerspectiveCamera(34, 1, 0.002, 100),
       controls = new OrbitControls(camera, renderer.domElement);
     camera.position.set(1.4, 1.05, 3.6);
     controls.target.set(0, 0.85, 0);
@@ -104,7 +104,9 @@ export default function AnatomyScene({
     renderer.domElement.addEventListener("wheel", matchZoomToDevice, { capture: true, passive: true });
     controls.panSpeed = 0.85;
     controls.rotateSpeed = 0.7;
-    controls.minDistance = 0.015;
+    // An acupoint is a few millimetres across, so the shaft and the layers under it have
+    // to be approachable. The near plane is kept under this so nothing clips first.
+    controls.minDistance = 0.006;
     controls.maxDistance = 40;
     controls.minPolarAngle = 0;
     controls.maxPolarAngle = Math.PI;
@@ -1347,10 +1349,13 @@ export default function AnatomyScene({
             footView = s.regionFocus.viewHint === "dorsal-foot";
           camera.up.set(0, 1, 0);
           if (footView) center.x += 0.024;
+          // The region is the subject, so it should fill the frame. At 2.2 it took up less
+          // than half of it and a dorsal-foot point framed at 40 cm, which reads as a zoom
+          // limit even though the wheel can still go closer.
           const distance =
               Math.max(
-                0.11,
-                (radius / (2 * Math.tan(T.MathUtils.degToRad(camera.fov / 2)))) * 2.2,
+                0.05,
+                (radius / (2 * Math.tan(T.MathUtils.degToRad(camera.fov / 2)))) * 1.35,
               ) * (footView ? 1.12 : 1),
             direction = (
               footView ? new T.Vector3(0.18, 0.92, 0.34) : new T.Vector3().fromArray(acupoints.find(point=>point.code===s.acupuncture?.selectedCode)?.outward??[-1,0.08,0.32])
