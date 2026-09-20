@@ -20,9 +20,11 @@ BodyParts3D represents an adult male reference anatomy based on TARO MRI and ana
 Release 4.0 does not ship the muscles of facial expression, the muscles of mastication, the epicranial aponeurosis, lung surfaces, latissimus dorsi, or rectus abdominis. Release 3.0 still carries them, in the same coordinate frame, so 55 meshes are taken from there and placed on the 4.0 skeleton without any registration or reshaping.
 
 - Source geometry: `BodyParts3D_3.0_obj_99.zip`, BodyParts3D 3.0 (2011-09-15 release).
+- Masseter refinement: the left/right superficial and deep masseter meshes use the higher-detail `BodyParts3D_3.0_obj_95.zip` geometry without further simplification.
 - Archive: https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/
 - English names: `parts_list_e.txt` from the same release.
 - Script: [`scripts/add-bp3-structures.mjs`](../scripts/add-bp3-structures.mjs), which lists every recovered structure.
+- Masseter replacement script: [`scripts/replace-bp3-masseter.mjs`](../scripts/replace-bp3-masseter.mjs).
 
 Recovered: temporalis, masseter (superficial and deep parts), medial and lateral pterygoid, epicranial aponeurosis, orbicularis oculi (orbital and palpebral parts), orbicularis oris, corrugator supercilii, procerus, nasalis, depressor septi nasi, buccinator, levator labii superioris, levator labii superioris alaeque nasi, levator anguli oris, depressor anguli oris, depressor labii inferioris, zygomaticus major and minor, risorius, mentalis, latissimus dorsi, rectus abdominis, and the five lung lobes.
 
