@@ -64,7 +64,7 @@ const MEATUS_SKIN={lateral:.067,y:1.589,z:-.020};
  * and the helix apex runs into the hairline. The pore landmark itself keeps its
  * measured position.
  */
-const AURICLE_OFFSET={y:.007,z:.008};
+const AURICLE_OFFSET={lateral:.002,y:.007,z:.008};
 /** Bony pore, 4 mm deep to the skin opening. */
 const MEATUS_PORE_DEPTH=.004;
 /** Long axis leans posteriorly at the top (sagittal plane). */
@@ -263,7 +263,7 @@ export function createExternalEarPresentation(){
   const group=new T.Group();group.name=`${side} auricle`;
   group.matrixAutoUpdate=false;
   group.matrix.makeBasis(new T.Vector3(0,0,1),new T.Vector3(0,1,0),new T.Vector3(sign,0,0));
-  group.matrix.setPosition(sign*MEATUS_SKIN.lateral,MEATUS_SKIN.y+AURICLE_OFFSET.y,MEATUS_SKIN.z+AURICLE_OFFSET.z);
+  group.matrix.setPosition(sign*(MEATUS_SKIN.lateral+AURICLE_OFFSET.lateral),MEATUS_SKIN.y+AURICLE_OFFSET.y,MEATUS_SKIN.z+AURICLE_OFFSET.z);
   // Orientation: flare about the anterior attachment line, lean with the skull,
   // then tilt the long axis posteriorly. (Applied right to left.)
   const pivot=FLARE_PIVOT_MM/1000;

@@ -1349,13 +1349,11 @@ export default function AnatomyScene({
       // Do not present the conceptual nail footprint as source anatomy. GB44 remains an
       // explicitly estimated landmark scaled from the bundled fourth-toe phalanges.
       toePresentation.visible = false;
-      // The auricle is skin: it shows with the integumentary layer (the surface
-      // view keeps only that layer) and also stands in for the native External ear
-      // part whenever the sensory system is on.
+      // The auricle is skin, so it disappears with the integumentary layer.
       earPresentation.root.visible =
         !s.isolate &&
         amount < 0.05 &&
-        (s.visible.includes("integumentary") || s.visible.includes("sensory")) &&
+        s.visible.includes("integumentary") &&
         !s.selected.includes(NATIVE_EAR_PART_ID);
       markers.visible = amount > 0.75;
       controls.autoRotate = s.rotate && !s.isolate && amount < 0.4;
