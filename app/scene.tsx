@@ -984,8 +984,15 @@ export default function AnatomyScene({
         const part = atlas.parts[i];
         if (!mesh || part.system === "integumentary") return;
         worldBox.copy(bounds[i]).expandByScalar(shaftRadius);
-        const boxHit = needleAxisRay.intersectBox(worldBox, hitPoint);
-        if (!boxHit || boxHit.distanceTo(origins[0]) > probeDepth + shaftRadius) return;
+        // Ray.intersectBox returns the EXIT point when the origin is already inside the
+        // box, so a structure wide enough to enclose the insertion point reports a
+        // distance far past the probe and gets dropped from the path. Every broad trunk
+        // wall (obliques, transversus, quadratus lumborum) fails exactly that way.
+        // An interior origin is distance zero; only an outside box may be range-culled.
+        if (!worldBox.containsPoint(origins[0])) {
+          const boxHit = needleAxisRay.intersectBox(worldBox, hitPoint);
+          if (!boxHit || boxHit.distanceTo(origins[0]) > probeDepth + shaftRadius) return;
+        }
         let nearest = Infinity;
         for (const origin of origins) {
           raycaster.set(origin, trajectory);
