@@ -2,7 +2,7 @@
  "source": "atlas.json",
  "generated": "scripts/landmarks.mjs",
  "note": "anatomicalConfidence rates the match to a real structure; frameConfidence rates fitness as the origin of a WHO proportional axis",
- "count": 140,
+ "count": 186,
  "landmarks": [
   {
    "id": "anterior_median_plane",
@@ -101,6 +101,19 @@
    "sources": [
     "Mandible"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    -0.06699,
+    1.58406,
+    -0.00602
+   ],
+   "skinDirection": [
+    -1,
+    0,
+    0
+   ],
+   "skinDepthMm": 21.9,
    "symmetryOffsetMm": 1.6
   },
   {
@@ -140,6 +153,19 @@
     "Right zygomatic bone",
     "Right temporal bone"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    -0.065,
+    1.58042,
+    0.02776
+   ],
+   "skinDirection": [
+    -1,
+    0,
+    0
+   ],
+   "skinDepthMm": 5.5,
    "symmetryOffsetMm": 1.3
   },
   {
@@ -159,6 +185,19 @@
    "sources": [
     "Right temporal bone"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    -0.05574,
+    1.56787,
+    -0.05883
+   ],
+   "skinDirection": [
+    -0.92057,
+    -0.27617,
+    -0.27617
+   ],
+   "skinDepthMm": 9,
    "symmetryOffsetMm": 1.3
   },
   {
@@ -197,6 +236,19 @@
    "sources": [
     "Right scapula"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    -0.17665,
+    1.42545,
+    -0.04328
+   ],
+   "skinDirection": [
+    -0.95783,
+    0.28735,
+    0
+   ],
+   "skinDepthMm": 10.6,
    "symmetryOffsetMm": 2.7
   },
   {
@@ -275,6 +327,19 @@
    "sources": [
     "Mandible"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.06573,
+    1.58421,
+    -0.00544
+   ],
+   "skinDirection": [
+    1,
+    0,
+    0
+   ],
+   "skinDepthMm": 22.3,
    "symmetryOffsetMm": 1.6
   },
   {
@@ -314,6 +379,19 @@
     "Left zygomatic bone",
     "Left temporal bone"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.06381,
+    1.58072,
+    0.02765
+   ],
+   "skinDirection": [
+    1,
+    0,
+    0
+   ],
+   "skinDepthMm": 5.6,
    "symmetryOffsetMm": 1.3
   },
   {
@@ -333,6 +411,19 @@
    "sources": [
     "Left temporal bone"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.05441,
+    1.56856,
+    -0.06001
+   ],
+   "skinDirection": [
+    0.92057,
+    -0.27617,
+    -0.27617
+   ],
+   "skinDepthMm": 8.6,
    "symmetryOffsetMm": 1.3
   },
   {
@@ -371,6 +462,19 @@
    "sources": [
     "Left scapula"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.17624,
+    1.42519,
+    -0.04598
+   ],
+   "skinDirection": [
+    0.95783,
+    0.28735,
+    0
+   ],
+   "skinDepthMm": 10.6,
    "symmetryOffsetMm": 2.7
   },
   {
@@ -400,17 +504,30 @@
    "side": null,
    "kind": "point",
    "point": [
-    0.0077,
-    1.62704,
-    -0.11792
+    0,
+    1.59762,
+    -0.1145
    ],
    "type": "anatomical",
    "anatomicalConfidence": "high",
    "frameConfidence": "high",
-   "derivation": "most posterior vertices of the occipital bone within 12 mm of the midline",
+   "surfaceLandmark": true,
+   "reviewStatus": "reviewer_confirmed_2026-09-21",
+   "derivation": "lower edge of the posterior occipital bulge on the midline: the lowest level whose rearmost bone lies within 4 mm of the deepest point (7-level running maximum), where the squama turns into the nuchal plane",
    "sources": [
     "Occipital bone"
-   ]
+   ],
+   "skin": [
+    0,
+    1.59762,
+    -0.115
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 0.5
   },
   {
    "id": "anterior_hairline_midpoint",
@@ -464,7 +581,20 @@
    "derivation": "rearmost vertices of the spinous process blade (within 14 mm of the midline and 12 mm of the rearmost point)",
    "sources": [
     "Seventh cervical vertebra"
-   ]
+   ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.00038,
+    1.44693,
+    -0.10345
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 24.7
   },
   {
    "id": "spinous_process_C7.inferior_border",
@@ -1436,7 +1566,20 @@
    "derivation": "highest midline vertices of the manubrium",
    "sources": [
     "Manubrium"
-   ]
+   ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.0025,
+    1.40352,
+    0.04854
+   ],
+   "skinDirection": [
+    0,
+    0.28735,
+    0.95783
+   ],
+   "skinDepthMm": 10.4
   },
   {
    "id": "xiphisternal_junction",
@@ -1454,7 +1597,20 @@
    "derivation": "highest midline vertices of the xiphoid process, where it meets the sternal body",
    "sources": [
     "Xiphoid process"
-   ]
+   ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.00104,
+    1.26261,
+    0.11015
+   ],
+   "skinDirection": [
+    0,
+    0,
+    1
+   ],
+   "skinDepthMm": 5.2
   },
   {
    "id": "pubic_symphysis_superior",
@@ -1472,7 +1628,20 @@
    "derivation": "upper edge of the medial (symphyseal) face of the pubis, placed on the midline",
    "sources": [
     "Right hip bone"
-   ]
+   ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0,
+    0.88419,
+    0.07685
+   ],
+   "skinDirection": [
+    0,
+    0,
+    1
+   ],
+   "skinDepthMm": 50.7
   },
   {
    "id": "umbilicus",
@@ -1510,6 +1679,19 @@
    "sources": [
     "Right hip bone"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    -0.1305,
+    0.97049,
+    0.05964
+   ],
+   "skinDirection": [
+    0,
+    0,
+    1
+   ],
+   "skinDepthMm": 21.1,
    "symmetryOffsetMm": 4.3
   },
   {
@@ -1529,6 +1711,19 @@
    "sources": [
     "Right hip bone"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    -0.01932,
+    0.87754,
+    0.07233
+   ],
+   "skinDirection": [
+    0,
+    0,
+    1
+   ],
+   "skinDepthMm": 34.2,
    "symmetryOffsetMm": 2.1
   },
   {
@@ -1548,6 +1743,19 @@
    "sources": [
     "Right hip bone"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    -0.11874,
+    1.04471,
+    -0.04127
+   ],
+   "skinDirection": [
+    -0.89443,
+    0.44721,
+    0
+   ],
+   "skinDepthMm": 19.5,
    "symmetryOffsetMm": 2.8
   },
   {
@@ -1605,6 +1813,19 @@
    "sources": [
     "Left hip bone"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.12621,
+    0.9735,
+    0.06161
+   ],
+   "skinDirection": [
+    0,
+    0,
+    1
+   ],
+   "skinDepthMm": 22.9,
    "symmetryOffsetMm": 4.3
   },
   {
@@ -1624,6 +1845,19 @@
    "sources": [
     "Left hip bone"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.01848,
+    0.8796,
+    0.07335
+   ],
+   "skinDirection": [
+    0,
+    0,
+    1
+   ],
+   "skinDepthMm": 35.2,
    "symmetryOffsetMm": 2.1
   },
   {
@@ -1643,6 +1877,19 @@
    "sources": [
     "Left hip bone"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.11938,
+    1.04367,
+    -0.03852
+   ],
+   "skinDirection": [
+    0.89443,
+    0.44721,
+    0
+   ],
+   "skinDepthMm": 17.3,
    "symmetryOffsetMm": 2.8
   },
   {
@@ -1699,7 +1946,20 @@
    "derivation": "lowest posterior midline vertices of the sacrum; the hiatus is the opening they surround",
    "sources": [
     "Sacrum"
-   ]
+   ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    -0.0011,
+    0.86154,
+    -0.1099
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 21.1
   },
   {
    "id": "middle_finger_tip",
@@ -1737,6 +1997,19 @@
    "sources": [
     "Right femur"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    -0.1615,
+    0.8606,
+    -0.02313
+   ],
+   "skinDirection": [
+    -1,
+    0,
+    0
+   ],
+   "skinDepthMm": 11.5,
    "symmetryOffsetMm": 1.5
   },
   {
@@ -1756,6 +2029,19 @@
    "sources": [
     "Right femur"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    -0.12858,
+    0.47386,
+    -0.02308
+   ],
+   "skinDirection": [
+    -1,
+    0,
+    0
+   ],
+   "skinDepthMm": 15.8,
    "symmetryOffsetMm": 1.9
   },
   {
@@ -1775,6 +2061,19 @@
    "sources": [
     "Right patella"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    -0.08526,
+    0.49001,
+    0.04967
+   ],
+   "skinDirection": [
+    0,
+    0.28735,
+    0.95783
+   ],
+   "skinDepthMm": 38.6,
    "symmetryOffsetMm": 0.5
   },
   {
@@ -1835,6 +2134,19 @@
    "sources": [
     "Right fibula"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    -0.13234,
+    0.43695,
+    -0.03984
+   ],
+   "skinDirection": [
+    -1,
+    0,
+    0
+   ],
+   "skinDepthMm": 26.6,
    "symmetryOffsetMm": 0.8
   },
   {
@@ -1854,6 +2166,19 @@
    "sources": [
     "Right fibula"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    -0.11098,
+    0.07135,
+    -0.04006
+   ],
+   "skinDirection": [
+    -1,
+    0,
+    0
+   ],
+   "skinDepthMm": 6.5,
    "symmetryOffsetMm": 1.8
   },
   {
@@ -1873,6 +2198,19 @@
    "sources": [
     "Right fibula"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    -0.10639,
+    0.05013,
+    -0.04577
+   ],
+   "skinDirection": [
+    -0.95783,
+    -0.28735,
+    0
+   ],
+   "skinDepthMm": 9.4,
    "symmetryOffsetMm": 1.3
   },
   {
@@ -2793,6 +3131,19 @@
    "sources": [
     "Left femur"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.16,
+    0.86211,
+    -0.02391
+   ],
+   "skinDirection": [
+    1,
+    0,
+    0
+   ],
+   "skinDepthMm": 9.8,
    "symmetryOffsetMm": 1.5
   },
   {
@@ -2812,6 +3163,19 @@
    "sources": [
     "Left femur"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.12681,
+    0.47319,
+    -0.02116
+   ],
+   "skinDirection": [
+    1,
+    0,
+    0
+   ],
+   "skinDepthMm": 14.2,
    "symmetryOffsetMm": 1.9
   },
   {
@@ -2831,6 +3195,19 @@
    "sources": [
     "Left patella"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.08559,
+    0.48982,
+    0.04968
+   ],
+   "skinDirection": [
+    0,
+    0.28735,
+    0.95783
+   ],
+   "skinDepthMm": 38.1,
    "symmetryOffsetMm": 0.5
   },
   {
@@ -2891,6 +3268,19 @@
    "sources": [
     "Left fibula"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.13103,
+    0.4371,
+    -0.04038
+   ],
+   "skinDirection": [
+    1,
+    0,
+    0
+   ],
+   "skinDepthMm": 24.5,
    "symmetryOffsetMm": 0.8
   },
   {
@@ -2910,6 +3300,19 @@
    "sources": [
     "Left fibula"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.10906,
+    0.07005,
+    -0.03827
+   ],
+   "skinDirection": [
+    1,
+    0,
+    0
+   ],
+   "skinDepthMm": 4.5,
    "symmetryOffsetMm": 1.8
   },
   {
@@ -2929,6 +3332,19 @@
    "sources": [
     "Left fibula"
    ],
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "skin": [
+    0.10535,
+    0.05042,
+    -0.04564
+   ],
+   "skinDirection": [
+    0.95783,
+    -0.28735,
+    0
+   ],
+   "skinDepthMm": 9.7,
    "symmetryOffsetMm": 1.3
   },
   {
@@ -3807,6 +4223,1476 @@
     "Distal phalanx of left little toe"
    ],
    "symmetryOffsetMm": 0.1
+  },
+  {
+   "id": "sternal_angle",
+   "korean": "흉골각",
+   "side": null,
+   "kind": "point",
+   "point": [
+    0.00009,
+    1.36825,
+    0.07852
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most anterior-inferior vertices of the manubrium on the midline (the manubriosternal joint ridge)",
+   "sources": [
+    "Manubrium"
+   ],
+   "skin": [
+    0.00009,
+    1.36825,
+    0.07821
+   ],
+   "skinDirection": [
+    0,
+    0,
+    1
+   ],
+   "skinDepthMm": 0.3
+  },
+  {
+   "id": "xiphoid_tip",
+   "korean": "칼돌기 끝",
+   "side": null,
+   "kind": "point",
+   "point": [
+    0.00134,
+    1.24215,
+    0.10588
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "lowest vertices of the xiphoid process",
+   "sources": [
+    "Xiphoid process"
+   ],
+   "skin": [
+    0.00134,
+    1.24215,
+    0.10987
+   ],
+   "skinDirection": [
+    0,
+    0,
+    1
+   ],
+   "skinDepthMm": 4
+  },
+  {
+   "id": "mandibular_angle",
+   "korean": "하악각",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.04189,
+    1.52584,
+    0.00726
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "extreme of the mandible toward lateral-inferior-posterior on this side (the gonion)",
+   "sources": [
+    "Mandible"
+   ],
+   "skin": [
+    -0.04955,
+    1.52354,
+    0.00726
+   ],
+   "skinDirection": [
+    -0.95783,
+    -0.28735,
+    0
+   ],
+   "skinDepthMm": 8,
+   "symmetryOffsetMm": 2.4
+  },
+  {
+   "id": "scapula_superior_angle",
+   "korean": "견갑골 상각",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.0745,
+    1.41555,
+    -0.07247
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "extreme of the scapula toward superior-medial",
+   "sources": [
+    "Right scapula"
+   ],
+   "skin": [
+    -0.0745,
+    1.42905,
+    -0.11746
+   ],
+   "skinDirection": [
+    0,
+    0.28735,
+    -0.95783
+   ],
+   "skinDepthMm": 47,
+   "symmetryOffsetMm": 0.2
+  },
+  {
+   "id": "scapula_inferior_angle",
+   "korean": "견갑골 하각",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.09414,
+    1.26235,
+    -0.09582
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "lowest (slightly posterior) vertices of the scapula",
+   "sources": [
+    "Right scapula"
+   ],
+   "skin": [
+    -0.09414,
+    1.26235,
+    -0.1317
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 35.9,
+   "symmetryOffsetMm": 0.5
+  },
+  {
+   "id": "scapular_spine_medial_end",
+   "korean": "견갑극 내측단",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.0607,
+    1.37693,
+    -0.09135
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most medial vertices of the posterior scapular spine ridge (the root of the spine)",
+   "sources": [
+    "Right scapula"
+   ],
+   "skin": [
+    -0.0607,
+    1.37693,
+    -0.1364
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 45.1,
+   "symmetryOffsetMm": 0.4
+  },
+  {
+   "id": "acromial_angle",
+   "korean": "견봉각",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.16258,
+    1.41269,
+    -0.06352
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "extreme of the acromion toward lateral-posterior, top 30 mm of the scapula",
+   "sources": [
+    "Right scapula"
+   ],
+   "skin": [
+    -0.17472,
+    1.41876,
+    -0.07971
+   ],
+   "skinDirection": [
+    -0.5747,
+    0.28735,
+    -0.76626
+   ],
+   "skinDepthMm": 21.1,
+   "symmetryOffsetMm": 1.3
+  },
+  {
+   "id": "greater_tubercle",
+   "korean": "상완골 대결절",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.18756,
+    1.40345,
+    -0.02226
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "extreme of the humeral head region toward lateral-anterior-superior",
+   "sources": [
+    "Right humerus"
+   ],
+   "skin": [
+    -0.21091,
+    1.40345,
+    -0.01525
+   ],
+   "skinDirection": [
+    -0.95783,
+    0,
+    0.28735
+   ],
+   "skinDepthMm": 24.4,
+   "symmetryOffsetMm": 6.2
+  },
+  {
+   "id": "medial_humeral_epicondyle",
+   "korean": "상완골 내측상과",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.17772,
+    1.12661,
+    -0.03155
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most medial vertices of the distal humerus",
+   "sources": [
+    "Right humerus"
+   ],
+   "skin": [
+    -0.17444,
+    1.12661,
+    -0.03155
+   ],
+   "skinDirection": [
+    1,
+    0,
+    0
+   ],
+   "skinDepthMm": 3.3,
+   "symmetryOffsetMm": 2.2
+  },
+  {
+   "id": "lateral_humeral_epicondyle",
+   "korean": "상완골 외측상과",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.24074,
+    1.13219,
+    -0.03957
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most lateral vertices of the distal humerus",
+   "sources": [
+    "Right humerus"
+   ],
+   "skin": [
+    -0.26173,
+    1.13219,
+    -0.03957
+   ],
+   "skinDirection": [
+    -1,
+    0,
+    0
+   ],
+   "skinDepthMm": 21,
+   "symmetryOffsetMm": 0.3
+  },
+  {
+   "id": "olecranon",
+   "korean": "주두",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.20769,
+    1.11697,
+    -0.0552
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "extreme of the proximal ulna toward posterior-superior",
+   "sources": [
+    "Right ulna"
+   ],
+   "skin": [
+    -0.20769,
+    1.12462,
+    -0.08071
+   ],
+   "skinDirection": [
+    0,
+    0.28735,
+    -0.95783
+   ],
+   "skinDepthMm": 26.6,
+   "symmetryOffsetMm": 0.9
+  },
+  {
+   "id": "radial_styloid",
+   "korean": "요골 경상돌기",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.27664,
+    0.88395,
+    0.01795
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "lowest vertices of the radius",
+   "sources": [
+    "Right radius"
+   ],
+   "skin": [
+    -0.29134,
+    0.88395,
+    0.02236
+   ],
+   "skinDirection": [
+    -0.95783,
+    0,
+    0.28735
+   ],
+   "skinDepthMm": 15.3,
+   "symmetryOffsetMm": 0.8
+  },
+  {
+   "id": "ulnar_styloid",
+   "korean": "척골 경상돌기",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.2357,
+    0.88328,
+    0.01217
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "lowest vertices of the ulna",
+   "sources": [
+    "Right ulna"
+   ],
+   "skin": [
+    -0.23027,
+    0.88328,
+    0.00946
+   ],
+   "skinDirection": [
+    0.89443,
+    0,
+    -0.44721
+   ],
+   "skinDepthMm": 6.1,
+   "symmetryOffsetMm": 1.1
+  },
+  {
+   "id": "psis",
+   "korean": "후상장골극",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.04459,
+    0.98648,
+    -0.09888
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most posterior (slightly superior) vertices of the ilium near the sacrum",
+   "sources": [
+    "Right hip bone"
+   ],
+   "skin": [
+    -0.04459,
+    0.98648,
+    -0.10889
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 10,
+   "symmetryOffsetMm": 1.4
+  },
+  {
+   "id": "patella_apex",
+   "korean": "슬개골 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.08473,
+    0.4396,
+    0.00837
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "lowest vertices of the patella",
+   "sources": [
+    "Right patella"
+   ],
+   "skin": [
+    -0.08473,
+    0.4396,
+    0.02883
+   ],
+   "skinDirection": [
+    0,
+    0,
+    1
+   ],
+   "skinDepthMm": 20.5,
+   "symmetryOffsetMm": 2.2
+  },
+  {
+   "id": "tibial_tuberosity",
+   "korean": "경골조면",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.08724,
+    0.41856,
+    0.01484
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most anterior vertices of the upper 100 mm of the tibia",
+   "sources": [
+    "Right tibia"
+   ],
+   "skin": [
+    -0.08724,
+    0.41856,
+    0.02357
+   ],
+   "skinDirection": [
+    0,
+    0,
+    1
+   ],
+   "skinDepthMm": 8.7,
+   "symmetryOffsetMm": 1.1
+  },
+  {
+   "id": "medial_tibial_condyle",
+   "korean": "경골 내측과",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.03522,
+    0.43763,
+    -0.02286
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most medial vertices of the tibial plateau region",
+   "sources": [
+    "Right tibia"
+   ],
+   "skin": [
+    -0.02951,
+    0.43763,
+    -0.02286
+   ],
+   "skinDirection": [
+    1,
+    0,
+    0
+   ],
+   "skinDepthMm": 5.7,
+   "symmetryOffsetMm": 0.9
+  },
+  {
+   "id": "medial_malleolus_prominence",
+   "korean": "내과 융기",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.04493,
+    0.0859,
+    -0.01817
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most medial vertices of the distal 45 mm of the tibia",
+   "sources": [
+    "Right tibia"
+   ],
+   "skin": [
+    -0.0446,
+    0.0859,
+    -0.01817
+   ],
+   "skinDirection": [
+    1,
+    0,
+    0
+   ],
+   "skinDepthMm": 0.3,
+   "symmetryOffsetMm": 1.9
+  },
+  {
+   "id": "navicular_tuberosity",
+   "korean": "주상골 조면",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.05876,
+    0.05406,
+    0.01089
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "extreme of the navicular toward medial-inferior",
+   "sources": [
+    "Navicular bone of right foot"
+   ],
+   "skin": [
+    -0.05155,
+    0.0519,
+    0.01089
+   ],
+   "skinDirection": [
+    0.95783,
+    -0.28735,
+    0
+   ],
+   "skinDepthMm": 7.5,
+   "symmetryOffsetMm": 2.9
+  },
+  {
+   "id": "metatarsal_5_tuberosity",
+   "korean": "제5중족골 조면",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.15053,
+    0.01878,
+    0.0435
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "extreme of the 5th metatarsal toward lateral-proximal (the styloid tuberosity)",
+   "sources": [
+    "Right fifth metatarsal bone"
+   ],
+   "skin": [
+    -0.16225,
+    0.01878,
+    0.0435
+   ],
+   "skinDirection": [
+    -1,
+    0,
+    0
+   ],
+   "skinDepthMm": 11.7,
+   "symmetryOffsetMm": 1.6
+  },
+  {
+   "id": "mandibular_angle",
+   "korean": "하악각",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.0414,
+    1.52827,
+    0.0073
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "extreme of the mandible toward lateral-inferior-posterior on this side (the gonion)",
+   "sources": [
+    "Mandible"
+   ],
+   "skin": [
+    0.04934,
+    1.52589,
+    0.0073
+   ],
+   "skinDirection": [
+    0.95783,
+    -0.28735,
+    0
+   ],
+   "skinDepthMm": 8.3,
+   "symmetryOffsetMm": 2.4
+  },
+  {
+   "id": "scapula_superior_angle",
+   "korean": "견갑골 상각",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.07428,
+    1.41547,
+    -0.07259
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "extreme of the scapula toward superior-medial",
+   "sources": [
+    "Left scapula"
+   ],
+   "skin": [
+    0.07428,
+    1.42877,
+    -0.11693
+   ],
+   "skinDirection": [
+    0,
+    0.28735,
+    -0.95783
+   ],
+   "skinDepthMm": 46.3,
+   "symmetryOffsetMm": 0.2
+  },
+  {
+   "id": "scapula_inferior_angle",
+   "korean": "견갑골 하각",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.0946,
+    1.26223,
+    -0.09538
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "lowest (slightly posterior) vertices of the scapula",
+   "sources": [
+    "Left scapula"
+   ],
+   "skin": [
+    0.0946,
+    1.26223,
+    -0.13126
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 35.9,
+   "symmetryOffsetMm": 0.5
+  },
+  {
+   "id": "scapular_spine_medial_end",
+   "korean": "견갑극 내측단",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.0606,
+    1.37654,
+    -0.09139
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most medial vertices of the posterior scapular spine ridge (the root of the spine)",
+   "sources": [
+    "Left scapula"
+   ],
+   "skin": [
+    0.0606,
+    1.37654,
+    -0.13648
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 45.1,
+   "symmetryOffsetMm": 0.4
+  },
+  {
+   "id": "acromial_angle",
+   "korean": "견봉각",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.16334,
+    1.41404,
+    -0.06243
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "extreme of the acromion toward lateral-posterior, top 30 mm of the scapula",
+   "sources": [
+    "Left scapula"
+   ],
+   "skin": [
+    0.17465,
+    1.4197,
+    -0.07751
+   ],
+   "skinDirection": [
+    0.5747,
+    0.28735,
+    -0.76626
+   ],
+   "skinDepthMm": 19.7,
+   "symmetryOffsetMm": 1.3
+  },
+  {
+   "id": "greater_tubercle",
+   "korean": "상완골 대결절",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.18532,
+    1.40965,
+    -0.02248
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "extreme of the humeral head region toward lateral-anterior-superior",
+   "sources": [
+    "Left humerus"
+   ],
+   "skin": [
+    0.20245,
+    1.40965,
+    -0.01734
+   ],
+   "skinDirection": [
+    0.95783,
+    0,
+    0.28735
+   ],
+   "skinDepthMm": 17.9,
+   "symmetryOffsetMm": 6.2
+  },
+  {
+   "id": "medial_humeral_epicondyle",
+   "korean": "상완골 내측상과",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.17788,
+    1.12701,
+    -0.0338
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most medial vertices of the distal humerus",
+   "sources": [
+    "Left humerus"
+   ],
+   "skin": [
+    0.1726,
+    1.12701,
+    -0.0338
+   ],
+   "skinDirection": [
+    -1,
+    0,
+    0
+   ],
+   "skinDepthMm": 5.3,
+   "symmetryOffsetMm": 2.2
+  },
+  {
+   "id": "lateral_humeral_epicondyle",
+   "korean": "상완골 외측상과",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.24076,
+    1.1324,
+    -0.03929
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most lateral vertices of the distal humerus",
+   "sources": [
+    "Left humerus"
+   ],
+   "skin": [
+    0.26074,
+    1.1324,
+    -0.03929
+   ],
+   "skinDirection": [
+    1,
+    0,
+    0
+   ],
+   "skinDepthMm": 20,
+   "symmetryOffsetMm": 0.3
+  },
+  {
+   "id": "olecranon",
+   "korean": "주두",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.20861,
+    1.11773,
+    -0.05508
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "extreme of the proximal ulna toward posterior-superior",
+   "sources": [
+    "Left ulna"
+   ],
+   "skin": [
+    0.20861,
+    1.12554,
+    -0.08112
+   ],
+   "skinDirection": [
+    0,
+    0.28735,
+    -0.95783
+   ],
+   "skinDepthMm": 27.2,
+   "symmetryOffsetMm": 0.9
+  },
+  {
+   "id": "radial_styloid",
+   "korean": "요골 경상돌기",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.27745,
+    0.88427,
+    0.01832
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "lowest vertices of the radius",
+   "sources": [
+    "Left radius"
+   ],
+   "skin": [
+    0.28925,
+    0.88427,
+    0.02186
+   ],
+   "skinDirection": [
+    0.95783,
+    0,
+    0.28735
+   ],
+   "skinDepthMm": 12.3,
+   "symmetryOffsetMm": 0.8
+  },
+  {
+   "id": "ulnar_styloid",
+   "korean": "척골 경상돌기",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.23578,
+    0.88333,
+    0.01322
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "lowest vertices of the ulna",
+   "sources": [
+    "Left ulna"
+   ],
+   "skin": [
+    0.22881,
+    0.88333,
+    0.00973
+   ],
+   "skinDirection": [
+    -0.89443,
+    0,
+    -0.44721
+   ],
+   "skinDepthMm": 7.8,
+   "symmetryOffsetMm": 1.1
+  },
+  {
+   "id": "psis",
+   "korean": "후상장골극",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.04597,
+    0.98658,
+    -0.09869
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most posterior (slightly superior) vertices of the ilium near the sacrum",
+   "sources": [
+    "Left hip bone"
+   ],
+   "skin": [
+    0.04597,
+    0.98658,
+    -0.10866
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 10,
+   "symmetryOffsetMm": 1.4
+  },
+  {
+   "id": "patella_apex",
+   "korean": "슬개골 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.08431,
+    0.43991,
+    0.01061
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "lowest vertices of the patella",
+   "sources": [
+    "Left patella"
+   ],
+   "skin": [
+    0.08431,
+    0.43991,
+    0.02907
+   ],
+   "skinDirection": [
+    0,
+    0,
+    1
+   ],
+   "skinDepthMm": 18.5,
+   "symmetryOffsetMm": 2.2
+  },
+  {
+   "id": "tibial_tuberosity",
+   "korean": "경골조면",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.08679,
+    0.41743,
+    0.01452
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most anterior vertices of the upper 100 mm of the tibia",
+   "sources": [
+    "Left tibia"
+   ],
+   "skin": [
+    0.08679,
+    0.41743,
+    0.02347
+   ],
+   "skinDirection": [
+    0,
+    0,
+    1
+   ],
+   "skinDepthMm": 8.9,
+   "symmetryOffsetMm": 1.1
+  },
+  {
+   "id": "medial_tibial_condyle",
+   "korean": "경골 내측과",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.03503,
+    0.43674,
+    -0.02191
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most medial vertices of the tibial plateau region",
+   "sources": [
+    "Left tibia"
+   ],
+   "skin": [
+    0.02795,
+    0.43674,
+    -0.02191
+   ],
+   "skinDirection": [
+    -1,
+    0,
+    0
+   ],
+   "skinDepthMm": 7.1,
+   "symmetryOffsetMm": 0.9
+  },
+  {
+   "id": "medial_malleolus_prominence",
+   "korean": "내과 융기",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.04472,
+    0.08634,
+    -0.02007
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "most medial vertices of the distal 45 mm of the tibia",
+   "sources": [
+    "Left tibia"
+   ],
+   "skin": [
+    0.04258,
+    0.08634,
+    -0.02007
+   ],
+   "skinDirection": [
+    -1,
+    0,
+    0
+   ],
+   "skinDepthMm": 2.1,
+   "symmetryOffsetMm": 1.9
+  },
+  {
+   "id": "navicular_tuberosity",
+   "korean": "주상골 조면",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.05793,
+    0.05357,
+    0.00803
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "extreme of the navicular toward medial-inferior",
+   "sources": [
+    "Navicular bone of left foot"
+   ],
+   "skin": [
+    0.04921,
+    0.05095,
+    0.00803
+   ],
+   "skinDirection": [
+    -0.95783,
+    -0.28735,
+    0
+   ],
+   "skinDepthMm": 9.1,
+   "symmetryOffsetMm": 2.9
+  },
+  {
+   "id": "metatarsal_5_tuberosity",
+   "korean": "제5중족골 조면",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.15021,
+    0.01717,
+    0.0419
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "extreme of the 5th metatarsal toward lateral-proximal (the styloid tuberosity)",
+   "sources": [
+    "Left fifth metatarsal bone"
+   ],
+   "skin": [
+    0.16208,
+    0.01717,
+    0.0419
+   ],
+   "skinDirection": [
+    1,
+    0,
+    0
+   ],
+   "skinDepthMm": 11.9,
+   "symmetryOffsetMm": 1.6
+  },
+  {
+   "id": "posterior_sacral_foramen_S1",
+   "korean": "제1뒤엉치뼈구멍",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.023,
+    0.967,
+    -0.05574
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "posterior sacral foramen detected by rays through the sacrum (hole or >6 mm dip against the surrounding bone ring)",
+   "sources": [
+    "Sacrum"
+   ],
+   "skin": [
+    -0.023,
+    0.967,
+    -0.11538
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 59.6,
+   "symmetryOffsetMm": 1
+  },
+  {
+   "id": "posterior_sacral_foramen_S2",
+   "korean": "제2뒤엉치뼈구멍",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.017,
+    0.953,
+    -0.06919
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "posterior sacral foramen detected by rays through the sacrum (hole or >6 mm dip against the surrounding bone ring)",
+   "sources": [
+    "Sacrum"
+   ],
+   "skin": [
+    -0.017,
+    0.953,
+    -0.11917
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 50,
+   "symmetryOffsetMm": 1
+  },
+  {
+   "id": "posterior_sacral_foramen_S3",
+   "korean": "제3뒤엉치뼈구멍",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.016,
+    0.934,
+    -0.09233
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "posterior sacral foramen detected by rays through the sacrum (hole or >6 mm dip against the surrounding bone ring)",
+   "sources": [
+    "Sacrum"
+   ],
+   "skin": [
+    -0.016,
+    0.934,
+    -0.12598
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 33.6,
+   "symmetryOffsetMm": 1
+  },
+  {
+   "id": "posterior_sacral_foramen_S4",
+   "korean": "제4뒤엉치뼈구멍",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.015,
+    0.916,
+    -0.09544
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "posterior sacral foramen detected by rays through the sacrum (hole or >6 mm dip against the surrounding bone ring)",
+   "sources": [
+    "Sacrum"
+   ],
+   "skin": [
+    -0.015,
+    0.916,
+    -0.13066
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 35.2,
+   "symmetryOffsetMm": 2
+  },
+  {
+   "id": "posterior_sacral_foramen_S1",
+   "korean": "제1뒤엉치뼈구멍",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.022,
+    0.967,
+    -0.05621
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "posterior sacral foramen detected by rays through the sacrum (hole or >6 mm dip against the surrounding bone ring)",
+   "sources": [
+    "Sacrum"
+   ],
+   "skin": [
+    0.022,
+    0.967,
+    -0.11584
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 59.6,
+   "symmetryOffsetMm": 1
+  },
+  {
+   "id": "posterior_sacral_foramen_S2",
+   "korean": "제2뒤엉치뼈구멍",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.016,
+    0.953,
+    -0.06883
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "posterior sacral foramen detected by rays through the sacrum (hole or >6 mm dip against the surrounding bone ring)",
+   "sources": [
+    "Sacrum"
+   ],
+   "skin": [
+    0.016,
+    0.953,
+    -0.11904
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 50.2,
+   "symmetryOffsetMm": 1
+  },
+  {
+   "id": "posterior_sacral_foramen_S3",
+   "korean": "제3뒤엉치뼈구멍",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.015,
+    0.934,
+    -0.09233
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "posterior sacral foramen detected by rays through the sacrum (hole or >6 mm dip against the surrounding bone ring)",
+   "sources": [
+    "Sacrum"
+   ],
+   "skin": [
+    0.015,
+    0.934,
+    -0.12676
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 34.4,
+   "symmetryOffsetMm": 1
+  },
+  {
+   "id": "posterior_sacral_foramen_S4",
+   "korean": "제4뒤엉치뼈구멍",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.013,
+    0.916,
+    -0.09737
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "surfaceLandmark": true,
+   "reviewStatus": "auto",
+   "derivation": "posterior sacral foramen detected by rays through the sacrum (hole or >6 mm dip against the surrounding bone ring)",
+   "sources": [
+    "Sacrum"
+   ],
+   "skin": [
+    0.013,
+    0.916,
+    -0.12986
+   ],
+   "skinDirection": [
+    0,
+    0,
+    -1
+   ],
+   "skinDepthMm": 32.5,
+   "symmetryOffsetMm": 2
   }
  ],
  "skipped": []

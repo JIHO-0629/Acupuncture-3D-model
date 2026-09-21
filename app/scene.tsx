@@ -11,6 +11,7 @@ import { type ProjectionMode } from "./gb-points";
 import {atlasPoints,meridianOf,needleProfile,type AcupointCode} from "./acupoints";
 import {createExternalEarPresentation, NATIVE_EAR_PART_ID} from "./ear-anatomy";
 import { createNipplePresentation } from "./nipple-presentation";
+import { createLandmarkDebug, landmarkDebugRequested } from "./landmark-debug";
 import type { AnnotationFrame } from "./annotation-overlay";
 
 // These ulnar hand points otherwise send the camera medially through the torso.
@@ -420,6 +421,9 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
     scene.add(nipplePresentation.root);
     geometries.push(...nipplePresentation.geometries);
     materials.push(...nipplePresentation.materials);
+    // Dev-only review overlay of the palpable bony prominences (open the dev server with ?landmarks).
+    const landmarkDebug = landmarkDebugRequested() ? createLandmarkDebug() : null;
+    if (landmarkDebug) scene.add(landmarkDebug.root);
     (async () => {
       try {
         let cursor = 0;
@@ -1567,6 +1571,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       controls.dispose();
       geometries.forEach((g) => g.dispose());
       materials.forEach((m) => m.dispose());
+      landmarkDebug?.dispose();
       lineGroup.traverse((o) => {
         if (o instanceof T.Line) {
           o.geometry.dispose();

@@ -158,12 +158,25 @@ for (const side of SIDES) {
   });
 }
 
+// Reviewer (2026-09-21): the protuberance is the lower edge of the posterior occipital bulge, where the squama turns
+// forward into the nuchal plane. The rearmost point of the bone is the bulge above it, ~30 mm higher.
 point('external_occipital_protuberance', '외후두융기', null, () => {
   const occipital = mesh(atlas, 'Occipital bone');
-  return extremeCluster(occipital, v(0, 0, -1), 0.01, (p) => Math.abs(p.x) < 0.012);
+  const profile = [];
+  for (let i = 0; i < occipital.vertexCount; i++) {
+    const p = v(occipital.positions[i * 3], occipital.positions[i * 3 + 1], occipital.positions[i * 3 + 2]);
+    if (Math.abs(p.x) < 0.012 && p.z < -0.03) profile.push(p);
+  }
+  const depth = (y) => { const band = profile.filter((p) => Math.abs(p.y - y) < 0.003); return band.length ? -Math.min(...band.map((p) => p.z)) : 0; };
+  const rows = [];
+  for (let y = occipital.box.max.y; y >= occipital.box.min.y; y -= 0.001) rows.push([y, depth(y)]);
+  const deepest = Math.max(...rows.map((r) => r[1]));
+  const smooth = rows.map(([y], i) => [y, Math.max(...rows.slice(Math.max(0, i - 3), i + 4).map((r) => r[1]))]);
+  const [y, d] = smooth.filter(([, dd]) => dd >= deepest - 0.004).reduce((a, b) => (b[0] < a[0] ? b : a));
+  return v(0, y, -d);
 }, {
-  type: 'anatomical', anatomicalConfidence: 'high', frameConfidence: 'high',
-  derivation: 'most posterior vertices of the occipital bone within 12 mm of the midline',
+  type: 'anatomical', anatomicalConfidence: 'high', frameConfidence: 'high', surfaceLandmark: true, reviewStatus: 'reviewer_confirmed_2026-09-21',
+  derivation: 'lower edge of the posterior occipital bulge on the midline: the lowest level whose rearmost bone lies within 4 mm of the deepest point (7-level running maximum), where the squama turns into the nuchal plane',
   sources: ['Occipital bone'],
 });
 
@@ -557,6 +570,114 @@ for (const side of SIDES) {
     derivation: 'lateral-dorsal corner of a conceptual nail footprint scaled only from the fourth distal phalanx; toenails are not modelled in BodyParts3D, so the landmark remains explicitly estimated',
     sources: [`Middle phalanx of ${side} fourth toe`, `Distal phalanx of ${side} fourth toe`, `Distal phalanx of ${side} little toe`],
   });
+}
+
+// ---------------------------------------------------------------- palpable bony prominences (surface landmarks)
+// Reviewer request (2026-09-21): the prominences palpated as surface landmarks are kept once here, so acupoint rules
+// reference one agreed point instead of re-deriving it each time. Each keeps its rule, the bone point, and (below) the
+// skin over it. Nothing is cut out of the bone meshes.
+const prominence = { type: 'anatomical', anatomicalConfidence: 'high', frameConfidence: 'high', surfaceLandmark: true, reviewStatus: 'auto' };
+const bone = (side, name) => mesh(atlas, sidedName(side, name));
+const below = (part, share) => (p) => p.y < part.box.min.y + share;
+const above = (part, share) => (p) => p.y > part.box.max.y - share;
+point('sternal_angle', '흉골각', null, () => extremeCluster(mesh(atlas, 'Manubrium'), v(0, -0.3, 1), 0.03, (p) => Math.abs(p.x) < 0.012), {
+  ...prominence, derivation: 'most anterior-inferior vertices of the manubrium on the midline (the manubriosternal joint ridge)', sources: ['Manubrium'],
+});
+point('xiphoid_tip', '칼돌기 끝', null, () => extremeCluster(mesh(atlas, 'Xiphoid process'), v(0, -1, 0), 0.05), {
+  ...prominence, derivation: 'lowest vertices of the xiphoid process', sources: ['Xiphoid process'],
+});
+for (const side of SIDES) {
+  const sign = sideSign(side), medial = v(-sign, 0, 0), lateral = v(sign, 0, 0);
+  const scapula = bone(side, 'scapula'), humerus = bone(side, 'humerus'), ulna = bone(side, 'ulna'), radius = bone(side, 'radius');
+  const hip = bone(side, 'hip bone'), tibia = bone(side, 'tibia'), patella = bone(side, 'patella'), mt5 = bone(side, 'fifth metatarsal bone');
+  const items = [
+    ['mandibular_angle', '하악각', 'Mandible', () => extremeCluster(mesh(atlas, 'Mandible'), v(sign, -0.35, -0.25), 0.02, (p) => p.x * sign > 0.02), 'extreme of the mandible toward lateral-inferior-posterior on this side (the gonion)'],
+    ['scapula_superior_angle', '견갑골 상각', sidedName(side, 'scapula'), () => extremeCluster(scapula, v(-sign * 0.6, 1, 0), 0.005), 'extreme of the scapula toward superior-medial'],
+    ['scapula_inferior_angle', '견갑골 하각', sidedName(side, 'scapula'), () => extremeCluster(scapula, v(0, -1, -0.2), 0.005), 'lowest (slightly posterior) vertices of the scapula'],
+    ['scapular_spine_medial_end', '견갑극 내측단', sidedName(side, 'scapula'), () => extremeCluster(scapula, medial, 0.004, (p) => p.y > 1.37 && p.y < 1.4 && p.z < -0.091), 'most medial vertices of the posterior scapular spine ridge (the root of the spine)'],
+    ['acromial_angle', '견봉각', sidedName(side, 'scapula'), () => extremeCluster(scapula, v(sign * 0.6, 0.2, -0.8), 0.005, above(scapula, 0.03)), 'extreme of the acromion toward lateral-posterior, top 30 mm of the scapula'],
+    ['greater_tubercle', '상완골 대결절', sidedName(side, 'humerus'), () => extremeCluster(humerus, v(sign, 0.3, 0.3), 0.01, above(humerus, 0.04)), 'extreme of the humeral head region toward lateral-anterior-superior'],
+    ['medial_humeral_epicondyle', '상완골 내측상과', sidedName(side, 'humerus'), () => extremeCluster(humerus, medial, 0.01, below(humerus, 0.05)), 'most medial vertices of the distal humerus'],
+    ['lateral_humeral_epicondyle', '상완골 외측상과', sidedName(side, 'humerus'), () => extremeCluster(humerus, lateral, 0.01, below(humerus, 0.05)), 'most lateral vertices of the distal humerus'],
+    ['olecranon', '주두', sidedName(side, 'ulna'), () => extremeCluster(ulna, v(0, 0.4, -1), 0.02, above(ulna, 0.03)), 'extreme of the proximal ulna toward posterior-superior'],
+    ['radial_styloid', '요골 경상돌기', sidedName(side, 'radius'), () => extremeCluster(radius, v(0, -1, 0), 0.01), 'lowest vertices of the radius'],
+    ['ulnar_styloid', '척골 경상돌기', sidedName(side, 'ulna'), () => extremeCluster(ulna, v(0, -1, 0), 0.01), 'lowest vertices of the ulna'],
+    ['psis', '후상장골극', sidedName(side, 'hip bone'), () => extremeCluster(hip, v(0, 0.2, -1), 0.005, (p) => p.x * sign < 0.07 && p.y > hip.box.min.y + 0.12), 'most posterior (slightly superior) vertices of the ilium near the sacrum'],
+    ['patella_apex', '슬개골 첨', sidedName(side, 'patella'), () => extremeCluster(patella, v(0, -1, 0), 0.03), 'lowest vertices of the patella'],
+    ['tibial_tuberosity', '경골조면', sidedName(side, 'tibia'), () => extremeCluster(tibia, v(0, 0, 1), 0.01, above(tibia, 0.1)), 'most anterior vertices of the upper 100 mm of the tibia'],
+    ['medial_tibial_condyle', '경골 내측과', sidedName(side, 'tibia'), () => extremeCluster(tibia, medial, 0.01, above(tibia, 0.07)), 'most medial vertices of the tibial plateau region'],
+    ['medial_malleolus_prominence', '내과 융기', sidedName(side, 'tibia'), () => extremeCluster(tibia, medial, 0.01, below(tibia, 0.045)), 'most medial vertices of the distal 45 mm of the tibia'],
+    ['navicular_tuberosity', '주상골 조면', `Navicular bone of ${side} foot`, () => extremeCluster(mesh(atlas, `Navicular bone of ${side} foot`), v(-sign, -0.3, 0), 0.03), 'extreme of the navicular toward medial-inferior'],
+    ['metatarsal_5_tuberosity', '제5중족골 조면', sidedName(side, 'fifth metatarsal bone'), () => extremeCluster(mt5, v(sign, 0, -0.5), 0.02), 'extreme of the 5th metatarsal toward lateral-proximal (the styloid tuberosity)'],
+  ];
+  for (const [id, korean, source, build, derivation] of items) point(id, korean, side, build, { ...prominence, derivation, sources: [source] });
+}
+// Posterior sacral foramina S1–S4: rays cast forward from behind the sacrum on a 1 mm grid; a foramen is where the ray
+// passes through or lands well anterior of the bone ring around it (same method as scripts/meridians/bl.mjs).
+{
+  const sacrum = mesh(atlas, 'Sacrum');
+  const object = new T.Mesh(new T.BufferGeometry().setAttribute('position', new T.BufferAttribute(sacrum.positions, 3)).setIndex(new T.BufferAttribute(sacrum.indices, 1)), new T.MeshBasicMaterial({ side: T.DoubleSide }));
+  const caster = new T.Raycaster();
+  const depth = (x, y) => { caster.set(v(x, y, -0.25), v(0, 0, 1)); caster.far = 0.3; const hit = caster.intersectObject(object, false)[0]; return hit ? hit.point.z : null; };
+  for (const side of SIDES) {
+    const sign = sideSign(side), cells = [];
+    for (let y = 0.905; y <= 0.99; y += 0.001) for (let a = 0.008; a <= 0.032; a += 0.001) {
+      const x = a * sign, ring = [];
+      for (let k = 0; k < 12; k++) { const t = (k / 12) * Math.PI * 2; ring.push(depth(x + Math.cos(t) * 0.007, y + Math.sin(t) * 0.007)); }
+      const boneRing = ring.filter((z) => z !== null);
+      if (boneRing.length < 11) continue;
+      const reference = boneRing.sort((p, q) => p - q)[Math.floor(boneRing.length / 2)], z = depth(x, y);
+      cells.push({ x, y, score: z === null ? 0.03 : z - reference, z: z ?? reference });
+    }
+    const picked = [];
+    for (const c of cells.sort((p, q) => q.score - p.score)) { if (c.score < 0.006) break; if (picked.every((p) => Math.hypot(p.x - c.x, p.y - c.y) > 0.012)) picked.push(c); if (picked.length === 4) break; }
+    picked.sort((p, q) => q.y - p.y);
+    picked.forEach((c, i) => point(`posterior_sacral_foramen_S${i + 1}`, `제${i + 1}뒤엉치뼈구멍`, side, () => v(c.x, c.y, c.z), {
+      ...prominence, derivation: 'posterior sacral foramen detected by rays through the sacrum (hole or >6 mm dip against the surrounding bone ring)', sources: ['Sacrum'],
+    }));
+    if (picked.length !== 4) skipped.push({ id: 'posterior_sacral_foramen', side, reason: `found ${picked.length} of 4` });
+  }
+}
+// Already-registered prominences that are palpated as surface landmarks.
+const SURFACE = ['mastoid_process_tip', 'zygomatic_arch_midpoint', 'mandibular_condyle', 'acromion_lateral', 'suprasternal_notch', 'xiphisternal_junction',
+  'pubic_symphysis_superior', 'asis', 'pubic_tubercle', 'iliac_crest_apex', 'sacral_hiatus', 'greater_trochanter', 'lateral_femoral_epicondyle',
+  'patella_base', 'fibular_head', 'lateral_malleolus_prominence', 'lateral_malleolus_tip', 'spinous_process_C7.tip'];
+for (const landmark of landmarks) if (SURFACE.includes(landmark.id)) { landmark.surfaceLandmark = true; landmark.reviewStatus ??= 'auto'; }
+// Skin over each surface landmark, found along the direction it is palpated from (a nearest skin vertex can sit on
+// another face for deep prominences such as the scapular angles). Directions are for the right side; x mirrors.
+{
+  const skinPart = mesh(atlas, 'Skin');
+  const skin = new T.Mesh(new T.BufferGeometry().setAttribute('position', new T.BufferAttribute(skinPart.positions, 3)).setIndex(new T.BufferAttribute(skinPart.indices, 1)), new T.MeshBasicMaterial({ side: T.DoubleSide }));
+  const caster = new T.Raycaster();
+  const P = [0, 0, -1], A = [0, 0, 1], L = [-1, 0, 0], M = [1, 0, 0];
+  const PALPATED = {
+    external_occipital_protuberance: P, 'spinous_process_C7.tip': P, scapula_superior_angle: [0, 0.3, -1], scapula_inferior_angle: P, scapular_spine_medial_end: P,
+    psis: P, sacral_hiatus: P, posterior_sacral_foramen_S1: P, posterior_sacral_foramen_S2: P, posterior_sacral_foramen_S3: P, posterior_sacral_foramen_S4: P,
+    olecranon: [0, 0.3, -1], acromial_angle: [-0.6, 0.3, -0.8],
+    suprasternal_notch: [0, 0.3, 1], sternal_angle: A, xiphisternal_junction: A, xiphoid_tip: A, pubic_symphysis_superior: A, pubic_tubercle: A,
+    asis: A, patella_base: [0, 0.3, 1], patella_apex: A, tibial_tuberosity: A,
+    mastoid_process_tip: [-1, -0.3, -0.3], zygomatic_arch_midpoint: L, mandibular_condyle: L, mandibular_angle: [-1, -0.3, 0],
+    acromion_lateral: [-1, 0.3, 0], greater_tubercle: [-1, 0, 0.3], lateral_humeral_epicondyle: L, radial_styloid: [-1, 0, 0.3],
+    iliac_crest_apex: [-1, 0.5, 0], greater_trochanter: L, lateral_femoral_epicondyle: L, fibular_head: L,
+    lateral_malleolus_prominence: L, lateral_malleolus_tip: [-1, -0.3, 0], metatarsal_5_tuberosity: L,
+    medial_humeral_epicondyle: M, ulnar_styloid: [1, 0, -0.5], medial_tibial_condyle: M, medial_malleolus_prominence: M, navicular_tuberosity: [1, -0.3, 0],
+  };
+  for (const landmark of landmarks) {
+    if (!landmark.surfaceLandmark || landmark.kind !== 'point') continue;
+    const dir = PALPATED[landmark.id];
+    if (!dir) throw new Error(`surface landmark ${landmark.id} has no palpation direction`);
+    const out = v(landmark.side === 'left' ? -dir[0] : dir[0], dir[1], dir[2]).normalize(), at = v(...landmark.point);
+    caster.set(at.clone().addScaledVector(out, 0.2), out.clone().negate());
+    caster.far = 0.4;
+    // The skin just outside the bone: the closest hit on the outward side. The first hit from outside can be another
+    // limb (a medial ray crosses the other leg) or the trunk beside the arm.
+    const hit = caster.intersectObject(skin, false).filter((h) => h.point.clone().sub(at).dot(out) > -0.002)
+      .reduce((best, h) => (!best || h.point.distanceTo(at) < best.point.distanceTo(at) ? h : best), null);
+    if (!hit) throw new Error(`no skin over ${landmark.id}/${landmark.side}`);
+    landmark.skin = round(hit.point);
+    landmark.skinDirection = round(out);
+    landmark.skinDepthMm = +(hit.point.distanceTo(at) * 1000).toFixed(1);
+  }
 }
 
 // Record how closely each sided pair mirrors, so a rule can see the uncertainty it inherits.
