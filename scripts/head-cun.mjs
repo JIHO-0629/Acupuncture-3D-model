@@ -14,11 +14,12 @@
  *   - 전발제 ~ 후발제 = 12촌 (scalp): GB8, GB9, GB13, GB15..GB18
  *   - 유양돌기 ~ 유양돌기 = 9촌 (posterior transverse): GB19
  * The anterior hairline is read from the "Hair of head" mesh, which matches the rendered
- * forehead. Its posterior edge is not usable: the mesh runs down the neck to y 1.524. The
- * posterior hairline therefore comes from WHO's GV16 rule (풍부 lies directly below the external
- * occipital protuberance, 1촌 above the posterior hairline), so the 12촌 axis is 전발제→EOP plus
- * 1촌, i.e. 전발제→EOP = 11촌. The GV20 cross-check (5촌 behind the anterior hairline, on the
- * line joining the auricular apices) validates that calibration independently.
+ * forehead. The scalp scale is anchored on GV20 (reviewer, 2026-09-21): the point where the
+ * plane of the two auricular long axes (lobule → apex, leaning back) crosses the midline, 5촌
+ * behind the anterior hairline. The earlier rule (전발제→EOP = 11촌) made every point measured
+ * from the front 1.5촌 short. Two independent checks agree with the new scale: the GV20–GV17 arc
+ * gives 29.7 mm/촌 against 30.4, and 12촌 from the anterior hairline ends at y 1.536, the C2
+ * level where the sheet puts the posterior hairline.
  *
  * Usage: node scripts/head-cun.mjs
  * Output: data/head-cun.json
@@ -139,15 +140,22 @@ function projectHead(seed) {
 const midline = section('x', 0);
 const hairMeshAnterior = best(hair, (p) => Math.abs(p.x) < 0.012 && p.z > 0, (p) => -p.y);
 const hairMeshPosterior = best(hair, (p) => Math.abs(p.x) < 0.012 && p.z < 0, (p) => -p.y);
-const eop = best(occipital, (p) => Math.abs(p.x) < 0.012, (p) => -p.z);
+// Registered protuberance (reviewer-confirmed 2026-09-21): the lower edge of the occipital bulge, not its rearmost point.
+const eop = landmark('external_occipital_protuberance', null);
 const anteriorHairline = midline[nearest(midline, hairMeshAnterior)];
 const eopSkin = atHeight(midline, eop.y, false);
 const overVertex = stepToward(midline, nearest(midline, anteriorHairline), 'y', 1);
 const toEop = arc(midline, anteriorHairline, eopSkin, overVertex);
-const CUN = toEop / 11;
-const posteriorHairline = advance(midline, nearest(midline, eopSkin), overVertex, CUN);
+// Scale (reviewer, 2026-09-21): GV20 is where the plane of the auricular long axes (lobule → apex, both leaning back)
+// crosses the midline, and it is 5 B-cun behind the anterior hairline. The old rule (anterior hairline → EOP = 11 B-cun)
+// put every point measured from the front 1.5 B-cun short. The GV18–GV20 arc to GV17 agrees with this scale within 2 %.
 const AURICULAR_APEX_Z = -0.0298; // app/ear-anatomy.ts builds the apex here (see AURICLE_OFFSET)
-const gv20 = advance(midline, nearest(midline, anteriorHairline), overVertex, 5 * CUN);
+const EAR_APEX = new T.Vector3(-0.0737, 1.6226, AURICULAR_APEX_Z), EAR_LOBULE = new T.Vector3(-0.0656, 1.5666, -0.0082);
+const earPlaneNormal = new T.Vector3(1, 0, 0).cross(EAR_APEX.clone().sub(EAR_LOBULE).normalize()).normalize();
+const earPlane = (p) => earPlaneNormal.dot(p.clone().sub(EAR_APEX));
+const gv20 = midline.filter((p) => p.y > 1.66).reduce((b, p) => (Math.abs(earPlane(p)) < Math.abs(earPlane(b)) ? p : b));
+const CUN = arc(midline, anteriorHairline, gv20, overVertex) / 5;
+const posteriorHairline = advance(midline, nearest(midline, anteriorHairline), overVertex, 12 * CUN);
 const gvMidline = Object.fromEntries([
   ['GV18', 8], ['GV19', 6.5], ['GV20', 5], ['GV21', 3.5], ['GV22', 2], ['GV23', 1], ['GV24', 0.5],
 ].map(([code, cun]) => [code, round(advance(midline, nearest(midline, anteriorHairline), overVertex, cun * CUN))]));
@@ -232,9 +240,9 @@ for (const [code, korean, z, cun, rule] of [
   add('GB11', '두규음', at(2 / 3), `GB9–GB12 두피 곡선(${mm(total)} mm)의 위쪽 2/3`, ['Skin']);
 }
 
-// GB19 뇌공: level with the upper border of the EOP, 2.25 transverse 촌 lateral to the midline.
+// GB19 뇌공: level with the upper border of the EOP (GV17/BL9 level), 2.25 transverse 촌 lateral to the midline.
 {
-  const upper = best(occipital, (p) => Math.abs(p.x) < 0.012 && p.z < eop.z + 0.004, (p) => p.y);
+  const upper = eop.clone().add(new T.Vector3(0, 0.008, 0));
   const ring = section('y', upper.y, new T.Vector3(0, upper.y, -0.03));
   const back = ring.filter((p) => p.z < 0).reduce((b, p) => (Math.abs(p.x) < Math.abs(b.x) ? p : b));
   const index = nearest(ring, back);
@@ -247,11 +255,11 @@ const output = {
   generated: 'scripts/head-cun.mjs',
   note: 'head B-cun as arc length on the skin, one local scale per WHO segment',
   scalp: {
-    rule: '전발제~후발제 = 12촌; 전발제는 Hair of head 메쉬, 후발제는 풍부(외후두융기 바로 아래, 후발제 위 1촌) 규정',
+    rule: '전발제~후발제 = 12촌; 전발제는 Hair of head 메쉬, 백회(양 이개 장축 평면과 정중선의 교점)가 전발제 뒤 5촌',
     anteriorHairline: round(anteriorHairline), externalOccipitalProtuberance: round(eopSkin), posteriorHairline: round(posteriorHairline),
     anteriorHairlineToEopMm: mm(toEop), cunMm: +(CUN * 1000).toFixed(3),
     hairMeshPosteriorRejected: round(hairMeshPosterior),
-    check: { rule: '백회(전발제 뒤 5촌)는 양 이개첨 연결선 위', gv20: round(gv20), auricularApexZ: AURICULAR_APEX_Z, offsetMm: mm(gv20.z - AURICULAR_APEX_Z) },
+    anchor: { rule: '백회 = 양 이개 장축(귓불→귀끝) 평면과 정중선의 교점 = 전발제 뒤 5촌', gv20: round(gv20), auricularApexZ: AURICULAR_APEX_Z, behindApexLineMm: mm(AURICULAR_APEX_Z - gv20.z) },
     gvMidline,
   },
   forehead: { rule: '미간~전발제 = 3촌 (동공중선)', cunMm: +(foreheadCun * 1000).toFixed(3) },
@@ -261,6 +269,6 @@ const output = {
 };
 fs.writeFileSync(new URL('../data/head-cun.json', import.meta.url), JSON.stringify(output, null, 1));
 console.log(`scalp 1촌 ${output.scalp.cunMm} mm | forehead 1촌 ${output.forehead.cunMm} mm | posterior transverse 1촌 ${output.posteriorTransverse.cunMm} mm`);
-console.log(`GV20 check: 5촌 behind the anterior hairline lands ${output.scalp.check.offsetMm} mm from the auricular-apex line (z ${mm(gv20.z)})`);
+console.log(`GV20 anchor: ${output.scalp.anchor.behindApexLineMm} mm behind the auricular-apex line (z ${mm(gv20.z)})`);
 console.log(`posterior hairline y ${mm(posteriorHairline.y)} (hair mesh rejected at y ${mm(hairMeshPosterior.y)})`);
 for (const p of points) console.log(`${p.code.padEnd(5)} ${p.korean.padEnd(4)} ${p.point.map((n) => (n * 1000).toFixed(1).padStart(7)).join('')}`);

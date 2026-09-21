@@ -10,7 +10,7 @@
   "upperAbdomenCunMm": 29.1,
   "lowerAbdomenCunMm": 29.1,
   "thighCunMm": 22.5,
-  "scalpCunMm": 23.879,
+  "scalpCunMm": 30.401,
   "fCunMm": 18.289
  },
  "generatedBy": "scripts/meridians/st.mjs",
@@ -242,18 +242,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.05684,
-    1.67569,
-    0.02885
+    -0.05689,
+    1.67784,
+    0.02644
    ],
    "outward": [
-    -0.53218,
-    0.80239,
-    0.27012
+    -0.52701,
+    0.81379,
+    0.24495
    ],
    "region": "head",
    "depthMm": 3.9,
-   "rule": "corner of the forehead hairline (Hair of head) · 0.5 B-cun above on the scalp arc (11.9 mm) · defines 4.5 B-cun from the midline"
+   "rule": "corner of the forehead hairline (Hair of head) · 0.5 B-cun above on the scalp arc (15.2 mm) · defines 4.5 B-cun from the midline"
   },
   {
    "code": "ST9",
