@@ -301,9 +301,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03214,
+    -0.03376,
     0.44819,
-    -0.04827
+    -0.05392
    ],
    "outward": [
     0.19996,
@@ -311,7 +311,7 @@
     -0.9798
    ],
    "region": "thigh-R",
-   "depthMm": 2.6,
+   "depthMm": 13.4,
    "rule": "posteromedial knee · popliteal crease · immediately lateral to the semitendinosus tendon"
   },
   {
@@ -661,17 +661,17 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03813,
-    1.25841,
-    0.12072
+    -0.03782,
+    1.26341,
+    0.12214
    ],
    "outward": [
-    -0.26153,
+    -0.25712,
     0,
-    0.9652
+    0.96638
    ],
    "region": "thorax",
-   "depthMm": 7.5,
+   "depthMm": 8,
    "rule": "5th intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc)"
   },
   {

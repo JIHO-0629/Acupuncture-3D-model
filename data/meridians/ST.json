@@ -272,18 +272,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.04015,
-    1.50904,
-    0.01707
+    -0.02931,
+    1.49648,
+    0.02152
    ],
    "outward": [
     -0.49828,
     0,
     0.86701
    ],
-   "region": "face",
-   "depthMm": 9.3,
-   "rule": "level of the superior border of the thyroid cartilage · anterior to sternocleidomastoid · common carotid pulse"
+   "region": "neck",
+   "depthMm": 8.9,
+   "rule": "level of the C4 vertebral body (superior thyroid border region) · anterior to sternocleidomastoid · common carotid pulse"
   },
   {
    "code": "ST10",
@@ -332,9 +332,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.01634,
-    1.41903,
-    0.03848
+    -0.02365,
+    1.41812,
+    0.04177
    ],
    "outward": [
     0,
@@ -342,8 +342,8 @@
     0.89443
    ],
    "region": "shoulder",
-   "depthMm": 1.6,
-   "rule": "lesser supraclavicular fossa · above the sternal end of the clavicle · between the sternal and clavicular heads of sternocleidomastoid"
+   "depthMm": 3.5,
+   "rule": "lesser supraclavicular fossa · just above the sternal end of the clavicle · immediately lateral to the sternal head of sternocleidomastoid"
   },
   {
    "code": "ST12",
@@ -362,9 +362,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07752,
-    1.43165,
-    0.01003
+    -0.07883,
+    1.43121,
+    0.00951
    ],
    "outward": [
     0,
@@ -372,8 +372,8 @@
     0.75996
    ],
    "region": "thorax",
-   "depthMm": 7.6,
-   "rule": "greater supraclavicular fossa · 4 B-cun lateral (skin arc) · depression above the clavicle"
+   "depthMm": 6.9,
+   "rule": "greater supraclavicular fossa · on the vertical nipple line (4 B-cun) · depression above the clavicle"
   },
   {
    "code": "ST13",
@@ -392,18 +392,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07676,
-    1.39896,
-    0.05318
+    -0.07883,
+    1.40311,
+    0.04824
    ],
    "outward": [
-    -0.72377,
     0,
-    0.69004
+    0,
+    1
    ],
    "region": "thorax",
-   "depthMm": 6.9,
-   "rule": "inferior to the clavicle · 4 B-cun lateral (skin arc)"
+   "depthMm": 18.2,
+   "rule": "immediately inferior to the clavicle · on the vertical nipple line with ST12 (4 B-cun)"
   },
   {
    "code": "ST14",
@@ -512,18 +512,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07784,
-    1.28078,
-    0.1192
+    -0.07776,
+    1.27343,
+    0.12069
    ],
    "outward": [
-    -0.48808,
+    -0.48376,
     0,
-    0.8728
+    0.8752
    ],
    "region": "thorax",
    "depthMm": 7.8,
-   "rule": "4th intercostal space · 4 B-cun lateral (skin arc) · centre of the nipple in males"
+   "rule": "4th intercostal space just above the 5th rib · 4 B-cun lateral (skin arc) · centre of the nipple (data/nipple.json)"
   },
   {
    "code": "ST18",
@@ -902,18 +902,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.0396,
-    0.88419,
-    0.0719
+    -0.03953,
+    0.88954,
+    0.07346
    ],
    "outward": [
-    -0.39572,
+    -0.38955,
     0,
-    0.91837
+    0.92101
    ],
    "region": "pelvis",
    "depthMm": 8.1,
-   "rule": "level of the superior border of the pubic symphysis · 2 B-cun lateral (skin arc) · femoral artery (sheet \"5촌\" is an error)"
+   "rule": "inguinal groove over the inguinal ligament · 2 B-cun lateral (skin arc) · pubic-symphysis level region (sheet \"5촌\" is an error)"
   },
   {
    "code": "ST31",
@@ -1262,9 +1262,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.09291,
-    0.07417,
-    0.03395
+    -0.09946,
+    0.07238,
+    0.03439
    ],
    "outward": [
     0,
@@ -1272,8 +1272,8 @@
     0.4311
    ],
    "region": "foot-R",
-   "depthMm": 13.6,
-   "rule": "joint of the 2nd metatarsal base and the intermediate cuneiform · dorsalis pedis artery"
+   "depthMm": 13.9,
+   "rule": "joint of the 2nd metatarsal base and the intermediate cuneiform (centred on the 2nd metatarsal base) · dorsalis pedis artery"
   },
   {
    "code": "ST43",

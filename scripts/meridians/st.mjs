@@ -211,29 +211,36 @@ const scm = pts(mesh(atlas, 'Right sternocleidomastoid'), (p) => p.x < 0);
 const neck = ['neck'];
 {
   const thyroidTop = highest(pts(mesh(atlas, 'Thyroid cartilage')));
-  const border9 = most(scm.filter((p) => Math.abs(p.y - thyroidTop.y) < 0.003), ANTERIOR);
+  // Reviewer (2026-09-21): level with C4. On this model the thyroid top sits at the C3/C4 disc, 10 mm higher than the
+  // C4 body, so the vertebral level wins and the thyroid top is kept only in the log.
+  const c4 = mesh(atlas, 'Fourth cervical vertebra'), y9 = (c4.box.min.y + c4.box.max.y) / 2;
+  const border9 = most(scm.filter((p) => Math.abs(p.y - y9) < 0.003), ANTERIOR);
   // Skin just under the jaw is labelled 'face'; neck-only let the ray exit through the back of the neck (101 mm).
-  W.put('ST9', v(border9.x + 0.003, thyroidTop.y, border9.z + 0.003), v(-0.5, 0, 0.87).normalize(), ['neck', 'face'],
-    'level of the superior border of the thyroid cartilage · anterior to sternocleidomastoid · common carotid pulse');
+  W.put('ST9', v(border9.x + 0.003, y9, border9.z + 0.003), v(-0.5, 0, 0.87).normalize(), ['neck', 'face'],
+    'level of the C4 vertebral body (superior thyroid border region) · anterior to sternocleidomastoid · common carotid pulse');
   const cricoid = mesh(atlas, 'Cricoid cartilage'), cricoidY = (cricoid.box.min.y + cricoid.box.max.y) / 2;
   const border10 = most(scm.filter((p) => Math.abs(p.y - cricoidY) < 0.003), ANTERIOR);
   W.put('ST10', v(border10.x + 0.002, cricoidY, border10.z + 0.003), v(-0.4, 0, 0.92).normalize(), neck,
     'level of the cricoid cartilage · just anterior to the border of sternocleidomastoid');
-  log.neck = { thyroidTopY: +thyroidTop.y.toFixed(4), scmBorder9: r4(border9), cricoidY: +cricoidY.toFixed(4), scmBorder10: r4(border10) };
+  log.neck = { thyroidTopY: +thyroidTop.y.toFixed(4), c4CentreY: +y9.toFixed(4), scmBorder9: r4(border9), cricoidY: +cricoidY.toFixed(4), scmBorder10: r4(border10) };
 }
 const clavicle = mesh(atlas, 'Right clavicle');
 const clavicleMedial = most(pts(clavicle), v(1, 0, 0)), clavicleLateral = most(pts(clavicle), LATERAL);
 {
   // Lesser supraclavicular fossa: the widest x-gap between the sternal and clavicular heads just above the clavicle.
-  const y = clavicleMedial.y + 0.018;
-  const xs = [...scm.filter((p) => Math.abs(p.y - y) < 0.002 && p.z > 0).map((p) => p.x)].sort((a, b) => b - a);
-  let gap = { width: 0, x: clavicleMedial.x - 0.015 };
-  for (let i = 1; i < xs.length; i++) if (xs[i - 1] - xs[i] > gap.width) gap = { width: xs[i - 1] - xs[i], x: (xs[i - 1] + xs[i]) / 2 };
-  const top = highest(pts(clavicle, (p) => Math.abs(p.x - gap.x) < 0.004));
+  // Cut just below the top of the medial clavicle: 18 mm higher the sparse sternal head showed an internal gap and
+  // the point landed in the middle of that head (reviewer, 2026-09-21).
+  const y = highest(pts(clavicle, (p) => p.x > -0.035 && p.x < -0.01)).y - 0.003;
+  const xs = [...scm.filter((p) => Math.abs(p.y - y) < 0.0025 && p.z > 0).map((p) => p.x)].sort((a, b) => b - a);
+  let gap = { width: 0, sternalEdge: clavicleMedial.x - 0.01 };
+  for (let i = 1; i < xs.length; i++) if (xs[i - 1] - xs[i] > gap.width) gap = { width: xs[i - 1] - xs[i], sternalEdge: xs[i - 1] };
+  // Reviewer: hug the lateral border of the sternal head, and sit close to the top of the clavicle.
+  const x11 = gap.sternalEdge - 0.002;
+  const top = highest(pts(clavicle, (p) => Math.abs(p.x - x11) < 0.004));
   // skin-regions labels the skin over the medial clavicle 'shoulder', so it is allowed here.
-  W.put('ST11', v(gap.x, top.y + 0.006, top.z + 0.004), v(0, 0.45, 0.9).normalize(), ['neck', 'thorax', 'shoulder'],
-    'lesser supraclavicular fossa · above the sternal end of the clavicle · between the sternal and clavicular heads of sternocleidomastoid');
-  log.st11 = { headGapX: +gap.x.toFixed(4), headGapWidthMm: +(gap.width * 1000).toFixed(1) };
+  W.put('ST11', v(x11, top.y + 0.004, top.z + 0.004), v(0, 0.45, 0.9).normalize(), ['neck', 'thorax', 'shoulder'],
+    'lesser supraclavicular fossa · just above the sternal end of the clavicle · immediately lateral to the sternal head of sternocleidomastoid');
+  log.st11 = { cutY: +y.toFixed(4), sternalHeadLateralX: +gap.sternalEdge.toFixed(4), headGapWidthMm: +(gap.width * 1000).toFixed(1) };
 }
 
 // ---------------------------------------------------------------- transverse trunk scale (skin arc)
@@ -252,12 +259,6 @@ const lateralOnSkin = (y, cun) => {
 };
 log.trunk = { cunMm: +(TRUNK_CUN * 1000).toFixed(2), clavicleLevel: +clavicleLevel.toFixed(4), clavicleMidX: +clavicleMidX.toFixed(4) };
 
-{
-  const column = lateralOnSkin(clavicleLevel, 4);
-  const top = highest(pts(clavicle, (p) => Math.abs(p.x - column.x) < 0.004));
-  W.put('ST12', v(column.x, top.y + 0.007, top.z - 0.004), v(0, 0.65, 0.76).normalize(), ['neck', 'shoulder', 'thorax'],
-    'greater supraclavicular fossa · 4 B-cun lateral (skin arc) · depression above the clavicle');
-}
 
 // ---------------------------------------------------------------- chest: ST13–ST18 on the 4 B-cun skin line
 const ribParts = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh'].map((n) =>
@@ -286,14 +287,33 @@ const putOnTrunkLine = (code, y, cun, regions, rule) => {
   W.put(code, surface.clone().addScaledVector(normal, -0.01), normal, regions, rule);
 };
 {
-  const column = lateralOnSkin(clavicleLevel, 4);
-  const clavicleLow = lowest(pts(clavicle, (p) => Math.abs(p.x - column.x) < 0.004)).y;
-  putOnTrunkLine('ST13', clavicleLow - 0.006, 4, chest, 'inferior to the clavicle · 4 B-cun lateral (skin arc)');
+  // Nipple (reviewer, 2026-09-21): rendered just above the 5th rib on the 4 B-cun line. It is not meshed in
+  // BodyParts3D, so the anchor is written to data/nipple.json and drawn as a skin presentation (app/nipple-presentation.ts).
+  let nippleY = ribBand(5, clavicleMidX).high + 0.004;
+  for (let pass = 0; pass < 2; pass++) nippleY = ribBand(5, lateralOnSkin(nippleY, 4).x).high + 0.004;
+  const nipple = lateralOnSkin(nippleY, 4), nippleNormal = ringNormal(nipple, nippleY);
+  fs.writeFileSync(new URL('../../data/nipple.json', import.meta.url), JSON.stringify({
+    generatedBy: 'scripts/meridians/st.mjs',
+    rule: 'just above the 5th rib (4th intercostal space) on the 4 B-cun skin line; right side, the viewer mirrors x for the left',
+    centre: r4(nipple), normal: r4(nippleNormal),
+  }, null, 1) + '\n');
+  // ST12 and ST13 follow the vertical nipple line (reviewer): the 4 B-cun arc drifts laterally as the chest widens
+  // above the clavicle, so the column is fixed to the nipple's x instead of re-measuring the arc at each height.
+  const lineX = nipple.x;
+  const top12 = highest(pts(clavicle, (p) => Math.abs(p.x - lineX) < 0.004));
+  W.put('ST12', v(lineX, top12.y + 0.007, top12.z - 0.004), v(0, 0.65, 0.76).normalize(), ['neck', 'shoulder', 'thorax'],
+    'greater supraclavicular fossa · on the vertical nipple line (4 B-cun) · depression above the clavicle');
+  const clavicleLow = lowest(pts(clavicle, (p) => Math.abs(p.x - lineX) < 0.004)).y;
+  // Reviewer: immediately below the clavicle, on the same line as ST12.
+  W.put('ST13', v(lineX, clavicleLow - 0.003, 0.03), ANTERIOR, chest, 'immediately inferior to the clavicle · on the vertical nipple line with ST12 (4 B-cun)');
   const ics = {};
-  for (const [code, k, extra] of [['ST14', 1, ''], ['ST15', 2, ' · below the 2nd rib at the sternal angle'], ['ST16', 3, ''], ['ST17', 4, ' · centre of the nipple in males'], ['ST18', 5, ' · nipple line in males']]) {
+  for (const [code, k, extra] of [['ST14', 1, ''], ['ST15', 2, ' · below the 2nd rib at the sternal angle'], ['ST16', 3, ''], ['ST18', 5, ' · nipple line in males']]) {
     ics[code] = intercostal(k);
     putOnTrunkLine(code, ics[code], 4, chest, `${['1st', '2nd', '3rd', '4th', '5th'][k - 1]} intercostal space · 4 B-cun lateral (skin arc)${extra}`);
   }
+  // ST17 is the centre of the nipple, so it follows the rendered nipple (lower part of the 4th intercostal space).
+  ics.ST17 = nippleY;
+  putOnTrunkLine('ST17', nippleY, 4, chest, '4th intercostal space just above the 5th rib · 4 B-cun lateral (skin arc) · centre of the nipple (data/nipple.json)');
   log.chest = { clavicleLowY: +clavicleLow.toFixed(4), ics: Object.fromEntries(Object.entries(ics).map(([k, y]) => [k, +y.toFixed(4)])) };
 }
 
@@ -321,7 +341,13 @@ for (const [code, cun] of [['ST26', 1], ['ST27', 2], ['ST28', 3], ['ST29', 4]]) 
   putOnTrunkLine(code, umbilicus.y - cun * lowerCun, 2, abdomen, `${cun} B-cun below the centre of the umbilicus · 2 B-cun lateral (skin arc)`);
 }
 {
-  putOnTrunkLine('ST30', pubis.y, 2, ['pelvis', 'thigh-R'], 'level of the superior border of the pubic symphysis · 2 B-cun lateral (skin arc) · femoral artery (sheet "5촌" is an error)');
+  // Reviewer (2026-09-21): re-seat ST30 now that the inguinal ligament is modelled. At the pubic-symphysis level the
+  // 2 B-cun column passed 10 mm below the ligament; the point goes on the skin over the ligament at that column,
+  // which is where the inguinal groove lies (about 0.3 B-cun above the symphysis level on this body).
+  const column30 = lateralOnSkin(pubis.y, 2);
+  const band30 = pts(mesh(atlas, 'Right inguinal ligament'), (p) => Math.abs(p.x - column30.x) < 0.004);
+  const lig30 = band30.reduce((s, p) => s.add(p), v(0, 0, 0)).multiplyScalar(1 / band30.length);
+  putOnTrunkLine('ST30', lig30.y, 2, ['pelvis', 'thigh-R'], 'inguinal groove over the inguinal ligament · 2 B-cun lateral (skin arc) · pubic-symphysis level region (sheet "5촌" is an error)');
   const artery = most(pts(mesh(atlas, 'Right femoral artery'), (p) => Math.abs(p.y - pubis.y) < 0.006), ANTERIOR);
   log.st30 = { femoralArtery: r4(artery), pointX: +W.get('ST30').x.toFixed(4) };
 }
@@ -421,10 +447,15 @@ for (const [code, cun] of [['ST36', 3], ['ST37', 6], ['ST38', 8], ['ST39', 9]]) 
 const foot = ['foot-R'];
 {
   const mt2 = mesh(atlas, 'Right second metatarsal bone'), cuneiform = mesh(atlas, 'Right intermediate cuneiform bone');
-  const mt2Base = most(pts(mt2, (p) => p.z < mt2.box.min.z + 0.008), UP);
-  const cuneiformFront = most(pts(cuneiform, (p) => p.z > cuneiform.box.max.z - 0.006), UP);
-  const deep = mid(mt2Base, cuneiformFront);
-  W.put('ST42', deep, v(0, 0.9, 0.43).normalize(), foot, 'joint of the 2nd metatarsal base and the intermediate cuneiform · dorsalis pedis artery');
+  // Reviewer (2026-09-21, comment entered one row up on ST41): the point read as the 1st metatarsal base. The two
+  // highest vertices sat on the medial edge of the joint, level in x with the 1st metatarsal base; centre it on the
+  // 2nd metatarsal base instead, at the top of the joint line.
+  const baseVerts = pts(mt2, (p) => p.z < mt2.box.min.z + 0.008), frontVerts = pts(cuneiform, (p) => p.z > cuneiform.box.max.z - 0.006);
+  const x42 = baseVerts.reduce((s, p) => s + p.x, 0) / baseVerts.length;
+  const near = (list) => list.filter((p) => Math.abs(p.x - x42) < 0.004);
+  const mt2Base = most(near(baseVerts), UP), cuneiformFront = most(near(frontVerts).length ? near(frontVerts) : frontVerts, UP);
+  const deep = v(x42, Math.max(mt2Base.y, cuneiformFront.y), (mt2Base.z + cuneiformFront.z) / 2);
+  W.put('ST42', deep, v(0, 0.9, 0.43).normalize(), foot, 'joint of the 2nd metatarsal base and the intermediate cuneiform (centred on the 2nd metatarsal base) · dorsalis pedis artery');
   const artery = pts(mesh(atlas, 'Right dorsalis pedis artery')).reduce((b, p) => (p.distanceTo(deep) < b.distanceTo(deep) ? p : b));
   log.st42 = { arteryDistanceMm: +(artery.distanceTo(deep) * 1000).toFixed(1) };
 

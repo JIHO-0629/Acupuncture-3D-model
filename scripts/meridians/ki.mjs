@@ -13,6 +13,8 @@
  * Photo notes: KI4 about 0.5 B-cun below KI3 (used as a check); 동의보감 alternatives on KI11/14/16/21 are not used.
  */
 import fs from 'node:fs';
+import * as T from 'three';
+import { threeMesh } from '../atlas-geometry.mjs';
 import { atlas, mesh, centroid, v, mid, most, landmark, atHeight, meridianWriter, MEDIAL, LATERAL, ANTERIOR, POSTERIOR, DOWN } from '../acupoint-kit.mjs';
 import { pts, lowest, highest, section, nearestIndex, stepToward, advance, lateralOnSkin, ringNormal, intercostalOnLine, clavicleLowOnLine, TRUNK_CUN } from '../trunk-arc.mjs';
 
@@ -111,7 +113,10 @@ const ANKLE_CUN = (ki3Deep.y - groundY) / 3;
   const crease = landmark('popliteal_crease');
   const st = most(atHeight(mesh(atlas, 'Right semitendinosus'), crease.y), POSTERIOR);
   const sm = most(atHeight(mesh(atlas, 'Right semimembranosus'), crease.y), POSTERIOR);
-  W.put('KI10', st.clone().add(v(-0.003,0,-0.001)).setY(crease.y), v(0.2, 0, -0.98).normalize(), ['knee-R', 'leg-R', 'thigh-R'],
+  // The tendon's posterior-most vertex put the needle straight into semitendinosus. Take its lateral border instead,
+  // so the point sits beside the tendon (between it and semimembranosus), 7 mm lateral to LR8 on its medial side.
+  const stLateral = most(atHeight(mesh(atlas, 'Right semitendinosus'), crease.y), LATERAL);
+  W.put('KI10', v(stLateral.x - 0.002, crease.y, Math.min(stLateral.z, st.z + 0.004)), v(0.2, 0, -0.98).normalize(), ['knee-R', 'leg-R', 'thigh-R'],
     'posteromedial knee · popliteal crease · immediately lateral to the semitendinosus tendon');
   log.ki10 = { semitendinosus: r4(st), semimembranosus: r4(sm) };
 }
@@ -136,8 +141,23 @@ for (const [code, cun] of [['KI17', 2], ['KI18', 3], ['KI19', 4], ['KI20', 5], [
 // ---------------------------------------------------------------- chest: KI22–KI27 on the 2 B-cun skin line
 const chest = ['thorax', 'shoulder'];
 const ics = {};
+// Reviewer (2026-09-21): from the front KI22 read as the 6th rib. Near the sternum the 6th costal cartilage climbs
+// steeply, so the midpoint of the gap at the skin line put the needle into cartilage 12 mm deep. Slide the point up
+// to the middle of the heights whose needle path clears the 5th and 6th ribs and cartilages.
+const clearOfRibs = (() => {
+  const bones = ['fifth', 'sixth'].flatMap((n) => [`Right ${n} rib`, `Right ${n} costal cartilage`]).filter((n) => { try { mesh(atlas, n); return true; } catch { return false; } }).map((n) => threeMesh(mesh(atlas, n)));
+  const caster = new T.Raycaster();
+  return (y) => { const surface = lateralOnSkin(y, 2), normal = ringNormal(surface); caster.set(surface, normal.clone().negate()); caster.far = 0.035; return caster.intersectObjects(bones, false).length === 0; };
+})();
 for (const [code, k] of [['KI22', 5], ['KI23', 4], ['KI24', 3], ['KI25', 2], ['KI26', 1]]) {
   ics[code] = intercostalOnLine(k, 2);
+  if (code === 'KI22' && !clearOfRibs(ics[code])) {
+    const clear = [];
+    for (let dy = 0.001; dy <= 0.02; dy += 0.001) if (clearOfRibs(ics[code] + dy)) clear.push(dy); else if (clear.length) break;
+    if (!clear.length) throw new Error('KI22: no clear 5th intercostal path above the measured gap');
+    log.ki22 = { measuredY: +ics[code].toFixed(4), clearFromMm: mm(clear[0]), clearToMm: mm(clear.at(-1)) };
+    ics[code] += (clear[0] + clear.at(-1)) / 2;
+  }
   putOnLine(code, ics[code], 2, chest, `${['1st', '2nd', '3rd', '4th', '5th'][k - 1]} intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc)`);
 }
 putOnLine('KI27', clavicleLowOnLine(2) - 0.006, 2, chest, 'just inferior to the clavicle · 2 B-cun lateral (skin arc)');

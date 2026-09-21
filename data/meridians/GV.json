@@ -609,8 +609,8 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.52416,
-    -0.08208
+    1.53604,
+    -0.08326
    ],
    "outward": [
     0,
@@ -618,8 +618,8 @@
     -1
    ],
    "region": "neck",
-   "depthMm": 22.8,
-   "rule": "posterior median line · immediately superior to C2 spinous process",
+   "depthMm": 27.9,
+   "rule": "posterior median line · depression superior to C2 spinous process (between C2 and the atlas)",
    "projection": "posterior"
   },
   {
@@ -650,8 +650,8 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.615,
-    -0.12058
+    1.55239,
+    -0.08889
    ],
    "outward": [
     0,
@@ -659,8 +659,8 @@
     -1
    ],
    "region": "head",
-   "depthMm": 6.6,
-   "rule": "depression between trapezius origins directly inferior to external occipital protuberance",
+   "depthMm": 33.5,
+   "rule": "posterior median line · depression between the trapezius origins below the external occipital protuberance (occiput–atlas interval)",
    "projection": "posterior"
   },
   {
@@ -732,17 +732,17 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.68641,
-    -0.10444
+    1.66227,
+    -0.11528
    ],
    "outward": [
     0,
-    0.67829,
-    -0.73479
+    0.53116,
+    -0.84727
    ],
    "region": "head",
-   "depthMm": 5.9,
-   "rule": "median scalp geodesic · posterior hairline +4 B-cun · posterior manual correction",
+   "depthMm": 6,
+   "rule": "median scalp geodesic · 4 B-cun above the posterior hairline · 1.5 B-cun above GV17 (GV scale 28.4 mm/B-cun)",
    "projection": "head"
   },
   {
@@ -773,17 +773,17 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.70776,
-    -0.07708
+    1.69624,
+    -0.09174
    ],
    "outward": [
     0,
-    0.83671,
-    -0.54765
+    0.75687,
+    -0.65356
    ],
    "region": "head",
-   "depthMm": 0.4,
-   "rule": "median scalp geodesic · posterior hairline +5.5 B-cun · posterior manual correction",
+   "depthMm": 5.8,
+   "rule": "median scalp geodesic · 5.5 B-cun above the posterior hairline · 1.5 B-cun above GV18 (GV scale 28.4 mm/B-cun)",
    "projection": "head"
   },
   {
@@ -814,17 +814,17 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.7165,
-    -0.03494
+    1.71329,
+    -0.05396
    ],
    "outward": [
     0,
-    0.96391,
-    -0.26622
+    0.91609,
+    -0.40098
    ],
    "region": "head",
-   "depthMm": 1.7,
-   "rule": "median scalp geodesic · anterior hairline +5 B-cun · posterior manual correction",
+   "depthMm": 6.3,
+   "rule": "median scalp geodesic · 5 B-cun behind the anterior hairline · 4.5 B-cun above GV17 (GV scale 28.4 mm/B-cun)",
    "projection": "head"
   },
   {
@@ -1019,8 +1019,8 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.572,
-    0.10355
+    1.56562,
+    0.10301
    ],
    "outward": [
     0,
@@ -1028,8 +1028,8 @@
     1
    ],
    "region": "face",
-   "depthMm": 0.5,
-   "rule": "apex of nose",
+   "depthMm": 2,
+   "rule": "apex of nose (most anterior midline skin of the nose)",
    "projection": "anterior"
   },
   {

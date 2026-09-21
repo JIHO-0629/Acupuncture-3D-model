@@ -32,12 +32,14 @@ const anteromedial = forearmAnterior.clone().addScaledVector(forearmMedial, 0.35
 const biceps = ['Long head of right biceps brachii', 'Short head of right biceps brachii'].map((n) => mesh(atlas, n));
 {
   const y = L.creaseY + 3 * L.armCun;
-  const shortHead = centreOf(atHeight(mesh(atlas, 'Short head of right biceps brachii'), y));
-  const brachialis = centreOf(atHeight(mesh(atlas, 'Right brachialis'), y));
-  const deep = mid(shortHead, brachialis).addScaledVector(armMedial, 0.002).setY(y);
+  // Medial bicipital groove: where the medial edges of the short head and brachialis meet. Muscle centres pushed
+  // radially from the arm axis landed on the anterior biceps (over the long head), not on the medial arm.
+  const shortHead = most(atHeight(mesh(atlas, 'Short head of right biceps brachii'), y), MEDIAL);
+  const brachialis = most(atHeight(mesh(atlas, 'Right brachialis'), y), MEDIAL);
+  const deep = mid(shortHead, brachialis).setY(y);
   // The medial arm faces the chest wall: its skin is partly labelled thorax. toSkin takes the nearest outward-side hit,
   // which is the arm skin (~1 cm) before the chest wall (~3 cm).
-  W.put('HT2', deep, radialFrom(deep, L.elbowCentre, L.humeralHead), ['upper-arm-R', 'thorax'], 'junction of short head of biceps brachii and brachialis · 3 B-cun above cubital crease');
+  W.put('HT2', deep, armMedial.clone().addScaledVector(perp(ANTERIOR, L.armAxis), 0.3).normalize(), ['upper-arm-R', 'thorax'], 'medial bicipital groove · junction of short head of biceps brachii and brachialis · 3 B-cun above cubital crease');
 }
 
 // ---------------------------------------------------------------- HT3: anteromedial elbow, just anterior to medial epicondyle, level of cubital crease
@@ -49,12 +51,23 @@ const biceps = ['Long head of right biceps brachii', 'Short head of right biceps
 
 // ---------------------------------------------------------------- HT4–HT7: radial border of flexor carpi ulnaris tendon
 const fcu = ['Humeral head of right flexor carpi ulnaris', 'Ulnar head of right flexor carpi ulnaris'].map((n) => mesh(atlas, n));
-for (const [code, cun] of [['HT4', 1.5], ['HT5', 1], ['HT6', 0.5], ['HT7', 0]]) {
+const htWrist = [['HT4', 1.5], ['HT5', 1], ['HT6', 0.5], ['HT7', 0]].map(([code, cun]) => {
   const y = L.wristY + cun * L.forearmCun;
   const pts = fcu.flatMap((part) => slab(part, 1, y, 0.004));
   if (!pts.length) throw new Error(`FCU tendon not found at ${code}`);
   // The slab is ±4 mm thick: pin the chosen border vertex back to the exact B-cun level.
-  const border = most(pts, forearmLateral).addScaledVector(forearmLateral, 0.002).setY(y);
+  return { code, cun, y, raw: most(pts, forearmLateral).addScaledVector(forearmLateral, 0.002).setY(y) };
+});
+// Reviewer (2026-09-21): HT4–HT7 should read as one run along the FCU tendon. The tendon fans out at the pisiform
+// and pulled HT7 ~6 mm anterior, so every point sits on the least-squares line through the four border samples.
+const fit = (key) => {
+  const n = htWrist.length, my = htWrist.reduce((s, p) => s + p.y, 0) / n, mk = htWrist.reduce((s, p) => s + p.raw[key], 0) / n;
+  const slope = htWrist.reduce((s, p) => s + (p.y - my) * (p.raw[key] - mk), 0) / htWrist.reduce((s, p) => s + (p.y - my) ** 2, 0);
+  return (y) => mk + slope * (y - my);
+};
+const fitX = fit('x'), fitZ = fit('z');
+for (const { code, cun, y } of htWrist) {
+  const border = v(fitX(y), y, fitZ(y));
   // Horizontal ray: 0.5 B-cun steps are ~11 mm and the tilted forearm axis otherwise shifts each landing by ±6 mm.
   const level = anteromedial.clone().setY(0).normalize();
   const rule = cun ? `radial border of flexor carpi ulnaris tendon · ${cun} B-cun proximal to palmar wrist crease` : 'palmar wrist crease · radial border of flexor carpi ulnaris tendon (proximal to pisiform)';

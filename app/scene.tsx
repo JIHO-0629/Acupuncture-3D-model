@@ -10,6 +10,7 @@ import { SYSTEMS, type Atlas, type NeedleHit, type NeedleReport, type SceneState
 import { type ProjectionMode } from "./gb-points";
 import {atlasPoints,meridianOf,needleProfile,type AcupointCode} from "./acupoints";
 import {createExternalEarPresentation, NATIVE_EAR_PART_ID} from "./ear-anatomy";
+import { createNipplePresentation } from "./nipple-presentation";
 import type { AnnotationFrame } from "./annotation-overlay";
 
 // These ulnar hand points otherwise send the camera medially through the torso.
@@ -18,6 +19,15 @@ const ACUPOINT_CAMERA_DIRECTIONS: Partial<Record<AcupointCode, T.Vector3Tuple>> 
   SI1: [0.08, -0.12, -1],
   SI5: [0.16, 0.05, -1],
   SI6: [0.2, 0.08, -1],
+  // Reviewer (2026-09-21): these too opened with the camera inside the trunk or behind other fingers.
+  // SI2/SI3 sit on the palmar side of the ulnar border, so they are viewed from the front of the palm.
+  SI2: [0.35, -0.1, 1],
+  SI3: [0.35, -0.1, 1],
+  SI4: [0.16, 0.05, -1],
+  SI7: [0.2, 0, -1],
+  HT9: [-0.1, -0.2, -1],
+  // BL64 is read from the lateral side of the foot, where the 5th metatarsal tuberosity shows in profile.
+  BL64: [-1, 0.2, 0.1],
 };
 interface Props {
   atlas: Atlas;
@@ -406,6 +416,10 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
     scene.add(earPresentation.root);
     geometries.push(...earPresentation.geometries);
     materials.push(...earPresentation.materials);
+    const nipplePresentation = createNipplePresentation();
+    scene.add(nipplePresentation.root);
+    geometries.push(...nipplePresentation.geometries);
+    materials.push(...nipplePresentation.materials);
     (async () => {
       try {
         let cursor = 0;
@@ -1418,6 +1432,8 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         amount < 0.05 &&
         s.visible.includes("integumentary") &&
         !s.selected.includes(NATIVE_EAR_PART_ID);
+      // Nipples are skin too (reviewer, 2026-09-21): shown only with the integumentary layer.
+      nipplePresentation.root.visible = !s.isolate && amount < 0.05 && s.visible.includes("integumentary");
       markers.visible = amount > 0.75;
       controls.autoRotate = s.rotate && !s.isolate && amount < 0.4;
       controls.autoRotateSpeed = 0.65;

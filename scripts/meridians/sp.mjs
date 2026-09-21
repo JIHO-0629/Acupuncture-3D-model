@@ -31,10 +31,14 @@ place('SP8',leg(10,0.002),skinMedial,['leg-R'],'3 B-cun below SP9 · medial bord
 place('SP9',medialCondyle.clone().add(v(0.004,-0.012,0.002)),v(0.82,0,-0.25).normalize(),['leg-R','knee-R'],'KCMRIC/WHO: depression at the angle between the inferior border of the medial tibial condyle and medial border of tibia · anterior correction');
 
 const femur=mesh(atlas,'Right femur'), sartorius=mesh(atlas,'Right sartorius'), adductor=mesh(atlas,'Right adductor longus');
-const kneeY=landmark('knee_joint_line').y, pubis=landmark('pubic_symphysis_superior',null);
-const thighY=(cun)=>kneeY+(pubis.y-kneeY)*(cun/18);
+// WHO: superior border of the pubic symphysis → base of the patella = 18 B-cun. SP10 and SP11 are measured from the
+// patella base itself; the knee joint line used before sits 30 mm lower and left SP10 at 0.8 B-cun.
+const patellaBase=landmark('patella_base'), pubis=landmark('pubic_symphysis_superior',null);
+const thighY=(cun)=>patellaBase.y+(pubis.y-patellaBase.y)*(cun/18);
 const medialThigh=(y,zBias=0)=>{const band=[...pts(sartorius,p=>Math.abs(p.y-y)<0.008),...pts(adductor,p=>Math.abs(p.y-y)<0.008)];const p=most(band.length?band:pts(femur,p=>Math.abs(p.y-y)<0.015),MEDIAL);return v(p.x+0.004,y,p.z+zBias);};
-place('SP10',medialThigh(thighY(2),0.012).add(v(-0.008,0,0)),v(0.55,0,0.83).normalize(),['thigh-R','knee-R'],'2 B-cun above medial patella base · vastus medialis prominence · lateral correction');
+// Reviewer (2026-09-21): the needle belongs in vastus medialis, so the point is its anteromedial bulge at this level.
+const spOut10=v(0.55,0,0.83).normalize(), vm10=most(pts(mesh(atlas,'Right vastus medialis'),p=>Math.abs(p.y-thighY(2))<0.004),spOut10);
+place('SP10',vm10.clone().setY(thighY(2)).addScaledVector(spOut10,-0.004),spOut10,['thigh-R','knee-R'],'2 B-cun above the medial end of the patella base · prominence of vastus medialis');
 place('SP11',medialThigh(thighY(12),0.005),MEDIAL,['thigh-R'],'junction of the upper 1/3 and lower 2/3 of the medial patella-base–SP12 line · between sartorius and adductor longus, near femoral artery');
 
 // Abdomen: SP12–SP15 at 4 B-cun lateral; SP16–SP20 at 4–6 B-cun lateral.
@@ -42,7 +46,9 @@ const navel=landmark('umbilicus',null), trunkOut=ANTERIOR, lowerSpan=navel.y-pub
 const abdomen=(code,y,x,rule)=>place(code,v(x,y,0.07),trunkOut,['thigh-R','pelvis','lumbar','thorax'],rule);
 abdomen('SP12',pubis.y,-0.078,'superior border of pubic symphysis · 4 B-cun lateral to anterior median line');
 abdomen('SP13',pubis.y+lowerCun,-0.078,'1 B-cun above SP12 · 4 B-cun lateral to anterior median line');
-abdomen('SP14',Math.max(pubis.y+2*lowerCun,landmark('asis').y),-0.078,'2 B-cun below umbilicus · 4 B-cun lateral to anterior median line · not inferior to ASIS level');
+// Sheet/KCMRIC: 1.3 B-cun below the umbilicus, which also lands above the ASIS, as the reviewer expected. The old
+// formula placed it 3 B-cun below and then clamped it up to the ASIS level.
+abdomen('SP14',navel.y-1.3*lowerCun,-0.078,'1.3 B-cun below the centre of the umbilicus · 4 B-cun lateral to anterior median line');
 abdomen('SP15',navel.y,-0.078,'level of umbilicus · 4 B-cun lateral to anterior median line');
 abdomen('SP16',navel.y+0.087,-0.078,'3 B-cun above umbilicus (Jianli level) · 4 B-cun lateral');
 const ribParts=['first','second','third','fourth','fifth','sixth'].map((name)=>
@@ -56,7 +62,7 @@ const ribBand=(number,x)=>{
 const intercostal=(number,x)=>(ribBand(number,x).low+ribBand(number+1,x).high)/2;
 for(const [i,number] of [5,4,3,2].entries()){
   const y=intercostal(number,-0.116);
-  abdomen(`SP${17+i}`,y,-0.116,`${number}th intercostal space measured from the actual lateral rib curve · 6 B-cun lateral to anterior median line`);
+  abdomen(`SP${17+i}`,y,-0.116,`${{2:"2nd",3:"3rd",4:"4th",5:"5th"}[number]} intercostal space measured from the actual lateral rib curve · 6 B-cun lateral to anterior median line`);
 }
 place('SP21',v(-0.17,1.245,0),v(-1,0,0),['thorax'],'midaxillary line · 6th intercostal space');
 

@@ -220,16 +220,16 @@
   },
   "LI13": {
    "seed": [
-    -0.24234,
-    1.21345,
-    -0.01724
+    -0.24369,
+    1.21336,
+    -0.02021
    ],
    "outward": [
-    -0.95945,
-    0.15549,
-    0.23511
+    -0.97127,
+    0.16314,
+    0.17327
    ],
-   "depthMm": 6.9,
+   "depthMm": 6,
    "rule": "LI11→LI15 line at crease + 3 B-cun"
   },
   "LI14": {
@@ -248,31 +248,31 @@
   },
   "LI15": {
    "seed": [
-    -0.17224,
-    1.41939,
-    -0.00501
+    -0.18207,
+    1.42055,
+    -0.01675
    ],
    "outward": [
-    -0.58209,
-    0.24254,
-    0.77611
+    -0.74536,
+    0.29814,
+    0.59628
    ],
-   "depthMm": 11.7,
-   "rule": "anterior hollow: anterior end of lateral acromion border ↔ front of greater tubercle"
+   "depthMm": 10.9,
+   "rule": "hollow between anterior end of lateral acromion border and greater tubercle"
   },
   "LI16": {
    "seed": [
     -0.14077,
-    1.43959,
-    -0.0631
+    1.43843,
+    -0.0485
    ],
    "outward": [
     0,
-    0.89004,
-    -0.45588
+    0.98894,
+    -0.14834
    ],
-   "depthMm": 19.9,
-   "rule": "posteriorly biased midpoint(acromial end of clavicle, superior spine of scapula)"
+   "depthMm": 16.8,
+   "rule": "midpoint(posterior acromial end of clavicle, superior spine of scapula)"
   },
   "LI17": {
    "seed": [

@@ -1,0 +1,14 @@
+{
+ "generatedBy": "scripts/meridians/st.mjs",
+ "rule": "just above the 5th rib (4th intercostal space) on the 4 B-cun skin line; right side, the viewer mirrors x for the left",
+ "centre": [
+  -0.0788,
+  1.2734,
+  0.1226
+ ],
+ "normal": [
+  -0.4838,
+  0,
+  0.8752
+ ]
+}

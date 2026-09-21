@@ -294,9 +294,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03935,
-    0.49749,
-    0.01603
+    -0.04395,
+    0.52394,
+    0.02758
    ],
    "outward": [
     0.55238,
@@ -304,8 +304,8 @@
     0.83359
    ],
    "region": "thigh-R",
-   "depthMm": 2.1,
-   "rule": "2 B-cun above medial patella base · vastus medialis prominence · lateral correction"
+   "depthMm": 10,
+   "rule": "2 B-cun above the medial end of the patella base · prominence of vastus medialis"
   },
   {
    "code": "SP11",
@@ -324,9 +324,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.02629,
-    0.73918,
-    0.02945
+    -0.02391,
+    0.7491,
+    0.02721
    ],
    "outward": [
     1,
@@ -334,7 +334,7 @@
     0
    ],
    "region": "thigh-R",
-   "depthMm": 9.4,
+   "depthMm": 9.9,
    "rule": "junction of the upper 1/3 and lower 2/3 of the medial patella-base–SP12 line · between sartorius and adductor longus, near femoral artery"
   },
   {
@@ -415,8 +415,8 @@
    "status": "implemented_unverified",
    "seed": [
     -0.078,
-    0.97049,
-    0.0804
+    0.9919,
+    0.0835
    ],
    "outward": [
     0,
@@ -424,8 +424,8 @@
     1
    ],
    "region": "pelvis",
-   "depthMm": 14.4,
-   "rule": "2 B-cun below umbilicus · 4 B-cun lateral to anterior median line · not inferior to ASIS level"
+   "depthMm": 17.5,
+   "rule": "1.3 B-cun below the centre of the umbilicus · 4 B-cun lateral to anterior median line"
   },
   {
    "code": "SP15",

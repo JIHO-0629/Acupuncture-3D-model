@@ -61,18 +61,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.21204,
-    1.20539,
-    0.01066
+    -0.16957,
+    1.20294,
+    -0.00959
    ],
    "outward": [
-    -0.39263,
-    -0.00935,
-    0.91965
+    0.94181,
+    -0.19721,
+    0.27223
    ],
-   "region": "upper-arm-R",
-   "depthMm": 33.2,
-   "rule": "junction of short head of biceps brachii and brachialis · 3 B-cun above cubital crease"
+   "region": "thorax",
+   "depthMm": 14,
+   "rule": "medial bicipital groove · junction of short head of biceps brachii and brachialis · 3 B-cun above cubital crease"
   },
   {
    "code": "HT3",
@@ -121,9 +121,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.22867,
+    -0.22844,
     0.91748,
-    0.02214
+    0.02193
    ],
    "outward": [
     0.35837,
@@ -131,7 +131,7 @@
     0.93358
    ],
    "region": "forearm-R",
-   "depthMm": 6,
+   "depthMm": 8.3,
    "rule": "radial border of flexor carpi ulnaris tendon · 1.5 B-cun proximal to palmar wrist crease"
   },
   {
@@ -151,9 +151,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.23256,
+    -0.23183,
     0.9063,
-    0.02674
+    0.02616
    ],
    "outward": [
     0.35837,
@@ -161,7 +161,7 @@
     0.93358
    ],
    "region": "forearm-R",
-   "depthMm": 8.3,
+   "depthMm": 6.8,
    "rule": "radial border of flexor carpi ulnaris tendon · 1 B-cun proximal to palmar wrist crease"
   },
   {
@@ -181,9 +181,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.23288,
+    -0.23486,
     0.89513,
-    0.02913
+    0.03134
    ],
    "outward": [
     0.35837,
@@ -191,7 +191,7 @@
     0.93358
    ],
    "region": "forearm-R",
-   "depthMm": 9.7,
+   "depthMm": 6.4,
    "rule": "radial border of flexor carpi ulnaris tendon · 0.5 B-cun proximal to palmar wrist crease"
   },
   {
@@ -211,9 +211,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.23906,
+    -0.23779,
     0.88395,
-    0.03754
+    0.03677
    ],
    "outward": [
     0.35837,
@@ -221,7 +221,7 @@
     0.93358
    ],
    "region": "hand-R",
-   "depthMm": 2.9,
+   "depthMm": 6.2,
    "rule": "palmar wrist crease · radial border of flexor carpi ulnaris tendon (proximal to pisiform)"
   },
   {

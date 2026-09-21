@@ -175,9 +175,10 @@ const greaterTubercle = extremeCluster(humerus, v(-1, 0.3, 0.3), 0.01, (p) => p.
 {
   // Anterior depression just below the acromion, above the humeral head (arm-abducted 견우 hollow).
   // Reviewer photo (2026-09-15): the ANTERIOR hollow under the acromion front (견료 is the posterior one).
-  const tubercleFront = extremeCluster(humerus, v(-0.5, 0.3, 1), 0.01, (p) => p.y > humerus.box.max.y - 0.04);
-  const deep = mid(acromionAnterolateral, tubercleFront).add(v(0, 0.003, 0));
-  put('LI15', deep, v(-0.6, 0.25, 0.8), 'anterior hollow: anterior end of lateral acromion border ↔ front of greater tubercle');
+  // Reviewer (2026-09-21, comment entered one row down on LI16): the front of the tubercle read too anterior.
+  // Pairing the acromion corner with the greater tubercle itself moves the hollow ~9 mm posterior.
+  const deep = mid(acromionAnterolateral, greaterTubercle).add(v(0, 0.003, 0));
+  put('LI15', deep, v(-0.75, 0.3, 0.6).normalize(), 'hollow between anterior end of lateral acromion border and greater tubercle');
 }
 // LI13 / LI14 — upper arm, on LI11–LI15 line; 9 B-cun axillary fold → crease.
 {
@@ -201,8 +202,8 @@ const greaterTubercle = extremeCluster(humerus, v(-1, 0.3, 0.3), 0.01, (p) => p.
   const x = clavEnd.x + 0.004;
   const clavBack = most(slab(clavicle, 0, x, 0.004), v(0, 0.3, -1));
   const spine = most(slab(scapula, 0, x, 0.004, (p) => p.z < clavBack.z - 0.004 && p.y > clavBack.y - 0.03), v(0, 1, 0.3));
-  // Reviewer: the marker read too anterior. Bias the clavicle-spine interval 8 mm posteriorly.
-  put('LI16', mid(clavBack, spine).add(v(0, 0, -0.008)), v(0, 0.82, -0.42).normalize(), 'posteriorly biased midpoint(acromial end of clavicle, superior spine of scapula)');
+  // The 2026-09-21 "too anterior" comment on this row described LI15, so LI16 keeps the plain midpoint.
+  put('LI16', mid(clavBack, spine), v(0, 1, -0.15), 'midpoint(posterior acromial end of clavicle, superior spine of scapula)');
 }
 // LI17 / LI18 — neck, relative to SCM borders.
 {

@@ -38,7 +38,10 @@ assert(gv28?.projection==='direct'&&gv28?.region==='oral-mucosa','GV28 oral dire
 // Ordered midline runs: trunk CV ascends CV1→CV24; GV ascends to vertex and then descends the face.
 for(let n=2;n<=24;n++)assert(generated.CV.points[n-1].seed[1]>generated.CV.points[n-2].seed[1],`CV${n-1}→CV${n} vertical order`);
 for(let n=2;n<=20;n++)assert(generated.GV.points[n-1].seed[1]>generated.GV.points[n-2].seed[1],`GV${n-1}→GV${n} ascent order`);
-for(let n=21;n<=28;n++)assert(generated.GV.points[n-1].seed[1]<generated.GV.points[n-2].seed[1],`GV${n-1}→GV${n} facial descent order`);
+// Reviewer (2026-09-21): GV20 is not the highest point of the upright head (it becomes so with the head slightly
+// bowed), so the crossing from GV20 to GV21 is checked front-to-back rather than by height.
+assert(generated.GV.points[20].seed[2]>generated.GV.points[19].seed[2],'GV20→GV21 anterior order over the vertex');
+for(let n=22;n<=28;n++)assert(generated.GV.points[n-1].seed[1]<generated.GV.points[n-2].seed[1],`GV${n-1}→GV${n} facial descent order`);
 
 if(failures.length){console.error(failures.map(item=>`FAIL ${item}`).join('\n'));process.exit(1);}
 console.log('PASS CV24 + GV28: KCMRIC → WHO → local image records complete');

@@ -65,8 +65,11 @@ let te4Deep;
 {
   // WHO note: TE4 is level with LI5 and SI5 (both at y 0.878 on this model).
   const y4 = seedOf('SI', 'SI5').y;
-  te4Deep = mid(L.radialStyloid,L.ulnarHead).addScaledVector(L.forearmAxis,0.004).setY(y4);
-  W.put('TE4', te4Deep, forearmDorsal, ['forearm-R', 'hand-R'], 'dorsal wrist crease · depression ulnar to the extensor digitorum tendon · level with LI5 and SI5');
+  // Reviewer (2026-09-21): the hollow just distal to where radius and ulna meet. The wrist midpoint used before sat on
+  // the extensor digitorum tendon itself; its ulnar edge at this level lines up with the distal radio-ulnar junction.
+  const edUlnar = most(atHeight(mesh(atlas, 'Right extensor digitorum'), y4, 0.003), radialDir.clone().negate());
+  te4Deep = edUlnar.clone().addScaledVector(radialDir, -0.0025).setY(y4);
+  W.put('TE4', te4Deep, forearmDorsal, ['forearm-R', 'hand-R'], 'dorsal wrist crease · depression just ulnar to the extensor digitorum tendon, distal to the radio-ulnar junction · level with LI5 and SI5');
 }
 
 // ---------------------------------------------------------------- forearm: TE5–TE9 on TE4 → olecranon = 12 B-cun (KCMRIC)
@@ -77,9 +80,16 @@ const interosseous = (cun) => {
   const ulnaEdge = most(atHeight(L.ulna, level.y), radialDir);
   return { level, radiusEdge, ulnaEdge, centre: mid(radiusEdge, ulnaEdge).setY(level.y) };
 };
-for (const [code, cun, note] of [['TE5', 2, ' · PC6 counterpart'], ['TE6', 3, ' · level with TE7'], ['TE8', 4, ' · junction of the upper 2/3 and lower 1/3 of TE4–olecranon'], ['TE9', 7, ' · 5 B-cun distal to the olecranon prominence']]) {
+for (const [code, cun, note] of [['TE5', 2, ' · PC6 counterpart'], ['TE8', 4, ' · junction of the upper 2/3 and lower 1/3 of TE4–olecranon'], ['TE9', 7, ' · 5 B-cun distal to the olecranon prominence']]) {
   W.put(code, interosseous(cun).centre, forearmDorsal, ['forearm-R'],
     `posterior forearm · midpoint of the radius–ulna interosseous space · ${cun} B-cun proximal to the dorsal wrist crease on TE4–olecranon (12 B-cun)${note}`);
+}
+{
+  // Reviewer (2026-09-21): TE6 lies on the TE5 → olecranon prominence line (TE5 itself is fixed, "수정하지 마라").
+  // TE5 is 2 B-cun and the olecranon 12 B-cun from the crease, so TE6 is 1/10 of the way along.
+  const te5 = interosseous(2).centre;
+  W.put('TE6', te5.clone().lerp(olecranon, 1 / 10), forearmDorsal, ['forearm-R'],
+    'posterior forearm · on the TE5–olecranon prominence line · 3 B-cun proximal to the dorsal wrist crease · level with TE7');
 }
 {
   const at3 = interosseous(3);
@@ -113,9 +123,11 @@ W.put('TE13', acromialAngle.clone().addScaledVector(toAngle, -3 * L.armCun).add(
   // KCMRIC 부위 is the definition: superior to the superior angle of the scapula. The 취혈 shortcut (midway between
   // GB21 and SI13) lands 28 mm lateral to the angle on this model (first run), so it is logged, not used.
   const superiorAngle = most(pts(scapula), v(0.6, 1, 0).normalize());
-  const out = v(0, 0.35, -0.94).normalize();
-  W.put('TE15', superiorAngle.clone().add(v(0, 0.01, -0.004)), out, ['shoulder', 'neck', 'thorax'],
-    'scapular region · depression superior to the superior angle of the scapula (KCMRIC 부위)');
+  // Reviewer (2026-09-21): come straight out to the surface from just above the angle. The old ray tilted 20° upward
+  // and landed high on the trapezius slope.
+  const out = POSTERIOR.clone();
+  W.put('TE15', superiorAngle.clone().add(v(0, 0.008, 0)), out, ['shoulder', 'neck', 'thorax'],
+    'scapular region · depression immediately superior to the superior angle of the scapula, projected straight to the skin (KCMRIC 부위)');
   const halfway = mid(v(-0.125, 1.402, -0.005), seedOf('SI', 'SI13'));
   log.te15 = { superiorAngle: r4(superiorAngle), gb21Si13MidpointX: +halfway.x.toFixed(4), pointX: +W.get('TE15').x.toFixed(4) };
 }

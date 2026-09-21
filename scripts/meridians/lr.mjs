@@ -96,7 +96,7 @@ for (const [code, cun] of [['LR5', 5], ['LR6', 7]]) {
 {
   const sp9Out = v(...sp9Row.outward);
   const deep = sp9.clone().addScaledVector(sp9Out, -0.012).add(v(0, 0, -0.25*LEG_CUN));
-  W.put('LR7', deep, v(0.8, 0, -0.6).normalize(), ['leg-R', 'knee-R'], 'inferior to the medial condyle of the tibia · 1 B-cun posterior to SP9');
+  W.put('LR7', deep, v(0.8, 0, -0.6).normalize(), ['leg-R', 'knee-R'], 'inferior to the medial condyle of the tibia · vertically below the posterior end of the condyle, posterior to SP9 (reviewer placement)');
 }
 
 // ---------------------------------------------------------------- knee and thigh: LR8–LR11
@@ -118,7 +118,9 @@ const thighCun = (pubis.y - patellaBase.y) / 18;
   log.lr9 = { sartoriusPosterior: r4(sartorius), gracilisAnterior: r4(gracilis) };
 }
 {
-  const st30 = seedOf('ST', 'ST30');
+  // ST30 now sits on the inguinal ligament, ~5 mm above the pubic-symphysis level it is defined at; LR10/LR11 keep that
+  // level (their review found them correct), so they are measured from the symphysis rather than from the ST30 seed.
+  const st30 = v(0, pubis.y, 0);
   const y10 = st30.y - 3 * thighCun, y11 = st30.y - 2 * thighCun;
   const artery10 = most(atHeight(mesh(atlas, 'Right femoral artery'), y10), ANTERIOR);
   // Pure anterior projection keeps the measured x: the tilted rays of the first run moved LR11 7 mm medial, inside

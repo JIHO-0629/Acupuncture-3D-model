@@ -6,7 +6,7 @@
  "primarySource": "https://m.kmcric.com/knowledge/acupoint/TE",
  "secondarySource": "https://iris.who.int/handle/10665/353407",
  "scale": {
-  "dorsalForearmCunMm": 21.1,
+  "dorsalForearmCunMm": 20.8,
   "armCunMm": 17.8,
   "fCunMm": 18.289
  },
@@ -119,18 +119,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.25604,
-    0.87483,
-    -0.00179
+    -0.24509,
+    0.87646,
+    -0.0001
    ],
    "outward": [
     -0.03719,
     -0.19476,
     -0.98015
    ],
-   "region": "hand-R",
-   "depthMm": 16.4,
-   "rule": "dorsal wrist crease · depression ulnar to the extensor digitorum tendon · level with LI5 and SI5"
+   "region": "forearm-R",
+   "depthMm": 8,
+   "rule": "dorsal wrist crease · depression just ulnar to the extensor digitorum tendon, distal to the radio-ulnar junction · level with LI5 and SI5"
   },
   {
    "code": "TE5",
@@ -179,9 +179,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.25059,
-    0.93225,
-    -0.02398
+    -0.24372,
+    0.9316,
+    -0.02489
    ],
    "outward": [
     -0.03719,
@@ -189,8 +189,8 @@
     -0.98015
    ],
    "region": "forearm-R",
-   "depthMm": 28.3,
-   "rule": "posterior forearm · midpoint of the radius–ulna interosseous space · 3 B-cun proximal to the dorsal wrist crease on TE4–olecranon (12 B-cun) · level with TE7"
+   "depthMm": 31.6,
+   "rule": "posterior forearm · on the TE5–olecranon prominence line · 3 B-cun proximal to the dorsal wrist crease · level with TE7"
   },
   {
    "code": "TE7",
@@ -450,17 +450,17 @@
    "status": "implemented_unverified",
    "seed": [
     -0.07346,
-    1.43743,
-    -0.11051
+    1.42306,
+    -0.12181
    ],
    "outward": [
     0,
-    0.34894,
-    -0.93715
+    0,
+    -1
    ],
    "region": "shoulder",
-   "depthMm": 35.4,
-   "rule": "scapular region · depression superior to the superior angle of the scapula (KCMRIC 부위)"
+   "depthMm": 48.5,
+   "rule": "scapular region · depression immediately superior to the superior angle of the scapula, projected straight to the skin (KCMRIC 부위)"
   },
   {
    "code": "TE16",
