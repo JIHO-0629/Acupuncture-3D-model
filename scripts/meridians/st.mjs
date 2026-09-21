@@ -409,12 +409,12 @@ const thighOut = v(-0.35, 0, 0.94).normalize();
 
 // ---------------------------------------------------------------- knee and leg: ST35–ST41
 const tibia = mesh(atlas, 'Right tibia');
-const patellaApex = lowest(pts(patella));
+const patellaApex = landmark('patella_apex'); // registered surface landmark
 const kneeLine = landmark('knee_joint_line');
 const st35Deep = v(patellaApex.x - 0.013, (patellaApex.y + kneeLine.y) / 2, patellaApex.z);
 W.put('ST35', st35Deep, v(-0.35, 0, 0.94).normalize(), ['knee-R', 'leg-R', 'thigh-R'],
   'depression lateral to the patellar ligament · below the lateral patella, at the joint space');
-const medialMalleolus = most(pts(tibia, (p) => p.y < tibia.box.min.y + 0.04), v(1, 0, 0));
+const medialMalleolus = landmark('medial_malleolus_prominence'); // registered surface landmark
 const lateralMalleolus = landmark('lateral_malleolus_prominence');
 const ankleY = (medialMalleolus.y + lateralMalleolus.y) / 2;
 const ehl = most(pts(mesh(atlas, 'Right extensor hallucis longus'), (p) => Math.abs(p.y - ankleY) < 0.003), v(0, 1, 1).normalize());

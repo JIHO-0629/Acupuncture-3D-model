@@ -32,7 +32,7 @@ const place = (code, p, out, regions, rule) => W.put(code, p.clone().addScaledVe
 
 // ---------------------------------------------------------------- scales
 const tibia = mesh(atlas, 'Right tibia');
-const medialMalleolus = most(pts(tibia, (p) => p.y < tibia.box.min.y + 0.045), MEDIAL); // same anchor as SP5/SP6
+const medialMalleolus = landmark('medial_malleolus_prominence'); // same anchor as SP5/SP6
 const sp9 = seedOf('SP', 'SP9');
 const LEG_CUN = (sp9.y - medialMalleolus.y) / 13;
 const foot = ['foot-R'], ankle = ['foot-R', 'leg-R'], leg = ['leg-R'];

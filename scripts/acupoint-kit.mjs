@@ -91,11 +91,10 @@ export function nearestSkin(point, regions) {
 // ---------------------------------------------------------------- right upper-limb frame and B-cun spans
 export function upperLimb() {
   const humerus = mesh(atlas, 'Right humerus'), radius = mesh(atlas, 'Right radius'), ulna = mesh(atlas, 'Right ulna');
-  const lateralEpicondyle = extremeCluster(humerus, LATERAL, 0.01, (p) => p.y < humerus.box.min.y + 0.05);
-  const medialEpicondyle = extremeCluster(humerus, MEDIAL, 0.01, (p) => p.y < humerus.box.min.y + 0.05);
+  // Registered surface landmarks (data/landmarks.json) rather than a second derivation of the same prominences.
+  const lateralEpicondyle = landmark('lateral_humeral_epicondyle'), medialEpicondyle = landmark('medial_humeral_epicondyle');
   const elbowCentre = mid(lateralEpicondyle, medialEpicondyle);
-  const radialStyloid = extremeCluster(radius, DOWN, 0.01);
-  const ulnarHead = extremeCluster(ulna, DOWN, 0.01);
+  const radialStyloid = landmark('radial_styloid'), ulnarHead = landmark('ulnar_styloid');
   const wristCentre = mid(radialStyloid, ulnarHead);
   const humeralHead = centroid(humerus, (p) => p.y > humerus.box.max.y - 0.03);
   let foldY = Infinity;

@@ -15,7 +15,7 @@ place('CV8',umbilicus,ANTERIOR,['pelvis','lumbar','thorax'],'centre of umbilicus
 // Upper abdominal 8 B-cun axis (umbilicus ↔ xiphisternal junction).
 for(const [code,cun] of [['CV9',1],['CV10',2],['CV11',3],['CV12',4],['CV13',5],['CV14',6]])place(code,lerp(umbilicus,xiphi,cun/8),ANTERIOR,['pelvis','thorax','lumbar'],`anterior median line · ${cun} B-cun superior to umbilicus on 8 B-cun upper-abdominal axis`);
 const xiphoid=mesh(atlas,'Xiphoid process');
-place('CV15',v(0,xiphoid.box.min.y,xiphoid.box.max.z),ANTERIOR,['thorax'],'anterior median line · tip of the xiphoid process');
+place('CV15',v(0,landmark('xiphoid_tip',null).y,xiphoid.box.max.z),ANTERIOR,['thorax'],'anterior median line · tip of the xiphoid process (registered surface landmark)');
 place('CV16',xiphi,ANTERIOR,['thorax'],'anterior median line · midpoint of xiphisternal junction');
 
 // Sternal interspaces: the body-of-sternum superior edge is the sternal-angle reference.

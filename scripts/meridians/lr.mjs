@@ -73,7 +73,7 @@ const foot = ['foot-R'];
 
 // ---------------------------------------------------------------- leg: LR5–LR7 (KCMRIC 13 B-cun)
 const tibia = mesh(atlas, 'Right tibia');
-const medialMalleolus = most(pts(tibia, (p) => p.y < tibia.box.min.y + 0.045), MEDIAL);
+const medialMalleolus = landmark('medial_malleolus_prominence');
 const sp9Row = generatedRow('SP', 'SP9'), sp9 = v(...sp9Row.seed);
 const LEG_CUN = (sp9.y - medialMalleolus.y) / 13;
 // The tibial shaft mesh is coarse (2–3 vertices in a 4 mm slab; first run collapsed crest and border into one vertex

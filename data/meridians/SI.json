@@ -146,7 +146,7 @@
    "seed": [
     -0.23047,
     0.87802,
-    0.01202
+    0.01201
    ],
    "outward": [
     0.92468,
@@ -176,7 +176,7 @@
    "seed": [
     -0.22777,
     0.88928,
-    0.0085
+    0.00849
    ],
    "outward": [
     0.92468,
@@ -204,14 +204,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.20449,
+    -0.2045,
     0.97907,
     -0.02219
    ],
    "outward": [
-    0.75566,
-    -0.16277,
-    -0.63441
+    0.7555,
+    -0.16281,
+    -0.6346
    ],
    "region": "forearm-R",
    "depthMm": 26.7,
@@ -504,9 +504,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.05318,
-    1.52867,
-    0.01448
+    -0.05096,
+    1.52584,
+    0.01091
    ],
    "outward": [
     -0.55238,
@@ -514,7 +514,7 @@
     0.83359
    ],
    "region": "face",
-   "depthMm": 15,
+   "depthMm": 13.2,
    "rule": "depression immediately posterior to angle of mandible · anterior border of sternocleidomastoid"
   },
   {

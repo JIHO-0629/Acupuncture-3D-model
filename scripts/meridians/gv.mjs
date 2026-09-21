@@ -15,15 +15,9 @@ const gv14Surface=W.get('GV14');
 W.putDirect('GV14',v(0,gv14Surface.y,gv14Surface.z),POSTERIOR,'thorax','posterior median line · depression inferior to C7 spinous process · centred',{projection:'posterior'});
 
 // Occiput and suboccipital levels from bone (reviewer, 2026-09-21).
-// External occipital protuberance: the lower edge of the posterior bulge of the occipital squama, where the bone turns
-// forward into the nuchal plane (last level within 4 mm of the deepest posterior point). head-cun.json uses the deepest
-// point itself, 30 mm higher; the reviewer marked the protuberance at this lower level.
-const occipitalProfile=pts(mesh(atlas,'Occipital bone'),(p)=>Math.abs(p.x)<0.012&&p.z<-0.03);
-const occipitalDepth=(y)=>{const s=occipitalProfile.filter((p)=>Math.abs(p.y-y)<0.003);return s.length?-Math.min(...s.map((p)=>p.z)):0;};
-const eop=(()=>{const rows=[];for(let y=1.66;y>=1.56;y-=0.001)rows.push([y,occipitalDepth(y)]);
- const deepest=Math.max(...rows.map((r)=>r[1]));
- const smooth=rows.map(([y],i)=>[y,Math.max(...rows.slice(Math.max(0,i-3),i+4).map((r)=>r[1]))]);
- const [y,depth]=smooth.filter(([,d])=>d>=deepest-0.004).reduce((a,b)=>(b[0]<a[0]?b:a));return v(0,y,-depth);})();
+// External occipital protuberance: the registered surface landmark (data/landmarks.json) — the lower edge of the
+// posterior occipital bulge, where the reviewer marked it, not the rearmost point 30 mm higher.
+const eop=landmark('external_occipital_protuberance',null);
 // GV15: the depression between the C2 spinous process and the posterior arch of the atlas.
 const axis=mesh(atlas,'Axis'),axisSpinousTop=most(pts(axis,(p)=>p.z<axis.box.min.z+0.008),v(0,1,0));
 const atlasArch=most(pts(mesh(atlas,'Atlas')),POSTERIOR);

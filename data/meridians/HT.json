@@ -9,7 +9,7 @@
   "armCunMm": 17.8,
   "forearmCunMm": 22.4,
   "creaseY": 1.1522,
-  "wristY": 0.8839
+  "wristY": 0.884
  },
  "generatedBy": "scripts/meridians/ht.mjs",
  "points": [
@@ -67,8 +67,8 @@
    ],
    "outward": [
     0.94181,
-    -0.19721,
-    0.27223
+    -0.1972,
+    0.27224
    ],
    "region": "thorax",
    "depthMm": 14,
@@ -97,7 +97,7 @@
    ],
    "outward": [
     0.52886,
-    0.07315,
+    0.07314,
     0.84555
    ],
    "region": "upper-arm-R",
@@ -122,7 +122,7 @@
    "status": "implemented_unverified",
    "seed": [
     -0.22844,
-    0.91748,
+    0.91749,
     0.02193
    ],
    "outward": [
@@ -152,7 +152,7 @@
    "status": "implemented_unverified",
    "seed": [
     -0.23183,
-    0.9063,
+    0.90631,
     0.02616
    ],
    "outward": [

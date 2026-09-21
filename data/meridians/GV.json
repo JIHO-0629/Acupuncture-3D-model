@@ -650,8 +650,8 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.583,
-    -0.10692
+    1.58262,
+    -0.10671
    ],
    "outward": [
     0,
@@ -659,7 +659,7 @@
     -1
    ],
    "region": "head",
-   "depthMm": 2.4,
+   "depthMm": 2.2,
    "rule": "posterior median line · depression directly inferior to the external occipital protuberance, between the trapezius origins",
    "projection": "posterior"
   },
@@ -691,8 +691,8 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.60684,
-    -0.11786
+    1.60643,
+    -0.11773
    ],
    "outward": [
     0,
@@ -700,7 +700,7 @@
     -0.97014
    ],
    "region": "head",
-   "depthMm": 7.5,
+   "depthMm": 7.3,
    "rule": "posterior median line · depression superior to the external occipital protuberance",
    "projection": "head"
   },

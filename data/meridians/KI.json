@@ -91,7 +91,7 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03892,
+    -0.03891,
     0.08706,
     -0.04557
    ],
@@ -122,7 +122,7 @@
    "status": "implemented_unverified",
    "seed": [
     -0.0417,
-    0.07256,
+    0.07255,
     -0.05745
    ],
    "outward": [
@@ -248,7 +248,7 @@
    "outward": [
     0.99699,
     0,
-    0.07752
+    0.07753
    ],
    "region": "leg-R",
    "depthMm": 4.1,

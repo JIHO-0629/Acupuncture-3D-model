@@ -60,11 +60,14 @@ const scapula = mesh(atlas, 'Right scapula'), clavicle = mesh(atlas, 'Right clav
 const mc2 = mesh(atlas, 'Right second metacarpal bone'), mc3 = mesh(atlas, 'Right third metacarpal bone');
 const pp2 = mesh(atlas, 'Proximal phalanx of right index finger'), dp2 = mesh(atlas, 'Distal phalanx of right index finger');
 
-const lateralEpicondyle = extremeCluster(humerus, LATERAL, 0.01, (p) => p.y < humerus.box.min.y + 0.05);
-const medialEpicondyle = extremeCluster(humerus, v(1, 0, 0), 0.01, (p) => p.y < humerus.box.min.y + 0.05);
+// Registered surface landmarks (data/landmarks.json) rather than a second derivation of the same prominences.
+const surfaceLandmarks = JSON.parse(fs.readFileSync(new URL('../data/landmarks.json', import.meta.url), 'utf8')).landmarks;
+const registered = (id) => { const found = surfaceLandmarks.find((l) => l.id === id && l.side === 'right'); if (!found) throw new Error(`landmark missing: ${id}`); return v(...found.point); };
+const lateralEpicondyle = registered('lateral_humeral_epicondyle');
+const medialEpicondyle = registered('medial_humeral_epicondyle');
 const elbowCentre = mid(lateralEpicondyle, medialEpicondyle);
-const radialStyloid = extremeCluster(radius, v(0, -1, 0), 0.01);
-const ulnarHead = extremeCluster(ulna, v(0, -1, 0), 0.01);
+const radialStyloid = registered('radial_styloid');
+const ulnarHead = registered('ulnar_styloid');
 const wristCentre = mid(radialStyloid, ulnarHead);
 const humeralHead = centroid(humerus, (p) => p.y > humerus.box.max.y - 0.03);
 const forearmAxis = elbowCentre.clone().sub(wristCentre).normalize();
@@ -171,7 +174,7 @@ put('LI3', mc2Head.clone().lerp(mc2Base, 0.18), handRadial.clone().add(handDorsa
 // Restrict to the acromion (lateral + highest scapula); a looser box catches the coracoid.
 // Anterior end of the LATERAL acromion border (not the medial/anterior acromion tip).
 const acromionAnterolateral = extremeCluster(scapula, ANTERIOR, 0.02, (p) => p.x < -0.16 && p.y > scapula.box.max.y - 0.025);
-const greaterTubercle = extremeCluster(humerus, v(-1, 0.3, 0.3), 0.01, (p) => p.y > humerus.box.max.y - 0.04);
+const greaterTubercle = registered('greater_tubercle');
 {
   // Anterior depression just below the acromion, above the humeral head (arm-abducted 견우 hollow).
   // Reviewer photo (2026-09-15): the ANTERIOR hollow under the acromion front (견료 is the posterior one).

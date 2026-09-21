@@ -124,7 +124,7 @@
     -0.0001
    ],
    "outward": [
-    -0.03719,
+    -0.0372,
     -0.19476,
     -0.98015
    ],
@@ -149,12 +149,12 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.24755,
+    -0.24756,
     0.91189,
     -0.01705
    ],
    "outward": [
-    -0.03719,
+    -0.0372,
     -0.19476,
     -0.98015
    ],
@@ -184,7 +184,7 @@
     -0.02489
    ],
    "outward": [
-    -0.03719,
+    -0.0372,
     -0.19476,
     -0.98015
    ],
@@ -214,7 +214,7 @@
     -0.02476
    ],
    "outward": [
-    -0.03719,
+    -0.0372,
     -0.19476,
     -0.98015
    ],
@@ -244,7 +244,7 @@
     -0.03209
    ],
    "outward": [
-    -0.03719,
+    -0.0372,
     -0.19476,
     -0.98015
    ],
@@ -274,7 +274,7 @@
     -0.05496
    ],
    "outward": [
-    -0.03719,
+    -0.0372,
     -0.19476,
     -0.98015
    ],
@@ -299,12 +299,12 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.20403,
+    -0.20404,
     1.13686,
     -0.08197
    ],
    "outward": [
-    0.0157,
+    0.01569,
     0.08541,
     -0.99622
    ],
@@ -329,17 +329,17 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.2017,
-    1.15467,
-    -0.08564
+    -0.20185,
+    1.15472,
+    -0.08566
    ],
    "outward": [
-    0.0157,
+    0.01569,
     0.08541,
     -0.99622
    ],
    "region": "upper-arm-R",
-   "depthMm": 29.4,
+   "depthMm": 29.6,
    "rule": "posterior arm · olecranon–acromial angle line · 2 B-cun proximal to the olecranon prominence"
   },
   {
@@ -359,17 +359,17 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.19332,
-    1.20794,
-    -0.09295
+    -0.1937,
+    1.20805,
+    -0.093
    ],
    "outward": [
-    0.0157,
+    0.01569,
     0.08541,
     -0.99622
    ],
    "region": "upper-arm-R",
-   "depthMm": 35,
+   "depthMm": 35.5,
    "rule": "posterior arm · olecranon–acromial angle line · 5 B-cun proximal to the olecranon prominence"
   },
   {
@@ -389,9 +389,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.18764,
-    1.35917,
-    -0.10422
+    -0.18872,
+    1.35986,
+    -0.10334
    ],
    "outward": [
     -0.54779,
@@ -399,7 +399,7 @@
     -0.83662
    ],
    "region": "upper-arm-R",
-   "depthMm": 45.6,
+   "depthMm": 45.8,
    "rule": "posterior arm · medial junction of spinal deltoid and triceps · 3 B-cun inferior to the acromial angle"
   },
   {
@@ -419,9 +419,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.18699,
-    1.39672,
-    -0.09215
+    -0.18753,
+    1.39709,
+    -0.0914
    ],
    "outward": [
     -0.45122,
@@ -429,7 +429,7 @@
     -0.89241
    ],
    "region": "shoulder",
-   "depthMm": 45.5,
+   "depthMm": 45.3,
    "rule": "shoulder girdle · depression between the acromial angle and the greater tubercle (posterior to LI15)"
   },
   {
@@ -449,9 +449,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07346,
-    1.42306,
-    -0.12181
+    -0.0745,
+    1.42355,
+    -0.12125
    ],
    "outward": [
     0,
@@ -459,7 +459,7 @@
     -1
    ],
    "region": "shoulder",
-   "depthMm": 48.5,
+   "depthMm": 48.8,
    "rule": "scapular region · depression immediately superior to the superior angle of the scapula, projected straight to the skin (KCMRIC 부위)"
   },
   {

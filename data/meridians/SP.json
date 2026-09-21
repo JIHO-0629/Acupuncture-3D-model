@@ -234,7 +234,7 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03012,
+    -0.03013,
     0.35646,
     -0.02199
    ],
@@ -575,7 +575,7 @@
    ],
    "region": "thorax",
    "depthMm": 18.5,
-   "rule": "3th intercostal space measured from the actual lateral rib curve · 6 B-cun lateral to anterior median line"
+   "rule": "3rd intercostal space measured from the actual lateral rib curve · 6 B-cun lateral to anterior median line"
   },
   {
    "code": "SP20",
@@ -605,7 +605,7 @@
    ],
    "region": "thorax",
    "depthMm": 0,
-   "rule": "2th intercostal space measured from the actual lateral rib curve · 6 B-cun lateral to anterior median line"
+   "rule": "2nd intercostal space measured from the actual lateral rib curve · 6 B-cun lateral to anterior median line"
   },
   {
    "code": "SP21",

@@ -30,10 +30,11 @@ const posteriorFold=extremeCluster(teresMajor,LATERAL,0.015,(p)=>p.y<teresMajor.
 place('SI9',posteriorFold.clone().add(v(0,L.armCun,-0.004)),postArm,shoulder,'1 B-cun superior to posterior end of axillary fold · posterior to deltoid');
 // Follow the actual posterior ridge instead of the acromial/lateral bounding-box extreme.
 const scapularSpineLateral=extremeCluster(scapula,LATERAL,0.006,(p)=>p.y>1.39&&p.y<1.415&&p.z<-0.065);
-const scapularSpineMedial=extremeCluster(scapula,MEDIAL,0.004,(p)=>p.y>1.37&&p.y<1.4&&p.z<-0.091);
+// Registered surface landmark (data/landmarks.json, scripts/landmarks.mjs).
+const scapularSpineMedial=landmark('scapular_spine_medial_end');
 const scapularSpineMid=mid(scapularSpineLateral,scapularSpineMedial);
 place('SI10',scapularSpineLateral.clone().add(v(0,-0.01,-0.004)),POSTERIOR,shoulder,'depression immediately inferior to lateral end of scapular spine · superior to posterior axillary fold');
-const inferiorAngle=most(pts(scapula),v(0,-1,-0.2).normalize());
+const inferiorAngle=landmark('scapula_inferior_angle');
 place('SI11',scapularSpineMid.clone().lerp(inferiorAngle,1/3),POSTERIOR,['shoulder','thorax'],'infraspinous fossa · junction of upper 1/3 and lower 2/3 from scapular-spine midpoint to inferior angle');
 place('SI12',scapularSpineMid.clone().add(v(0,0.012,0)),POSTERIOR,['shoulder','thorax'],'supraspinous fossa · depression superior to midpoint of scapular spine');
 const t2=landmark('spinous_process_T2.inferior_border',null);
@@ -45,7 +46,7 @@ place('SI15',v(scapularSpineMedial.x*2/3,c7.y,c7.z),POSTERIOR,['neck','shoulder'
 
 const neckOut=v(-0.65,0,-0.76).normalize(), mandible=mesh(atlas,'Mandible');
 place('SI16',v(-0.055,1.514,-0.025),neckOut,['neck','face'],'posterior border of sternocleidomastoid · level of thyroid cartilage superior border');
-const mandibularAngle=extremeCluster(mandible,v(-1,-0.35,-0.25).normalize(),0.02,(p)=>p.x<0);
+const mandibularAngle=landmark('mandibular_angle');
 place('SI17',mandibularAngle.clone().add(v(-0.004,0,-0.004)),v(-0.55,0,0.83).normalize(),['neck','face'],'depression immediately posterior to angle of mandible · anterior border of sternocleidomastoid');
 // Reviewer: the fixed coordinate was too lateral. Re-anchor beneath the lateral canthus on the zygomatic inferior border.
 const zygomatic=mesh(atlas,'Right zygomatic bone');

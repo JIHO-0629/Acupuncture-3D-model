@@ -73,7 +73,8 @@ let te4Deep;
 }
 
 // ---------------------------------------------------------------- forearm: TE5–TE9 on TE4 → olecranon = 12 B-cun (KCMRIC)
-const olecranon = most(pts(L.ulna, (p) => p.y > L.ulna.box.max.y - 0.03), v(0, 0.4, -1).normalize());
+// Registered surface landmark (data/landmarks.json, scripts/landmarks.mjs).
+const olecranon = landmark('olecranon');
 const interosseous = (cun) => {
   const level = te4Deep.clone().lerp(olecranon, cun / 12);
   const radiusEdge = most(atHeight(L.radius, level.y), radialDir.clone().negate());
@@ -102,7 +103,7 @@ for (const [code, cun, note] of [['TE5', 2, ' · PC6 counterpart'], ['TE8', 4, '
 const armPosterior = perp(POSTERIOR, L.armAxis);
 const scapula = mesh(atlas, 'Right scapula'), humerus = mesh(atlas, 'Right humerus');
 const acromionLateral = landmark('acromion_lateral');
-const acromialAngle = most(pts(scapula, (p) => p.y > acromionLateral.y - 0.025 && p.x < acromionLateral.x + 0.03), v(-0.6, 0.2, -0.8).normalize());
+const acromialAngle = landmark('acromial_angle'); // registered surface landmark
 const toAngle = acromialAngle.clone().sub(olecranon).normalize();
 W.put('TE10', olecranon.clone().addScaledVector(L.armAxis, L.armCun), armPosterior, ['upper-arm-R', 'forearm-R'],
   'posterior elbow · depression 1 B-cun proximal to the olecranon prominence (olecranon fossa)');
@@ -122,7 +123,7 @@ W.put('TE13', acromialAngle.clone().addScaledVector(toAngle, -3 * L.armCun).add(
 {
   // KCMRIC 부위 is the definition: superior to the superior angle of the scapula. The 취혈 shortcut (midway between
   // GB21 and SI13) lands 28 mm lateral to the angle on this model (first run), so it is logged, not used.
-  const superiorAngle = most(pts(scapula), v(0.6, 1, 0).normalize());
+  const superiorAngle = landmark('scapula_superior_angle');
   // Reviewer (2026-09-21): come straight out to the surface from just above the angle. The old ray tilted 20° upward
   // and landed high on the trapezius slope.
   const out = POSTERIOR.clone();

@@ -609,7 +609,7 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.24213,
+    1.24215,
     0.10989
    ],
    "outward": [
@@ -619,7 +619,7 @@
    ],
    "region": "thorax",
    "depthMm": 0.5,
-   "rule": "anterior median line · tip of the xiphoid process",
+   "rule": "anterior median line · tip of the xiphoid process (registered surface landmark)",
    "projection": "anterior"
   },
   {

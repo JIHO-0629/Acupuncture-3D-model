@@ -19,11 +19,12 @@ const mtHead=most(pts(mt1),v(0,0,1)), mtBase=most(pts(mt1),v(0,0,-1));
 place('SP2',mid(centroid(pp),mtHead).add(v(0.004,-0.003,-0.004)),v(0.45,-0.82,0.35).normalize(),['foot-R'],'distal depression of the 1st metatarsophalangeal joint · plantar side of the red-white border');
 place('SP3',mtHead.clone().add(v(0.004,-0.005,-0.009)),v(0.45,-0.86,0.25).normalize(),['foot-R'],'proximal depression of the 1st metatarsophalangeal joint · plantar side of the red-white border');
 place('SP4',mtBase.clone().add(v(0.004,-0.005,0.002)),v(0.5,-0.84,0.2).normalize(),['foot-R'],'anteroinferior to the base of the 1st metatarsal · plantar side of the red-white border');
-const medialMalleolus=most(pts(tibia,p=>p.y<tibia.box.min.y+0.045),MEDIAL);
+// Registered surface landmark (data/landmarks.json, scripts/landmarks.mjs).
+const medialMalleolus=landmark('medial_malleolus_prominence');
 place('SP5',mid(medialMalleolus,most(pts(nav),MEDIAL)).add(v(0,0.006,0)),skinMedial,['foot-R','leg-R'],'depression between medial malleolus prominence and navicular tuberosity · superior correction');
 
 // Medial tibial line: medial malleolus → medial tibial condyle is 13 B-cun.
-const medialCondyle=most(pts(tibia,p=>p.y>tibia.box.max.y-0.07),MEDIAL);
+const medialCondyle=landmark('medial_tibial_condyle');
 const leg=(cun,posterior=0)=>medialMalleolus.clone().lerp(medialCondyle,cun/13).add(v(0.003,0,-posterior));
 place('SP6',leg(3,0),skinMedial,['leg-R'],'3 B-cun above medial malleolus · medial border of tibia');
 place('SP7',leg(6,0),skinMedial,['leg-R'],'6 B-cun above medial malleolus · medial border of tibia');
