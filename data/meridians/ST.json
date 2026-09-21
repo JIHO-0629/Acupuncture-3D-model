@@ -512,18 +512,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07776,
-    1.27343,
-    0.12069
+    -0.07784,
+    1.28078,
+    0.1192
    ],
    "outward": [
-    -0.48376,
+    -0.48808,
     0,
-    0.8752
+    0.8728
    ],
    "region": "thorax",
    "depthMm": 7.8,
-   "rule": "4th intercostal space just above the 5th rib · 4 B-cun lateral (skin arc) · centre of the nipple (data/nipple.json)"
+   "rule": "4th intercostal space · 4 B-cun lateral (skin arc) · centre of the nipple in males (WHO)"
   },
   {
    "code": "ST18",

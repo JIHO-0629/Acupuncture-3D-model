@@ -1,14 +1,16 @@
 {
  "generatedBy": "scripts/meridians/st.mjs",
- "rule": "just above the 5th rib (4th intercostal space) on the 4 B-cun skin line; right side, the viewer mirrors x for the left",
+ "rule": "internipple distance = 60 % of the thoracic width at the 4th intercostal level (male NAC anthropometry); height just above the 5th rib (4th intercostal space) at that x; right side, the viewer mirrors x for the left",
+ "thoracicWidthMm": 327.4,
+ "internippleMm": 196.5,
  "centre": [
-  -0.0788,
-  1.2734,
-  0.1226
+  -0.0982,
+  1.2799,
+  0.1178
  ],
  "normal": [
-  -0.4838,
-  0,
-  0.8752
+  -0.3544,
+  0.0772,
+  0.9319
  ]
 }

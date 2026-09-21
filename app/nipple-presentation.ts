@@ -14,8 +14,8 @@ const AREOLA = { color: "#a56a58", roughness: 0.78, metalness: 0 };
 const PAPILLA = { color: "#945646", roughness: 0.72, metalness: 0 };
 /** Male areola ~24 mm across; the papilla ~7 mm. */
 const AREOLA_RADIUS = 0.012, PAPILLA_RADIUS = 0.0035;
-/** The chest skin curves away by ~0.5 mm across the areola, so the disc rides just above it. */
-const LIFT = 0.0012;
+/** The pectoral skin falls away laterally faster than a flat disc, so the areola is a dome that follows it. */
+const LIFT = 0.0012, DOME = 2.2;
 
 export function createNipplePresentation() {
   const root = new T.Group();
@@ -23,8 +23,8 @@ export function createNipplePresentation() {
   const areolaMaterial = new T.MeshStandardMaterial({ ...AREOLA, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
   const papillaMaterial = new T.MeshStandardMaterial(PAPILLA);
   // A shallow dome rather than a flat disc, so the rim settles onto the curved skin.
-  const areola = new T.SphereGeometry(AREOLA_RADIUS * 6, 40, 4, 0, Math.PI * 2, 0, Math.asin(1 / 6));
-  areola.translate(0, -AREOLA_RADIUS * 6 * Math.cos(Math.asin(1 / 6)), 0);
+  const areola = new T.SphereGeometry(AREOLA_RADIUS * DOME, 40, 6, 0, Math.PI * 2, 0, Math.asin(1 / DOME));
+  areola.translate(0, -AREOLA_RADIUS * DOME, 0);
   const papilla = new T.SphereGeometry(PAPILLA_RADIUS, 20, 12, 0, Math.PI * 2, 0, Math.PI / 2);
   papilla.scale(1, 0.7, 1);
   for (const sign of [1, -1]) {

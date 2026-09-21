@@ -650,8 +650,8 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.55239,
-    -0.08889
+    1.583,
+    -0.10692
    ],
    "outward": [
     0,
@@ -659,8 +659,8 @@
     -1
    ],
    "region": "head",
-   "depthMm": 33.5,
-   "rule": "posterior median line · depression between the trapezius origins below the external occipital protuberance (occiput–atlas interval)",
+   "depthMm": 2.4,
+   "rule": "posterior median line · depression directly inferior to the external occipital protuberance, between the trapezius origins",
    "projection": "posterior"
   },
   {
@@ -691,8 +691,8 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.62198,
-    -0.12213
+    1.60684,
+    -0.11786
    ],
    "outward": [
     0,
@@ -700,8 +700,8 @@
     -0.97014
    ],
    "region": "head",
-   "depthMm": 1.5,
-   "rule": "posterior median line · depression at the external occipital protuberance · inferior correction",
+   "depthMm": 7.5,
+   "rule": "posterior median line · depression superior to the external occipital protuberance",
    "projection": "head"
   },
   {
@@ -732,17 +732,17 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.66227,
-    -0.11528
+    1.64883,
+    -0.11929
    ],
    "outward": [
     0,
-    0.53116,
-    -0.84727
+    0.44229,
+    -0.89687
    ],
    "region": "head",
-   "depthMm": 6,
-   "rule": "median scalp geodesic · 4 B-cun above the posterior hairline · 1.5 B-cun above GV17 (GV scale 28.4 mm/B-cun)",
+   "depthMm": 5.9,
+   "rule": "median scalp · 1.5 B-cun above GV17 (4 B-cun above the posterior hairline) · GV20–GV17 arc in thirds (29.7 mm/B-cun)",
    "projection": "head"
   },
   {
@@ -773,17 +773,17 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.69624,
-    -0.09174
+    1.68787,
+    -0.10026
    ],
    "outward": [
     0,
-    0.75687,
-    -0.65356
+    0.6985,
+    -0.71561
    ],
    "region": "head",
-   "depthMm": 5.8,
-   "rule": "median scalp geodesic · 5.5 B-cun above the posterior hairline · 1.5 B-cun above GV18 (GV scale 28.4 mm/B-cun)",
+   "depthMm": 6,
+   "rule": "median scalp · 1.5 B-cun below GV20 toward GV17 (5.5 B-cun above the posterior hairline) · GV20–GV17 arc in thirds (29.7 mm/B-cun)",
    "projection": "head"
   },
   {
@@ -814,17 +814,17 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.71329,
-    -0.05396
+    1.71002,
+    -0.06315
    ],
    "outward": [
     0,
-    0.91609,
-    -0.40098
+    0.88496,
+    -0.46566
    ],
    "region": "head",
-   "depthMm": 6.3,
-   "rule": "median scalp geodesic · 5 B-cun behind the anterior hairline · 4.5 B-cun above GV17 (GV scale 28.4 mm/B-cun)",
+   "depthMm": 5.2,
+   "rule": "median scalp · where the plane of the auricular long axes crosses the midline · 5 B-cun behind the anterior hairline (head scale 30.4 mm/B-cun)",
    "projection": "head"
   },
   {
@@ -855,17 +855,17 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.71636,
-    0.00313
+    1.71735,
+    -0.01932
    ],
    "outward": [
     0,
-    0.99969,
-    0.02478
+    0.98868,
+    -0.15002
    ],
    "region": "head",
-   "depthMm": 2.1,
-   "rule": "median scalp geodesic · anterior hairline +3.5 B-cun",
+   "depthMm": 6,
+   "rule": "median scalp · 3.5 B-cun behind the anterior hairline (head scale set by GV20)",
    "projection": "head"
   },
   {
@@ -896,17 +896,17 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.70543,
-    0.03649
+    1.71021,
+    0.02465
    ],
    "outward": [
     0,
-    0.95349,
-    0.30143
+    0.97961,
+    0.20089
    ],
    "region": "head",
-   "depthMm": 1.7,
-   "rule": "median scalp geodesic · anterior hairline +2 B-cun",
+   "depthMm": 5.5,
+   "rule": "median scalp · 2 B-cun behind the anterior hairline (head scale set by GV20)",
    "projection": "head"
   },
   {
@@ -937,17 +937,17 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.69104,
-    0.05471
+    1.69564,
+    0.05029
    ],
    "outward": [
     0,
-    0.87936,
-    0.47616
+    0.9029,
+    0.42985
    ],
    "region": "head",
-   "depthMm": 2,
-   "rule": "median scalp geodesic · anterior hairline +1 B-cun",
+   "depthMm": 5.9,
+   "rule": "median scalp · 1 B-cun behind the anterior hairline (head scale set by GV20)",
    "projection": "head"
   },
   {
@@ -978,17 +978,17 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.68252,
-    0.06275
+    1.68492,
+    0.06065
    ],
    "outward": [
     0,
-    0.82761,
-    0.5613
+    0.84268,
+    0.53841
    ],
    "region": "head",
-   "depthMm": 2.1,
-   "rule": "median scalp geodesic · anterior hairline +0.5 B-cun",
+   "depthMm": 6,
+   "rule": "median scalp · 0.5 B-cun behind the anterior hairline (head scale set by GV20)",
    "projection": "head"
   },
   {

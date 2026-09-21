@@ -14,33 +14,49 @@ for(const [code,level] of levels){const p=landmark(`spinous_process_${level}.inf
 const gv14Surface=W.get('GV14');
 W.putDirect('GV14',v(0,gv14Surface.y,gv14Surface.z),POSTERIOR,'thorax','posterior median line · depression inferior to C7 spinous process · centred',{projection:'posterior'});
 
-// Suboccipital levels from bone (reviewer, 2026-09-21). GV15 sat over the C2 spinous process itself (its tip + 10 mm is
-// still below its top) and GV16 was a fixed point 14 mm under the protuberance, 91 mm above GV15 where WHO has 0.5 B-cun.
+// Occiput and suboccipital levels from bone (reviewer, 2026-09-21).
+// External occipital protuberance: the lower edge of the posterior bulge of the occipital squama, where the bone turns
+// forward into the nuchal plane (last level within 4 mm of the deepest posterior point). head-cun.json uses the deepest
+// point itself, 30 mm higher; the reviewer marked the protuberance at this lower level.
+const occipitalProfile=pts(mesh(atlas,'Occipital bone'),(p)=>Math.abs(p.x)<0.012&&p.z<-0.03);
+const occipitalDepth=(y)=>{const s=occipitalProfile.filter((p)=>Math.abs(p.y-y)<0.003);return s.length?-Math.min(...s.map((p)=>p.z)):0;};
+const eop=(()=>{const rows=[];for(let y=1.66;y>=1.56;y-=0.001)rows.push([y,occipitalDepth(y)]);
+ const deepest=Math.max(...rows.map((r)=>r[1]));
+ const smooth=rows.map(([y],i)=>[y,Math.max(...rows.slice(Math.max(0,i-3),i+4).map((r)=>r[1]))]);
+ const [y,depth]=smooth.filter(([,d])=>d>=deepest-0.004).reduce((a,b)=>(b[0]<a[0]?b:a));return v(0,y,-depth);})();
 // GV15: the depression between the C2 spinous process and the posterior arch of the atlas.
-// GV16: the depression between the atlas and the lower edge of the occipital squama, still on the vertical below the EOP.
 const axis=mesh(atlas,'Axis'),axisSpinousTop=most(pts(axis,(p)=>p.z<axis.box.min.z+0.008),v(0,1,0));
 const atlasArch=most(pts(mesh(atlas,'Atlas')),POSTERIOR);
-const occipitalEdge=most(pts(mesh(atlas,'Occipital bone'),(p)=>Math.abs(p.x)<0.01&&p.z<-0.04),v(0,-1,0));
 place('GV15',v(0,(axisSpinousTop.y+atlasArch.y)/2,Math.min(axisSpinousTop.z,atlasArch.z)),POSTERIOR,['neck','head'],'posterior median line · depression superior to C2 spinous process (between C2 and the atlas)','posterior');
-place('GV16',v(0,(atlasArch.y+occipitalEdge.y)/2,Math.min(atlasArch.z,occipitalEdge.z)),POSTERIOR,['neck','head'],'posterior median line · depression between the trapezius origins below the external occipital protuberance (occiput–atlas interval)','posterior');
-place('GV17',v(...head.externalOccipitalProtuberance).add(v(0,-0.006,0)),v(0,.25,-1).normalize(),['head'],'posterior median line · depression at the external occipital protuberance · inferior correction','head');
-// GV18–GV20 (reviewer, 2026-09-21: "one slot too far forward"). WHO spaces GV17 → GV18 → GV19 → GV20 1.5 B-cun apart
-// with GV17 2.5 B-cun above the posterior hairline, i.e. 9.5 B-cun behind the anterior hairline. The shared scalp scale in
-// head-cun.json takes anterior hairline → EOP as 11 B-cun, so every point measured from the front sat 1.5 B-cun short
-// of its place. Here the scale is the skin arc from the anterior hairline to GV17 over 9.5 B-cun, which satisfies both
-// ends at once (GV20 5 B-cun from the front and 4.5 B-cun above GV17). The GB head points and GV21–GV24 keep the shared
-// scale; they were reviewed as correct.
+// GV16: directly below the protuberance, in the depression between the trapezius origins.
+place('GV16',v(0,eop.y-0.015,eop.z+0.006),POSTERIOR,['neck','head'],'posterior median line · depression directly inferior to the external occipital protuberance, between the trapezius origins','posterior');
+// GV17: the depression directly above the protuberance.
+place('GV17',v(0,eop.y+0.008,eop.z),v(0,.25,-1).normalize(),['head'],'posterior median line · depression superior to the external occipital protuberance','head');
+
+// GV20 (reviewer sketch, 2026-09-21): where the line of the auricles, carried up along their long axis, crosses the
+// midline. Both auricles lean back, so the plane holding their lobule→apex axes is tilted posteriorly; GV20 is its
+// intersection with the scalp midline. Auricle landmarks are the presentation's own (app/ear-anatomy.ts, see te.mjs).
+const EAR_APEX=v(-0.0737,1.6226,-0.0298),EAR_LOBULE=v(-0.0656,1.5666,-0.0082);
+const earAxis=EAR_APEX.clone().sub(EAR_LOBULE).normalize(),earPlaneNormal=v(1,0,0).cross(earAxis).normalize();
+const earPlane=(p)=>earPlaneNormal.dot(p.clone().sub(EAR_APEX));
 const scalpMidline=section('x',0,v(0,1.6,-0.012),0.32);
 const anteriorIndex=nearestIndex(scalpMidline,v(...head.anteriorHairline)),backward=stepToward(scalpMidline,anteriorIndex,'y',1);
+const gv20Index=scalpMidline.reduce((b,p,i)=>(p.y>1.66&&Math.abs(earPlane(p))<Math.abs(earPlane(scalpMidline[b]))?i:b),nearestIndex(scalpMidline,v(0,1.72,-0.03)));
+const arcFromFront=(index)=>arcTo(scalpMidline,anteriorIndex,backward,(p)=>p===scalpMidline[index]);
+// Head proportional cun: GV20 is 5 B-cun behind the anterior hairline, which sets the scale for GV21–GV24.
+const HEAD_CUN=arcFromFront(gv20Index)/5;
+const gv20=scalpMidline[gv20Index],headOut=(p)=>p.clone().sub(v(0,1.59,0)).normalize();
+place('GV20',gv20.clone().addScaledVector(headOut(gv20),-0.004),headOut(gv20),['head'],`median scalp · where the plane of the auricular long axes crosses the midline · 5 B-cun behind the anterior hairline (head scale ${(HEAD_CUN*1000).toFixed(1)} mm/B-cun)`,'head');
+// GV18/GV19: WHO spaces GV17 → GV18 → GV19 → GV20 1.5 B-cun apart, so the GV20–GV17 arc is split into thirds.
 const gv17Index=nearestIndex(scalpMidline,W.get('GV17'));
-const GV_CUN=arcTo(scalpMidline,anteriorIndex,backward,(p)=>p===scalpMidline[gv17Index])/9.5;
-for(const [code,cun,rule] of [['GV18',8,'4 B-cun above the posterior hairline · 1.5 B-cun above GV17'],['GV19',6.5,'5.5 B-cun above the posterior hairline · 1.5 B-cun above GV18'],['GV20',5,'5 B-cun behind the anterior hairline · 4.5 B-cun above GV17']]){
- const p=advance(scalpMidline,anteriorIndex,backward,cun*GV_CUN),out=p.clone().sub(v(0,1.59,0)).normalize();
- place(code,p.clone().addScaledVector(out,-0.004),out,['head'],`median scalp geodesic · ${rule} (GV scale ${(GV_CUN*1000).toFixed(1)} mm/B-cun)`,'head');
+const toGv17=arcFromFront(gv17Index)-arcFromFront(gv20Index);
+for(const [code,share,rule] of [['GV19',1/3,'1.5 B-cun below GV20 toward GV17 (5.5 B-cun above the posterior hairline)'],['GV18',2/3,'1.5 B-cun above GV17 (4 B-cun above the posterior hairline)']]){
+ const p=advance(scalpMidline,gv20Index,backward,share*toGv17);
+ place(code,p.clone().addScaledVector(headOut(p),-0.004),headOut(p),['head'],`median scalp · ${rule} · GV20–GV17 arc in thirds (${(toGv17/4.5*1000).toFixed(1)} mm/B-cun)`,'head');
 }
-for(const code of ['GV21','GV22','GV23','GV24']){
- const cun={GV21:'anterior hairline +3.5 B-cun',GV22:'anterior hairline +2 B-cun',GV23:'anterior hairline +1 B-cun',GV24:'anterior hairline +0.5 B-cun'}[code];
- const p=v(...head.gvMidline[code]),out=p.clone().sub(v(0,1.59,0)).normalize();place(code,p,out,['head'],`median scalp geodesic · ${cun}`,'head');
+for(const [code,cun] of [['GV21',3.5],['GV22',2],['GV23',1],['GV24',0.5]]){
+ const p=advance(scalpMidline,anteriorIndex,backward,cun*HEAD_CUN);
+ place(code,p.clone().addScaledVector(headOut(p),-0.004),headOut(p),['head'],`median scalp · ${cun} B-cun behind the anterior hairline (head scale set by GV20)`,'head');
 }
 // Reviewer (2026-09-21): the fixed point sat above the tip. Take the most anterior midline skin of the nose.
 const noseTip=most(pts(mesh(atlas,'Skin'),(p)=>Math.abs(p.x)<0.004&&p.y>1.54&&p.y<1.60&&p.z>0.07),ANTERIOR);

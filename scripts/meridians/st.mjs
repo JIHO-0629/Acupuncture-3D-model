@@ -287,19 +287,39 @@ const putOnTrunkLine = (code, y, cun, regions, rule) => {
   W.put(code, surface.clone().addScaledVector(normal, -0.01), normal, regions, rule);
 };
 {
-  // Nipple (reviewer, 2026-09-21): rendered just above the 5th rib on the 4 B-cun line. It is not meshed in
-  // BodyParts3D, so the anchor is written to data/nipple.json and drawn as a skin presentation (app/nipple-presentation.ts).
+  // Nipple, drawn as a skin presentation (data/nipple.json → app/nipple-presentation.ts); BodyParts3D has none.
+  // Reviewer (2026-09-21, second pass): the first placement on the 4 B-cun line sat far too medial. Male NAC
+  // anthropometry puts the internipple distance at 60 ± 4 % of the thoracic width, independent of height and BMI
+  // (PMC12399017), and the nipple on the most projecting point of the pectoral contour; the 4 B-cun line here gave 50 %.
+  // Height is the 4th intercostal space just above the 5th rib (the reviewer's rule), taken at the nipple's x.
   let nippleY = ribBand(5, clavicleMidX).high + 0.004;
   for (let pass = 0; pass < 2; pass++) nippleY = ribBand(5, lateralOnSkin(nippleY, 4).x).high + 0.004;
-  const nipple = lateralOnSkin(nippleY, 4), nippleNormal = ringNormal(nipple, nippleY);
+  const lineY = nippleY;
+  const skinVerts = pts(mesh(atlas, 'Skin'));
+  const torsoHalfWidth = (y) => {
+    // Walk outward over the front of the chest until the gap to the hanging arm (the back skin bridges the gap).
+    const xs = [...new Set(skinVerts.filter((p) => Math.abs(p.y - y) < 0.004 && p.x < -0.05 && p.z > 0).map((p) => p.x))].sort((a, b) => b - a);
+    let edge = xs[0];
+    for (const x of xs) { if (edge - x > 0.02) break; edge = x; }
+    return -edge;
+  };
+  const thoracicWidth = 2 * torsoHalfWidth(nippleY), nippleX = -0.3 * thoracicWidth;
+  // Height: the reviewer's rule, just above the 5th rib (4th intercostal space), measured at the nipple's own x because the
+  // rib climbs laterally. This lands 17.6 cm from the sternal notch, within 1 SD of the anthropometric 19.3 ± 1.7 cm.
+  nippleY = ribBand(5, nippleX).high + 0.004;
+  raycaster.set(v(nippleX, nippleY, 0.3), v(0, 0, -1));
+  const nippleHit = raycaster.intersectObject(skin, false)[0];
+  const nipple = nippleHit.point.clone();
+  const nippleNormal = nippleHit.face.normal.clone().normalize().add(ringNormal(nipple, nippleY)).normalize();
   fs.writeFileSync(new URL('../../data/nipple.json', import.meta.url), JSON.stringify({
     generatedBy: 'scripts/meridians/st.mjs',
-    rule: 'just above the 5th rib (4th intercostal space) on the 4 B-cun skin line; right side, the viewer mirrors x for the left',
+    rule: 'internipple distance = 60 % of the thoracic width at the 4th intercostal level (male NAC anthropometry); height just above the 5th rib (4th intercostal space) at that x; right side, the viewer mirrors x for the left',
+    thoracicWidthMm: +(thoracicWidth * 1000).toFixed(1), internippleMm: +(-2 * nippleX * 1000).toFixed(1),
     centre: r4(nipple), normal: r4(nippleNormal),
   }, null, 1) + '\n');
-  // ST12 and ST13 follow the vertical nipple line (reviewer): the 4 B-cun arc drifts laterally as the chest widens
-  // above the clavicle, so the column is fixed to the nipple's x instead of re-measuring the arc at each height.
-  const lineX = nipple.x;
+  // ST12 and ST13 stay on the vertical 4 B-cun line at nipple height (the reviewer found ST12 too lateral, so they do
+  // not follow the anatomical nipple outward); the arc drifts laterally above the clavicle, so the x is fixed here.
+  const lineX = lateralOnSkin(lineY, 4).x;
   const top12 = highest(pts(clavicle, (p) => Math.abs(p.x - lineX) < 0.004));
   W.put('ST12', v(lineX, top12.y + 0.007, top12.z - 0.004), v(0, 0.65, 0.76).normalize(), ['neck', 'shoulder', 'thorax'],
     'greater supraclavicular fossa · on the vertical nipple line (4 B-cun) · depression above the clavicle');
@@ -307,13 +327,11 @@ const putOnTrunkLine = (code, y, cun, regions, rule) => {
   // Reviewer: immediately below the clavicle, on the same line as ST12.
   W.put('ST13', v(lineX, clavicleLow - 0.003, 0.03), ANTERIOR, chest, 'immediately inferior to the clavicle · on the vertical nipple line with ST12 (4 B-cun)');
   const ics = {};
-  for (const [code, k, extra] of [['ST14', 1, ''], ['ST15', 2, ' · below the 2nd rib at the sternal angle'], ['ST16', 3, ''], ['ST18', 5, ' · nipple line in males']]) {
+  for (const [code, k, extra] of [['ST14', 1, ''], ['ST15', 2, ' · below the 2nd rib at the sternal angle'], ['ST16', 3, ''], ['ST17', 4, ' · centre of the nipple in males (WHO)'], ['ST18', 5, ' · nipple line in males']]) {
     ics[code] = intercostal(k);
     putOnTrunkLine(code, ics[code], 4, chest, `${['1st', '2nd', '3rd', '4th', '5th'][k - 1]} intercostal space · 4 B-cun lateral (skin arc)${extra}`);
   }
   // ST17 is the centre of the nipple, so it follows the rendered nipple (lower part of the 4th intercostal space).
-  ics.ST17 = nippleY;
-  putOnTrunkLine('ST17', nippleY, 4, chest, '4th intercostal space just above the 5th rib · 4 B-cun lateral (skin arc) · centre of the nipple (data/nipple.json)');
   log.chest = { clavicleLowY: +clavicleLow.toFixed(4), ics: Object.fromEntries(Object.entries(ics).map(([k, y]) => [k, +y.toFixed(4)])) };
 }
 

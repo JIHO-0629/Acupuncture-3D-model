@@ -265,8 +265,8 @@
    "status": "implemented_unverified",
    "seed": [
     -0.02293,
-    1.62198,
-    -0.12116
+    1.60684,
+    -0.11783
    ],
    "outward": [
     0,
@@ -274,7 +274,7 @@
     -1
    ],
    "region": "head",
-   "depthMm": 20.2,
+   "depthMm": 16.8,
    "rule": "level with the superior border of the external occipital protuberance (GV17) · 1.3 B-cun lateral to the posterior median line"
   },
   {
