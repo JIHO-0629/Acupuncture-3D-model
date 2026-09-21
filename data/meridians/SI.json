@@ -264,18 +264,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.17321,
+    -0.16922,
     1.31953,
-    -0.10325
+    -0.10327
    ],
    "outward": [
     -0.54779,
     0,
     -0.83662
    ],
-   "region": "upper-arm-R",
+   "region": "shoulder",
    "depthMm": 49.7,
-   "rule": "1 B-cun superior to posterior axillary fold · posterior to deltoid"
+   "rule": "1 B-cun superior to posterior end of axillary fold · posterior to deltoid"
   },
   {
    "code": "SI10",
@@ -294,9 +294,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.16905,
-    1.40975,
-    -0.09495
+    -0.16081,
+    1.40071,
+    -0.10827
    ],
    "outward": [
     0,
@@ -304,8 +304,8 @@
     -1
    ],
    "region": "shoulder",
-   "depthMm": 48.5,
-   "rule": "depression immediately inferior to lateral scapular spine · arm raised"
+   "depthMm": 43.1,
+   "rule": "depression immediately inferior to lateral end of scapular spine · superior to posterior axillary fold"
   },
   {
    "code": "SI11",
@@ -324,9 +324,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.13578,
-    1.37057,
-    -0.1313
+    -0.10522,
+    1.35,
+    -0.13973
    ],
    "outward": [
     0,
@@ -334,8 +334,8 @@
     -1
    ],
    "region": "shoulder",
-   "depthMm": 75.4,
-   "rule": "centre of infraspinous fossa · midpoint below scapular spine toward inferior angle"
+   "depthMm": 59.6,
+   "rule": "infraspinous fossa · junction of upper 1/3 and lower 2/3 from scapular-spine midpoint to inferior angle"
   },
   {
    "code": "SI12",
@@ -354,9 +354,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.13987,
-    1.40045,
-    -0.11854
+    -0.11076,
+    1.40582,
+    -0.1241
    ],
    "outward": [
     0,
@@ -364,8 +364,8 @@
     -1
    ],
    "region": "shoulder",
-   "depthMm": 41.5,
-   "rule": "centre of supraspinous fossa · superior to midpoint of scapular spine"
+   "depthMm": 49.9,
+   "rule": "supraspinous fossa · depression superior to midpoint of scapular spine"
   },
   {
    "code": "SI13",
@@ -384,9 +384,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.05707,
-    1.37384,
-    -0.13639
+    -0.08019,
+    1.40361,
+    -0.1315
    ],
    "outward": [
     0,
@@ -394,8 +394,8 @@
     -1
    ],
    "region": "shoulder",
-   "depthMm": 51.8,
-   "rule": "depression immediately inferior to medial end of scapular spine · midway from SI10 to T2 spinous process"
+   "depthMm": 38.8,
+   "rule": "depression superior to medial end of scapular spine · midpoint of SI10 and T2 spinous process"
   },
   {
    "code": "SI14",
@@ -414,18 +414,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.034,
+    -0.0607,
     1.42677,
-    -0.11848
+    -0.12094
    ],
    "outward": [
     0,
     0,
     -1
    ],
-   "region": "thorax",
-   "depthMm": 39.5,
-   "rule": "3 B-cun lateral to inferior border of T1 spinous process"
+   "region": "shoulder",
+   "depthMm": 33.6,
+   "rule": "3 B-cun lateral to posterior median line · vertical through medial end of scapular spine · T1 level"
   },
   {
    "code": "SI15",
@@ -444,18 +444,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.05517,
-    1.47157,
-    -0.0809
+    -0.04047,
+    1.44282,
+    -0.11159
    ],
    "outward": [
-    -0.70256,
-    0.57353,
-    -0.42128
+    0,
+    0,
+    -1
    ],
-   "region": "shoulder",
-   "depthMm": 18.7,
-   "rule": "2 B-cun lateral to posterior median line · C7 region · nearest posterior neck skin"
+   "region": "thorax",
+   "depthMm": 38.6,
+   "rule": "2 B-cun lateral to posterior median line · C7 inferior-border level"
   },
   {
    "code": "SI16",
