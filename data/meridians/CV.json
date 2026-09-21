@@ -608,9 +608,9 @@
    },
    "status": "implemented_unverified",
    "seed": [
-    0.00096,
-    1.2335,
-    0.11108
+    0,
+    1.24213,
+    0.10989
    ],
    "outward": [
     0,
@@ -618,8 +618,8 @@
     1
    ],
    "region": "thorax",
-   "depthMm": 16.2,
-   "rule": "anterior median line · 1 B-cun inferior to xiphisternal junction",
+   "depthMm": 0.5,
+   "rule": "anterior median line · tip of the xiphoid process",
    "projection": "anterior"
   },
   {

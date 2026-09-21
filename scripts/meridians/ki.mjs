@@ -72,8 +72,8 @@ const ANKLE_CUN = (ki3Deep.y - groundY) / 3;
   W.put('KI4', ki4Deep, v(0.9, 0, -0.3).normalize(), ankle,
     'posteroinferior to the medial malleolus · superior to the calcaneus · anterior to the medial attachment of the calcaneal tendon (photo: ~0.5 B-cun below KI3)');
   const y5 = ki3Deep.y - ANKLE_CUN;
-  W.put('KI5', v(ki4Deep.x, y5, ki4Deep.z + 0.004), v(1, -0.2, -0.2).normalize(), foot,
-    'KCMRIC: KI3 → ground = 3 B-cun · 1 B-cun below KI3 · depression anterior to the calcaneal tuberosity');
+  W.put('KI5', v(ki4Deep.x, y5, ki4Deep.z + 0.010), v(1, -0.15, -0.1).normalize(), foot,
+    'KCMRIC: KI3 → ground = 3 B-cun · 1 B-cun below KI3 · immediately anterior to KI4 and posterior talus region');
   W.put('KI6', v(medialMalleolus.x - 0.002, y5, medialMalleolus.z), v(1, -0.15, 0).normalize(), ankle,
     '1 B-cun below the medial malleolus prominence · depression directly inferior to the malleolus');
   const calcaneusTop = highest(pts(mesh(atlas, 'Right calcaneus'), (p) => Math.abs(p.z - ki4Deep.z) < 0.004 && Math.abs(p.x - ki4Deep.x) < 0.01));
@@ -111,8 +111,8 @@ const ANKLE_CUN = (ki3Deep.y - groundY) / 3;
   const crease = landmark('popliteal_crease');
   const st = most(atHeight(mesh(atlas, 'Right semitendinosus'), crease.y), POSTERIOR);
   const sm = most(atHeight(mesh(atlas, 'Right semimembranosus'), crease.y), POSTERIOR);
-  W.put('KI10', v((st.x + sm.x) / 2, crease.y, Math.min(st.z, sm.z) + 0.006), v(0.35, 0, -0.94).normalize(), ['knee-R', 'leg-R', 'thigh-R'],
-    'posteromedial knee · popliteal crease · between the semitendinosus and semimembranosus tendons (KCMRIC)');
+  W.put('KI10', st.clone().add(v(-0.003,0,-0.001)).setY(crease.y), v(0.2, 0, -0.98).normalize(), ['knee-R', 'leg-R', 'thigh-R'],
+    'posteromedial knee · popliteal crease · immediately lateral to the semitendinosus tendon');
   log.ki10 = { semitendinosus: r4(st), semimembranosus: r4(sm) };
 }
 

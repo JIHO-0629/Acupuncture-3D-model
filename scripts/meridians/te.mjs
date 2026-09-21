@@ -65,8 +65,7 @@ let te4Deep;
 {
   // WHO note: TE4 is level with LI5 and SI5 (both at y 0.878 on this model).
   const y4 = seedOf('SI', 'SI5').y;
-  const tendonEdge = most(atHeight(mesh(atlas, 'Right extensor digitorum'), y4), radialDir.clone().negate());
-  te4Deep = tendonEdge.clone().addScaledVector(radialDir, -0.004).setY(y4);
+  te4Deep = mid(L.radialStyloid,L.ulnarHead).addScaledVector(L.forearmAxis,0.004).setY(y4);
   W.put('TE4', te4Deep, forearmDorsal, ['forearm-R', 'hand-R'], 'dorsal wrist crease · depression ulnar to the extensor digitorum tendon · level with LI5 and SI5');
 }
 
@@ -102,11 +101,11 @@ for (const [code, cun] of [['TE11', 2], ['TE12', 5]]) {
     `posterior arm · olecranon–acromial angle line · ${cun} B-cun proximal to the olecranon prominence`);
 }
 const postArm = v(-0.55, 0, -0.84).normalize();
-W.put('TE13', acromialAngle.clone().addScaledVector(toAngle, -3 * L.armCun), postArm, ['upper-arm-R', 'shoulder'],
-  'posterior arm · posteroinferior to the border of the deltoid · 3 B-cun inferior to the acromial angle');
+W.put('TE13', acromialAngle.clone().addScaledVector(toAngle, -3 * L.armCun).add(v(0.007,0,-0.003)), postArm, ['upper-arm-R', 'shoulder'],
+  'posterior arm · medial junction of spinal deltoid and triceps · 3 B-cun inferior to the acromial angle');
 {
   const tubercle = most(pts(humerus, (p) => p.y > humerus.box.max.y - 0.04), v(-1, 0, -0.2).normalize());
-  W.put('TE14', mid(acromialAngle, tubercle).add(v(0, -0.006, -0.004)), v(-0.6, 0, -0.8).normalize(), ['shoulder', 'upper-arm-R'],
+  W.put('TE14', mid(acromialAngle, tubercle).add(v(0.008, -0.006, -0.004)), v(-0.45, 0, -0.89).normalize(), ['shoulder', 'upper-arm-R'],
     'shoulder girdle · depression between the acromial angle and the greater tubercle (posterior to LI15)');
   log.shoulder = { acromialAngle: r4(acromialAngle), tubercle: r4(tubercle), olecranonToAngleCun: +(olecranon.distanceTo(acromialAngle) / L.armCun).toFixed(2) };
 }
@@ -152,7 +151,7 @@ W.put('TE20', v(-0.06, EAR.apex.y + 0.003, EAR.apex.z), v(-1, 0.15, 0).normalize
   const top = W.get('TE20'), bottom = W.get('TE17');
   const temporal = mesh(atlas, 'Right temporal bone'), tip = landmark('mastoid_process_tip');
   const mastoidCentre = centroid(temporal, (p) => p.x < -0.04 && p.z < -0.03 && p.y < tip.y + 0.025 && p.y > tip.y - 0.004);
-  const waypoint = toSkin(v(-0.05, mastoidCentre.y, mastoidCentre.z), LATERAL, ['head', 'face', 'neck']).point;
+  const waypoint = v(-0.064,EAR.crusOfHelixRoot.y,EAR.crusOfHelixRoot.z);
   const curve = new CatmullRomCurve3([top, waypoint, bottom], false, 'centripetal');
   const samples = [];
   for (const p of curve.getPoints(80)) {

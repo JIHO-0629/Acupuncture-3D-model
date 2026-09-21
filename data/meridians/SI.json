@@ -384,9 +384,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.079,
-    1.407,
-    -0.13008
+    -0.05707,
+    1.37384,
+    -0.13639
    ],
    "outward": [
     0,
@@ -394,8 +394,8 @@
     -1
    ],
    "region": "shoulder",
-   "depthMm": 51.1,
-   "rule": "medial end of scapular spine · midway from SI10 to T2 spinous process"
+   "depthMm": 51.8,
+   "rule": "depression immediately inferior to medial end of scapular spine · midway from SI10 to T2 spinous process"
   },
   {
    "code": "SI14",

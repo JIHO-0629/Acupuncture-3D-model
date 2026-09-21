@@ -25,8 +25,8 @@ place('BL35',v(-.012,.848,-.091),POSTERIOR,['pelvis'],'0.5 B-cun lateral to tip 
 const pop=landmark('popliteal_crease');
 place('BL36',v(-.085,.755,-.102),POSTERIOR,['pelvis','thigh-R'],'centre of gluteal fold');
 place('BL37',v(-.087,.650,-.098),POSTERIOR,['thigh-R'],'6 B-cun below centre of gluteal fold · posterior thigh');
-place('BL38',v(-.100,.485,-.088),POSTERIOR,['thigh-R','knee-R'],'1 B-cun above BL39 · medial to biceps femoris tendon');
-place('BL39',v(-.100,.463,-.091),POSTERIOR,['thigh-R','knee-R','leg-R'],'lateral end of popliteal crease · medial to biceps femoris tendon');
+place('BL38',v(-.108,.485,-.088),POSTERIOR,['thigh-R','knee-R'],'1 B-cun above BL39 · immediately medial to long head of biceps femoris tendon');
+place('BL39',v(-.108,.463,-.091),POSTERIOR,['thigh-R','knee-R','leg-R'],'lateral end of popliteal crease · immediately medial to long head of biceps femoris tendon');
 place('BL40',pop,POSTERIOR,['knee-R','leg-R'],'midpoint of popliteal crease');
 
 // Outer posterior line: 3 B-cun lateral. T2–T7, T9–T12, L1–L2, then S2/S4.
@@ -37,24 +37,29 @@ place('BL54',v(-.064,sacY[3],-.078),POSTERIOR,['pelvis'],'S4 level · 3 B-cun la
 
 // Posterior lower leg: popliteal crease → BL60 is 16 B-cun.
 const fibula=mesh(atlas,'Right fibula'), calcaneus=mesh(atlas,'Right calcaneus'), achilles=mesh(atlas,'Right calcaneal tendon');
+const gastLat=mesh(atlas,'Lateral head of right gastrocnemius'),gastMed=mesh(atlas,'Medial head of right gastrocnemius');
 const lateralMalleolus=landmark('lateral_malleolus_prominence');
 const heelSide=most(pts(achilles,p=>Math.abs(p.y-lateralMalleolus.y)<.02),LATERAL), bl60=mid(lateralMalleolus,heelSide).add(v(0,0,-.004));
 const legAt=(fromKnee)=>pop.clone().lerp(bl60,fromKnee/16);
-place('BL55',legAt(2),POSTERIOR,['leg-R','knee-R'],'2 B-cun distal to popliteal crease · between gastrocnemius heads');
-place('BL56',legAt(5),POSTERIOR,['leg-R'],'5 B-cun distal to popliteal crease · between gastrocnemius bellies');
-place('BL57',legAt(8),POSTERIOR,['leg-R'],'8 B-cun distal to popliteal crease · junction of gastrocnemius bellies and calcaneal tendon');
-place('BL58',legAt(9).add(v(-.010,0,0)),v(-.45,0,-.89).normalize(),['leg-R'],'1 B-cun distal and lateral to BL57 · 7 B-cun proximal to BL60');
-place('BL59',legAt(13),v(-.55,0,-.84).normalize(),['leg-R'],'3 B-cun proximal to BL60 · posterior border of fibula');
-place('BL60',bl60,v(-.75,0,-.66).normalize(),['leg-R','foot-R'],'depression between lateral malleolus prominence and calcaneal tendon');
+const y55=legAt(2).y,innerLat=most(pts(gastLat,p=>Math.abs(p.y-y55)<.006),MEDIAL),innerMed=most(pts(gastMed,p=>Math.abs(p.y-y55)<.006),LATERAL);
+const bl55=mid(innerLat,innerMed).setY(y55),bl57=legAt(8).setY(Math.max(gastLat.box.min.y,gastMed.box.min.y)+.012);
+place('BL55',bl55,POSTERIOR,['leg-R','knee-R'],'2 B-cun distal to popliteal crease · junction between gastrocnemius heads');
+place('BL56',mid(bl55,bl57),POSTERIOR,['leg-R'],'midpoint of BL55–BL57 · between gastrocnemius bellies');
+place('BL57',bl57,POSTERIOR,['leg-R'],'inferior split of gastrocnemius bellies · junction with calcaneal tendon');
+place('BL58',legAt(9).setY(gastLat.box.min.y+.010).add(v(-.010,0,0)),v(-.45,0,-.89).normalize(),['leg-R'],'inferior end of lateral gastrocnemius · lateral to BL57');
+place('BL59',v(bl60.x,legAt(13).y,bl60.z),v(-.55,0,-.84).normalize(),['leg-R'],'3 B-cun vertically proximal to BL60 · posterior border of fibula');
+place('BL60',bl60.clone().setY(lateralMalleolus.y),v(-.75,0,-.66).normalize(),['leg-R','foot-R'],'depression between lateral malleolus prominence and calcaneal tendon · level with malleolus prominence');
 
 // Lateral foot and little toe.
 const mt5=mesh(atlas,'Right fifth metatarsal bone'), pp5=mesh(atlas,'Proximal phalanx of right little toe'), dp5=mesh(atlas,'Distal phalanx of right little toe');
 const footOut=v(-.75,.45,-.48).normalize(), mtBase=most(pts(mt5),v(0,0,-1)), mtHead=most(pts(mt5),v(0,0,1));
-place('BL61',most(pts(calcaneus),v(-1,-.5,-.5).normalize()),footOut,['foot-R'],'inferior-posterior to BL60 · lateral calcaneus');
-W.putNearest('BL62',v(lateralMalleolus.x,lateralMalleolus.y-.025,lateralMalleolus.z+.008),['foot-R'],'directly inferior to lateral malleolus prominence');
-W.putNearest('BL63',mid(lateralMalleolus,mtBase).add(v(-.006,-.002,.010)),['foot-R'],'anterior-inferior to lateral malleolus · posterior to 5th metatarsal tuberosity');
+const calcaneusFloor=most(pts(calcaneus),v(-.5,-1,-.2).normalize());
+place('BL61',mid(bl60,calcaneusFloor),footOut,['foot-R'],'midpoint between BL60 and the inferior lateral calcaneus · red-white border');
+W.putNearest('BL62',v(lateralMalleolus.x,lateralMalleolus.y-.025,lateralMalleolus.z),['foot-R'],'directly inferior to lateral malleolus prominence');
+const cuboid=mesh(atlas,'Right cuboid bone');
+W.putNearest('BL63',most(pts(cuboid),LATERAL),['foot-R'],'lateral prominence of the cuboid · posterior to 5th metatarsal tuberosity');
 W.putNearest('BL64',mtBase.clone().add(v(-.005,0,.008)),['foot-R'],'distal to tuberosity of 5th metatarsal · red-white border');
-W.putNearest('BL65',mtHead.clone().add(v(-.005,0,-.010)),['foot-R'],'proximal depression of 5th metatarsophalangeal joint · red-white border');
+place('BL65',mtHead.clone().add(v(-.005,-.004,-.010)),v(-.55,-.78,.3).normalize(),['foot-R'],'proximal depression of 5th metatarsophalangeal joint · plantar side of red-white border');
 W.putNearest('BL66',mid(centroid(pp5),mtHead).add(v(-.004,0,.004)),['foot-R'],'distal depression of 5th metatarsophalangeal joint · red-white border');
 const toeAxis=centroid(dp5).sub(centroid(pp5)).normalize(), nail=most(pts(dp5),v(-.7,.4,.5).normalize()).addScaledVector(toeAxis,-.0018);
 place('BL67',nail,footOut,['foot-R'],'little-toe lateral nail-root corner · 0.1 F-cun proximal');

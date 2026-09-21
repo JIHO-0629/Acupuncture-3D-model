@@ -116,7 +116,7 @@ const maxilla = mesh(atlas, 'Right maxilla'), zygomatic = mesh(atlas, 'Right zyg
     if (!foramen || front.z < foramen.z) foramen = front;
   }
   if (!foramen) foramen = v(pupil.x, margin.y - 0.009, margin.z);
-  W.put('ST2', v(pupil.x, foramen.y, foramen.z), v(-0.15, 0, 1).normalize(), face,
+  W.put('ST2', v(pupil.x, foramen.y+0.004, foramen.z), v(-0.15, 0, 1).normalize(), face,
     'pupil vertical line · infraorbital foramen = dip in the anterior maxillary profile below the margin (photo: not high)');
 
   // Inferior border of the ala: lowest skin vertex of the alar base lateral to the septum.
@@ -430,7 +430,7 @@ const foot = ['foot-R'];
 
   // Reviewer decision: yellow point, immediately proximal to the 2nd MTP joint.
   const mt3 = mesh(atlas, 'Right third metatarsal bone');
-  const z43 = mt2.box.max.z - 0.012;
+  const z43 = mt2.box.max.z - 0.020;
   const mt2Side = most(pts(mt2, (p) => Math.abs(p.z - z43) < 0.003), LATERAL);
   const mt3Side = most(pts(mt3, (p) => Math.abs(p.z - z43) < 0.003), v(1, 0, 0));
   W.put('ST43', v((mt2Side.x + mt3Side.x) / 2, Math.max(mt2Side.y, mt3Side.y), z43), v(0, 1, 0.1).normalize(), foot,
@@ -452,10 +452,10 @@ const foot = ['foot-R'];
   const size = distal.box.getSize(new T.Vector3());
   const corner = centroid(distal)
     .addScaledVector(longitudinal, -size.z * 0.15)
-    .addScaledVector(lateral, (size.x / 2) * 0.7)
+    .addScaledVector(lateral, (size.x / 2) * 0.35)
     .addScaledVector(dorsal, distal.box.max.y - centroid(distal).y);
   // 0.1 F-cun proximal-lateral to the nail-root corner (toenails are not modelled).
-  const nailPoint = corner.addScaledVector(longitudinal, -0.1 * F_CUN * 0.7).addScaledVector(lateral, 0.1 * F_CUN * 0.7);
+  const nailPoint = corner.addScaledVector(longitudinal, -0.1 * F_CUN * 0.7).addScaledVector(lateral, 0.1 * F_CUN * 0.35);
   W.put('ST45', nailPoint, lateral.clone().multiplyScalar(0.6).add(dorsal.clone().multiplyScalar(0.8)).normalize(), foot,
     '2nd toe · 0.1 F-cun proximal-lateral to the lateral corner of the toenail root (nail footprint estimated from the distal phalanx)');
 }

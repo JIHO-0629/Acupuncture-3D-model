@@ -30,10 +30,12 @@ const posteriorFold=extremeCluster(teresMajor,LATERAL,0.015,(p)=>p.y<teresMajor.
 place('SI9',posteriorFold.clone().add(v(-0.004,L.armCun,-0.004)),postArm,shoulder,'1 B-cun superior to posterior axillary fold · posterior to deltoid');
 const scapularSpineLateral=extremeCluster(scapula,LATERAL,0.015,(p)=>p.y>1.34);
 place('SI10',scapularSpineLateral.clone().add(v(-0.003,-0.012,-0.004)),POSTERIOR,shoulder,'depression immediately inferior to lateral scapular spine · arm raised');
-const inferiorAngle=most(pts(scapula),v(0,-1,-0.2).normalize()), spineRoot=most(pts(scapula),v(0,0,-1));
+const inferiorAngle=most(pts(scapula),v(0,-1,-0.2).normalize());
 place('SI11',centroid(mesh(atlas,'Right infraspinatus muscle')),POSTERIOR,['shoulder','thorax'],'centre of infraspinous fossa · midpoint below scapular spine toward inferior angle');
 place('SI12',centroid(mesh(atlas,'Right supraspinatus')).add(v(0,0,-0.04)),POSTERIOR,['shoulder','thorax'],'centre of supraspinous fossa · superior to midpoint of scapular spine');
-place('SI13',v(-0.079,1.407,-0.083),POSTERIOR,['shoulder','thorax'],'medial end of scapular spine · midway from SI10 to T2 spinous process');
+// The reference places SI13 just inferior to the medial/root end of the scapular spine.
+const medialSpineRoot=extremeCluster(scapula,MEDIAL,0.008,(p)=>p.y>1.37&&p.y<1.41&&p.z<-0.08);
+place('SI13',medialSpineRoot.clone().add(v(0,-0.004,0)),POSTERIOR,['shoulder','thorax'],'depression immediately inferior to medial end of scapular spine · midway from SI10 to T2 spinous process');
 place('SI14',v(-0.034,landmark('spinous_process_T1.inferior_border',null).y,-0.083),POSTERIOR,['thorax','shoulder'],'3 B-cun lateral to inferior border of T1 spinous process');
 W.putNearest('SI15',v(-0.042,landmark('spinous_process_C7.inferior_border',null).y+0.018,-0.073),['neck','shoulder'],'2 B-cun lateral to posterior median line · C7 region · nearest posterior neck skin');
 

@@ -1,9 +1,11 @@
 /** SP1–SP21 (족태음비경). KCMRIC → WHO 2008 → local photo archive. */
 import * as T from 'three';
-import {atlas,mesh,centroid,v,mid,most,landmark,meridianWriter,UP,MEDIAL,ANTERIOR,POSTERIOR} from '../acupoint-kit.mjs';
+import {atlas,mesh,centroid,v,mid,most,landmark,meridianWriter,UP,DOWN,MEDIAL,ANTERIOR,POSTERIOR} from '../acupoint-kit.mjs';
 
 const W=meridianWriter('SP');
 const pts=(part,filter=()=>true)=>{const out=[];for(let i=0;i<part.vertexCount;i++){const p=v(part.positions[i*3],part.positions[i*3+1],part.positions[i*3+2]);if(filter(p))out.push(p);}return out;};
+const lowest=(points)=>most(points,DOWN),highest=(points)=>most(points,UP);
+const exists=(name)=>{try{mesh(atlas,name);return true;}catch{return false;}};
 const place=(code,p,out,regions,rule)=>W.put(code,p.clone().addScaledVector(out,-0.004),out,regions,rule);
 const skinMedial=v(0.85,0,0.35).normalize(), footUp=v(0.35,0.9,0.15).normalize();
 
@@ -14,37 +16,48 @@ const halluxAxis=centroid(dp).sub(centroid(pp)).normalize();
 const nail=most(pts(dp),v(0.7,0.35,0.45).normalize()).addScaledVector(halluxAxis,-0.0018);
 place('SP1',nail,skinMedial,['foot-R'],'hallux medial nail-root corner · 0.1 F-cun proximal-medial');
 const mtHead=most(pts(mt1),v(0,0,1)), mtBase=most(pts(mt1),v(0,0,-1));
-place('SP2',mid(centroid(pp),mtHead).add(v(0.004,0,0.003)),footUp,['foot-R'],'distal depression of the 1st metatarsophalangeal joint · red-white border');
-place('SP3',mtHead.clone().add(v(0.004,0,-0.009)),footUp,['foot-R'],'proximal depression of the 1st metatarsophalangeal joint · red-white border');
-place('SP4',mtBase.clone().add(v(0.004,0,0.006)),footUp,['foot-R'],'anteroinferior to the base of the 1st metatarsal · red-white border');
+place('SP2',mid(centroid(pp),mtHead).add(v(0.004,-0.003,-0.004)),v(0.45,-0.82,0.35).normalize(),['foot-R'],'distal depression of the 1st metatarsophalangeal joint · plantar side of the red-white border');
+place('SP3',mtHead.clone().add(v(0.004,-0.005,-0.009)),v(0.45,-0.86,0.25).normalize(),['foot-R'],'proximal depression of the 1st metatarsophalangeal joint · plantar side of the red-white border');
+place('SP4',mtBase.clone().add(v(0.004,-0.005,0.002)),v(0.5,-0.84,0.2).normalize(),['foot-R'],'anteroinferior to the base of the 1st metatarsal · plantar side of the red-white border');
 const medialMalleolus=most(pts(tibia,p=>p.y<tibia.box.min.y+0.045),MEDIAL);
-place('SP5',mid(medialMalleolus,most(pts(nav),MEDIAL)),skinMedial,['foot-R','leg-R'],'depression midway between medial malleolus prominence and navicular tuberosity');
+place('SP5',mid(medialMalleolus,most(pts(nav),MEDIAL)).add(v(0,0.006,0)),skinMedial,['foot-R','leg-R'],'depression between medial malleolus prominence and navicular tuberosity · superior correction');
 
 // Medial tibial line: medial malleolus → medial tibial condyle is 13 B-cun.
 const medialCondyle=most(pts(tibia,p=>p.y>tibia.box.max.y-0.07),MEDIAL);
 const leg=(cun,posterior=0)=>medialMalleolus.clone().lerp(medialCondyle,cun/13).add(v(0.003,0,-posterior));
-place('SP6',leg(3,0.006),skinMedial,['leg-R'],'3 B-cun above medial malleolus · posterior border of tibia');
-place('SP7',leg(6,0.006),skinMedial,['leg-R'],'6 B-cun above medial malleolus · posterior border of tibia');
-place('SP8',leg(10,0.009),skinMedial,['leg-R'],'3 B-cun below SP9 · posterior border of tibia');
-place('SP9',medialCondyle.clone().add(v(0.004,-0.012,-0.010)),v(0.7,0,-0.7).normalize(),['leg-R','knee-R'],'KCMRIC/WHO: depression at the angle between the inferior border of the medial tibial condyle and posterior border of tibia (photo 2-cun note retained as teaching note only)');
+place('SP6',leg(3,0),skinMedial,['leg-R'],'3 B-cun above medial malleolus · medial border of tibia');
+place('SP7',leg(6,0),skinMedial,['leg-R'],'6 B-cun above medial malleolus · medial border of tibia');
+place('SP8',leg(10,0.002),skinMedial,['leg-R'],'3 B-cun below SP9 · medial border of tibia');
+place('SP9',medialCondyle.clone().add(v(0.004,-0.012,0.002)),v(0.82,0,-0.25).normalize(),['leg-R','knee-R'],'KCMRIC/WHO: depression at the angle between the inferior border of the medial tibial condyle and medial border of tibia · anterior correction');
 
 const femur=mesh(atlas,'Right femur'), sartorius=mesh(atlas,'Right sartorius'), adductor=mesh(atlas,'Right adductor longus');
 const kneeY=landmark('knee_joint_line').y, pubis=landmark('pubic_symphysis_superior',null);
 const thighY=(cun)=>kneeY+(pubis.y-kneeY)*(cun/18);
 const medialThigh=(y,zBias=0)=>{const band=[...pts(sartorius,p=>Math.abs(p.y-y)<0.008),...pts(adductor,p=>Math.abs(p.y-y)<0.008)];const p=most(band.length?band:pts(femur,p=>Math.abs(p.y-y)<0.015),MEDIAL);return v(p.x+0.004,y,p.z+zBias);};
-place('SP10',medialThigh(thighY(2),0.012),v(0.75,0,0.65).normalize(),['thigh-R','knee-R'],'2 B-cun above medial patella base · vastus medialis prominence');
-place('SP11',medialThigh(thighY(6),0.005),MEDIAL,['thigh-R'],'6 B-cun above SP10 level · between sartorius and adductor longus, near femoral artery');
+place('SP10',medialThigh(thighY(2),0.012).add(v(-0.008,0,0)),v(0.55,0,0.83).normalize(),['thigh-R','knee-R'],'2 B-cun above medial patella base · vastus medialis prominence · lateral correction');
+place('SP11',medialThigh(thighY(12),0.005),MEDIAL,['thigh-R'],'junction of the upper 1/3 and lower 2/3 of the medial patella-base–SP12 line · between sartorius and adductor longus, near femoral artery');
 
 // Abdomen: SP12–SP15 at 4 B-cun lateral; SP16–SP20 at 4–6 B-cun lateral.
 const navel=landmark('umbilicus',null), trunkOut=ANTERIOR, lowerSpan=navel.y-pubis.y, lowerCun=lowerSpan/5;
 const abdomen=(code,y,x,rule)=>place(code,v(x,y,0.07),trunkOut,['thigh-R','pelvis','lumbar','thorax'],rule);
 abdomen('SP12',pubis.y,-0.078,'superior border of pubic symphysis · 4 B-cun lateral to anterior median line');
 abdomen('SP13',pubis.y+lowerCun,-0.078,'1 B-cun above SP12 · 4 B-cun lateral to anterior median line');
-abdomen('SP14',pubis.y+2*lowerCun,-0.078,'2 B-cun below umbilicus · 4 B-cun lateral to anterior median line');
+abdomen('SP14',Math.max(pubis.y+2*lowerCun,landmark('asis').y),-0.078,'2 B-cun below umbilicus · 4 B-cun lateral to anterior median line · not inferior to ASIS level');
 abdomen('SP15',navel.y,-0.078,'level of umbilicus · 4 B-cun lateral to anterior median line');
 abdomen('SP16',navel.y+0.087,-0.078,'3 B-cun above umbilicus (Jianli level) · 4 B-cun lateral');
-const thoracicY=[1.215,1.255,1.292,1.325];
-for(const [i,y] of thoracicY.entries()) abdomen(`SP${17+i}`,y,-0.116,`${5-i}th intercostal region · 6 B-cun lateral to anterior median line`);
+const ribParts=['first','second','third','fourth','fifth','sixth'].map((name)=>
+  [`Right ${name} rib`,`Right ${name} costal cartilage`].filter(exists).map((part)=>mesh(atlas,part)));
+const ribBand=(number,x)=>{
+  const column=ribParts[number-1].flatMap((part)=>pts(part,(p)=>Math.abs(p.x-x)<0.005&&p.z>0.015));
+  const sample=column.length?column:ribParts[number-1].flatMap((part)=>pts(part,(p)=>p.x>x&&p.x<x+0.04&&p.z>0));
+  if(!sample.length)throw new Error(`rib ${number} not found near x=${x}`);
+  return {low:lowest(sample).y,high:highest(sample).y};
+};
+const intercostal=(number,x)=>(ribBand(number,x).low+ribBand(number+1,x).high)/2;
+for(const [i,number] of [5,4,3,2].entries()){
+  const y=intercostal(number,-0.116);
+  abdomen(`SP${17+i}`,y,-0.116,`${number}th intercostal space measured from the actual lateral rib curve · 6 B-cun lateral to anterior median line`);
+}
 place('SP21',v(-0.17,1.245,0),v(-1,0,0),['thorax'],'midaxillary line · 6th intercostal space');
 
 const english=['Yinbai','Dadu','Taibai','Gongsun','Shangqiu','Sanyinjiao','Lougu','Diji','Yinlingquan','Xuehai','Jimen','Chongmen','Fushe','Fujie','Daheng','Fuai','Shidou','Tianxi','Xiongxiang','Zhourong','Dabao'];

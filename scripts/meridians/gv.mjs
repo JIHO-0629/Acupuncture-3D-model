@@ -10,13 +10,17 @@ place('GV1',v(0,.850,-.082),POSTERIOR,['pelvis'],'midpoint of coccyx tip and anu
 place('GV2',landmark('sacral_hiatus',null),POSTERIOR,['pelvis','lumbar'],'sacral hiatus · posterior median line','posterior');
 const levels=[['GV3','L4'],['GV4','L2'],['GV5','L1'],['GV6','T11'],['GV7','T10'],['GV8','T9'],['GV9','T7'],['GV10','T6'],['GV11','T5'],['GV12','T3'],['GV13','T1'],['GV14','C7']];
 for(const [code,level] of levels){const p=landmark(`spinous_process_${level}.inferior_border`,null);place(code,p,POSTERIOR,level.startsWith('L')?['lumbar','pelvis']:['thorax','neck'],`posterior median line · depression inferior to ${level} spinous process`,'posterior');}
+const gv14Surface=W.get('GV14');
+W.putDirect('GV14',v(0,gv14Surface.y,gv14Surface.z),POSTERIOR,'thorax','posterior median line · depression inferior to C7 spinous process · centred',{projection:'posterior'});
 
-place('GV15',v(0,1.588,-.101),POSTERIOR,['neck','head'],'posterior median line · superior to C2 spinous process and 0.5 B-cun inferior to GV16','posterior');
+const axis=mesh(atlas,'Axis'),axisSpinous=most(Array.from({length:axis.vertexCount},(_,i)=>v(axis.positions[i*3],axis.positions[i*3+1],axis.positions[i*3+2])).filter((p)=>p.z<axis.box.min.z+0.012),POSTERIOR);
+place('GV15',v(0,axisSpinous.y+0.010,axisSpinous.z),POSTERIOR,['neck','head'],'posterior median line · immediately superior to C2 spinous process','posterior');
 place('GV16',v(0,1.615,-.118),POSTERIOR,['neck','head'],'depression between trapezius origins directly inferior to external occipital protuberance','posterior');
-place('GV17',v(...head.externalOccipitalProtuberance),v(0,.25,-1).normalize(),['head'],'posterior median line · superior border of external occipital protuberance','head');
+place('GV17',v(...head.externalOccipitalProtuberance).add(v(0,-0.006,0)),v(0,.25,-1).normalize(),['head'],'posterior median line · depression at the external occipital protuberance · inferior correction','head');
 for(const code of ['GV18','GV19','GV20','GV21','GV22','GV23','GV24']){
  const cun={GV18:'posterior hairline +4 B-cun',GV19:'posterior hairline +5.5 B-cun',GV20:'anterior hairline +5 B-cun',GV21:'anterior hairline +3.5 B-cun',GV22:'anterior hairline +2 B-cun',GV23:'anterior hairline +1 B-cun',GV24:'anterior hairline +0.5 B-cun'}[code];
- const p=v(...head.gvMidline[code]),out=p.clone().sub(v(0,1.59,0)).normalize();place(code,p,out,['head'],`median scalp geodesic · ${cun}`,'head');
+ const posteriorCorrection={GV18:-.014,GV19:-.012,GV20:-.003}[code]??0;
+ const p=v(...head.gvMidline[code]).add(v(0,0,posteriorCorrection)),out=p.clone().sub(v(0,1.59,0)).normalize();place(code,p,out,['head'],`median scalp geodesic · ${cun}${posteriorCorrection?' · posterior manual correction':''}`,'head');
 }
 place('GV25',v(0,1.572,.108),ANTERIOR,['face'],'apex of nose','anterior');
 place('GV26',v(0,1.552,.094),ANTERIOR,['face'],'midline of philtrum · midpoint (WHO alternative: upper one-third / lower two-thirds junction)','anterior');

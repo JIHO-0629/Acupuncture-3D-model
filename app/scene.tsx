@@ -10,8 +10,15 @@ import { SYSTEMS, type Atlas, type NeedleHit, type NeedleReport, type SceneState
 import { type ProjectionMode } from "./gb-points";
 import {atlasPoints,meridianOf,needleProfile,type AcupointCode} from "./acupoints";
 import {createExternalEarPresentation, NATIVE_EAR_PART_ID} from "./ear-anatomy";
-import { buildNailPresentation, type NailBuild } from "./nail-presentation";
 import type { AnnotationFrame } from "./annotation-overlay";
+
+// These ulnar hand points otherwise send the camera medially through the torso.
+// A posterior-oblique approach keeps the selected surface between camera and anatomy.
+const ACUPOINT_CAMERA_DIRECTIONS: Partial<Record<AcupointCode, T.Vector3Tuple>> = {
+  SI1: [0.08, -0.12, -1],
+  SI5: [0.16, 0.05, -1],
+  SI6: [0.2, 0.08, -1],
+};
 interface Props {
   atlas: Atlas;
   state: SceneState;
@@ -321,7 +328,20 @@ export default function AnatomyScene({
         );
         shader.fragmentShader = shader.fragmentShader.replace(
           "#include <color_fragment>",
-          "#include <color_fragment>\ndiffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.42, 0.85, 0.78), partSelected * 0.75);",
+          `#include <color_fragment>
+diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.42, 0.85, 0.78), partSelected * 0.75);
+${isSurface ? `
+// Restrained flexion creases: local colour variation only, with no change to lighting.
+float armX = abs(atlasPosition.x);
+float wristCurve = 0.885 + 0.12*(armX-0.254);
+float wristBand = (1.0-smoothstep(0.0007,0.0027,abs(atlasPosition.y-wristCurve)))
+  * smoothstep(0.205,0.226,armX) * (1.0-smoothstep(0.29,0.31,armX))
+  * smoothstep(0.008,0.03,atlasPosition.z);
+float elbowCurve = 1.156 + 0.12*(armX-0.198);
+float elbowBand = (1.0-smoothstep(0.0009,0.0032,abs(atlasPosition.y-elbowCurve)))
+  * smoothstep(0.158,0.177,armX) * (1.0-smoothstep(0.245,0.265,armX))
+  * smoothstep(-0.052,-0.006,atlasPosition.z);
+diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         );
       };
       materials.push(m);
@@ -386,7 +406,6 @@ export default function AnatomyScene({
     scene.add(earPresentation.root);
     geometries.push(...earPresentation.geometries);
     materials.push(...earPresentation.materials);
-    let nailPresentation: NailBuild | null = null;
     (async () => {
       try {
         let cursor = 0;
@@ -400,10 +419,6 @@ export default function AnatomyScene({
         );
         if (!disposed) {
           buildToePresentation();
-          nailPresentation = buildNailPresentation(atlas, pickers);
-          scene.add(nailPresentation.root);
-          geometries.push(...nailPresentation.geometries);
-          materials.push(...nailPresentation.materials);
           ready = true;
           lastNeedle = "";
           lastAcupuncture = "";
@@ -1372,8 +1387,15 @@ export default function AnatomyScene({
                 0.05,
                 (radius / (2 * Math.tan(T.MathUtils.degToRad(camera.fov / 2)))) * 1.35,
               ) * (footView ? 1.12 : 1),
+            pointCode = s.acupuncture?.selectedCode as AcupointCode | undefined,
             direction = (
-              footView ? new T.Vector3(0.18, 0.92, 0.34) : new T.Vector3().fromArray(acupoints.find(point=>point.code===s.acupuncture?.selectedCode)?.outward??[-1,0.08,0.32])
+              footView
+                ? new T.Vector3(0.18, 0.92, 0.34)
+                : new T.Vector3().fromArray(
+                    (pointCode && ACUPOINT_CAMERA_DIRECTIONS[pointCode]) ??
+                      acupoints.find((point) => point.code === pointCode)?.outward ??
+                      [-1, 0.08, 0.32],
+                  )
             ).normalize();
           moveCamera(center, center.clone().addScaledVector(direction, distance));
         }
@@ -1396,10 +1418,6 @@ export default function AnatomyScene({
         amount < 0.05 &&
         s.visible.includes("integumentary") &&
         !s.selected.includes(NATIVE_EAR_PART_ID);
-      // Nails are skin: they show only with the integumentary layer, never over bone or muscle.
-      if (nailPresentation)
-        nailPresentation.root.visible =
-          !s.isolate && amount < 0.05 && s.visible.includes("integumentary");
       markers.visible = amount > 0.75;
       controls.autoRotate = s.rotate && !s.isolate && amount < 0.4;
       controls.autoRotateSpeed = 0.65;

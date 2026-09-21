@@ -54,7 +54,7 @@ const foot = ['foot-R'];
     'dorsum of the foot · between the 1st and 2nd toes · proximal to the web margin at the red-white flesh border');
 
   const mt1 = mesh(atlas, 'Right first metatarsal bone'), mt2 = mesh(atlas, 'Right second metatarsal bone');
-  const z3 = Math.max(mt1.box.min.z, mt2.box.min.z) + 0.016;
+  const z3 = Math.max(mt1.box.min.z, mt2.box.min.z) + 0.024;
   const edge1 = most(pts(mt1, (p) => Math.abs(p.z - z3) < 0.003), LATERAL), edge2 = most(pts(mt2, (p) => Math.abs(p.z - z3) < 0.003), MEDIAL);
   const lr3 = v((edge1.x + edge2.x) / 2, Math.max(edge1.y, edge2.y), z3);
   W.put('LR3', lr3, v(0, 1, 0.1).normalize(), foot,
@@ -95,7 +95,7 @@ for (const [code, cun] of [['LR5', 5], ['LR6', 7]]) {
 }
 {
   const sp9Out = v(...sp9Row.outward);
-  const deep = sp9.clone().addScaledVector(sp9Out, -0.012).add(v(0, 0, -LEG_CUN));
+  const deep = sp9.clone().addScaledVector(sp9Out, -0.012).add(v(0, 0, -0.25*LEG_CUN));
   W.put('LR7', deep, v(0.8, 0, -0.6).normalize(), ['leg-R', 'knee-R'], 'inferior to the medial condyle of the tibia · 1 B-cun posterior to SP9');
 }
 
@@ -103,9 +103,9 @@ for (const [code, cun] of [['LR5', 5], ['LR6', 7]]) {
 {
   const crease = landmark('popliteal_crease');
   const st = atHeight(mesh(atlas, 'Right semitendinosus'), crease.y), sm = atHeight(mesh(atlas, 'Right semimembranosus'), crease.y);
-  const medialEdge = most([...st, ...sm], v(1, 0, 0.3).normalize());
-  W.put('LR8', medialEdge.clone().add(v(0.004, 0, 0.003)), v(1, 0, -0.25).normalize(), ['knee-R', 'thigh-R', 'leg-R'],
-    'medial end of the popliteal crease · depression medial to the semitendinosus and semimembranosus tendons (KCMRIC)');
+  const semitendinosusMedial = most(st, MEDIAL);
+  W.put('LR8', semitendinosusMedial.clone().add(v(0.003, 0, 0.002)), v(1, 0, -0.2).normalize(), ['knee-R', 'thigh-R', 'leg-R'],
+    'medial end of the popliteal crease · immediately medial to the semitendinosus tendon');
 }
 const pubis = landmark('pubic_symphysis_superior', null), patellaBase = landmark('patella_base');
 const thighCun = (pubis.y - patellaBase.y) / 18;
