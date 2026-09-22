@@ -75,7 +75,8 @@ export default function AnatomyScene({
       amount = 0;
     let lastState: SceneState | null = null,
       lastNeedle = "",
-      lastAcupuncture = "";
+      lastAcupuncture = "",
+      lastLocator = "";
     const abort = new AbortController();
     let renderer: T.WebGLRenderer;
     try {
@@ -403,6 +404,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         scene.add(mesh);
       });
       lastState = null;
+      lastLocator = "";
       loaded++;
       onProgress(Math.round((loaded / atlas.chunks.length) * 100));
       dirty = true;
@@ -567,7 +569,12 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         });
         acupointGroup.add(marker, core, made.label);
       }
-    scene.add(lineGroup, acupointGroup);
+    const locatorGroup = new T.Group();
+    locatorGroup.name = "Surface landmark locator";
+    locatorGroup.visible = false;
+    const locatorCanvas=document.createElement('canvas'),locatorBoneMask=document.createElement('canvas'),locatorSoftMask=document.createElement('canvas'),locatorOutline=document.createElement('canvas');locatorCanvas.className='locator-silhouette-canvas';el.appendChild(locatorCanvas);
+    const locatorSilhouettes:{source:T.BufferGeometry;position:T.Vector3;color:string}[]=[];
+    scene.add(lineGroup, acupointGroup, locatorGroup);
     const needleGeometry = new T.CylinderGeometry(0.00065, 0.00065, 1, 10),
       needleMaterial = new T.MeshStandardMaterial({
         color: 0xdbe5e8,
@@ -870,6 +877,56 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
     }
     toePresentation.visible = false;
     scene.add(toePresentation);
+    const updateLocator = () => {
+      while(locatorGroup.children.length){
+        const child=locatorGroup.children.pop()!;
+        if(child instanceof T.Mesh||child instanceof T.Line){child.geometry.dispose();const ms=Array.isArray(child.material)?child.material:[child.material];ms.forEach(material=>material.dispose());}
+      }
+      locatorSilhouettes.length=0;
+      locatorCanvas.getContext('2d')?.clearRect(0,0,locatorCanvas.width,locatorCanvas.height);
+      locatorGroup.userData.anchors=undefined;
+      const code=latest.current.acupuncture?.selectedCode;
+      if(!latest.current.locatorGuide||!code||!/^KI[345]$/.test(code)){locatorGroup.visible=false;return;}
+      const point=pointObjects.find(item=>item.code===code&&item.side==='right');
+      if(!point||!point.surface.lengthSq()){locatorGroup.visible=false;return;}
+      const part=(name:string)=>{const index=atlas.parts.findIndex(item=>item.name===name);return index<0?undefined:{index,mesh:pickers[index]};},
+        positionOf=(entry:ReturnType<typeof part>)=>entry?.mesh?.geometry.getAttribute('position') as T.BufferAttribute|undefined,
+        nearest=(entry:ReturnType<typeof part>,target:T.Vector3,test?:(value:T.Vector3)=>boolean)=>{
+          const positions=positionOf(entry);if(!positions)return undefined;
+          let best=new T.Vector3(),distance=Infinity,candidate=new T.Vector3();
+          for(let i=0;i<positions.count;i++){candidate.fromBufferAttribute(positions,i);if(test&&!test(candidate))continue;const next=candidate.distanceToSquared(target);if(next<distance){distance=next;best=candidate.clone();}}
+          return Number.isFinite(distance)?best:undefined;
+        },
+        tibia=part('Right tibia'),tendon=part('Right calcaneal tendon'),calcaneus=part('Right calcaneus');
+      if(!tibia?.mesh||!tendon?.mesh||!calcaneus?.mesh){locatorGroup.visible=false;return;}
+      const tibiaBounds=atlas.parts[tibia.index].bounds,
+        medialTarget=new T.Vector3(0,tibiaBounds[0][1]+.022,point.surface.z),
+        first=nearest(tibia,medialTarget,value=>value.y<tibiaBounds[0][1]+.055),
+        second=nearest(tendon,point.surface),heel=nearest(calcaneus,point.surface);
+      if(!first||!second||!heel){locatorGroup.visible=false;return;}
+      const silhouette=(entry:NonNullable<ReturnType<typeof part>>,color:string)=>locatorSilhouettes.push({source:entry.mesh!.geometry,position:entry.mesh!.position.clone(),color});
+      silhouette(tibia,'#fff7df');
+      silhouette(calcaneus,'#fff7df');
+      silhouette(tendon,'#78d9c4');
+      locatorGroup.userData.anchors={first:first.clone(),second:second.clone()};
+      locatorGroup.visible=true;
+    };
+    const updateLocatorSilhouettes=()=>{
+      const dpr=Math.min(devicePixelRatio,2),width=Math.max(1,Math.round(el.clientWidth*dpr)),height=Math.max(1,Math.round(el.clientHeight*dpr)),canvases=[locatorCanvas,locatorBoneMask,locatorSoftMask,locatorOutline];
+      for(const canvas of canvases)if(canvas.width!==width||canvas.height!==height){canvas.width=width;canvas.height=height;}
+      const masks=new Map([['#fff7df',locatorBoneMask],['#78d9c4',locatorSoftMask]]);
+      for(const mask of masks.values())mask.getContext('2d')!.clearRect(0,0,width,height);
+      for(const [color,mask] of masks){
+        const context=mask.getContext('2d')!;context.save();context.setTransform(dpr,0,0,dpr,0,0);context.fillStyle='#fff';const path=new Path2D();
+        for(const item of locatorSilhouettes.filter(value=>value.color===color)){
+          const positions=item.source.getAttribute('position') as T.BufferAttribute,index=item.source.getIndex(),projected=Array.from({length:positions.count},(_,i)=>new T.Vector3().fromBufferAttribute(positions,i).add(item.position).project(camera)),triangleCount=(index?index.count:positions.count)/3;
+          for(let face=0;face<triangleCount;face++){const ia=index?index.getX(face*3):face*3,ib=index?index.getX(face*3+1):face*3+1,ic=index?index.getX(face*3+2):face*3+2,a=projected[ia],b=projected[ib],c=projected[ic];if((a.z<-1&&b.z<-1&&c.z<-1)||(a.z>1&&b.z>1&&c.z>1))continue;const ax=(a.x+1)*el.clientWidth/2,ay=(1-a.y)*el.clientHeight/2,bx=(b.x+1)*el.clientWidth/2,by=(1-b.y)*el.clientHeight/2,cx=(c.x+1)*el.clientWidth/2,cy=(1-c.y)*el.clientHeight/2,clockwise=(bx-ax)*(cy-ay)-(by-ay)*(cx-ax)>0;path.moveTo(ax,ay);path.lineTo(clockwise?bx:cx,clockwise?by:cy);path.lineTo(clockwise?cx:bx,clockwise?cy:by);path.closePath();}
+        }
+        context.fill(path);context.restore();
+      }
+      const output=locatorCanvas.getContext('2d')!;output.clearRect(0,0,width,height);
+      for(const [color,mask] of masks){const layer=locatorOutline.getContext('2d')!;layer.clearRect(0,0,width,height);const radius=6.5*dpr,samples=48;for(let i=0;i<samples;i++){const angle=i/samples*Math.PI*2;layer.drawImage(mask,Math.cos(angle)*radius,Math.sin(angle)*radius);}layer.globalCompositeOperation='source-in';layer.fillStyle=color;layer.fillRect(0,0,width,height);layer.globalCompositeOperation='destination-out';layer.drawImage(mask,0,0);layer.globalCompositeOperation='source-over';output.drawImage(locatorOutline,0,0);}
+    };
     const updateAcupuncture = () => {
       const config = latest.current.acupuncture;
       lineGroup.traverse((o) => {
@@ -1292,10 +1349,14 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       const acupunctureKey = JSON.stringify(s.acupuncture);
       if (acupunctureKey !== lastAcupuncture) {
         updateAcupuncture();
+        updateLocator();
         lastAcupuncture = acupunctureKey;
+        lastLocator = JSON.stringify([s.locatorGuide,s.acupuncture?.selectedCode]);
         lastNeedle = "";
         dirty = true;
       }
+      const locatorKey=JSON.stringify([s.locatorGuide,s.acupuncture?.selectedCode]);
+      if(locatorKey!==lastLocator){updateLocator();lastLocator=locatorKey;dirty=true;}
       const needleKey = JSON.stringify([s.needle, s.acupuncture?.selectedCode]);
       if (needleKey !== lastNeedle) {
         updateNeedle();
@@ -1477,9 +1538,10 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       // OrbitControls changes the pose; rendering normally refreshes its inverse later.
       // Project against THIS frame's camera, not the previous render's matrix.
       camera.updateMatrixWorld(true);
+      if(locatorGroup.visible&&(dirty||isControlling||cameraTransitioning||controls.autoRotate))updateLocatorSilhouettes();
       const selectedPoint = s.acupuncture?.selectedCode ? pointObjects.find((point) => point.code === s.acupuncture?.selectedCode && point.side === "right") : undefined;
       if (selectedPoint && s.acupuncture?.visible && (dirty || controls.autoRotate)) {
-        const anchor = selectedPoint.marker.getWorldPosition(annotationAnchor), projectedAnchor = annotationProjection.copy(anchor).project(camera), cameraToAnchor = annotationDirection.copy(anchor).sub(camera.position), distanceToAnchor = cameraToAnchor.length(), viewDirection = cameraToAnchor.normalize(), facing = selectedPoint.normal.dot(annotationFacing.copy(camera.position).sub(anchor).normalize()) > .02;
+        const anchor = selectedPoint.marker.getWorldPosition(annotationAnchor), projectedAnchor = annotationProjection.copy(anchor).project(camera), cameraToAnchor = annotationDirection.copy(anchor).sub(camera.position), distanceToAnchor = cameraToAnchor.length(), viewDirection = cameraToAnchor.normalize(), facingAmount = selectedPoint.normal.dot(annotationFacing.copy(camera.position).sub(anchor).normalize()), facing = facingAmount > .02;
         const inViewport = projectedAnchor.z >= -1 && projectedAnchor.z <= 1 && Math.abs(projectedAnchor.x) <= 1 && Math.abs(projectedAnchor.y) <= 1;
         const now = performance.now();
         // Expensive visibility/layout sampling is capped; exact anchor projection is not.
@@ -1507,7 +1569,12 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         annotationObstacles = obstacles;
         annotationCheckedAt = now; annotationCheckedCode = selectedPoint.code; annotationCheckedState = s;
         }
-        annotationFrame.current?.({ id:selectedPoint.code, x:((projectedAnchor.x+1)*el.clientWidth)/2, y:((1-projectedAnchor.y)*el.clientHeight)/2, width:el.clientWidth, height:el.clientHeight, visible:inViewport&&facing&&!annotationRayOccluded, occluded:!facing||annotationRayOccluded, moving:isControlling||cameraTransitioning||controls.autoRotate, obstacles:annotationObstacles });
+        const guideAnchors=locatorGroup.userData.anchors as {first?:T.Vector3;second?:T.Vector3}|undefined,
+          screenPoint=(value:T.Vector3)=>{const p=value.clone().project(camera);return{x:(p.x+1)*el.clientWidth/2,y:(1-p.y)*el.clientHeight/2};},
+          landmarks=guideAnchors?.first&&guideAnchors.second?{first:screenPoint(guideAnchors.first),second:screenPoint(guideAnchors.second)}:undefined;
+        const locatorVisible=!!s.locatorGuide&&inViewport&&facingAmount>-.45;
+        locatorCanvas.style.opacity=locatorVisible?'1':'0';
+        annotationFrame.current?.({ id:selectedPoint.code, x:((projectedAnchor.x+1)*el.clientWidth)/2, y:((1-projectedAnchor.y)*el.clientHeight)/2, width:el.clientWidth, height:el.clientHeight, visible:locatorVisible||(inViewport&&facing&&!annotationRayOccluded), occluded:s.locatorGuide?!locatorVisible:!facing||annotationRayOccluded, moving:isControlling||cameraTransitioning||controls.autoRotate, obstacles:annotationObstacles,landmarks });
       } else if (!selectedPoint || !s.acupuncture?.visible) annotationFrame.current?.(null);
       if (controls.autoRotate) dirty = true;
       if (dirty) {
@@ -1609,6 +1676,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       hover.remove();
       renderer.domElement.removeEventListener("wheel", matchZoomToDevice, { capture: true });
       renderer.dispose();
+      locatorCanvas.remove();
       renderer.domElement.remove();
     };
   }, [atlas]);

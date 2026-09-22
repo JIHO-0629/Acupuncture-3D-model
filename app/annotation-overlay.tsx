@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 export type AnnotationRect = { left: number; top: number; right: number; bottom: number };
-export type AnnotationFrame = { id: string; x: number; y: number; width: number; height: number; visible: boolean; occluded: boolean; moving: boolean; obstacles?: AnnotationRect[] };
+export type AnnotationFrame = { id: string; x: number; y: number; width: number; height: number; visible: boolean; occluded: boolean; moving: boolean; obstacles?: AnnotationRect[]; landmarks?: Record<string,{x:number;y:number}> };
 export type AtlasAnnotation = { id: string; primary: string; secondary?: string };
 
 /** Camera frames bypass React state and leave the inspector/strata untouched. */
@@ -16,7 +16,7 @@ export function createAnnotationChannel() {
     },
   };
 }
-type AnnotationChannel = ReturnType<typeof createAnnotationChannel>;
+export type AnnotationChannel = ReturnType<typeof createAnnotationChannel>;
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
 export function AnnotationOverlay({ annotation, channel }: { annotation: AtlasAnnotation; channel: AnnotationChannel }) {
