@@ -1,0 +1,3402 @@
+{
+  "source": "Google Drive 1SkFk0rVxpHHMo2ID1oTLy1yjKvAgl-YD, 표지점 구조물 A2:J132, 2026-09-21",
+  "entries": [
+    {
+      "key": 2,
+      "en": "abductor pollicis longus tendon",
+      "ko": "장무지외전근건",
+      "codes": [
+        "LU7",
+        "LU9"
+      ],
+      "status": "부분 가능",
+      "kind": "muscle mesh + derived tendon landmark",
+      "refs": [
+        "abductor pollicis longus",
+        "right abductor pollicis longus"
+      ],
+      "ids": [
+        "FMA38515",
+        "FMA38516",
+        "FMA38517"
+      ],
+      "system": "muscular",
+      "note": "힘줄이 독립 mesh로 분할되지 않아 근육 말단 또는 등록 표지점으로 표시"
+    },
+    {
+      "key": 3,
+      "en": "acromion",
+      "ko": "견봉",
+      "codes": [
+        "LI15",
+        "LI16",
+        "TE11",
+        "TE12",
+        "TE13",
+        "TE14",
+        "GB21"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "견봉 외측단",
+        "견봉각",
+        "scapula",
+        "right scapula"
+      ],
+      "ids": [
+        "acromion_lateral",
+        "acromial_angle",
+        "FMA13394",
+        "FMA13395",
+        "FMA13396"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 4,
+      "en": "adductor longus",
+      "ko": "장내전근",
+      "codes": [
+        "SP11"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "adductor longus",
+        "right adductor longus"
+      ],
+      "ids": [
+        "FMA22441",
+        "FMA22456",
+        "FMA22457"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 5,
+      "en": "ala of nose",
+      "ko": "비익",
+      "codes": [
+        "LI20",
+        "ST3"
+      ],
+      "status": "부분 가능",
+      "kind": "derived overlay",
+      "refs": [
+        "Lateral nasal cartilage + skin"
+      ],
+      "ids": [
+        "guide:ala_of_nose"
+      ],
+      "system": "skeletal; integumentary",
+      "note": "비익 연조직은 독립 mesh가 아님"
+    },
+    {
+      "key": 6,
+      "en": "anatomical snuffbox",
+      "ko": "해부학적 비갑",
+      "codes": [
+        "LI5"
+      ],
+      "status": "부분 가능",
+      "kind": "derived overlay",
+      "refs": [
+        "APL/EPB/EPL muscle endpoints + radial styloid"
+      ],
+      "ids": [
+        "guide:anatomical_snuffbox"
+      ],
+      "system": "muscular; skeletal",
+      "note": "힘줄이 독립 분할되지 않아 근육 말단과 요골 경상돌기로 근사"
+    },
+    {
+      "key": 7,
+      "en": "angle of mandible",
+      "ko": "하악각",
+      "codes": [
+        "SI17",
+        "TE16",
+        "ST5",
+        "ST6"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "하악각",
+        "mandible"
+      ],
+      "ids": [
+        "mandibular_angle",
+        "FMA52748"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 8,
+      "en": "angle of mouth",
+      "ko": "구각",
+      "codes": [
+        "ST4"
+      ],
+      "status": "부분 가능",
+      "kind": "derived overlay",
+      "refs": [
+        "Orbicularis oris + skin"
+      ],
+      "ids": [
+        "guide:angle_of_mouth"
+      ],
+      "system": "muscular; integumentary",
+      "note": "구각은 독립 mesh가 아님"
+    },
+    {
+      "key": 9,
+      "en": "anterior axillary fold",
+      "ko": "전액와주름",
+      "codes": [
+        "LU3",
+        "LU4",
+        "PC2"
+      ],
+      "status": "부분 가능",
+      "kind": "derived overlay",
+      "refs": [
+        "Skin + pectoralis major border"
+      ],
+      "ids": [
+        "guide:anterior_axillary_fold"
+      ],
+      "system": "integumentary; muscular",
+      "note": "주름 자체는 독립 mesh가 아님"
+    },
+    {
+      "key": 10,
+      "en": "anterior median line",
+      "ko": "전정중선",
+      "codes": [
+        "LU1",
+        "LU2",
+        "PC1",
+        "ST8",
+        "ST12",
+        "ST13",
+        "ST14",
+        "ST16",
+        "ST18",
+        "ST19",
+        "ST20",
+        "ST21",
+        "ST22",
+        "ST23",
+        "ST24",
+        "ST26",
+        "ST27",
+        "ST28",
+        "ST29",
+        "ST30",
+        "SP13",
+        "ST15",
+        "SP14",
+        "SP15",
+        "SP16",
+        "SP17",
+        "SP18",
+        "SP19",
+        "SP20",
+        "GV20",
+        "GV21",
+        "GV22",
+        "GV23",
+        "GV24",
+        "CV2",
+        "CV9",
+        "CV10",
+        "CV11",
+        "CV12",
+        "CV13",
+        "CV14",
+        "CV15",
+        "CV16",
+        "CV17",
+        "CV18",
+        "CV19",
+        "CV20",
+        "CV21",
+        "CV22",
+        "CV23",
+        "BL4",
+        "BL7",
+        "KI11",
+        "KI12",
+        "KI13",
+        "KI14",
+        "KI15",
+        "KI17",
+        "KI18",
+        "KI19",
+        "KI20",
+        "KI21",
+        "KI22",
+        "KI23",
+        "KI24",
+        "KI26",
+        "KI27",
+        "GB13",
+        "GB24",
+        "LR12",
+        "LR14",
+        "KI25",
+        "EX-CA1"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "전정중선"
+      ],
+      "ids": [
+        "anterior_median_plane"
+      ],
+      "system": "derived",
+      "note": ""
+    },
+    {
+      "key": 11,
+      "en": "anterior superior iliac spine",
+      "ko": "전상장골극",
+      "codes": [
+        "ST32",
+        "SP14",
+        "GB27",
+        "GB28",
+        "GB29"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "전상장골극",
+        "hip bone",
+        "right hip bone"
+      ],
+      "ids": [
+        "asis",
+        "FMA16585",
+        "FMA16586",
+        "FMA16587"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 12,
+      "en": "apex of nose",
+      "ko": "비첨",
+      "codes": [
+        "GV25"
+      ],
+      "status": "부분 가능",
+      "kind": "derived overlay",
+      "refs": [
+        "Nasal cartilage + skin"
+      ],
+      "ids": [
+        "guide:apex_of_nose"
+      ],
+      "system": "skeletal; integumentary",
+      "note": "비첨 연조직은 독립 mesh가 아님"
+    },
+    {
+      "key": 13,
+      "en": "auricular apex",
+      "ko": "이개첨",
+      "codes": [
+        "TE20",
+        "GB7",
+        "GB8",
+        "EX-HN6"
+      ],
+      "status": "가능",
+      "kind": "custom presentation",
+      "refs": [
+        "Auricle presentation: helixApex"
+      ],
+      "ids": [
+        "ear:helixApex"
+      ],
+      "system": "integumentary",
+      "note": ""
+    },
+    {
+      "key": 14,
+      "en": "base of patella",
+      "ko": "슬개골저",
+      "codes": [
+        "ST32",
+        "ST33",
+        "ST34",
+        "SP10",
+        "SP11",
+        "EX-LE2",
+        "EX-LE3"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "슬개골저",
+        "patella",
+        "right patella"
+      ],
+      "ids": [
+        "patella_base",
+        "FMA24485",
+        "FMA24486",
+        "FMA24487"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 15,
+      "en": "biceps brachii",
+      "ko": "상완이두근",
+      "codes": [
+        "LU3",
+        "LU4",
+        "HT2",
+        "PC2"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "short head of biceps brachii",
+        "short head of right biceps brachii",
+        "long head of biceps brachii",
+        "long head of right biceps brachii"
+      ],
+      "ids": [
+        "FMA37682",
+        "FMA37684",
+        "FMA37685",
+        "FMA37683",
+        "FMA37686",
+        "FMA37687"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 16,
+      "en": "biceps brachii tendon",
+      "ko": "상완이두근건",
+      "codes": [
+        "LU5",
+        "PC3"
+      ],
+      "status": "부분 가능",
+      "kind": "muscle mesh + derived tendon landmark",
+      "refs": [
+        "short head of biceps brachii",
+        "short head of right biceps brachii",
+        "long head of biceps brachii",
+        "long head of right biceps brachii"
+      ],
+      "ids": [
+        "FMA37682",
+        "FMA37684",
+        "FMA37685",
+        "FMA37683",
+        "FMA37686",
+        "FMA37687"
+      ],
+      "system": "muscular",
+      "note": "힘줄이 독립 mesh로 분할되지 않아 근육 말단 또는 등록 표지점으로 표시"
+    },
+    {
+      "key": 17,
+      "en": "biceps femoris",
+      "ko": "대퇴이두근",
+      "codes": [
+        "BL37"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "long head of biceps femoris",
+        "long head of right biceps femoris",
+        "short head of biceps femoris",
+        "short head of right biceps femoris"
+      ],
+      "ids": [
+        "FMA45887",
+        "FMA45888",
+        "FMA45889",
+        "FMA45890",
+        "FMA45891",
+        "FMA45892"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 18,
+      "en": "biceps femoris tendon",
+      "ko": "대퇴이두근건",
+      "codes": [
+        "BL38",
+        "BL39",
+        "GB33"
+      ],
+      "status": "부분 가능",
+      "kind": "muscle mesh + derived tendon landmark",
+      "refs": [
+        "long head of biceps femoris",
+        "long head of right biceps femoris",
+        "대퇴이두근건 원위단"
+      ],
+      "ids": [
+        "FMA45887",
+        "FMA45888",
+        "FMA45889",
+        "biceps_femoris_tendon_distal"
+      ],
+      "system": "muscular",
+      "note": "힘줄이 독립 mesh로 분할되지 않아 근육 말단 또는 등록 표지점으로 표시"
+    },
+    {
+      "key": 19,
+      "en": "calcaneal tendon",
+      "ko": "아킬레스건",
+      "codes": [
+        "BL57",
+        "BL58",
+        "BL59",
+        "BL60",
+        "KI3",
+        "KI4",
+        "KI7",
+        "KI9"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "calcaneal tendon",
+        "right calcaneal tendon"
+      ],
+      "ids": [
+        "FMA51061",
+        "FMA258847",
+        "FMA264844"
+      ],
+      "system": "connective",
+      "note": ""
+    },
+    {
+      "key": 20,
+      "en": "calcaneus",
+      "ko": "종골",
+      "codes": [
+        "BL61",
+        "BL62",
+        "KI4",
+        "KI5"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "calcaneus",
+        "right calcaneus"
+      ],
+      "ids": [
+        "FMA24496",
+        "FMA24497",
+        "FMA24498"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 21,
+      "en": "canthus",
+      "ko": "안각",
+      "codes": [
+        "SI18",
+        "BL1",
+        "GB1"
+      ],
+      "status": "부분 가능",
+      "kind": "registered landmark",
+      "refs": [
+        "Lateral canthus only"
+      ],
+      "ids": [
+        "landmark:lateral_canthus"
+      ],
+      "system": "sensory",
+      "note": "현재 등록값은 외안각뿐이며 BL1의 내안각은 별도 등록 필요"
+    },
+    {
+      "key": 22,
+      "en": "center of axilla",
+      "ko": "액와 중심",
+      "codes": [
+        "HT1"
+      ],
+      "status": "부분 가능",
+      "kind": "derived overlay",
+      "refs": [
+        "Skin axillary hollow"
+      ],
+      "ids": [
+        "guide:center_of_axilla"
+      ],
+      "system": "integumentary",
+      "note": "고정 해부 구조가 아니라 자세 의존 체표 오목"
+    },
+    {
+      "key": 23,
+      "en": "clavicle",
+      "ko": "쇄골",
+      "codes": [
+        "LI16",
+        "ST11",
+        "ST12",
+        "ST13",
+        "KI27"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "clavicle",
+        "right clavicle"
+      ],
+      "ids": [
+        "FMA13321",
+        "FMA13322",
+        "FMA13323"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 24,
+      "en": "coccyx",
+      "ko": "미골",
+      "codes": [
+        "GV1",
+        "BL35"
+      ],
+      "status": "불가",
+      "kind": "unsupported",
+      "refs": [],
+      "ids": [],
+      "system": "",
+      "note": "현재 atlas의 독립 mesh 또는 등록 표지점과 안전하게 대응하지 못함"
+    },
+    {
+      "key": 25,
+      "en": "coracoid process of scapula",
+      "ko": "견갑골 오훼돌기",
+      "codes": [
+        "LU2"
+      ],
+      "status": "부분 가능",
+      "kind": "parent mesh landmark",
+      "refs": [
+        "scapula",
+        "right scapula"
+      ],
+      "ids": [
+        "FMA13394",
+        "FMA13395",
+        "FMA13396"
+      ],
+      "system": "skeletal",
+      "note": "세부 표지점은 독립 mesh가 아니며 부모 구조 표면에서 계산 필요"
+    },
+    {
+      "key": 26,
+      "en": "cricoid cartilage",
+      "ko": "윤상연골",
+      "codes": [
+        "LI17",
+        "ST10"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "cricoid cartilage"
+      ],
+      "ids": [
+        "FMA9615"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 27,
+      "en": "cubital crease",
+      "ko": "주와횡문",
+      "codes": [
+        "LU5",
+        "LI8",
+        "LI9",
+        "LI10",
+        "LI13",
+        "HT2",
+        "HT3",
+        "PC3"
+      ],
+      "status": "가능",
+      "kind": "surface guide",
+      "refs": [
+        "Skin flexion-crease shader"
+      ],
+      "ids": [
+        "guide:cubital_crease"
+      ],
+      "system": "integumentary",
+      "note": ""
+    },
+    {
+      "key": 28,
+      "en": "cuboid",
+      "ko": "입방골",
+      "codes": [
+        "BL63"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "cuboid bone",
+        "right cuboid bone"
+      ],
+      "ids": [
+        "FMA24527",
+        "FMA24528",
+        "FMA24529"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 29,
+      "en": "deltoid",
+      "ko": "삼각근",
+      "codes": [
+        "LI14",
+        "TE13"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "clavicular part of deltoid",
+        "clavicular part of right deltoid",
+        "acromial part of deltoid",
+        "acromial part of right deltoid",
+        "spinal part of deltoid",
+        "spinal part of right deltoid"
+      ],
+      "ids": [
+        "FMA34677",
+        "FMA34680",
+        "FMA34681",
+        "FMA34678",
+        "FMA34682",
+        "FMA34683",
+        "FMA34679",
+        "FMA34684",
+        "FMA34685"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 30,
+      "en": "distal phalanx",
+      "ko": "원위지골",
+      "codes": [
+        "LU11",
+        "LI1",
+        "HT9",
+        "SI1",
+        "TE1",
+        "SP1",
+        "BL67",
+        "GB44",
+        "LR1"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "distal phalanx of thumb",
+        "distal phalanx of right thumb",
+        "distal phalanx of index finger",
+        "distal phalanx of right index finger",
+        "distal phalanx of middle finger",
+        "distal phalanx of right middle finger",
+        "distal phalanx of ring finger",
+        "distal phalanx of right ring finger",
+        "distal phalanx of little finger",
+        "distal phalanx of right little finger",
+        "distal phalanx of big toe",
+        "distal phalanx of right big toe",
+        "distal phalanx of second toe",
+        "distal phalanx of right second toe",
+        "distal phalanx of third toe",
+        "distal phalanx of right third toe",
+        "distal phalanx of fourth toe",
+        "distal phalanx of right fourth toe",
+        "distal phalanx of little toe",
+        "distal phalanx of right little toe"
+      ],
+      "ids": [
+        "FMA23945",
+        "FMA23951",
+        "FMA24459",
+        "FMA23946",
+        "FMA23953",
+        "FMA24460",
+        "FMA23947",
+        "FMA23955",
+        "FMA24461",
+        "FMA23948",
+        "FMA23957",
+        "FMA24462",
+        "FMA23949",
+        "FMA23959",
+        "FMA24463",
+        "FMA32627",
+        "FMA32650",
+        "FMA32651",
+        "FMA32628",
+        "FMA32652",
+        "FMA32653",
+        "FMA32629",
+        "FMA32654",
+        "FMA32655",
+        "FMA32630",
+        "FMA32656",
+        "FMA32657",
+        "FMA32631",
+        "FMA32658",
+        "FMA32659"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 31,
+      "en": "dorsal wrist crease",
+      "ko": "수배측 수근횡문",
+      "codes": [
+        "LI5",
+        "LI6",
+        "LI7",
+        "SI6",
+        "SI7",
+        "TE4",
+        "TE5",
+        "TE6",
+        "TE7",
+        "TE8",
+        "EX-UE3"
+      ],
+      "status": "가능",
+      "kind": "surface guide",
+      "refs": [
+        "Skin flexion-crease shader"
+      ],
+      "ids": [
+        "guide:dorsal_wrist_crease"
+      ],
+      "system": "integumentary",
+      "note": ""
+    },
+    {
+      "key": 32,
+      "en": "dorsum of foot",
+      "ko": "족배",
+      "codes": [
+        "ST42",
+        "GB41",
+        "GB42",
+        "GB43",
+        "LR2",
+        "LR3",
+        "EX-LE10"
+      ],
+      "status": "부분 가능",
+      "kind": "surface region",
+      "refs": [
+        "Foot skin region"
+      ],
+      "ids": [
+        "region:dorsum_of_foot"
+      ],
+      "system": "integumentary",
+      "note": "점·경계가 없는 체표 영역"
+    },
+    {
+      "key": 33,
+      "en": "dorsum of hand",
+      "ko": "수배",
+      "codes": [
+        "LI3",
+        "TE2",
+        "TE3",
+        "EX-UE7",
+        "EX-UE8",
+        "EX-UE9"
+      ],
+      "status": "부분 가능",
+      "kind": "surface region",
+      "refs": [
+        "Hand skin region"
+      ],
+      "ids": [
+        "region:dorsum_of_hand"
+      ],
+      "system": "integumentary",
+      "note": "점·경계가 없는 체표 영역"
+    },
+    {
+      "key": 34,
+      "en": "earlobe",
+      "ko": "이수",
+      "codes": [
+        "TE17",
+        "ST6"
+      ],
+      "status": "가능",
+      "kind": "custom presentation",
+      "refs": [
+        "Auricle presentation: lobule/lobuleInferiorTip"
+      ],
+      "ids": [
+        "ear:lobule",
+        "ear:lobuleInferiorTip"
+      ],
+      "system": "integumentary",
+      "note": ""
+    },
+    {
+      "key": 35,
+      "en": "extensor digitorum",
+      "ko": "지신근",
+      "codes": [
+        "TE4"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "extensor digitorum",
+        "right extensor digitorum"
+      ],
+      "ids": [
+        "FMA38500",
+        "FMA38501",
+        "FMA38502"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 36,
+      "en": "extensor digitorum longus",
+      "ko": "장지신근",
+      "codes": [
+        "ST41",
+        "GB40",
+        "GB41"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "extensor digitorum longus",
+        "right extensor digitorum longus"
+      ],
+      "ids": [
+        "FMA22534",
+        "FMA22548",
+        "FMA22549"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 37,
+      "en": "extensor pollicis brevis tendon",
+      "ko": "단무지신근건",
+      "codes": [
+        "LU7"
+      ],
+      "status": "부분 가능",
+      "kind": "muscle mesh + derived tendon landmark",
+      "refs": [
+        "extensor pollicis brevis",
+        "right extensor pollicis brevis"
+      ],
+      "ids": [
+        "FMA38518",
+        "FMA38519",
+        "FMA38520"
+      ],
+      "system": "muscular",
+      "note": "힘줄이 독립 mesh로 분할되지 않아 근육 말단 또는 등록 표지점으로 표시"
+    },
+    {
+      "key": 38,
+      "en": "extensor pollicis longus tendon",
+      "ko": "장무지신근건",
+      "codes": [
+        "ST41"
+      ],
+      "status": "부분 가능",
+      "kind": "muscle mesh + derived tendon landmark",
+      "refs": [
+        "extensor pollicis longus",
+        "right extensor pollicis longus"
+      ],
+      "ids": [
+        "FMA38521",
+        "FMA38522",
+        "FMA38523"
+      ],
+      "system": "muscular",
+      "note": "힘줄이 독립 mesh로 분할되지 않아 근육 말단 또는 등록 표지점으로 표시"
+    },
+    {
+      "key": 39,
+      "en": "external occipital protuberance",
+      "ko": "외후두융기",
+      "codes": [
+        "GV16",
+        "GV17",
+        "BL9",
+        "GB19"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "외후두융기",
+        "occipital bone"
+      ],
+      "ids": [
+        "external_occipital_protuberance",
+        "FMA52735"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 40,
+      "en": "eyebrow",
+      "ko": "미모",
+      "codes": [
+        "TE23",
+        "BL2",
+        "GB14",
+        "EX-HN3",
+        "EX-HN4",
+        "EX-HN5"
+      ],
+      "status": "부분 가능",
+      "kind": "surface guide",
+      "refs": [
+        "Face skin/hair boundary"
+      ],
+      "ids": [
+        "guide:eyebrow"
+      ],
+      "system": "integumentary",
+      "note": "눈썹 털이 독립 mesh로 분리되지 않음"
+    },
+    {
+      "key": 41,
+      "en": "femur",
+      "ko": "대퇴골",
+      "codes": [
+        "GB33",
+        "EX-LE1"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "femur",
+        "right femur"
+      ],
+      "ids": [
+        "FMA9611",
+        "FMA24474",
+        "FMA24475"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 42,
+      "en": "fibula",
+      "ko": "비골",
+      "codes": [
+        "BL59",
+        "GB34",
+        "GB35",
+        "GB36",
+        "GB37",
+        "GB38",
+        "GB39",
+        "EX-LE6"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "fibula",
+        "right fibula"
+      ],
+      "ids": [
+        "FMA24479",
+        "FMA24480",
+        "FMA24481"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 43,
+      "en": "fingernail",
+      "ko": "수지갑",
+      "codes": [
+        "LU11",
+        "LI1",
+        "HT9",
+        "SI1",
+        "TE1",
+        "EX-UE11"
+      ],
+      "status": "불가",
+      "kind": "excluded",
+      "refs": [],
+      "ids": [],
+      "system": "integumentary",
+      "note": "손톱은 사용자 결정으로 구현 대상에서 제외"
+    },
+    {
+      "key": 44,
+      "en": "flexor carpi radialis tendon",
+      "ko": "요측수근굴근건",
+      "codes": [
+        "PC4",
+        "PC5",
+        "PC6",
+        "PC7"
+      ],
+      "status": "부분 가능",
+      "kind": "muscle mesh + derived tendon landmark",
+      "refs": [
+        "flexor carpi radialis",
+        "right flexor carpi radialis"
+      ],
+      "ids": [
+        "FMA38459",
+        "FMA38460",
+        "FMA38461"
+      ],
+      "system": "muscular",
+      "note": "힘줄이 독립 mesh로 분할되지 않아 근육 말단 또는 등록 표지점으로 표시"
+    },
+    {
+      "key": 45,
+      "en": "flexor carpi ulnaris tendon",
+      "ko": "척측수근굴근건",
+      "codes": [
+        "HT4",
+        "HT5",
+        "HT6",
+        "HT7"
+      ],
+      "status": "부분 가능",
+      "kind": "muscle mesh + derived tendon landmark",
+      "refs": [],
+      "ids": [],
+      "system": "muscular",
+      "note": "힘줄이 독립 mesh로 분할되지 않아 근육 말단 또는 등록 표지점으로 표시"
+    },
+    {
+      "key": 46,
+      "en": "gastrocnemius",
+      "ko": "비복근",
+      "codes": [
+        "BL56",
+        "BL57"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "medial head of gastrocnemius",
+        "medial head of right gastrocnemius",
+        "lateral head of gastrocnemius",
+        "lateral head of right gastrocnemius"
+      ],
+      "ids": [
+        "FMA45956",
+        "FMA45957",
+        "FMA45958",
+        "FMA45959",
+        "FMA45960",
+        "FMA45961"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 47,
+      "en": "gracilis",
+      "ko": "박근",
+      "codes": [
+        "LR8",
+        "LR9"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "gracilis",
+        "right gracilis"
+      ],
+      "ids": [
+        "FMA43882",
+        "FMA43883",
+        "FMA43884"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 48,
+      "en": "greater trochanter",
+      "ko": "대전자",
+      "codes": [
+        "GB29",
+        "GB30"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "대전자",
+        "femur",
+        "right femur"
+      ],
+      "ids": [
+        "greater_trochanter",
+        "FMA9611",
+        "FMA24474",
+        "FMA24475"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 49,
+      "en": "greater trochanter of femur",
+      "ko": "대퇴골 대전자",
+      "codes": [
+        "GB31"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "대전자",
+        "femur",
+        "right femur"
+      ],
+      "ids": [
+        "greater_trochanter",
+        "FMA9611",
+        "FMA24474",
+        "FMA24475"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 50,
+      "en": "greater tubercle of humerus",
+      "ko": "상완골 대결절",
+      "codes": [
+        "LI15",
+        "TE14"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "상완골 대결절",
+        "humerus",
+        "right humerus"
+      ],
+      "ids": [
+        "greater_tubercle",
+        "FMA13303",
+        "FMA23130",
+        "FMA23131"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 51,
+      "en": "head of ulna",
+      "ko": "척골두",
+      "codes": [
+        "SI6"
+      ],
+      "status": "부분 가능",
+      "kind": "parent mesh landmark",
+      "refs": [
+        "ulna",
+        "right ulna"
+      ],
+      "ids": [
+        "FMA23466",
+        "FMA23467",
+        "FMA23468"
+      ],
+      "system": "skeletal",
+      "note": "세부 표지점은 독립 mesh가 아니며 부모 구조 표면에서 계산 필요"
+    },
+    {
+      "key": 52,
+      "en": "humerus",
+      "ko": "상완골",
+      "codes": [
+        "HT3"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "humerus",
+        "right humerus"
+      ],
+      "ids": [
+        "FMA13303",
+        "FMA23130",
+        "FMA23131"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 53,
+      "en": "hyoid bone",
+      "ko": "설골",
+      "codes": [
+        "CV23"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "hyoid bone"
+      ],
+      "ids": [
+        "FMA52749"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 54,
+      "en": "iliotibial tract",
+      "ko": "장경인대",
+      "codes": [
+        "GB32",
+        "GB33"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "iliotibial tract",
+        "right iliotibial tract"
+      ],
+      "ids": [
+        "FMA51048",
+        "FMA58776",
+        "FMA58777"
+      ],
+      "system": "connective",
+      "note": ""
+    },
+    {
+      "key": 55,
+      "en": "infraclavicular fossa",
+      "ko": "쇄골하와",
+      "codes": [
+        "LU1",
+        "LU2"
+      ],
+      "status": "부분 가능",
+      "kind": "derived overlay",
+      "refs": [
+        "Clavicle + pectoral skin"
+      ],
+      "ids": [
+        "guide:infraclavicular_fossa"
+      ],
+      "system": "skeletal; integumentary",
+      "note": "오목 자체는 독립 mesh가 아님"
+    },
+    {
+      "key": 56,
+      "en": "infraorbital foramen",
+      "ko": "안와하공",
+      "codes": [
+        "ST2"
+      ],
+      "status": "부분 가능",
+      "kind": "parent mesh landmark",
+      "refs": [
+        "maxilla",
+        "right maxilla"
+      ],
+      "ids": [
+        "FMA9711",
+        "FMA53649",
+        "FMA53650"
+      ],
+      "system": "skeletal",
+      "note": "세부 표지점은 독립 mesh가 아니며 부모 구조 표면에서 계산 필요"
+    },
+    {
+      "key": 57,
+      "en": "infraorbital margin",
+      "ko": "안와하연",
+      "codes": [
+        "ST1",
+        "EX-HN7"
+      ],
+      "status": "부분 가능",
+      "kind": "parent mesh landmark",
+      "refs": [
+        "maxilla",
+        "right maxilla",
+        "zygomatic bone",
+        "right zygomatic bone"
+      ],
+      "ids": [
+        "FMA9711",
+        "FMA53649",
+        "FMA53650",
+        "FMA52747",
+        "FMA52892",
+        "FMA52893"
+      ],
+      "system": "skeletal",
+      "note": "세부 표지점은 독립 mesh가 아니며 부모 구조 표면에서 계산 필요"
+    },
+    {
+      "key": 58,
+      "en": "inguinal crease",
+      "ko": "서혜부주름",
+      "codes": [
+        "SP12"
+      ],
+      "status": "부분 가능",
+      "kind": "derived overlay",
+      "refs": [
+        "Inguinal ligament + skin"
+      ],
+      "ids": [
+        "guide:inguinal_crease"
+      ],
+      "system": "connective; integumentary",
+      "note": "서혜인대는 mesh가 있으나 샅고랑은 체표선"
+    },
+    {
+      "key": 59,
+      "en": "intercostal space",
+      "ko": "늑간",
+      "codes": [
+        "LU1",
+        "LU2",
+        "PC1",
+        "ST14",
+        "ST16",
+        "ST17",
+        "ST18",
+        "ST15",
+        "SP17",
+        "SP18",
+        "SP19",
+        "SP20",
+        "SP21",
+        "CV17",
+        "CV18",
+        "CV19",
+        "CV20",
+        "KI22",
+        "KI23",
+        "KI24",
+        "KI26",
+        "GB22",
+        "GB23",
+        "GB24",
+        "LR14",
+        "KI25"
+      ],
+      "status": "가능",
+      "kind": "derived overlay",
+      "refs": [
+        "Adjacent rib meshes"
+      ],
+      "ids": [
+        "guide:intercostal_space"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 60,
+      "en": "interdigital web margin",
+      "ko": "수지간 물갈퀴연",
+      "codes": [
+        "TE2"
+      ],
+      "status": "부분 가능",
+      "kind": "derived overlay",
+      "refs": [
+        "Adjacent digit skin/phalanges"
+      ],
+      "ids": [
+        "guide:interdigital_web_margin"
+      ],
+      "system": "integumentary; skeletal",
+      "note": "손·발가락 물갈퀴연은 독립 mesh가 아님"
+    },
+    {
+      "key": 61,
+      "en": "interdigital web margin",
+      "ko": "족지간 물갈퀴연",
+      "codes": [
+        "ST44",
+        "KI1",
+        "GB43",
+        "LR2"
+      ],
+      "status": "부분 가능",
+      "kind": "derived overlay",
+      "refs": [
+        "Adjacent digit skin/phalanges"
+      ],
+      "ids": [
+        "guide:interdigital_web_margin"
+      ],
+      "system": "integumentary; skeletal",
+      "note": "손·발가락 물갈퀴연은 독립 mesh가 아님"
+    },
+    {
+      "key": 62,
+      "en": "interphalangeal joint",
+      "ko": "지간관절",
+      "codes": [
+        "EX-UE4",
+        "EX-UE5",
+        "EX-UE6"
+      ],
+      "status": "부분 가능",
+      "kind": "derived overlay",
+      "refs": [
+        "Adjacent phalanx meshes"
+      ],
+      "ids": [
+        "guide:interphalangeal_joint"
+      ],
+      "system": "skeletal",
+      "note": "관절선은 독립 mesh가 아니므로 인접 지골에서 계산"
+    },
+    {
+      "key": 63,
+      "en": "lateral epicondyle of humerus",
+      "ko": "상완골 외측상과",
+      "codes": [
+        "LI11",
+        "LI12"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "상완골 외측상과",
+        "humerus",
+        "right humerus"
+      ],
+      "ids": [
+        "lateral_humeral_epicondyle",
+        "FMA13303",
+        "FMA23130",
+        "FMA23131"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 64,
+      "en": "lateral head of gastrocnemius",
+      "ko": "비복근 외측두",
+      "codes": [
+        "BL55",
+        "BL58"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "lateral head of gastrocnemius",
+        "lateral head of right gastrocnemius"
+      ],
+      "ids": [
+        "FMA45959",
+        "FMA45960",
+        "FMA45961"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 65,
+      "en": "lateral malleolus",
+      "ko": "외과",
+      "codes": [
+        "BL60",
+        "BL62",
+        "BL63",
+        "GB35",
+        "GB36",
+        "GB37",
+        "GB38",
+        "GB39",
+        "GB40"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "외과 융기",
+        "외과 첨",
+        "fibula",
+        "right fibula"
+      ],
+      "ids": [
+        "lateral_malleolus_prominence",
+        "lateral_malleolus_tip",
+        "FMA24479",
+        "FMA24480",
+        "FMA24481"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 66,
+      "en": "lingual frenulum",
+      "ko": "설소대",
+      "codes": [
+        "EX-HN12",
+        "EX-HN13"
+      ],
+      "status": "불가",
+      "kind": "unsupported",
+      "refs": [],
+      "ids": [],
+      "system": "digestive",
+      "note": "혀 mesh는 있으나 설소대가 분리되지 않음"
+    },
+    {
+      "key": 67,
+      "en": "mandible",
+      "ko": "하악골",
+      "codes": [
+        "SI19",
+        "TE21",
+        "GB2"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "하악각"
+      ],
+      "ids": [
+        "mandibular_angle"
+      ],
+      "system": "derived",
+      "note": ""
+    },
+    {
+      "key": 68,
+      "en": "masseter",
+      "ko": "교근",
+      "codes": [
+        "ST5"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "superficial part of right masseter",
+        "deep part of right masseter"
+      ],
+      "ids": [
+        "FMA49001",
+        "FMA49002",
+        "FMA49004",
+        "FMA49005"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 69,
+      "en": "mastoid process",
+      "ko": "유양돌기",
+      "codes": [
+        "TE17",
+        "TE18",
+        "GB10",
+        "GB11",
+        "GB12"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "유양돌기 첨",
+        "temporal bone",
+        "right temporal bone"
+      ],
+      "ids": [
+        "mastoid_process_tip",
+        "FMA52737",
+        "FMA52738",
+        "FMA52739"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 70,
+      "en": "medial border of tibia",
+      "ko": "경골 내측연",
+      "codes": [
+        "SP6",
+        "SP7",
+        "SP8",
+        "SP9",
+        "KI8",
+        "LR5",
+        "LR6"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "경골 내측연",
+        "tibia",
+        "right tibia"
+      ],
+      "ids": [
+        "tibia_medial_border",
+        "FMA24476",
+        "FMA24477",
+        "FMA24478"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 71,
+      "en": "medial epicondyle of humerus",
+      "ko": "상완골 내측상과",
+      "codes": [
+        "HT3",
+        "SI8"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "상완골 내측상과",
+        "humerus",
+        "right humerus"
+      ],
+      "ids": [
+        "medial_humeral_epicondyle",
+        "FMA13303",
+        "FMA23130",
+        "FMA23131"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 72,
+      "en": "medial malleolus",
+      "ko": "내과",
+      "codes": [
+        "SP5",
+        "SP6",
+        "SP7",
+        "KI3",
+        "KI6",
+        "KI7",
+        "KI8",
+        "KI9",
+        "LR4",
+        "LR5",
+        "LR6"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "내과 융기",
+        "tibia",
+        "right tibia"
+      ],
+      "ids": [
+        "medial_malleolus_prominence",
+        "FMA24476",
+        "FMA24477",
+        "FMA24478"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 73,
+      "en": "median sacral crest",
+      "ko": "정중천골능",
+      "codes": [
+        "BL27",
+        "BL28",
+        "BL29",
+        "BL30",
+        "BL53",
+        "BL54"
+      ],
+      "status": "부분 가능",
+      "kind": "parent mesh landmark",
+      "refs": [
+        "sacrum"
+      ],
+      "ids": [
+        "FMA16202"
+      ],
+      "system": "skeletal",
+      "note": "세부 표지점은 독립 mesh가 아니며 부모 구조 표면에서 계산 필요"
+    },
+    {
+      "key": 74,
+      "en": "metacarpal",
+      "ko": "중수골",
+      "codes": [
+        "LU10",
+        "LI4",
+        "HT8",
+        "SI4",
+        "PC8",
+        "TE3",
+        "EX-UE7"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "first metacarpal bone",
+        "right first metacarpal bone",
+        "second metacarpal bone",
+        "right second metacarpal bone",
+        "third metacarpal bone",
+        "right third metacarpal bone",
+        "fourth metacarpal bone",
+        "right fourth metacarpal bone",
+        "fifth metacarpal bone",
+        "right fifth metacarpal bone"
+      ],
+      "ids": [
+        "FMA23899",
+        "FMA24464",
+        "FMA24465",
+        "FMA23900",
+        "FMA24466",
+        "FMA24467",
+        "FMA23901",
+        "FMA24468",
+        "FMA24469",
+        "FMA23902",
+        "FMA24470",
+        "FMA24471",
+        "FMA23903",
+        "FMA24472",
+        "FMA24473"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 75,
+      "en": "metacarpophalangeal joint",
+      "ko": "중수지관절",
+      "codes": [
+        "LI3",
+        "HT8",
+        "SI2",
+        "SI3",
+        "PC8",
+        "TE3",
+        "EX-UE9"
+      ],
+      "status": "부분 가능",
+      "kind": "derived overlay",
+      "refs": [
+        "Metacarpal + proximal phalanx"
+      ],
+      "ids": [
+        "guide:metacarpophalangeal_joint"
+      ],
+      "system": "skeletal",
+      "note": "관절선은 독립 mesh가 아니므로 인접 골에서 계산"
+    },
+    {
+      "key": 76,
+      "en": "metatarsal",
+      "ko": "중족골",
+      "codes": [
+        "ST42",
+        "ST43",
+        "SP4",
+        "BL63",
+        "BL64",
+        "GB41",
+        "GB42",
+        "LR3"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "first metatarsal bone",
+        "right first metatarsal bone",
+        "second metatarsal bone",
+        "right second metatarsal bone",
+        "third metatarsal bone",
+        "right third metatarsal bone",
+        "fourth metatarsal bone",
+        "right fourth metatarsal bone",
+        "fifth metatarsal bone",
+        "right fifth metatarsal bone"
+      ],
+      "ids": [
+        "FMA24502",
+        "FMA24507",
+        "FMA24508",
+        "FMA24503",
+        "FMA24509",
+        "FMA24510",
+        "FMA24504",
+        "FMA24511",
+        "FMA24512",
+        "FMA24505",
+        "FMA24513",
+        "FMA24514",
+        "FMA24506",
+        "FMA24515",
+        "FMA24516"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 77,
+      "en": "metatarsophalangeal joint",
+      "ko": "중족지관절",
+      "codes": [
+        "ST43",
+        "SP2",
+        "SP3",
+        "BL65",
+        "BL66",
+        "GB42",
+        "EX-LE10"
+      ],
+      "status": "부분 가능",
+      "kind": "derived overlay",
+      "refs": [
+        "Metatarsal + proximal phalanx"
+      ],
+      "ids": [
+        "guide:metatarsophalangeal_joint"
+      ],
+      "system": "skeletal",
+      "note": "관절선은 독립 mesh가 아니므로 인접 골에서 계산"
+    },
+    {
+      "key": 78,
+      "en": "nasal cartilage",
+      "ko": "비연골",
+      "codes": [
+        "EX-HN8"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "nasal cartilage"
+      ],
+      "ids": [
+        "FMA59502"
+      ],
+      "system": "respiratory; skeletal",
+      "note": ""
+    },
+    {
+      "key": 79,
+      "en": "nasal conchal crest",
+      "ko": "비갑개능",
+      "codes": [
+        "EX-HN8"
+      ],
+      "status": "불가",
+      "kind": "unsupported",
+      "refs": [],
+      "ids": [],
+      "system": "skeletal",
+      "note": "현재 atlas에서 비갑개능을 독립 구조나 등록 표지점으로 식별할 수 없음"
+    },
+    {
+      "key": 80,
+      "en": "nasolabial sulcus",
+      "ko": "비순구",
+      "codes": [
+        "LI20",
+        "ST4"
+      ],
+      "status": "부분 가능",
+      "kind": "surface guide",
+      "refs": [
+        "Face skin curvature"
+      ],
+      "ids": [
+        "guide:nasolabial_sulcus"
+      ],
+      "system": "integumentary",
+      "note": "비순구가 독립 mesh로 분리되지 않음"
+    },
+    {
+      "key": 81,
+      "en": "navicular",
+      "ko": "주상골",
+      "codes": [
+        "SP5",
+        "KI2"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "주상골 조면"
+      ],
+      "ids": [
+        "navicular_tuberosity"
+      ],
+      "system": "derived",
+      "note": ""
+    },
+    {
+      "key": 82,
+      "en": "nipple",
+      "ko": "유두",
+      "codes": [
+        "ST17"
+      ],
+      "status": "가능",
+      "kind": "custom presentation",
+      "refs": [
+        "Nipple presentation"
+      ],
+      "ids": [
+        "custom:nipple"
+      ],
+      "system": "integumentary",
+      "note": ""
+    },
+    {
+      "key": 83,
+      "en": "olecranon",
+      "ko": "주두",
+      "codes": [
+        "SI8",
+        "TE9",
+        "TE10",
+        "TE11",
+        "TE12",
+        "EX-UE1"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "주두",
+        "ulna",
+        "right ulna"
+      ],
+      "ids": [
+        "olecranon",
+        "FMA23466",
+        "FMA23467",
+        "FMA23468"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 84,
+      "en": "palmar wrist crease",
+      "ko": "수장측 수근횡문",
+      "codes": [
+        "LU6",
+        "LU7",
+        "LU8",
+        "HT4",
+        "HT5",
+        "HT6",
+        "HT7",
+        "PC4",
+        "PC5",
+        "PC6",
+        "PC7",
+        "EX-UE2"
+      ],
+      "status": "가능",
+      "kind": "surface guide",
+      "refs": [
+        "Skin flexion-crease shader"
+      ],
+      "ids": [
+        "guide:palmar_wrist_crease"
+      ],
+      "system": "integumentary",
+      "note": ""
+    },
+    {
+      "key": 85,
+      "en": "palmaris longus tendon",
+      "ko": "장장근건",
+      "codes": [
+        "PC4",
+        "PC5",
+        "PC6",
+        "PC7"
+      ],
+      "status": "부분 가능",
+      "kind": "muscle mesh + derived tendon landmark",
+      "refs": [
+        "palmaris longus",
+        "right palmaris longus"
+      ],
+      "ids": [
+        "FMA38462",
+        "FMA38463",
+        "FMA38464"
+      ],
+      "system": "muscular",
+      "note": "힘줄이 독립 mesh로 분할되지 않아 근육 말단 또는 등록 표지점으로 표시"
+    },
+    {
+      "key": 86,
+      "en": "patella",
+      "ko": "슬개골",
+      "codes": [
+        "ST31",
+        "ST32",
+        "ST35",
+        "LR9",
+        "EX-LE5"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "patella",
+        "right patella"
+      ],
+      "ids": [
+        "FMA24485",
+        "FMA24486",
+        "FMA24487"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 87,
+      "en": "popliteal crease",
+      "ko": "슬와횡문",
+      "codes": [
+        "HT3",
+        "BL38",
+        "BL39",
+        "BL40",
+        "BL55",
+        "BL56",
+        "KI10",
+        "GB31",
+        "GB32",
+        "LR8"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "슬와횡문"
+      ],
+      "ids": [
+        "popliteal_crease"
+      ],
+      "system": "derived",
+      "note": ""
+    },
+    {
+      "key": 88,
+      "en": "posterior median line",
+      "ko": "후정중선",
+      "codes": [
+        "SI14",
+        "SI15",
+        "GV2",
+        "GV3",
+        "GV4",
+        "GV5",
+        "GV6",
+        "GV7",
+        "GV8",
+        "GV9",
+        "GV10",
+        "GV11",
+        "GV12",
+        "GV13",
+        "GV14",
+        "GV15",
+        "GV17",
+        "GV18",
+        "GV19",
+        "BL9",
+        "BL11",
+        "BL12",
+        "BL13",
+        "BL14",
+        "BL15",
+        "BL16",
+        "BL17",
+        "BL18",
+        "BL19",
+        "BL20",
+        "BL21",
+        "BL22",
+        "BL23",
+        "BL24",
+        "BL25",
+        "BL26",
+        "BL41",
+        "BL42",
+        "BL43",
+        "BL44",
+        "BL45",
+        "BL46",
+        "BL47",
+        "BL48",
+        "BL49",
+        "BL50",
+        "BL51",
+        "BL52"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "후정중선"
+      ],
+      "ids": [
+        "posterior_median_plane"
+      ],
+      "system": "derived",
+      "note": ""
+    },
+    {
+      "key": 89,
+      "en": "posterior sacral foramen",
+      "ko": "후천골공",
+      "codes": [
+        "BL27",
+        "BL28",
+        "BL29",
+        "BL30",
+        "BL31",
+        "BL32",
+        "BL33",
+        "BL34",
+        "BL53",
+        "BL54"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "제1뒤엉치뼈구멍",
+        "제2뒤엉치뼈구멍",
+        "제3뒤엉치뼈구멍",
+        "제4뒤엉치뼈구멍",
+        "sacrum"
+      ],
+      "ids": [
+        "posterior_sacral_foramen_S1",
+        "posterior_sacral_foramen_S2",
+        "posterior_sacral_foramen_S3",
+        "posterior_sacral_foramen_S4",
+        "FMA16202"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 90,
+      "en": "pubic symphysis",
+      "ko": "치골결합",
+      "codes": [
+        "ST30",
+        "ST31",
+        "CV2",
+        "LR12"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "치골결합 상연"
+      ],
+      "ids": [
+        "pubic_symphysis_superior"
+      ],
+      "system": "derived",
+      "note": ""
+    },
+    {
+      "key": 91,
+      "en": "pupil",
+      "ko": "동공",
+      "codes": [
+        "ST1",
+        "ST3",
+        "GB14",
+        "GB15",
+        "GB16",
+        "GB17",
+        "GB18",
+        "EX-HN2",
+        "EX-HN4"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "동공 중심"
+      ],
+      "ids": [
+        "pupil_center"
+      ],
+      "system": "derived",
+      "note": ""
+    },
+    {
+      "key": 92,
+      "en": "radial styloid process",
+      "ko": "요골경상돌기",
+      "codes": [
+        "LU8",
+        "LU9",
+        "LI5"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "요골 경상돌기",
+        "radius",
+        "right radius"
+      ],
+      "ids": [
+        "radial_styloid",
+        "FMA23463",
+        "FMA23464",
+        "FMA23465"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 93,
+      "en": "radius",
+      "ko": "요골",
+      "codes": [
+        "TE5",
+        "TE6",
+        "TE8",
+        "TE9"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "radius",
+        "right radius"
+      ],
+      "ids": [
+        "FMA23463",
+        "FMA23464",
+        "FMA23465"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 94,
+      "en": "rectus femoris",
+      "ko": "대퇴직근",
+      "codes": [
+        "ST31",
+        "ST33",
+        "ST34"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "rectus femoris",
+        "right rectus femoris"
+      ],
+      "ids": [
+        "FMA22430",
+        "FMA38928",
+        "FMA38929"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 95,
+      "en": "red-white flesh border",
+      "ko": "적백육제",
+      "codes": [
+        "LU10",
+        "LI2",
+        "SI2",
+        "SI3",
+        "SI4",
+        "ST44",
+        "SP3",
+        "SP4",
+        "BL61",
+        "BL64",
+        "BL65",
+        "BL66",
+        "KI2",
+        "GB43",
+        "LR2"
+      ],
+      "status": "불가",
+      "kind": "unsupported",
+      "refs": [],
+      "ids": [],
+      "system": "integumentary",
+      "note": "현재 단일 피부 재질에는 적백육제 색 경계가 없음"
+    },
+    {
+      "key": 96,
+      "en": "rib",
+      "ko": "늑골",
+      "codes": [
+        "ST19",
+        "GB25",
+        "GB26",
+        "LR13"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "rib"
+      ],
+      "ids": [
+        "FMA7574"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 97,
+      "en": "root of auricle",
+      "ko": "이개근",
+      "codes": [
+        "TE22",
+        "GB9"
+      ],
+      "status": "가능",
+      "kind": "custom presentation",
+      "refs": [
+        "Auricle presentation: crusOfHelixRoot"
+      ],
+      "ids": [
+        "ear:crusOfHelixRoot"
+      ],
+      "system": "integumentary",
+      "note": ""
+    },
+    {
+      "key": 98,
+      "en": "sacral hiatus",
+      "ko": "천골열공",
+      "codes": [
+        "GV2",
+        "GB30"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "천골열공",
+        "sacrum"
+      ],
+      "ids": [
+        "sacral_hiatus",
+        "FMA16202"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 99,
+      "en": "sartorius",
+      "ko": "봉공근",
+      "codes": [
+        "ST31",
+        "SP11",
+        "LR9"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "sartorius",
+        "right sartorius"
+      ],
+      "ids": [
+        "FMA22353",
+        "FMA22354",
+        "FMA22355"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 100,
+      "en": "scaphoid",
+      "ko": "주상골",
+      "codes": [
+        "LU9"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "scaphoid",
+        "right scaphoid"
+      ],
+      "ids": [
+        "FMA23709",
+        "FMA24435",
+        "FMA24436"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 101,
+      "en": "scapula",
+      "ko": "견갑골",
+      "codes": [
+        "LI15",
+        "SI11",
+        "SI12",
+        "SI13",
+        "TE15",
+        "GB21"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "scapula",
+        "right scapula"
+      ],
+      "ids": [
+        "FMA13394",
+        "FMA13395",
+        "FMA13396"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 102,
+      "en": "semimembranosus",
+      "ko": "반막양근",
+      "codes": [
+        "LR8"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "semimembranosus",
+        "right semimembranosus"
+      ],
+      "ids": [
+        "FMA22438",
+        "FMA22448",
+        "FMA22449"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 103,
+      "en": "semitendinosus",
+      "ko": "반건양근",
+      "codes": [
+        "BL37",
+        "LR8"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "semitendinosus",
+        "right semitendinosus"
+      ],
+      "ids": [
+        "FMA22357",
+        "FMA22358",
+        "FMA22359"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 104,
+      "en": "semitendinosus tendon",
+      "ko": "반건양근건",
+      "codes": [
+        "KI10"
+      ],
+      "status": "부분 가능",
+      "kind": "muscle mesh + derived tendon landmark",
+      "refs": [
+        "semitendinosus",
+        "right semitendinosus"
+      ],
+      "ids": [
+        "FMA22357",
+        "FMA22358",
+        "FMA22359"
+      ],
+      "system": "muscular",
+      "note": "힘줄이 독립 mesh로 분할되지 않아 근육 말단 또는 등록 표지점으로 표시"
+    },
+    {
+      "key": 105,
+      "en": "sole",
+      "ko": "족저",
+      "codes": [
+        "KI1",
+        "EX-LE10",
+        "EX-LE11"
+      ],
+      "status": "부분 가능",
+      "kind": "surface region",
+      "refs": [
+        "Plantar skin region"
+      ],
+      "ids": [
+        "region:sole"
+      ],
+      "system": "integumentary",
+      "note": "점·경계가 없는 체표 영역"
+    },
+    {
+      "key": 106,
+      "en": "soleus",
+      "ko": "가자미근",
+      "codes": [
+        "KI9"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "soleus",
+        "right soleus"
+      ],
+      "ids": [
+        "FMA22542",
+        "FMA22558",
+        "FMA22559"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 107,
+      "en": "spine of scapula",
+      "ko": "견갑극",
+      "codes": [
+        "LI16",
+        "SI10",
+        "SI11",
+        "SI12",
+        "SI13"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "견갑극 내측단",
+        "scapula",
+        "right scapula"
+      ],
+      "ids": [
+        "scapular_spine_medial_end",
+        "FMA13394",
+        "FMA13395",
+        "FMA13396"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 108,
+      "en": "spinous process",
+      "ko": "극돌기",
+      "codes": [
+        "SI14",
+        "SI15",
+        "GV3",
+        "GV4",
+        "GV5",
+        "GV6",
+        "GV7",
+        "GV8",
+        "GV9",
+        "GV10",
+        "GV11",
+        "GV12",
+        "GV13",
+        "GV14",
+        "GV15",
+        "GV18",
+        "BL10",
+        "BL11",
+        "BL12",
+        "BL13",
+        "BL14",
+        "BL15",
+        "BL16",
+        "BL17",
+        "BL18",
+        "BL19",
+        "BL20",
+        "BL22",
+        "BL23",
+        "BL24",
+        "BL25",
+        "BL26",
+        "BL41",
+        "BL42",
+        "BL43",
+        "BL44",
+        "BL45",
+        "BL46",
+        "BL47",
+        "BL48",
+        "BL49",
+        "BL50",
+        "BL51",
+        "BL52",
+        "GB21",
+        "EX-B1",
+        "EX-B2",
+        "EX-B3",
+        "EX-B4",
+        "EX-B5",
+        "EX-B6",
+        "EX-B7",
+        "EX-B8"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "C7 극돌기 첨",
+        "C7 극돌기 하연",
+        "C7 극돌기 상연",
+        "T1 극돌기 첨",
+        "T1 극돌기 하연",
+        "T1 극돌기 상연",
+        "T2 극돌기 첨",
+        "T2 극돌기 하연",
+        "T2 극돌기 상연",
+        "T3 극돌기 첨",
+        "T3 극돌기 하연",
+        "T3 극돌기 상연",
+        "T4 극돌기 첨",
+        "T4 극돌기 하연",
+        "T4 극돌기 상연",
+        "T5 극돌기 첨",
+        "T5 극돌기 하연",
+        "T5 극돌기 상연",
+        "T6 극돌기 첨",
+        "T6 극돌기 하연",
+        "T6 극돌기 상연",
+        "T7 극돌기 첨",
+        "T7 극돌기 하연",
+        "T7 극돌기 상연",
+        "T8 극돌기 첨",
+        "T8 극돌기 하연",
+        "T8 극돌기 상연",
+        "T9 극돌기 첨",
+        "T9 극돌기 하연",
+        "T9 극돌기 상연",
+        "T10 극돌기 첨",
+        "T10 극돌기 하연",
+        "T10 극돌기 상연",
+        "T11 극돌기 첨",
+        "T11 극돌기 하연",
+        "T11 극돌기 상연",
+        "T12 극돌기 첨",
+        "T12 극돌기 하연",
+        "T12 극돌기 상연",
+        "L1 극돌기 첨",
+        "L1 극돌기 하연",
+        "L1 극돌기 상연",
+        "L2 극돌기 첨",
+        "L2 극돌기 하연",
+        "L2 극돌기 상연",
+        "L3 극돌기 첨",
+        "L3 극돌기 하연",
+        "L3 극돌기 상연",
+        "L4 극돌기 첨",
+        "L4 극돌기 하연",
+        "L4 극돌기 상연",
+        "L5 극돌기 첨",
+        "L5 극돌기 하연",
+        "L5 극돌기 상연",
+        "seventh cervical vertebra",
+        "first thoracic vertebra",
+        "first lumbar vertebra"
+      ],
+      "ids": [
+        "spinous_process_C7.tip",
+        "spinous_process_C7.inferior_border",
+        "spinous_process_C7.superior_border",
+        "spinous_process_T1.tip",
+        "spinous_process_T1.inferior_border",
+        "spinous_process_T1.superior_border",
+        "spinous_process_T2.tip",
+        "spinous_process_T2.inferior_border",
+        "spinous_process_T2.superior_border",
+        "spinous_process_T3.tip",
+        "spinous_process_T3.inferior_border",
+        "spinous_process_T3.superior_border",
+        "spinous_process_T4.tip",
+        "spinous_process_T4.inferior_border",
+        "spinous_process_T4.superior_border",
+        "spinous_process_T5.tip",
+        "spinous_process_T5.inferior_border",
+        "spinous_process_T5.superior_border",
+        "spinous_process_T6.tip",
+        "spinous_process_T6.inferior_border",
+        "spinous_process_T6.superior_border",
+        "spinous_process_T7.tip",
+        "spinous_process_T7.inferior_border",
+        "spinous_process_T7.superior_border",
+        "spinous_process_T8.tip",
+        "spinous_process_T8.inferior_border",
+        "spinous_process_T8.superior_border",
+        "spinous_process_T9.tip",
+        "spinous_process_T9.inferior_border",
+        "spinous_process_T9.superior_border",
+        "spinous_process_T10.tip",
+        "spinous_process_T10.inferior_border",
+        "spinous_process_T10.superior_border",
+        "spinous_process_T11.tip",
+        "spinous_process_T11.inferior_border",
+        "spinous_process_T11.superior_border",
+        "spinous_process_T12.tip",
+        "spinous_process_T12.inferior_border",
+        "spinous_process_T12.superior_border",
+        "spinous_process_L1.tip",
+        "spinous_process_L1.inferior_border",
+        "spinous_process_L1.superior_border",
+        "spinous_process_L2.tip",
+        "spinous_process_L2.inferior_border",
+        "spinous_process_L2.superior_border",
+        "spinous_process_L3.tip",
+        "spinous_process_L3.inferior_border",
+        "spinous_process_L3.superior_border",
+        "spinous_process_L4.tip",
+        "spinous_process_L4.inferior_border",
+        "spinous_process_L4.superior_border",
+        "spinous_process_L5.tip",
+        "spinous_process_L5.inferior_border",
+        "spinous_process_L5.superior_border",
+        "FMA12525",
+        "FMA9165",
+        "FMA13072"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 109,
+      "en": "sternal angle",
+      "ko": "흉골각",
+      "codes": [
+        "CV19"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "흉골각",
+        "manubrium",
+        "body of sternum"
+      ],
+      "ids": [
+        "sternal_angle",
+        "FMA7486",
+        "FMA7487"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 110,
+      "en": "sternocleidomastoid",
+      "ko": "흉쇄유돌근",
+      "codes": [
+        "LI17",
+        "LI18",
+        "SI16",
+        "SI17",
+        "TE16",
+        "ST10",
+        "ST11",
+        "GB20"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "sternocleidomastoid",
+        "right sternocleidomastoid"
+      ],
+      "ids": [
+        "FMA13407",
+        "FMA13408",
+        "FMA13409"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 111,
+      "en": "sternum",
+      "ko": "흉골",
+      "codes": [
+        "ST11"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "sternum"
+      ],
+      "ids": [
+        "FMA7485"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 112,
+      "en": "superior labial frenulum",
+      "ko": "상순소대",
+      "codes": [
+        "GV28"
+      ],
+      "status": "불가",
+      "kind": "unsupported",
+      "refs": [],
+      "ids": [],
+      "system": "digestive",
+      "note": "상순소대 mesh/등록 표지점이 없음"
+    },
+    {
+      "key": 113,
+      "en": "suprasternal notch",
+      "ko": "흉골상절흔",
+      "codes": [
+        "CV21",
+        "CV22"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "흉골상절흔",
+        "manubrium"
+      ],
+      "ids": [
+        "suprasternal_notch",
+        "FMA7486"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 114,
+      "en": "temporal hairline",
+      "ko": "측두발제",
+      "codes": [
+        "TE22",
+        "GB7",
+        "GB8"
+      ],
+      "status": "가능",
+      "kind": "derived overlay",
+      "refs": [
+        "Hair of head mesh boundary"
+      ],
+      "ids": [
+        "guide:temporal_hairline"
+      ],
+      "system": "integumentary",
+      "note": ""
+    },
+    {
+      "key": 115,
+      "en": "tensor fasciae latae",
+      "ko": "대퇴근막장근",
+      "codes": [
+        "ST31"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "tensor fasciae latae",
+        "right tensor fasciae latae"
+      ],
+      "ids": [
+        "FMA22423",
+        "FMA22425",
+        "FMA22426"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 116,
+      "en": "thyroid cartilage",
+      "ko": "갑상연골",
+      "codes": [
+        "LI18",
+        "SI16",
+        "ST9",
+        "CV23"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "thyroid cartilage"
+      ],
+      "ids": [
+        "FMA55099"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 117,
+      "en": "tibia",
+      "ko": "경골",
+      "codes": [
+        "SP9",
+        "LR7"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "tibia",
+        "right tibia"
+      ],
+      "ids": [
+        "FMA24476",
+        "FMA24477",
+        "FMA24478"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 118,
+      "en": "tibialis anterior",
+      "ko": "전경골근",
+      "codes": [
+        "ST36",
+        "ST37",
+        "ST40",
+        "LR4"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "tibialis anterior",
+        "right tibialis anterior"
+      ],
+      "ids": [
+        "FMA22532",
+        "FMA22544",
+        "FMA22545"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 119,
+      "en": "tip of coccyx",
+      "ko": "미골첨",
+      "codes": [
+        "EX-B9"
+      ],
+      "status": "부분 가능",
+      "kind": "parent mesh landmark",
+      "refs": [],
+      "ids": [],
+      "system": "",
+      "note": "세부 표지점은 독립 mesh가 아니며 부모 구조 표면에서 계산 필요"
+    },
+    {
+      "key": 120,
+      "en": "toenail",
+      "ko": "족지갑",
+      "codes": [
+        "ST45",
+        "SP1",
+        "BL67",
+        "GB44",
+        "LR1",
+        "EX-LE12"
+      ],
+      "status": "불가",
+      "kind": "unsupported",
+      "refs": [],
+      "ids": [],
+      "system": "integumentary",
+      "note": "발톱 mesh/표지점이 현재 모델에 없음"
+    },
+    {
+      "key": 121,
+      "en": "tongue",
+      "ko": "설",
+      "codes": [
+        "EX-HN12",
+        "EX-HN13"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "tongue"
+      ],
+      "ids": [
+        "FMA54640"
+      ],
+      "system": "digestive",
+      "note": ""
+    },
+    {
+      "key": 122,
+      "en": "tragus",
+      "ko": "이주",
+      "codes": [
+        "SI19",
+        "TE21",
+        "GB2"
+      ],
+      "status": "가능",
+      "kind": "custom presentation",
+      "refs": [
+        "Auricle presentation: tragus"
+      ],
+      "ids": [
+        "ear:tragus"
+      ],
+      "system": "integumentary",
+      "note": ""
+    },
+    {
+      "key": 123,
+      "en": "transverse process of cervical vertebra",
+      "ko": "경추 횡돌기",
+      "codes": [
+        "GB12"
+      ],
+      "status": "부분 가능",
+      "kind": "parent mesh landmark",
+      "refs": [
+        "atlas",
+        "seventh cervical vertebra"
+      ],
+      "ids": [
+        "FMA12519",
+        "FMA12525"
+      ],
+      "system": "skeletal",
+      "note": "세부 표지점은 독립 mesh가 아니며 부모 구조 표면에서 계산 필요"
+    },
+    {
+      "key": 124,
+      "en": "trapezius",
+      "ko": "승모근",
+      "codes": [
+        "GV16",
+        "BL10",
+        "GB20"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "ascending part of trapezius",
+        "ascending part of right trapezius",
+        "transverse part of trapezius",
+        "transverse part of right trapezius",
+        "descending part of trapezius",
+        "descending part of right trapezius"
+      ],
+      "ids": [
+        "FMA32555",
+        "FMA33581",
+        "FMA33583",
+        "FMA32556",
+        "FMA33584",
+        "FMA33585",
+        "FMA32557",
+        "FMA33586",
+        "FMA33587"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 125,
+      "en": "triquetrum",
+      "ko": "삼각골",
+      "codes": [
+        "SI4",
+        "SI5"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "triquetral",
+        "right triquetral"
+      ],
+      "ids": [
+        "FMA23715",
+        "FMA24439",
+        "FMA24440"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 126,
+      "en": "ulna",
+      "ko": "척골",
+      "codes": [
+        "SI7",
+        "SI8",
+        "TE5",
+        "TE6",
+        "TE7",
+        "TE8",
+        "TE9",
+        "EX-UE1"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "ulna",
+        "right ulna"
+      ],
+      "ids": [
+        "FMA23466",
+        "FMA23467",
+        "FMA23468"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 127,
+      "en": "ulnar styloid process",
+      "ko": "척골경상돌기",
+      "codes": [
+        "SI5"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "척골 경상돌기",
+        "ulna",
+        "right ulna"
+      ],
+      "ids": [
+        "ulnar_styloid",
+        "FMA23466",
+        "FMA23467",
+        "FMA23468"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 128,
+      "en": "umbilicus",
+      "ko": "제",
+      "codes": [
+        "ST19",
+        "ST20",
+        "ST21",
+        "ST22",
+        "ST23",
+        "ST24",
+        "ST25",
+        "ST26",
+        "ST27",
+        "ST28",
+        "ST29",
+        "ST30",
+        "SP13",
+        "SP14",
+        "SP15",
+        "SP16",
+        "CV3",
+        "CV4",
+        "CV5",
+        "CV6",
+        "CV7",
+        "CV8",
+        "CV9",
+        "CV10",
+        "CV11",
+        "CV12",
+        "CV13",
+        "CV14",
+        "KI11",
+        "KI12",
+        "KI13",
+        "KI14",
+        "KI15",
+        "KI16",
+        "KI17",
+        "KI18",
+        "KI19",
+        "KI20",
+        "KI21",
+        "GB26",
+        "GB27",
+        "EX-CA1"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "배꼽"
+      ],
+      "ids": [
+        "umbilicus"
+      ],
+      "system": "derived",
+      "note": ""
+    },
+    {
+      "key": 129,
+      "en": "upper gingiva",
+      "ko": "상악 치은",
+      "codes": [
+        "GV28"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "gingiva of upper jaw"
+      ],
+      "ids": [
+        "FMA59763"
+      ],
+      "system": "skeletal",
+      "note": ""
+    },
+    {
+      "key": 130,
+      "en": "vastus lateralis",
+      "ko": "외측광근",
+      "codes": [
+        "ST34"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "vastus lateralis",
+        "right vastus lateralis"
+      ],
+      "ids": [
+        "FMA22431",
+        "FMA38930",
+        "FMA38931"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 131,
+      "en": "vastus medialis",
+      "ko": "내측광근",
+      "codes": [
+        "SP10"
+      ],
+      "status": "가능",
+      "kind": "BodyParts3D mesh",
+      "refs": [
+        "vastus medialis",
+        "right vastus medialis"
+      ],
+      "ids": [
+        "FMA22432",
+        "FMA38932",
+        "FMA38933"
+      ],
+      "system": "muscular",
+      "note": ""
+    },
+    {
+      "key": 132,
+      "en": "zygomatic arch",
+      "ko": "관골궁",
+      "codes": [
+        "ST7",
+        "GB3"
+      ],
+      "status": "가능",
+      "kind": "registered landmark",
+      "refs": [
+        "관골궁 중점",
+        "zygomatic bone",
+        "right zygomatic bone",
+        "temporal bone",
+        "right temporal bone"
+      ],
+      "ids": [
+        "zygomatic_arch_midpoint",
+        "FMA52747",
+        "FMA52892",
+        "FMA52893",
+        "FMA52737",
+        "FMA52738",
+        "FMA52739"
+      ],
+      "system": "skeletal",
+      "note": ""
+    }
+  ]
+}

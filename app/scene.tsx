@@ -12,6 +12,8 @@ import {atlasPoints,meridianOf,needleProfile,type AcupointCode} from "./acupoint
 import {createExternalEarPresentation, NATIVE_EAR_PART_ID} from "./ear-anatomy";
 import { createNipplePresentation } from "./nipple-presentation";
 import { createLandmarkDebug, landmarkDebugRequested } from "./landmark-debug";
+import { locatorItems } from "./locator-data";
+import { resolveLocatorTargets } from "./locator-geometry";
 import type { AnnotationFrame } from "./annotation-overlay";
 
 // These ulnar hand points otherwise send the camera medially through the torso.
@@ -572,8 +574,8 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
     const locatorGroup = new T.Group();
     locatorGroup.name = "Surface landmark locator";
     locatorGroup.visible = false;
-    const locatorCanvas=document.createElement('canvas'),locatorBoneMask=document.createElement('canvas'),locatorSoftMask=document.createElement('canvas'),locatorOutline=document.createElement('canvas');locatorCanvas.className='locator-silhouette-canvas';el.appendChild(locatorCanvas);
-    const locatorSilhouettes:{source:T.BufferGeometry;position:T.Vector3;color:string}[]=[];
+    const locatorCanvas=document.createElement('canvas'),locatorHalo=document.createElement('canvas'),locatorOutline=document.createElement('canvas');locatorCanvas.className='locator-silhouette-canvas';el.appendChild(locatorCanvas);
+    const LOCATOR_CROP=.1,locatorSilhouettes:{world:Float32Array;indices:Uint32Array;screen:Float32Array;color:string}[]=[];
     scene.add(lineGroup, acupointGroup, locatorGroup);
     const needleGeometry = new T.CylinderGeometry(0.00065, 0.00065, 1, 10),
       needleMaterial = new T.MeshStandardMaterial({
@@ -886,46 +888,87 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       locatorCanvas.getContext('2d')?.clearRect(0,0,locatorCanvas.width,locatorCanvas.height);
       locatorGroup.userData.anchors=undefined;
       const code=latest.current.acupuncture?.selectedCode;
-      if(!latest.current.locatorGuide||!code||!/^KI[345]$/.test(code)){locatorGroup.visible=false;return;}
+      if(!latest.current.locatorGuide||!code){locatorGroup.visible=false;return;}
       const point=pointObjects.find(item=>item.code===code&&item.side==='right');
       if(!point||!point.surface.lengthSq()){locatorGroup.visible=false;return;}
-      const part=(name:string)=>{const index=atlas.parts.findIndex(item=>item.name===name);return index<0?undefined:{index,mesh:pickers[index]};},
-        positionOf=(entry:ReturnType<typeof part>)=>entry?.mesh?.geometry.getAttribute('position') as T.BufferAttribute|undefined,
-        nearest=(entry:ReturnType<typeof part>,target:T.Vector3,test?:(value:T.Vector3)=>boolean)=>{
-          const positions=positionOf(entry);if(!positions)return undefined;
-          let best=new T.Vector3(),distance=Infinity,candidate=new T.Vector3();
-          for(let i=0;i<positions.count;i++){candidate.fromBufferAttribute(positions,i);if(test&&!test(candidate))continue;const next=candidate.distanceToSquared(target);if(next<distance){distance=next;best=candidate.clone();}}
-          return Number.isFinite(distance)?best:undefined;
-        },
-        tibia=part('Right tibia'),tendon=part('Right calcaneal tendon'),calcaneus=part('Right calcaneus');
-      if(!tibia?.mesh||!tendon?.mesh||!calcaneus?.mesh){locatorGroup.visible=false;return;}
-      const tibiaBounds=atlas.parts[tibia.index].bounds,
-        medialTarget=new T.Vector3(0,tibiaBounds[0][1]+.022,point.surface.z),
-        first=nearest(tibia,medialTarget,value=>value.y<tibiaBounds[0][1]+.055),
-        second=nearest(tendon,point.surface),heel=nearest(calcaneus,point.surface);
-      if(!first||!second||!heel){locatorGroup.visible=false;return;}
-      const silhouette=(entry:NonNullable<ReturnType<typeof part>>,color:string)=>locatorSilhouettes.push({source:entry.mesh!.geometry,position:entry.mesh!.position.clone(),color});
-      silhouette(tibia,'#fff7df');
-      silhouette(calcaneus,'#fff7df');
-      silhouette(tendon,'#78d9c4');
-      locatorGroup.userData.anchors={first:first.clone(),second:second.clone()};
+      const targets=resolveLocatorTargets(code,locatorItems(code),point.surface,atlas,pickers,earPresentation,nipplePresentation);
+      if(!targets.length){locatorGroup.visible=false;return;}
+      // Silhouette proxy built once per activation: keep triangles within LOCATOR_CROP of the point and weld
+      // vertices on a 1.5 mm grid, so the per-frame projection touches a few thousand vertices, not whole bones.
+      const silhouette=(mesh:T.Mesh,target:T.Vector3,color:string)=>{
+        const source=mesh.geometry,positions=source.getAttribute('position') as T.BufferAttribute,index=source.getIndex(),cell=.0015,crop2=LOCATOR_CROP*LOCATOR_CROP,
+          clusters=new Map<string,number>(),sums:number[]=[],counts:number[]=[],faces:number[]=[],seen=new Set<string>(),v=new T.Vector3(),ids=[0,0,0],nearVertex=new Uint8Array(positions.count);
+        mesh.updateWorldMatrix(true,false);
+        // Scan each source vertex once. Previously every triangle clustered all
+        // of its vertices, including the overwhelming majority outside the crop.
+        for(let i=0;i<positions.count;i++){
+          v.fromBufferAttribute(positions,i).applyMatrix4(mesh.matrixWorld);
+          if(v.distanceToSquared(target)<crop2)nearVertex[i]=1;
+        }
+        const triangles=(index?index.count:positions.count)/3;
+        for(let face=0;face<triangles;face++){
+          const a=index?index.getX(face*3):face*3,b=index?index.getX(face*3+1):face*3+1,c=index?index.getX(face*3+2):face*3+2;
+          if(!nearVertex[a]&&!nearVertex[b]&&!nearVertex[c])continue;
+          const vertices=[a,b,c];
+          for(let k=0;k<3;k++){v.fromBufferAttribute(positions,vertices[k]).applyMatrix4(mesh.matrixWorld);const key=`${Math.round(v.x/cell)},${Math.round(v.y/cell)},${Math.round(v.z/cell)}`;let id=clusters.get(key);if(id===undefined){id=counts.length;clusters.set(key,id);sums.push(0,0,0);counts.push(0);}sums[id*3]+=v.x;sums[id*3+1]+=v.y;sums[id*3+2]+=v.z;counts[id]++;ids[k]=id;}
+          if(ids[0]===ids[1]||ids[1]===ids[2]||ids[0]===ids[2])continue;
+          const key=[...ids].sort((a,b)=>a-b).join();if(seen.has(key))continue;seen.add(key);faces.push(ids[0],ids[1],ids[2]);
+        }
+        const used=new Map<number,number>(),world:number[]=[],indices=new Uint32Array(faces.length);
+        faces.forEach((id,i)=>{let next=used.get(id);if(next===undefined){next=used.size;used.set(id,next);world.push(sums[id*3]/counts[id],sums[id*3+1]/counts[id],sums[id*3+2]/counts[id]);}indices[i]=next;});
+        if(indices.length)locatorSilhouettes.push({world:new Float32Array(world),indices,screen:new Float32Array(world.length),color});
+      };
+      const seenMeshes=new Set<T.Mesh>(),anchors:Record<string,T.Vector3>={};
+      targets.forEach((target,i)=>{
+        if(target.anchor)anchors[`l${i}`]=target.anchor.clone();
+        for(const mesh of target.meshes){
+          if(seenMeshes.has(mesh))continue;
+          seenMeshes.add(mesh);
+          silhouette(mesh,target.anchor??point.surface,target.item.color==='bone'?'#fff7df':'#78d9c4');
+        }
+      });
+      locatorGroup.userData.anchors=anchors;
+      locatorGroup.userData.focus=point.surface.clone();locatorGroup.userData.bornAt=performance.now();
       locatorGroup.visible=true;
     };
+    // Contour pass runs at CSS-pixel resolution and only when the view changes: stroking the projected
+    // triangles then carving the fill out leaves a round-joined band outside the silhouette in one call.
+    const locatorView=new T.Matrix4(),locatorLastView=new Float64Array(16);
+    let locatorLastBorn=-1,locatorLastDrawAt=0;
+    const LOCATOR_TINTS=new Map([['#fff7df',{core:'#ff9500'}],['#78d9c4',{core:'#00b894'}]]);
     const updateLocatorSilhouettes=()=>{
-      const dpr=Math.min(devicePixelRatio,2),width=Math.max(1,Math.round(el.clientWidth*dpr)),height=Math.max(1,Math.round(el.clientHeight*dpr)),canvases=[locatorCanvas,locatorBoneMask,locatorSoftMask,locatorOutline];
-      for(const canvas of canvases)if(canvas.width!==width||canvas.height!==height){canvas.width=width;canvas.height=height;}
-      const masks=new Map([['#fff7df',locatorBoneMask],['#78d9c4',locatorSoftMask]]);
-      for(const mask of masks.values())mask.getContext('2d')!.clearRect(0,0,width,height);
-      for(const [color,mask] of masks){
-        const context=mask.getContext('2d')!;context.save();context.setTransform(dpr,0,0,dpr,0,0);context.fillStyle='#fff';const path=new Path2D();
-        for(const item of locatorSilhouettes.filter(value=>value.color===color)){
-          const positions=item.source.getAttribute('position') as T.BufferAttribute,index=item.source.getIndex(),projected=Array.from({length:positions.count},(_,i)=>new T.Vector3().fromBufferAttribute(positions,i).add(item.position).project(camera)),triangleCount=(index?index.count:positions.count)/3;
-          for(let face=0;face<triangleCount;face++){const ia=index?index.getX(face*3):face*3,ib=index?index.getX(face*3+1):face*3+1,ic=index?index.getX(face*3+2):face*3+2,a=projected[ia],b=projected[ib],c=projected[ic];if((a.z<-1&&b.z<-1&&c.z<-1)||(a.z>1&&b.z>1&&c.z>1))continue;const ax=(a.x+1)*el.clientWidth/2,ay=(1-a.y)*el.clientHeight/2,bx=(b.x+1)*el.clientWidth/2,by=(1-b.y)*el.clientHeight/2,cx=(c.x+1)*el.clientWidth/2,cy=(1-c.y)*el.clientHeight/2,clockwise=(bx-ax)*(cy-ay)-(by-ay)*(cx-ax)>0;path.moveTo(ax,ay);path.lineTo(clockwise?bx:cx,clockwise?by:cy);path.lineTo(clockwise?cx:bx,clockwise?cy:by);path.closePath();}
+      const now=performance.now(),width=Math.max(1,el.clientWidth),height=Math.max(1,el.clientHeight),born=locatorGroup.userData.bornAt??0,revealing=now-born<760;
+      locatorView.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);const m=locatorView.elements;
+      let same=locatorCanvas.width===width&&locatorCanvas.height===height&&locatorLastBorn===born;for(let i=0;i<16&&same;i++)same=locatorLastView[i]===m[i];
+      if(same&&!revealing)return;
+      // The HTML labels keep following every frame; the expensive contour pass
+      // is limited to 30 Hz while orbiting and during the reveal animation.
+      if(locatorLastBorn===born&&now-locatorLastDrawAt<33)return;
+      locatorLastDrawAt=now;
+      locatorLastView.set(m);locatorLastBorn=born;
+      if(locatorCanvas.width!==width||locatorCanvas.height!==height){for(const canvas of [locatorCanvas,locatorOutline]){canvas.width=width;canvas.height=height;}locatorHalo.width=Math.ceil(width/4);locatorHalo.height=Math.ceil(height/4);}
+      const output=locatorCanvas.getContext('2d')!,ring=locatorOutline.getContext('2d')!,halo=locatorHalo.getContext('2d')!,band=3.5;
+      output.clearRect(0,0,width,height);halo.clearRect(0,0,locatorHalo.width,locatorHalo.height);
+      ring.clearRect(0,0,width,height);ring.lineJoin='round';
+      for(const [color,tint] of LOCATOR_TINTS){
+        const path=new Path2D();
+        for(const item of locatorSilhouettes){
+          if(item.color!==color)continue;
+          const {world,indices,screen}=item,count=world.length/3;
+          for(let i=0;i<count;i++){const x=world[i*3],y=world[i*3+1],z=world[i*3+2],w=m[3]*x+m[7]*y+m[11]*z+m[15];screen[i*3]=((m[0]*x+m[4]*y+m[8]*z+m[12])/w+1)*width/2;screen[i*3+1]=(1-(m[1]*x+m[5]*y+m[9]*z+m[13])/w)*height/2;screen[i*3+2]=(m[2]*x+m[6]*y+m[10]*z+m[14])/w;}
+          for(let f=0;f<indices.length;f+=3){const a=indices[f]*3,b=indices[f+1]*3,c=indices[f+2]*3;if((screen[a+2]<-1&&screen[b+2]<-1&&screen[c+2]<-1)||(screen[a+2]>1&&screen[b+2]>1&&screen[c+2]>1))continue;const clockwise=(screen[b]-screen[a])*(screen[c+1]-screen[a+1])-(screen[b+1]-screen[a+1])*(screen[c]-screen[a])>0,p=clockwise?b:c,q=clockwise?c:b;path.moveTo(screen[a],screen[a+1]);path.lineTo(screen[p],screen[p+1]);path.lineTo(screen[q],screen[q+1]);path.closePath();}
         }
-        context.fill(path);context.restore();
+        // Dark 1px keyline under the tinted band keeps the contour legible on pale bone.
+        ring.globalCompositeOperation='source-over';ring.lineWidth=band*2+2;ring.strokeStyle='rgba(20,24,28,.34)';ring.stroke(path);ring.lineWidth=band*2;ring.strokeStyle=tint.core;ring.stroke(path);
+        ring.globalCompositeOperation='destination-out';ring.fill(path);ring.globalCompositeOperation='source-over';
       }
-      const output=locatorCanvas.getContext('2d')!;output.clearRect(0,0,width,height);
-      for(const [color,mask] of masks){const layer=locatorOutline.getContext('2d')!;layer.clearRect(0,0,width,height);const radius=6.5*dpr,samples=48;for(let i=0;i<samples;i++){const angle=i/samples*Math.PI*2;layer.drawImage(mask,Math.cos(angle)*radius,Math.sin(angle)*radius);}layer.globalCompositeOperation='source-in';layer.fillStyle=color;layer.fillRect(0,0,width,height);layer.globalCompositeOperation='destination-out';layer.drawImage(mask,0,0);layer.globalCompositeOperation='source-over';output.drawImage(locatorOutline,0,0);}
+      // Halo: quarter-resolution copy scaled back up acts as a cheap wide blur.
+      halo.drawImage(locatorOutline,0,0,locatorHalo.width,locatorHalo.height);
+      output.globalAlpha=.55;output.imageSmoothingQuality='high';output.drawImage(locatorHalo,0,0,width,height);output.globalAlpha=1;output.drawImage(locatorOutline,0,0);
+      const focus=locatorGroup.userData.focus as T.Vector3|undefined,anchors=locatorGroup.userData.anchors as Record<string,T.Vector3>|undefined;
+      if(focus){const screen=(v:T.Vector3)=>{const p=v.clone().project(camera);return[(p.x+1)*width/2,(1-p.y)*height/2];},[fx,fy]=screen(focus),[ex,ey]=screen(new T.Vector3().setFromMatrixColumn(camera.matrixWorld,0).multiplyScalar(LOCATOR_CROP*.85).add(focus)),reach=Math.min(Math.hypot(ex-fx,ey-fy),Math.max(120,...Object.values(anchors??{}).map(v=>{const[x,y]=screen(v);return Math.hypot(x-fx,y-fy)*1.35+56;}))),t=Math.min(1,(performance.now()-born)/700),reveal=1-Math.pow(1-t,4),r=reach*(.55+.45*reveal),fade=output.createRadialGradient(fx,fy,0,fx,fy,r);
+        fade.addColorStop(0,`rgba(0,0,0,${reveal})`);fade.addColorStop(.65,`rgba(0,0,0,${reveal})`);fade.addColorStop(.85,`rgba(0,0,0,${.45*reveal})`);fade.addColorStop(1,'rgba(0,0,0,0)');
+        output.globalCompositeOperation='destination-in';output.fillStyle=fade;output.fillRect(0,0,width,height);output.globalCompositeOperation='source-over';}
     };
     const updateAcupuncture = () => {
       const config = latest.current.acupuncture;
@@ -1538,7 +1581,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       // OrbitControls changes the pose; rendering normally refreshes its inverse later.
       // Project against THIS frame's camera, not the previous render's matrix.
       camera.updateMatrixWorld(true);
-      if(locatorGroup.visible&&(dirty||isControlling||cameraTransitioning||controls.autoRotate))updateLocatorSilhouettes();
+      if(locatorGroup.visible)updateLocatorSilhouettes();
       const selectedPoint = s.acupuncture?.selectedCode ? pointObjects.find((point) => point.code === s.acupuncture?.selectedCode && point.side === "right") : undefined;
       if (selectedPoint && s.acupuncture?.visible && (dirty || controls.autoRotate)) {
         const anchor = selectedPoint.marker.getWorldPosition(annotationAnchor), projectedAnchor = annotationProjection.copy(anchor).project(camera), cameraToAnchor = annotationDirection.copy(anchor).sub(camera.position), distanceToAnchor = cameraToAnchor.length(), viewDirection = cameraToAnchor.normalize(), facingAmount = selectedPoint.normal.dot(annotationFacing.copy(camera.position).sub(anchor).normalize()), facing = facingAmount > .02;
@@ -1569,9 +1612,9 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         annotationObstacles = obstacles;
         annotationCheckedAt = now; annotationCheckedCode = selectedPoint.code; annotationCheckedState = s;
         }
-        const guideAnchors=locatorGroup.userData.anchors as {first?:T.Vector3;second?:T.Vector3}|undefined,
+        const guideAnchors=locatorGroup.userData.anchors as Record<string,T.Vector3>|undefined,
           screenPoint=(value:T.Vector3)=>{const p=value.clone().project(camera);return{x:(p.x+1)*el.clientWidth/2,y:(1-p.y)*el.clientHeight/2};},
-          landmarks=guideAnchors?.first&&guideAnchors.second?{first:screenPoint(guideAnchors.first),second:screenPoint(guideAnchors.second)}:undefined;
+          landmarks=guideAnchors?Object.fromEntries(Object.entries(guideAnchors).map(([key,value])=>[key,screenPoint(value)])):undefined;
         const locatorVisible=!!s.locatorGuide&&inViewport&&facingAmount>-.45;
         locatorCanvas.style.opacity=locatorVisible?'1':'0';
         annotationFrame.current?.({ id:selectedPoint.code, x:((projectedAnchor.x+1)*el.clientWidth)/2, y:((1-projectedAnchor.y)*el.clientHeight)/2, width:el.clientWidth, height:el.clientHeight, visible:locatorVisible||(inViewport&&facing&&!annotationRayOccluded), occluded:s.locatorGuide?!locatorVisible:!facing||annotationRayOccluded, moving:isControlling||cameraTransitioning||controls.autoRotate, obstacles:annotationObstacles,landmarks });

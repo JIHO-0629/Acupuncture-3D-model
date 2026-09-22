@@ -25,7 +25,7 @@ export function AcupointScrubber({points,activeCode,onPointChange,label='경혈 
  const live=useRef({points,activeCode,onPointChange,hotkeys});
  live.current={points,activeCode,onPointChange,hotkeys};
  const motion=useRef<Motion>({current:0,target:0,frame:0,lastFrame:0,animating:false,touching:false,idle:undefined,reduce:false,step:1,committed:activeCode});
- const api=useRef<{glide:(to:number)=>void;measure:(keepIndex?:number)=>void;key:(key:string)=>boolean}|null>(null);
+ const api=useRef<{glide:(to:number,commitAfter?:boolean)=>void;measure:(keepIndex?:number)=>void;key:(key:string)=>boolean}|null>(null);
  cards.current.length=points.length;
 
  useLayoutEffect(()=>{
@@ -64,12 +64,12 @@ export function AcupointScrubber({points,activeCode,onPointChange,label='경혈 
    paint();
    m.frame=requestAnimationFrame(tick);
   };
-  const glide=(to:number)=>{
+  const glide=(to:number,commitAfter=true)=>{
    m.target=clamp(to);
    el.dataset.scrolling='true';
-   if(m.reduce){m.current=m.target;el.scrollTop=m.target;paint();schedule();return;}
+   if(m.reduce){m.current=m.target;el.scrollTop=m.target;paint();if(commitAfter)schedule();return;}
    if(!m.animating){m.current=el.scrollTop;m.animating=true;m.lastFrame=0;m.frame=requestAnimationFrame(tick);}
-   schedule();
+   if(commitAfter)schedule();else clearTimeout(m.idle);
   };
   const commit=(index:number)=>{
    const code=live.current.points[index]?.code;
@@ -79,6 +79,7 @@ export function AcupointScrubber({points,activeCode,onPointChange,label='경혈 
   };
   // Runs once input has been quiet for settleMs — not when the easing tail ends.
   const settle=()=>{
+   if(!el.clientHeight||!el.scrollHeight)return;
    // Frames throttled (hidden/background tab): land immediately instead of hanging mid-glide.
    if(m.animating&&performance.now()-m.lastFrame>250)finish();
    if(m.touching){schedule();return;}
@@ -90,10 +91,12 @@ export function AcupointScrubber({points,activeCode,onPointChange,label='경혈 
    commit(index);
   };
   const measure=(keepIndex?:number)=>{
+   if(!el.clientHeight)return;
    const index=keepIndex??indexAt(el.scrollTop);
    const first=cards.current[0],second=cards.current[1];
    m.step=first?(second?second.offsetTop-first.offsetTop:first.offsetHeight)||1:1;
    m.current=m.target=clamp(index*m.step);
+   m.committed=live.current.activeCode;
    el.scrollTop=m.current;
    paint();
   };
@@ -113,7 +116,7 @@ export function AcupointScrubber({points,activeCode,onPointChange,label='경혈 
    glide(destination()+event.deltaY*unit);
   };
   // Only native movement (touch momentum, scrollbar drag) restarts the settle clock; our own glide frames do not.
-  const onScroll=()=>{paint();if(m.animating)return;m.current=el.scrollTop;el.dataset.scrolling='true';schedule();};
+  const onScroll=()=>{if(!el.clientHeight)return;paint();if(m.animating||Math.abs(el.scrollTop-m.target)<1&&m.committed===live.current.activeCode)return;m.current=el.scrollTop;el.dataset.scrolling='true';schedule();};
   const onTouchStart=()=>{m.touching=true;cancel();};
   const onTouchEnd=()=>{m.touching=false;schedule();};
   const editable='input,textarea,select,[contenteditable=""],[contenteditable=true],[role=slider],[role=spinbutton],[role=listbox],[role=menu],[role=dialog]';
@@ -158,11 +161,11 @@ export function AcupointScrubber({points,activeCode,onPointChange,label='경혈 
  useEffect(()=>{
   const el=rail.current,m=motion.current;
   m.committed=activeCode;
-  if(!el||!api.current||m.touching)return;
+  if(!el||!el.clientHeight||!api.current||m.touching)return;
   const index=live.current.points.findIndex(point=>point.code===activeCode);
   if(index<0)return;
   const to=index*m.step;
-  if(Math.abs((m.animating?m.target:el.scrollTop)-to)>1)api.current.glide(to);
+  if(Math.abs((m.animating?m.target:el.scrollTop)-to)>1)api.current.glide(to,false);
  },[activeCode]);
 
  const onKeyDown=(event:KeyboardEvent<HTMLDivElement>)=>{if(api.current?.key(event.key))event.preventDefault();};
