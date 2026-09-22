@@ -575,7 +575,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
     locatorGroup.name = "Surface landmark locator";
     locatorGroup.visible = false;
     const locatorCanvas=document.createElement('canvas'),locatorHalo=document.createElement('canvas'),locatorOutline=document.createElement('canvas');locatorCanvas.className='locator-silhouette-canvas';el.appendChild(locatorCanvas);
-    const LOCATOR_CROP=.1,locatorSilhouettes:{world:Float32Array;indices:Uint32Array;screen:Float32Array;color:string}[]=[];
+    const LOCATOR_CROP=.1,LOCATOR_BAND=3.5,LOCATOR_BAND_MAX=6,LOCATOR_BAND_BASE=9.5 /* px per mm in the default locator framing */,locatorSilhouettes:{world:Float32Array;indices:Uint32Array;screen:Float32Array;color:string}[]=[];
     scene.add(lineGroup, acupointGroup, locatorGroup);
     const needleGeometry = new T.CylinderGeometry(0.00065, 0.00065, 1, 10),
       needleMaterial = new T.MeshStandardMaterial({
@@ -947,7 +947,10 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       locatorLastDrawAt=now;
       locatorLastView.set(m);locatorLastBorn=born;
       if(locatorCanvas.width!==width||locatorCanvas.height!==height){for(const canvas of [locatorCanvas,locatorOutline]){canvas.width=width;canvas.height=height;}locatorHalo.width=Math.ceil(width/4);locatorHalo.height=Math.ceil(height/4);}
-      const output=locatorCanvas.getContext('2d')!,ring=locatorOutline.getContext('2d')!,halo=locatorHalo.getContext('2d')!,band=3.5;
+      const output=locatorCanvas.getContext('2d')!,ring=locatorOutline.getContext('2d')!,halo=locatorHalo.getContext('2d')!,focusPoint=locatorGroup.userData.focus as T.Vector3|undefined;
+      // Band grows with on-screen scale (px per mm at the point), sub-linearly and capped so it never swallows the gap being taught.
+      let pxPerMm=LOCATOR_BAND_BASE;if(focusPoint){const a=focusPoint.clone().project(camera),b=new T.Vector3().setFromMatrixColumn(camera.matrixWorld,0).multiplyScalar(.001).add(focusPoint).project(camera);pxPerMm=Math.hypot((b.x-a.x)*width/2,(b.y-a.y)*height/2);}
+      const band=Math.min(LOCATOR_BAND_MAX,Math.max(LOCATOR_BAND,LOCATOR_BAND*Math.sqrt(pxPerMm/LOCATOR_BAND_BASE)));
       output.clearRect(0,0,width,height);halo.clearRect(0,0,locatorHalo.width,locatorHalo.height);
       ring.clearRect(0,0,width,height);ring.lineJoin='round';
       for(const [color,tint] of LOCATOR_TINTS){
