@@ -32,7 +32,7 @@ export function withSupplement(atlas:Atlas,supplement:Supplement):Atlas{
 }
 export type View = 'three-quarter'|'front'|'back'|'side';
 export interface NeedleHit {id:string;name:string;system:SystemId;distanceMm:number}
-export interface NeedleReport {code:string;available:boolean;limitMm:number|null;boundaryMm:number|null;boundaryId:string|null;boundaryLabel:string;conceptual:boolean;hits:NeedleHit[];pathHits:NeedleHit[];allHits:NeedleHit[]}
+export interface NeedleReport {code:string;available:boolean;limitMm:number|null;boundaryMm:number|null;boundaryId:string|null;boundaryLabel:string;conceptual:boolean;sourceRangeBoundary?:boolean;hits:NeedleHit[];pathHits:NeedleHit[];hazardHits:NeedleHit[];allHits:NeedleHit[]}
 /** How far a structure's depth drifts between people, which decides how much weight a
  *  reader should put on it. Bone and tendon can be palpated; muscle bulk tracks build;
  *  vessels, nerves and organ borders move with posture, respiration and individual

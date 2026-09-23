@@ -1,6 +1,7 @@
 import type {Atlas} from './anatomy';
-import {GB_POINTS,needleProfile as gbNeedleProfile,type GbPointDefinition,type NeedleProfile,type NeedleRegion,type ProjectionMode} from './gb-points';
+import {GB_POINTS,needleProfile as gbNeedleProfile,type GbPointDefinition,type NeedleProfile,type NeedleRelation,type NeedleRegion,type ProjectionMode} from './gb-points';
 import source from '../data/li-source.json';
+import directNeedling from '../data/needling-direct.json';
 import liLandmarks from '../data/li-landmarks.json';
 import luData from '../data/meridians/LU.json';
 import htData from '../data/meridians/HT.json';
@@ -73,19 +74,67 @@ function buildGeneratedPoints(meridian:GeneratedMeridian):AcupointDefinition[]{
 export function atlasPoints(atlas:Atlas):AcupointDefinition[]{return [...GB_POINTS,...buildLiPoints(atlas),...GENERATED.flatMap(buildGeneratedPoints)];}
 export function meridianOf(code:string):MeridianId{const prefix=code.match(/^[A-Z]+/)?.[0];return prefix&&prefix in MERIDIANS?prefix as MeridianId:'GB';}
 const needleRegionOf=(skinRegion:string):NeedleRegion=>/thorax|shoulder/.test(skinRegion)?'thorax':/face|head|oral/.test(skinRegion)?'face-scalp':/neck/.test(skinRegion)?'neck':/lumbar|pelvis/.test(skinRegion)?'flank-abdomen':/thigh|knee/.test(skinRegion)?'thigh-knee':/leg/.test(skinRegion)?'leg':/foot/.test(skinRegion)?'ankle-foot':'upper-limb';
+// Compared against the primary workbook's straight-path model rows (repo 2d4aa8e).
+// A missing AVOID intersection is a geometry QC finding, never permission to needle.
+const PATH_QC:Partial<Record<AcupointCode,string>>={
+ LI18:'모델 QC: 주요 경부 혈관이 직자 궤적과 교차하지 않습니다.',
+ ST9:'모델 QC: 문헌 표지인 경동맥이 직자 궤적과 교차하지 않습니다.',
+ ST36:'모델 QC: 문헌 표지인 전경골동맥이 직자 궤적에 나타나지 않습니다.',
+ SI16:'모델 QC: 주요 경부 혈관이 직자 궤적과 교차하지 않습니다.',
+ SI17:'모델 QC: 주요 경부 혈관이 직자 궤적과 교차하지 않습니다.',
+ BL40:'모델 QC: 문헌 표지인 슬와동맥 대신 슬와정맥이 궤적에 나타납니다.',
+ TE16:'모델 QC: 주요 경부 혈관이 직자 궤적과 교차하지 않습니다.',
+ GB20:'모델 QC: 경부 혈관 전에 후두골이 교차합니다. 문헌의 혈관 거리와 비교할 수 없습니다.',
+ GB21:'모델 QC: 흉막 전에 상완골이 교차합니다. 문헌의 흉막 거리를 이 경로에 적용할 수 없습니다.',
+ GV16:'모델 QC: 문헌 표지인 경막은 궤적에 없고 후두골이 먼저 교차합니다.',
+ CV12:'모델 QC: 문헌 표지인 복막 메시가 궤적에 없으며 위가 교차합니다.',
+};
+// Only relationships explicitly supported by the primary workbook's expected_anatomy.
+const RESEARCH_RELATIONS:Partial<Record<AcupointCode,NeedleRelation[]>>={
+ LI18:[{kind:'AVOID',structure:'주요 경부 혈관'}],
+ ST9:[{kind:'AVOID',structure:'총경동맥'}],
+ ST36:[{kind:'INTERSECT',structure:'앞정강근'},{kind:'APPROACH',structure:'심비골신경'},{kind:'AVOID',structure:'전경골동맥'}],
+ SI14:[{kind:'AVOID',structure:'흉막'}],SI15:[{kind:'AVOID',structure:'흉막'}],
+ SI16:[{kind:'AVOID',structure:'주요 경부 혈관'}],SI17:[{kind:'AVOID',structure:'주요 경부 혈관'}],
+ BL40:[{kind:'AVOID',structure:'슬와동맥'}],
+ PC6:[{kind:'INTERSECT',structure:'천지굴근·심지굴근·방형회내근'},{kind:'APPROACH',structure:'정중신경'}],
+ TE16:[{kind:'AVOID',structure:'주요 경부 혈관'}],
+ GB20:[{kind:'AVOID',structure:'주요 경부 혈관'}],GB21:[{kind:'AVOID',structure:'흉막'}],
+ GV15:[{kind:'AVOID',structure:'경막'}],GV16:[{kind:'AVOID',structure:'경막'}],
+ CV12:[{kind:'AVOID',structure:'복막'}],
+};
+const riskText=(...parts:(string|undefined)[])=>parts.filter(Boolean).join(' ')||undefined;
 export function needleProfile(code:AcupointCode):NeedleProfile {
- if(code.startsWith('GB'))return gbNeedleProfile(code as `GB${number}`);
+ const direct=directNeedling[code as keyof typeof directNeedling];
+ if(code.startsWith('GB')){const profile=gbNeedleProfile(code as `GB${number}`);return {...profile,
+  ...(direct?{label:'문헌 직자 범위의 모델 상한',probeDepthMm:direct.modelMaxMm,documentedMaxMm:direct.modelMaxMm,
+   depthRangeCun:[direct.minCun,direct.maxCun] as [number,number],conceptualBoundary:false,
+   warning:'참조 모델의 체표 법선 직자 경로입니다. 문헌 촌 범위를 이 모델의 국소 비례치로 환산했으며 임상 안전심도가 아닙니다.',
+   sourceNeedling:direct.raw,depthValidation:'문헌 범위 · 모델 비율 환산'}:{}),
+  relations:RESEARCH_RELATIONS[code],pointRisk:riskText(profile.pointRisk,direct?.caution,PATH_QC[code])};}
  const generated=generatedRow(code);
  if(generated){
   const meridian=MERIDIANS[meridianOf(code)];
   const forbidden=generated.needlingStatus==='absolute_no_needling';
   const caution=generated.needlingRestriction||`${meridian.label} 위치는 검수 완료했지만 자침 방향·깊이는 3D에서 미검증입니다.`;
+  if(direct&&!forbidden)return {region:needleRegionOf(generated.region),label:'문헌 직자 범위의 모델 상한',probeDepthMm:direct.modelMaxMm,
+   documentedMaxMm:direct.modelMaxMm,depthRangeCun:[direct.minCun,direct.maxCun],conceptualBoundary:false,
+   warning:'참조 모델의 체표 법선 직자 경로입니다. 문헌 촌 범위를 이 모델의 국소 비례치로 환산했으며 임상 안전심도가 아닙니다.',
+   sourceNeedling:direct.raw,depthValidation:'문헌 범위 · 모델 비율 환산',
+   validationSource:`https://m.kmcric.com/knowledge/acupoint/${meridian.id}/${code}`,
+   referenceStructures:[generated.rule],relations:RESEARCH_RELATIONS[code],pointRisk:riskText(direct.caution,generated.needlingRestriction,PATH_QC[code])};
   return {region:needleRegionOf(generated.region),label:`${meridian.id} 자침 경로 미검증`,probeDepthMm:0,conceptualBoundary:false,
    warning:forbidden?'자침 금지: 신궐(CV8)은 금침혈이며 자침 시뮬레이션을 제공하지 않습니다.':`${caution} 자침 경로·깊이가 검증되기 전에는 시뮬레이션을 제공하지 않습니다.`,
    sourceNeedling:generated.rawMethod||'깊이 미검증',depthValidation:'미검증 · 시뮬레이션 잠금',
    validationSource:`https://m.kmcric.com/knowledge/acupoint/${meridian.id}/${code}`,referenceStructures:[generated.rule],pointRisk:generated.needlingRestriction||generated.whoStatus||undefined};
  }
  const row=source.points.find(p=>p.code===code)!;
+ if(direct)return {region:Number(code.slice(2))>=19?'face-scalp':Number(code.slice(2))>=17?'neck':'upper-limb',
+  label:'문헌 직자 범위의 모델 상한',probeDepthMm:direct.modelMaxMm,documentedMaxMm:direct.modelMaxMm,
+  depthRangeCun:[direct.minCun,direct.maxCun],conceptualBoundary:false,
+  warning:'참조 모델의 체표 법선 직자 경로입니다. 문헌 촌 범위를 이 모델의 국소 비례치로 환산했으며 임상 안전심도가 아닙니다.',
+  sourceNeedling:direct.raw,depthValidation:'문헌 범위 · 모델 비율 환산',validationSource:row.source,
+  referenceStructures:[row.region],relations:RESEARCH_RELATIONS[code],pointRisk:riskText(direct.caution,PATH_QC[code])};
  return {region:Number(code.slice(2))>=19?'face-scalp':Number(code.slice(2))>=17?'neck':'upper-limb',
   label:'LI 자침 경로 미검증',probeDepthMm:0,conceptualBoundary:false,
   warning:'LI 위치·지역 프레임은 검수 중입니다. 자침 방향·깊이가 검증되기 전에는 자침 시뮬레이션을 제공하지 않습니다.',

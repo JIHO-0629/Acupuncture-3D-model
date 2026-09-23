@@ -3,18 +3,19 @@
  * Depth in millimetres is a single reference body's geometry, and the layer thicknesses
  * that make it up vary enormously between people. What does not vary is the order: at
  * GB34 extensor digitorum longus always precedes the interosseous membrane. So the column
- * leads with sequence, scales its axis as a share of the distance to the first risk
- * structure, and names that denominator on screen rather than implying a clinical depth.
+ * leads with sequence and scales its axis to the documented range in the reference
+ * model. Hazard intersections remain visible as warnings, not insertion limits.
  */
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { bilingualPartName, varianceOf, VARIANCE_LABEL, type NeedleHit, type NeedleReport, type Variance } from './anatomy';
+import { needleProfile, type AcupointCode } from './acupoints';
 
 const HEIGHT = 280, LABEL_GAP = 8;
 const SKIN = { id: '__skin', name: '피부·피하조직', english: 'Skin & subcutis', distanceMm: 0, variance: 2 as Variance };
 
 type Entry = {
   id: string; english: string; korean: string; at: number;
-  variance: Variance | null; kind: 'layer' | 'boundary' | 'beyond';
+  variance: Variance | null; kind: 'layer' | 'boundary' | 'beyond'; risk?: boolean;
 };
 
 /** Split "Right fibula (우측 비골)" back into its two halves so the Korean can be styled
@@ -45,8 +46,10 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
   const refuseTimer = useRef<number | null>(null);
 
   const allHits = report.allHits ?? [];
+  const depthRangeCun = needleProfile(report.code as AcupointCode).depthRangeCun;
   const boundaryMm = report.boundaryMm ?? 0;
   const limitMm = report.limitMm ?? 0;
+  const riskIds = new Set(report.hazardHits.map((hit) => hit.id));
 
   const entries: Entry[] = [];
   if (boundaryMm > 0) {
@@ -54,7 +57,7 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
     for (const hit of allHits) {
       if (hit.distanceMm >= boundaryMm) continue;
       const { english, korean } = split(hit);
-      entries.push({ id: hit.id, english, korean, at: hit.distanceMm, variance: varianceOf(hit.name, hit.system), kind: 'layer' });
+      entries.push({ id: hit.id, english, korean, at: hit.distanceMm, variance: varianceOf(hit.name, hit.system), kind: 'layer', risk: riskIds.has(hit.id) });
     }
     const boundaryHit = allHits.find((hit) => hit.id === report.boundaryId);
     const boundaryName = boundaryHit ? split(boundaryHit) : { english: report.boundaryLabel, korean: '' };
@@ -63,7 +66,9 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
       at: boundaryMm, variance: boundaryHit ? varianceOf(boundaryHit.name, boundaryHit.system) : null, kind: 'boundary',
     });
   }
-  const view = boundaryMm * 1.45;
+  const view = report.sourceRangeBoundary
+    ? Math.max(boundaryMm * 1.45, boundaryMm + 5)
+    : boundaryMm * 1.45;
   for (const hit of allHits) {
     if (hit.distanceMm <= boundaryMm || hit.distanceMm > view) continue;
     const { english, korean } = split(hit);
@@ -73,7 +78,7 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
   const y = (mm: number) => (view > 0 ? (mm / view) * HEIGHT : 0);
   const pct = (mm: number) => (boundaryMm > 0 ? Math.round((mm / boundaryMm) * 100) : 0);
   const needleMm = (limitMm * ratio) / 100;
-  const reachedIndex = entries.reduce((found, entry, index) => (entry.kind !== 'beyond' && needleMm >= entry.at ? index : found), 0);
+  const reachedIndex = needleMm <= 0 ? 0 : entries.reduce((found, entry, index) => (entry.kind !== 'beyond' && needleMm >= entry.at ? index : found), 0);
   const current = entries[reachedIndex];
 
   /** Measure each label and stack them apart, so a name that wraps to three lines in a
@@ -152,7 +157,7 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
         role="slider"
         aria-label="자침 진행"
         aria-valuemin={0}
-        aria-valuemax={90}
+        aria-valuemax={report.sourceRangeBoundary ? 100 : 90}
         aria-valuenow={Math.round(pct(needleMm))}
         aria-valuetext={`${Math.round(pct(needleMm))}퍼센트, ${current.korean || current.english}`}
         onPointerDown={(event) => { if (disabled) return; dragging.current = true; event.currentTarget.setPointerCapture(event.pointerId); setFromPointer(event.clientY); }}
@@ -203,7 +208,7 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
                 key={`${entry.id}-${index}`}
                 d={`M0 ${y(entry.at)} H9 L19 ${(tops[index] ?? 0) + ((labelRefs.current[index]?.offsetHeight ?? 0) / 2)} H28`}
                 fill="none" strokeWidth="1"
-                stroke={entry.kind === 'boundary' ? 'var(--strata-critical)' : index <= reachedIndex && entry.kind === 'layer' ? 'var(--strata-accent)' : 'var(--strata-rule)'}
+                stroke={entry.risk || entry.kind === 'boundary' ? 'var(--strata-critical)' : index <= reachedIndex && entry.kind === 'layer' ? 'var(--strata-accent)' : 'var(--strata-rule)'}
               />
             ))}
           </svg>
@@ -211,7 +216,7 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
             <div
               key={`${entry.id}-${index}`}
               ref={(node) => { labelRefs.current[index] = node; }}
-              className={`strata-label${entry.kind === 'boundary' ? ' stop' : ''}${entry.kind === 'beyond' ? ' beyond' : ''}${index <= reachedIndex && entry.kind === 'layer' ? ' on' : ''}`}
+              className={`strata-label${entry.kind === 'boundary' ? ' stop' : ''}${entry.kind === 'beyond' ? ' beyond' : ''}${entry.risk ? ' risk' : ''}${index <= reachedIndex && entry.kind === 'layer' ? ' on' : ''}`}
               style={{ top: tops[index] ?? y(entry.at) }}
             >
               <span className="en">{entry.english}</span>
@@ -222,7 +227,8 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
                     {[1, 2, 3].map((dot) => <s key={dot} className={dot <= entry.variance! ? 'f' : ''} />)}
                   </span>
                 )}
-                <span className="pct">{pct(entry.at)}%</span>
+                <span className="pct">{entry.kind === 'beyond' ? '범위 밖 · 미통과' : `${pct(entry.at)}%`}</span>
+                {entry.risk && <span className="strata-risk-tag">위험 구조 · 모델 교차</span>}
               </span>
             </div>
           ))}
@@ -241,11 +247,17 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
         </div>
       </div>
       <p className="strata-denom">
-        100% = <b>{entries.find((e) => e.kind === 'boundary')?.english}</b>
-        {entries.find((e) => e.kind === 'boundary')?.korean ? ` (${entries.find((e) => e.kind === 'boundary')!.korean})` : ''}까지의 거리.
-        이 참조 모델 한 사람의 값이며 환자에게 그대로 적용되지 않습니다. 안전 여유 10%를 남기고 정지합니다.
+        {depthRangeCun && <>문헌 직자 범위 <b>{depthRangeCun[0]}–{depthRangeCun[1]}촌</b>. </>}
+        {report.sourceRangeBoundary ? (
+          <>100% = 문헌 범위 상한을 참조 모델의 국소 비례로 환산한 지점. 위험 구조가 없음을 뜻하지 않습니다.</>
+        ) : (
+          <>눈금 100% = <b>{entries.find((e) => e.kind === 'boundary')?.english}</b>
+            {entries.find((e) => e.kind === 'boundary')?.korean ? ` (${entries.find((e) => e.kind === 'boundary')!.korean})` : ''}까지의 거리.
+            조작 상한은 경계의 90%입니다. 참조 모델의 값이며 환자에게 그대로 적용되지 않습니다.</>
+        )}
       </p>
-      <p className={`strata-halt${ratio >= 99.5 ? ' on' : ''}${refusing ? ' flare' : ''}`}>정지 상한에 닿았습니다 — 더 들어가지 않습니다.</p>
+      {report.hazardHits.length > 0 && <p className="strata-risk-summary">위험 구조 {report.hazardHits.length}개 모델 경로 교차. 원본 깊이까지 표시하지만 안전 자침 경로를 뜻하지 않습니다.</p>}
+      <p className={`strata-halt${ratio >= 99.5 ? ' on' : ''}${refusing ? ' flare' : ''}`}>모델 표시 범위의 끝입니다 — 더 들어가지 않습니다.</p>
     </div>
   );
 }

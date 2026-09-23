@@ -3,6 +3,7 @@ import {GB_HEAD_CUN_SEEDS} from './head-cun-seeds';
 
 export type ProjectionMode='head'|'lateral'|'anterior'|'posterior'|'dorsal-foot'|'direct';
 export type NeedleRegion='face-scalp'|'neck'|'thorax'|'flank-abdomen'|'pelvis-gluteal'|'thigh-knee'|'leg'|'ankle-foot'|'toe'|'upper-limb';
+export interface NeedleRelation{kind:'INTERSECT'|'APPROACH'|'AVOID';structure:string}
 
 export interface NeedleProfile{
  region:NeedleRegion;
@@ -15,6 +16,9 @@ export interface NeedleProfile{
  validationSource:string;
  referenceStructures:string[];
  pointRisk?:string;
+ depthRangeCun?:[number,number];
+ documentedMaxMm?:number;
+ relations?:NeedleRelation[];
 }
 
 export interface GbPointDefinition{
@@ -156,7 +160,8 @@ export function needleProfile(code:`GB${number}`):NeedleProfile{
  const finish=(profile:Omit<NeedleProfile,'sourceNeedling'|'depthValidation'|'validationSource'|'referenceStructures'>):NeedleProfile=>({...profile,...shared,referenceStructures:REFERENCE_STRUCTURES[profile.region]});
  if(number<=19)return finish({region:'face-scalp',label:'안구·안와·두개골 위험 경계',probeDepthMm:45,conceptualBoundary:false,warning:'안구·안와·두개골에 접근하면 자동 정지합니다. 특수 자침 방향은 후속 구현 대상이며 현재 궤적은 체표 법선 직자만 표시합니다.'});
  if(number===20)return finish({region:'neck',label:'경부 주요 혈관·경추 위험 경계',probeDepthMm:80,conceptualBoundary:false,warning:'경부 혈관과 신경의 위치는 개인차가 큽니다. 비율은 이 참조 모델의 첫 위험 구조를 기준으로 합니다.',pointRisk:'반대쪽 안구 방향 또는 경부 심부를 향한 임의 궤적을 임상 지침으로 사용하지 마십시오.'});
- if(number<=24)return finish({region:'thorax',label:'기흉 위험 경계(개념 모델)',probeDepthMm:100,conceptualBoundary:true,warning:'기흉 고위험 구역입니다. 흉막은 독립 메시가 없어 늑골·호흡기 구조를 이용한 개념적 경계로만 표시합니다.',pointRisk:'흉막을 실제로 렌더링한 것이 아니며, 모델상 여유가 임상 안전을 뜻하지 않습니다.'});
+ if(number===21)return finish({region:'thorax',label:'견정 모델 경로의 첫 위험 구조',probeDepthMm:100,conceptualBoundary:false,warning:'이 모델에는 흉막 메시가 있지만, 현재 GB21 직자 경로는 상완골을 먼저 지나므로 문헌의 흉막 거리와 대응하지 않습니다.',pointRisk:'모델상 여유가 임상 안전을 뜻하지 않습니다.'});
+ if(number<=24)return finish({region:'thorax',label:'기흉 위험 경계(개념 모델)',probeDepthMm:100,conceptualBoundary:true,warning:'기흉 고위험 구역입니다. 이 경로의 흉막 교차가 검증되지 않으면 늑골·호흡기 구조를 개념적 경계로 표시합니다.',pointRisk:'모델상 여유가 임상 안전을 뜻하지 않습니다.'});
  if(number<=28)return finish({region:'flank-abdomen',label:'복벽 안쪽 장기 위험 경계',probeDepthMm:100,conceptualBoundary:false,warning:'복막과 장기의 실제 위치는 체형과 자세에 따라 달라집니다. 모델 경계를 실제 환자에게 적용하지 마십시오.'});
  if(number<=30)return finish({region:'pelvis-gluteal',label:'골반 장기·혈관·뼈 위험 경계',probeDepthMm:120,conceptualBoundary:false,warning:'신경을 찌르는 것을 목표로 표현하지 않습니다. GB30의 좌골신경은 인접 위험·변이 구조로만 다룹니다.'});
  if(number<=34)return finish({region:'thigh-knee',label:'혈관·뼈 안전구역 경계',probeDepthMm:100,conceptualBoundary:false,warning:'안전구역은 개인별로 다릅니다. 출혈 위험은 반드시 문진하고, 혈관 위치는 촉진·도플러·초음파 등으로 별도 확인해야 합니다.'});

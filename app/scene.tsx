@@ -1116,6 +1116,21 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         }
       }
     };
+    const needlePathCache = new Map<string, { probeDepthMm: number; hits: NeedleHit[] }>();
+    const insideDirections = [
+      new T.Vector3(0.577, 0.577, 0.577).normalize(),
+      new T.Vector3(-0.707, 0.1, 0.7).normalize(),
+      new T.Vector3(0.1, -0.99, 0.1).normalize(),
+    ];
+    const insideNeedleMesh = (mesh: T.Mesh, origin: T.Vector3) => {
+      let votes = 0;
+      for (const direction of insideDirections) {
+        raycaster.set(origin, direction);
+        raycaster.far = Infinity;
+        if (raycaster.intersectObject(mesh, false).length % 2 === 1) votes++;
+      }
+      return votes >= 2;
+    };
     const updateNeedle = () => {
       const config = latest.current.needle,
         acupuncture = latest.current.acupuncture,
@@ -1130,10 +1145,15 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       const profile = needleProfile(definition.code),
         surface = object.surface,
         trajectory = object.normal.clone().negate(),
-        probeDepth = profile.probeDepthMm / 1000;
+        // Look a short way past the documented range so the next model layer can
+        // be identified as *outside* the range, never as a passed layer.
+        probeDepthMm = profile.documentedMaxMm
+          ? Math.max(profile.probeDepthMm * 1.45, profile.probeDepthMm + 5)
+          : profile.probeDepthMm,
+        probeDepth = probeDepthMm / 1000;
       if(probeDepth<=0){
         needle.visible=needleHandle.visible=false;
-        needleReport.current?.({code:definition.code,available:false,limitMm:null,boundaryMm:null,boundaryId:null,boundaryLabel:profile.label,conceptual:false,hits:[],pathHits:[],allHits:[]});
+        needleReport.current?.({code:definition.code,available:false,limitMm:null,boundaryMm:null,boundaryId:null,boundaryLabel:profile.label,conceptual:false,hits:[],pathHits:[],hazardHits:[],allHits:[]});
         return;
       }
       const shaftRadius = 0.00065,
@@ -1148,7 +1168,11 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
           surface.clone().addScaledVector(around, -shaftRadius).addScaledVector(trajectory, 0.00015),
         ],
         needleAxisRay = new T.Ray(origins[0], trajectory);
-      const intersections: NeedleHit[] = [];
+      const cachedPath = needlePathCache.get(definition.code);
+      let intersections: NeedleHit[];
+      if (cachedPath?.probeDepthMm === probeDepthMm) intersections = cachedPath.hits;
+      else {
+      const computed: NeedleHit[] = [];
       pickers.forEach((mesh, i) => {
         const part = atlas.parts[i];
         if (!mesh || part.system === "integumentary") return;
@@ -1165,33 +1189,40 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         let nearest = Infinity;
         for (const origin of origins) {
           raycaster.set(origin, trajectory);
+          raycaster.far = probeDepth;
           const hit = raycaster.intersectObject(mesh, false)[0];
           if (hit && hit.distance < nearest) nearest = hit.distance;
         }
+        raycaster.far = Infinity;
+        // A skin-projected point can begin *inside* an overlapping muscle. The
+        // forward hit is then its exit, not its entry. Verify containment before
+        // claiming that a mandatory surface layer is absent from this depth.
+        if (bounds[i].containsPoint(origins[0]) && insideNeedleMesh(mesh, origins[0])) nearest = 0;
         if (nearest <= probeDepth)
-          intersections.push({
+          computed.push({
             id: part.id,
             name: part.name,
             system: part.system,
             distanceMm: Math.round(nearest * 10000) / 10,
           });
       });
-      intersections.sort((a, b) => a.distanceMm - b.distanceMm);
-      const dangerousSystems = (() => {
-        if (profile.region === "face-scalp") return new Set(["skeletal", "sensory", "arterial", "venous", "nervous"]);
-        if (profile.region === "neck") return new Set(["skeletal", "arterial", "venous", "nervous"]);
-        if (profile.region === "thorax") return new Set(["skeletal", "respiratory", "arterial", "venous", "nervous"]);
-        if (profile.region === "flank-abdomen") return new Set(["skeletal", "digestive", "urinary", "reproductive", "arterial", "venous"]);
-        if (profile.region === "pelvis-gluteal") return new Set(["skeletal", "digestive", "urinary", "reproductive", "arterial", "venous", "nervous"]);
-        return new Set(["skeletal", "arterial", "venous", "nervous"]);
-      })();
-      const boundary = intersections.find((hit) => dangerousSystems.has(hit.system)),
-        usedConceptualBoundary = !boundary,
+      computed.sort((a, b) => a.distanceMm - b.distanceMm);
+      needlePathCache.set(definition.code, { probeDepthMm, hits: computed });
+      intersections = computed;
+      }
+      const dangerousSystems = new Set(["skeletal", "respiratory", "digestive", "urinary", "reproductive", "sensory", "arterial", "venous", "nervous"]);
+      // Documented depth controls travel; model hazard intersections are warnings,
+      // never automatic stop points or evidence of a clinically safe route.
+      const sourceRangeBoundary = !!profile.documentedMaxMm,
+        hazardHits = intersections.filter((hit) =>
+          hit.distanceMm <= profile.probeDepthMm && dangerousSystems.has(hit.system)),
+        boundary = sourceRangeBoundary ? undefined : hazardHits[0],
+        usedConceptualBoundary = !boundary && !sourceRangeBoundary,
         boundaryMm = boundary?.distanceMm ?? profile.probeDepthMm,
-        limitMm = Math.max(0, Math.round(boundaryMm * 0.9 * 10) / 10),
+        limitMm = Math.max(0, Math.round(boundaryMm * (sourceRangeBoundary ? 1 : 0.9) * 10) / 10),
         depthMm = limitMm * Math.min(100, Math.max(0, config.depthRatio)) / 100,
         depth = depthMm / 1000,
-        totalLength = Math.max(0.025, Math.min(0.075, probeDepth + 0.018)),
+        totalLength = Math.max(0.025, Math.min(0.17, probeDepth + 0.018)),
         handleLength = 0.018,
         midpoint = depth - totalLength / 2,
         handleMidpoint = depth - totalLength + handleLength / 2;
@@ -1202,18 +1233,20 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       needleHandle.scale.set(1, handleLength, 1);
       needleHandle.quaternion.copy(needle.quaternion);
       needle.visible = needleHandle.visible = true;
-      const pathHits = intersections.filter((hit) => hit.distanceMm <= (limitMm ?? 0) + 0.2),
-        hits = pathHits.filter((hit) => hit.distanceMm <= depthMm + 0.2);
+      const pathHits = intersections.filter((hit) => hit.distanceMm <= limitMm),
+        hits = pathHits.filter((hit) => hit.distanceMm <= depthMm);
       needleReport.current?.({
         code: definition.code,
         available: limitMm > 0,
         limitMm,
         boundaryMm,
         boundaryId: boundary?.id ?? null,
-        boundaryLabel: profile.conceptualBoundary || usedConceptualBoundary ? profile.label : boundary.name,
+        boundaryLabel: profile.conceptualBoundary || usedConceptualBoundary ? profile.label : boundary?.name ?? profile.label,
         conceptual: profile.conceptualBoundary || usedConceptualBoundary,
+        sourceRangeBoundary,
         hits,
         pathHits,
+        hazardHits,
         // Everything the shaft meets inside the probe, including what lies past the
         // boundary. The strata column draws those faded rather than hiding them.
         allHits: intersections,
