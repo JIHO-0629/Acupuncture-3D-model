@@ -218,6 +218,23 @@ for (const [label, name] of VERTEBRAE) {
   }
 }
 
+// Transverse processes: the registry keeps them as palpable surface references for the
+// paravertebral points. They are not drawn; the viewer only reads the coordinates.
+// Ribs and costal cartilage are separate meshes, so the most lateral vertebral vertex is the
+// transverse process (the costal process in the lumbar spine).
+for (const [label, name] of VERTEBRAE) {
+  if (!has(atlas, name)) { skipped.push({ id: `transverse_process_${label}`, reason: `${name} absent` }); continue; }
+  const part = mesh(atlas, name);
+  for (const [side, direction] of [['right', v(-1, 0, 0)], ['left', v(1, 0, 0)]]) {
+    point(`transverse_process_${label}.tip`, `${label} 횡돌기 첨`, side,
+      () => extremeCluster(part, direction, 0.05), {
+        type: 'anatomical', anatomicalConfidence: 'high', frameConfidence: 'high',
+        derivation: 'most lateral vertices of the vertebra (ribs are separate meshes)',
+        sources: [name],
+      });
+  }
+}
+
 // ---------------------------------------------------------------- trunk
 point('suprasternal_notch', '흉골상절흔', null, () => {
   const manubrium = mesh(atlas, 'Manubrium');

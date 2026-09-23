@@ -292,6 +292,7 @@ export default function AnatomyScene({
     const kneeY = patellae.length ? Math.min(...patellae.map((p) => p.bounds[0][1])) : 0.46;
     // Side to fade (+1 is the viewer's left), the height below which it applies, coverage.
     const ghostUniform = { value: new T.Vector3(0, kneeY, 1) };
+    const selectionTintUniform = { value: 1 };
     const materialFor = (system: string) => {
       const isSurface = system === "integumentary";
       // The rib cage is mostly intercostal space, and the lung surface lies against the
@@ -317,6 +318,7 @@ export default function AnatomyScene({
         shader.uniforms.selectionState = { value: selectionTexture };
         shader.uniforms.stateWidth = { value: width };
         shader.uniforms.ghost = ghostUniform;
+        shader.uniforms.selectionTint = selectionTintUniform;
         shader.vertexShader =
           "attribute float partIndex; uniform sampler2D partState; uniform sampler2D selectionState; uniform float stateWidth; varying float partVisible; varying float partSelected; varying vec3 atlasPosition;\n" +
           shader.vertexShader;
@@ -325,7 +327,7 @@ export default function AnatomyScene({
           "#include <begin_vertex>\natlasPosition = position; vec2 stateUv = vec2((partIndex + 0.5) / stateWidth, 0.5); vec4 state = texture2D(partState, stateUv); transformed += state.xyz; partVisible = state.w; partSelected = texture2D(selectionState, stateUv).r;",
         );
       shader.fragmentShader =
-          "varying float partVisible; varying float partSelected; varying vec3 atlasPosition;\nuniform vec3 ghost;\n" +
+          "varying float partVisible; varying float partSelected; varying vec3 atlasPosition;\nuniform vec3 ghost; uniform float selectionTint;\n" +
           shader.fragmentShader;
         // Ghosting is a place, not a part: the skin is one mesh for the whole body, so the
         // opposite leg cannot be hidden by switching a part off. ghost.x is the side to
@@ -343,7 +345,7 @@ export default function AnatomyScene({
         shader.fragmentShader = shader.fragmentShader.replace(
           "#include <color_fragment>",
           `#include <color_fragment>
-diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.42, 0.85, 0.78), partSelected * 0.75);
+diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.42, 0.85, 0.78), partSelected * 0.75 * selectionTint);
 ${isSurface ? `
 // Restrained flexion creases: local colour variation only, with no change to lighting.
 float armX = abs(atlasPosition.x);
@@ -1307,10 +1309,12 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       frame = requestAnimationFrame(animate);
       const dt = Math.min(clock.getDelta(), 0.05),
         s = latest.current;
+      selectionTintUniform.value = s.needlePlayback ? 0 : 1;
       const changed =
         lastState?.visible !== s.visible ||
         lastState?.selected !== s.selected ||
-        lastState?.isolate !== s.isolate;
+        lastState?.isolate !== s.isolate ||
+        lastState?.hiddenParts !== s.hiddenParts;
       const moving = Math.abs(amount - s.explode) > 0.0001;
       if (moving) {
         amount = T.MathUtils.damp(amount, s.explode, 8, dt);
@@ -1318,9 +1322,10 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       }
       if (changed || moving || lastExtent < 0) {
         const visible = new Set(s.visible),
-          selection = new Set(s.selected);
+          selection = new Set(s.selected),
+          hidden = new Set(s.hiddenParts);
         const visibleParts = atlas.parts.filter((p) =>
-          s.isolate ? selection.has(p.id) : visible.has(p.system) || selection.has(p.id),
+          !hidden.has(p.id) && (s.isolate ? selection.has(p.id) : visible.has(p.system) || selection.has(p.id)),
         );
         const nextLayoutKey =
           visibleParts.map((p) => p.id).join(",") + ":" + camera.aspect.toFixed(3);
@@ -1367,7 +1372,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
               dx,
               dy,
               dz,
-              (s.isolate ? selected : (visible.has(p.system) && !replacedByAuricle) || selected)
+              !hidden.has(p.id) && (s.isolate ? selected : (visible.has(p.system) && !replacedByAuricle) || selected)
                 ? 1
                 : 0,
             ],

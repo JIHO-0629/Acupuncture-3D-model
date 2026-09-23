@@ -2,7 +2,7 @@
  "source": "atlas.json",
  "generated": "scripts/landmarks.mjs",
  "note": "anatomicalConfidence rates the match to a real structure; frameConfidence rates fitness as the origin of a WHO proportional axis",
- "count": 186,
+ "count": 222,
  "landmarks": [
   {
    "id": "anterior_median_plane",
@@ -1549,6 +1549,690 @@
    "sources": [
     "Fifth lumbar vertebra"
    ]
+  },
+  {
+   "id": "transverse_process_C7.tip",
+   "korean": "C7 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.0294,
+    1.45925,
+    -0.03004
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Seventh cervical vertebra"
+   ],
+   "symmetryOffsetMm": 3.2
+  },
+  {
+   "id": "transverse_process_C7.tip",
+   "korean": "C7 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.02825,
+    1.45694,
+    -0.02688
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Seventh cervical vertebra"
+   ],
+   "symmetryOffsetMm": 3.2
+  },
+  {
+   "id": "transverse_process_T1.tip",
+   "korean": "T1 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.03707,
+    1.44918,
+    -0.03907
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "First thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 4.8
+  },
+  {
+   "id": "transverse_process_T1.tip",
+   "korean": "T1 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.0323,
+    1.44943,
+    -0.04138
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "First thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 4.8
+  },
+  {
+   "id": "transverse_process_T2.tip",
+   "korean": "T2 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.03389,
+    1.43172,
+    -0.04893
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Second thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 0.3
+  },
+  {
+   "id": "transverse_process_T2.tip",
+   "korean": "T2 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.03369,
+    1.43145,
+    -0.04922
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Second thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 0.3
+  },
+  {
+   "id": "transverse_process_T3.tip",
+   "korean": "T3 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.03223,
+    1.40892,
+    -0.06217
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Third thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 2.6
+  },
+  {
+   "id": "transverse_process_T3.tip",
+   "korean": "T3 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.02965,
+    1.40765,
+    -0.06096
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Third thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 2.6
+  },
+  {
+   "id": "transverse_process_T4.tip",
+   "korean": "T4 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.03298,
+    1.38804,
+    -0.07085
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Fourth thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 1
+  },
+  {
+   "id": "transverse_process_T4.tip",
+   "korean": "T4 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.03196,
+    1.38709,
+    -0.07123
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Fourth thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 1
+  },
+  {
+   "id": "transverse_process_T5.tip",
+   "korean": "T5 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.03587,
+    1.35987,
+    -0.07938
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Fifth thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 3.8
+  },
+  {
+   "id": "transverse_process_T5.tip",
+   "korean": "T5 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.03222,
+    1.35848,
+    -0.08323
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Fifth thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 3.8
+  },
+  {
+   "id": "transverse_process_T6.tip",
+   "korean": "T6 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.03456,
+    1.33402,
+    -0.08523
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Sixth thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 4.2
+  },
+  {
+   "id": "transverse_process_T6.tip",
+   "korean": "T6 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.03341,
+    1.32986,
+    -0.08404
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Sixth thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 4.2
+  },
+  {
+   "id": "transverse_process_T7.tip",
+   "korean": "T7 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.03291,
+    1.30233,
+    -0.08313
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Seventh thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 2
+  },
+  {
+   "id": "transverse_process_T7.tip",
+   "korean": "T7 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.03496,
+    1.3007,
+    -0.08457
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Seventh thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 2
+  },
+  {
+   "id": "transverse_process_T8.tip",
+   "korean": "T8 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.03198,
+    1.27065,
+    -0.08234
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Eighth thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 1.2
+  },
+  {
+   "id": "transverse_process_T8.tip",
+   "korean": "T8 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.03076,
+    1.27128,
+    -0.08313
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Eighth thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 1.2
+  },
+  {
+   "id": "transverse_process_T9.tip",
+   "korean": "T9 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.03308,
+    1.24205,
+    -0.07694
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Ninth thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 1.7
+  },
+  {
+   "id": "transverse_process_T9.tip",
+   "korean": "T9 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.03142,
+    1.24162,
+    -0.07617
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Ninth thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 1.7
+  },
+  {
+   "id": "transverse_process_T10.tip",
+   "korean": "T10 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.03269,
+    1.21004,
+    -0.06982
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Tenth thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 5.6
+  },
+  {
+   "id": "transverse_process_T10.tip",
+   "korean": "T10 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.02993,
+    1.20915,
+    -0.07539
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Tenth thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 5.6
+  },
+  {
+   "id": "transverse_process_T11.tip",
+   "korean": "T11 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.02323,
+    1.18952,
+    -0.05778
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Eleventh thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 1.5
+  },
+  {
+   "id": "transverse_process_T11.tip",
+   "korean": "T11 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.02168,
+    1.18972,
+    -0.05759
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Eleventh thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 1.5
+  },
+  {
+   "id": "transverse_process_T12.tip",
+   "korean": "T12 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.02037,
+    1.15756,
+    -0.04979
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Twelfth thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 0.7
+  },
+  {
+   "id": "transverse_process_T12.tip",
+   "korean": "T12 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.01964,
+    1.15759,
+    -0.05013
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Twelfth thoracic vertebra"
+   ],
+   "symmetryOffsetMm": 0.7
+  },
+  {
+   "id": "transverse_process_L1.tip",
+   "korean": "L1 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.02861,
+    1.12917,
+    -0.04529
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "First lumbar vertebra"
+   ],
+   "symmetryOffsetMm": 1.2
+  },
+  {
+   "id": "transverse_process_L1.tip",
+   "korean": "L1 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.02737,
+    1.12922,
+    -0.04527
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "First lumbar vertebra"
+   ],
+   "symmetryOffsetMm": 1.2
+  },
+  {
+   "id": "transverse_process_L2.tip",
+   "korean": "L2 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.03273,
+    1.10377,
+    -0.04017
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Second lumbar vertebra"
+   ],
+   "symmetryOffsetMm": 1.3
+  },
+  {
+   "id": "transverse_process_L2.tip",
+   "korean": "L2 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.03243,
+    1.10249,
+    -0.04072
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Second lumbar vertebra"
+   ],
+   "symmetryOffsetMm": 1.3
+  },
+  {
+   "id": "transverse_process_L3.tip",
+   "korean": "L3 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.03562,
+    1.07625,
+    -0.03509
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Third lumbar vertebra"
+   ],
+   "symmetryOffsetMm": 4.8
+  },
+  {
+   "id": "transverse_process_L3.tip",
+   "korean": "L3 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.03079,
+    1.07554,
+    -0.03391
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Third lumbar vertebra"
+   ],
+   "symmetryOffsetMm": 4.8
+  },
+  {
+   "id": "transverse_process_L4.tip",
+   "korean": "L4 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.03395,
+    1.04721,
+    -0.036
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Fourth lumbar vertebra"
+   ],
+   "symmetryOffsetMm": 1.7
+  },
+  {
+   "id": "transverse_process_L4.tip",
+   "korean": "L4 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.03413,
+    1.04565,
+    -0.0377
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Fourth lumbar vertebra"
+   ],
+   "symmetryOffsetMm": 1.7
+  },
+  {
+   "id": "transverse_process_L5.tip",
+   "korean": "L5 횡돌기 첨",
+   "side": "right",
+   "kind": "point",
+   "point": [
+    -0.04683,
+    1.01664,
+    -0.04663
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Fifth lumbar vertebra"
+   ],
+   "symmetryOffsetMm": 2.3
+  },
+  {
+   "id": "transverse_process_L5.tip",
+   "korean": "L5 횡돌기 첨",
+   "side": "left",
+   "kind": "point",
+   "point": [
+    0.04555,
+    1.0189,
+    -0.0474
+   ],
+   "type": "anatomical",
+   "anatomicalConfidence": "high",
+   "frameConfidence": "high",
+   "derivation": "most lateral vertices of the vertebra (ribs are separate meshes)",
+   "sources": [
+    "Fifth lumbar vertebra"
+   ],
+   "symmetryOffsetMm": 2.3
   },
   {
    "id": "suprasternal_notch",

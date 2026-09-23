@@ -42,6 +42,9 @@ export function AnnotationOverlay({ annotation, channel }: { annotation: AtlasAn
       lastTime = now;
       label.style.left = current.x+'px'; label.style.top = current.y+'px';
       const endX = side === 'right' ? current.x-10 : current.x+190, endY = current.y+12;
+      // A frame whose projection is not ready yet (or is behind the camera) arrives as NaN.
+      // Drawing it makes the browser reject the whole attribute, so skip that frame instead.
+      if (!Number.isFinite(latest.x) || !Number.isFinite(latest.y)) return;
       line.setAttribute('points', latest.x+','+latest.y+' '+(endX+(side==='right'?-38:38))+','+endY+' '+endX+','+endY);
       if (Math.abs(current.x-target.x)+Math.abs(current.y-target.y) > .1) animation=requestAnimationFrame(paint);
     };

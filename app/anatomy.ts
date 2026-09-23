@@ -19,6 +19,17 @@ export const SYSTEMS: {id:SystemId;name:string;color:string;description:string}[
 export interface Part {id:string;name:string;conceptId:string;system:SystemId;chunk:number;positions:number;normals:number;indices:number;vertexCount:number;indexCount:number;bounds:[number[],number[]]}
 export interface Concept {id:string;name:string;elements:string[]}
 export interface Atlas {version:string;sex?:'male';source?:string;scope?:string;parts:Part[];concepts:Concept[];chunks:{url:string;bytes:number;gzip?:string;gzipBytes?:number}[];triangles:number}
+/** Separately licensed geometry (public/models/zanatomy, CC BY-SA 4.0) kept out of the
+ *  BodyParts3D chunks. Its parts are appended with chunk indices shifted past the atlas's
+ *  own chunks; each part becomes its own concept so selection and search treat it as a structure. */
+export interface Supplement {version:string;license:string;parts:(Omit<Part,'conceptId'>&{sourceName?:string})[];chunks:Atlas['chunks'];triangles:number}
+export function withSupplement(atlas:Atlas,supplement:Supplement):Atlas{
+ const offset=atlas.chunks.length;
+ const parts=supplement.parts.map(p=>({...p,conceptId:`ZA:${p.id}`,chunk:p.chunk+offset}));
+ return {...atlas,parts:[...atlas.parts,...parts],chunks:[...atlas.chunks,...supplement.chunks],
+  concepts:[...atlas.concepts,...parts.map(p=>({id:p.conceptId,name:p.name.toLowerCase(),elements:[p.id]}))],
+  triangles:atlas.triangles+supplement.triangles};
+}
 export type View = 'three-quarter'|'front'|'back'|'side';
 export interface NeedleHit {id:string;name:string;system:SystemId;distanceMm:number}
 export interface NeedleReport {code:string;available:boolean;limitMm:number|null;boundaryMm:number|null;boundaryId:string|null;boundaryLabel:string;conceptual:boolean;hits:NeedleHit[];pathHits:NeedleHit[];allHits:NeedleHit[]}
@@ -39,7 +50,7 @@ export const VARIANCE_LABEL:Record<Variance,string>={1:'변이 낮음',2:'변이
 export interface NeedleState {enabled:boolean;depthRatio:number;revision:number}
 export interface RegionFocus {center:[number,number,number];radiusMm:number;revision:number;viewHint?:'dorsal-foot'}
 export interface AcupunctureState {visible:boolean;selectedCode:string;showAll:boolean;showLines:boolean}
-export interface SceneState {inspectorOpen?:boolean;locatorGuide?:boolean;explode:number;visible:SystemId[];selected:string[];isolate:boolean;view:View;rotate:boolean;reset:number;needle?:NeedleState;acupuncture?:AcupunctureState;regionFocus?:RegionFocus}
+export interface SceneState {inspectorOpen?:boolean;locatorGuide?:boolean;hiddenParts?:string[];needlePlayback?:boolean;explode:number;visible:SystemId[];selected:string[];isolate:boolean;view:View;rotate:boolean;reset:number;needle?:NeedleState;acupuncture?:AcupunctureState;regionFocus?:RegionFocus}
 const KOREAN_ANATOMY_TERMS:Record<string,string>={
  'abductor digiti minimi of foot':'소지외전근','abductor hallucis':'무지외전근','adductor brevis':'단내전근','adductor longus':'장내전근','adductor magnus':'대내전근','adductor minimus':'소내전근','adductor hallucis':'무지내전근',
  'biceps femoris':'대퇴이두근','long head of biceps femoris':'대퇴이두근 장두','short head of biceps femoris':'대퇴이두근 단두','deltoid':'삼각근','acromial part of deltoid':'삼각근 견봉부','clavicular part of deltoid':'삼각근 쇄골부','spinal part of deltoid':'삼각근 견갑극부',
