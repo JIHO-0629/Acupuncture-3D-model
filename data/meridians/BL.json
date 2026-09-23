@@ -1194,18 +1194,19 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07663,
+    -0.07201,
     0.44819,
-    -0.09151
+    -0.0903
    ],
    "outward": [
     0,
     0,
     -1
    ],
-   "region": "leg-R",
-   "depthMm": 1.9,
-   "rule": "midpoint of popliteal crease (between the semitendinosus and biceps femoris ends)"
+   "region": "knee-R",
+   "depthMm": 0,
+   "rule": "midpoint of popliteal crease (between the semitendinosus and biceps femoris ends) · between the gastrocnemius heads",
+   "projection": "direct"
   },
   {
    "code": "BL41",
@@ -1794,18 +1795,19 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.09251,
+    -0.07924,
     0.07135,
-    -0.06118
+    -0.06799
    ],
    "outward": [
-    -0.75071,
+    -0.6,
     0,
-    -0.66063
+    -0.8
    ],
-   "region": "leg-R",
-   "depthMm": 13.5,
-   "rule": "depression between lateral malleolus prominence and calcaneal tendon · level with malleolus prominence"
+   "region": "foot-R",
+   "depthMm": 0,
+   "rule": "depression between lateral malleolus prominence and calcaneal tendon · level with malleolus prominence",
+   "projection": "direct"
   },
   {
    "code": "BL61",

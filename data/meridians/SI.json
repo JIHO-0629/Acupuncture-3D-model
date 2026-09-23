@@ -84,9 +84,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.22273,
+    -0.22285,
     0.81683,
-    0.04018
+    0.04686
    ],
    "outward": [
     0.94221,
@@ -94,8 +94,9 @@
     0.33501
    ],
    "region": "hand-R",
-   "depthMm": 15.4,
-   "rule": "proximal depression of 5th MCP joint · ulnar red-white border with palmar bias"
+   "depthMm": 0,
+   "rule": "proximal depression of 5th MCP joint · ulnar red-white border with palmar bias",
+   "projection": "direct"
   },
   {
    "code": "SI4",
@@ -504,18 +505,19 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.05096,
-    1.52584,
-    0.01091
+    -0.0561,
+    1.50714,
+    -0.01058
    ],
    "outward": [
-    -0.55238,
-    0,
-    0.83359
+    -0.85511,
+    -0.25203,
+    -0.45306
    ],
-   "region": "face",
-   "depthMm": 13.2,
-   "rule": "depression immediately posterior to angle of mandible · anterior border of sternocleidomastoid"
+   "region": "neck",
+   "depthMm": 0,
+   "rule": "depression immediately posterior to angle of mandible · anterior border of sternocleidomastoid",
+   "projection": "direct"
   },
   {
    "code": "SI18",

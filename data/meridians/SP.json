@@ -624,7 +624,7 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.16857,
+    -0.16227,
     1.245,
     0
    ],
@@ -634,8 +634,9 @@
     0
    ],
    "region": "thorax",
-   "depthMm": 2.6,
-   "rule": "midaxillary line · 6th intercostal space"
+   "depthMm": 0,
+   "rule": "midaxillary line · 6th intercostal space · trunk skin under the hanging arm",
+   "projection": "direct"
   }
  ]
 }

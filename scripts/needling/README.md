@@ -11,6 +11,8 @@ browser; each script writes files that are reviewed by hand before anything is u
 | `points_all.mjs` | Collects seeds, outward vectors and projection modes for all 361 standard points from `data/meridians/*.json`, `data/li-landmarks.json` and `app/gb-points.ts`. |
 | `raycast_all.mjs` | Projects each point onto skin the way the viewer does, builds a needle vector per technique, and records every tissue layer it meets plus the nearest approach to nerves, arteries, pleura and lung. |
 | `raycast_prototype.mjs` | The same for GB21, GB30 and GB38 only, with more printout. Used while designing the schema. |
+| `export_direct_profiles.mjs` | Recomputes `modelMaxMm` in `data/needling-direct.json`: the source cun range times the proportional unit of the skin region under the point (WHO segments measured on this body). Replaces the height-only segment choice of `raycast_all.mjs` for the viewer. |
+| `audit_depth.mjs` | Walks every straight-needle profile along the viewer's ray and writes `reports/needling-depth-audit-<date>.md/.json` with what lies inside the documented range (flags: empty, bone, hazard). |
 | `make_config.mjs` / `write_workbook.ps1` | Write the sheets into the reviewer's .xlsm through Excel. |
 | `verify_placement.mjs`, `depth_order.mjs`, `qa_all.mjs`, `verify_workbook.mjs` | Checks: structures poking outside the skin, layer order at a few probes, and sanity of the generated rows. |
 

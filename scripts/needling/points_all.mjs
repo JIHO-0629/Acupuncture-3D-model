@@ -44,13 +44,14 @@ export function allPoints() {
     const entry = chunk.slice(0, chunk.indexOf('},'));
     const seedExpr = entry.match(/seed:(\[[-\d.,\s]+\]|GB_LANDMARK_SEEDS\.GB\d+!?|GB_HEAD_CUN_SEEDS\.GB\d+!?)/)?.[1];
     const projection = entry.match(/projection:'([a-z-]+)'/)?.[1];
+    const outward = entry.match(/outward:\[([-\d.,\s]+)\]/)?.[1].split(',').map(Number);
     if (!seedExpr || !projection) throw new Error(`gb-points.ts 파싱 실패: ${code}`);
     // '.078' 같은 축약 숫자가 있어 JSON.parse 대신 직접 읽는다
     const seed = seedExpr.startsWith('[') ? seedExpr.slice(1, -1).split(',').map(Number)
       : seedExpr.startsWith('GB_LANDMARK') ? GB_LANDMARK_SEEDS[seedExpr.match(/GB\d+/)[0]]
         : GB_HEAD_CUN_SEEDS[seedExpr.match(/GB\d+/)[0]];
     if (!seed) throw new Error(`seed missing for ${code}`);
-    out.push({ code, seed, projection });
+    out.push({ code, seed, projection, ...(outward ? { outward } : {}) });
   }
   // LI
   for (const [code, p] of Object.entries(json('data/li-landmarks.json').points)) out.push({ code, seed: p.seed, outward: p.outward, projection: 'lateral' });

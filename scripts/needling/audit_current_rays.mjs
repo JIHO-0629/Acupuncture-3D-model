@@ -88,7 +88,8 @@ function hitsFor(surface, trajectory, depthMm) {
   const scanDepth = depthMm / 1000;
   const hits = [];
   for (const [index, part] of atlas.parts.entries()) {
-    if (part.system === 'integumentary') continue;
+    // Same exclusions as app/scene.tsx: skin, and the hidden native ear (FJ2811).
+    if (part.system === 'integumentary' || part.id === 'FJ2811') continue;
     const box = part.box.clone().expandByScalar(shaftRadius);
     if (!box.containsPoint(origins[0])) {
       const boxHit = axisRay.intersectBox(box, hitPoint);

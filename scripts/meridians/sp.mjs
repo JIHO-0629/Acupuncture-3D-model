@@ -1,6 +1,7 @@
 /** SP1–SP21 (족태음비경). KCMRIC → WHO 2008 → local photo archive. */
 import * as T from 'three';
 import {atlas,mesh,centroid,v,mid,most,landmark,meridianWriter,UP,DOWN,MEDIAL,ANTERIOR,POSTERIOR} from '../acupoint-kit.mjs';
+import {threeMesh} from '../atlas-geometry.mjs';
 
 const W=meridianWriter('SP');
 const pts=(part,filter=()=>true)=>{const out=[];for(let i=0;i<part.vertexCount;i++){const p=v(part.positions[i*3],part.positions[i*3+1],part.positions[i*3+2]);if(filter(p))out.push(p);}return out;};
@@ -65,7 +66,16 @@ for(const [i,number] of [5,4,3,2].entries()){
   const y=intercostal(number,-0.116);
   abdomen(`SP${17+i}`,y,-0.116,`${{2:"2nd",3:"3rd",4:"4th",5:"5th"}[number]} intercostal space measured from the actual lateral rib curve · 6 B-cun lateral to anterior median line`);
 }
-place('SP21',v(-0.17,1.245,0),v(-1,0,0),['thorax'],'midaxillary line · 6th intercostal space');
+// 2026-09-23: the arm hangs against the chest in this model, so a lateral projection landed on the skin of the
+// arm and the needle started in biceps brachii. The trunk keeps its own skin sheet under the arm; SP21 sits on
+// that inner sheet (the last skin crossing before serratus anterior) and the needle goes straight medial.
+{
+  const y=1.245,skin=threeMesh(mesh(atlas,'Skin')),serratus=threeMesh(mesh(atlas,'Right serratus anterior'));
+  const ray=new T.Raycaster(v(-0.4,y,0),v(1,0,0));
+  const wall=ray.intersectObject(serratus,false)[0].point.x;
+  const sheet=ray.intersectObject(skin,false).map((h)=>h.point.x).filter((x)=>x<wall).pop();
+  W.putDirect('SP21',v(sheet,y,0),v(-1,0,0),'thorax','midaxillary line · 6th intercostal space · trunk skin under the hanging arm');
+}
 
 const english=['Yinbai','Dadu','Taibai','Gongsun','Shangqiu','Sanyinjiao','Lougu','Diji','Yinlingquan','Xuehai','Jimen','Chongmen','Fushe','Fujie','Daheng','Fuai','Shidou','Tianxi','Xiongxiang','Zhourong','Dabao'];
 const overrides=Object.fromEntries(english.map((name,i)=>[`SP${i+1}`,{english:name}]));

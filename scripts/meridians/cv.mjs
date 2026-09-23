@@ -1,5 +1,5 @@
 /** CV1–CV24 (임맥). KCMRIC → WHO 2008 → local CV01–CV24 images, all 1:1 checked. */
-import {atlas,mesh,v,landmark,meridianWriter,ANTERIOR,DOWN} from '../acupoint-kit.mjs';
+import {atlas,mesh,v,landmark,meridianWriter,toSkin,ANTERIOR,DOWN} from '../acupoint-kit.mjs';
 
 const W=meridianWriter('CV');
 const place=(code,p,out=ANTERIOR,regions=['thorax'],rule,extra={})=>W.put(code,p.clone().addScaledVector(out,-0.004),out,regions,rule,{projection:out===ANTERIOR?'anterior':'lateral',...extra});
@@ -24,7 +24,10 @@ for(const [code,offset,n] of [['CV20',.006,1],['CV19',-.020,2],['CV18',-.046,3],
  const y=sternalAngle+offset;place(code,v(0,y,.083),ANTERIOR,['thorax'],`anterior median line · level with ${n}${n===1?'st':n===2?'nd':n===3?'rd':'th'} intercostal space · sternal-angle frame`);
 }
 place('CV21',lerp(notch,xiphi,1/9),ANTERIOR,['thorax','neck'],'anterior median line · 1 B-cun inferior to suprasternal fossa on 9 B-cun sternal axis');
-place('CV22',notch,ANTERIOR,['neck','thorax'],'centre of suprasternal fossa · trachea lies deep');
+// 2026-09-23: the notch landmark is the top of the manubrium, so the skin over it put the needle into bone at
+// 4 mm. The fossa is the hollow above it (10 mm up on this body); the needle goes straight back, toward the
+// trachea, instead of along the downward-sloping skin of the hollow.
+W.putDirect('CV22',toSkin(notch.clone().add(v(0,0.0095,0)),ANTERIOR,['neck','thorax']).point,ANTERIOR,'neck','centre of suprasternal fossa · trachea lies deep');
 const hyoid=mesh(atlas,'Hyoid bone'),hyoidTop=v(0,hyoid.box.max.y,hyoid.box.max.z),submentalOut=v(0,-.7,.7).normalize();
 place('CV23',hyoidTop,submentalOut,['neck','face'],'anterior median line · submental depression superior to hyoid bone');
 place('CV24',v(0,1.516,.084),ANTERIOR,['face'],'centre of mentolabial sulcus');

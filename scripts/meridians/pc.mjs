@@ -7,7 +7,7 @@
  */
 import {
   atlas, mesh, extremeCluster, centroid, slab, v, mid, perp, most, centreOf, atHeight, radialFrom,
-  LATERAL, MEDIAL, ANTERIOR, UP, DOWN, upperLimb, meridianWriter,
+  LATERAL, MEDIAL, ANTERIOR, UP, DOWN, upperLimb, meridianWriter, toSkin,
 } from '../acupoint-kit.mjs';
 
 const W = meridianWriter('PC');
@@ -43,8 +43,11 @@ const forearmAnterior = perp(ANTERIOR, L.forearmAxis);
 {
   const biceps = ['Long head of right biceps brachii', 'Short head of right biceps brachii'].map((n) => mesh(atlas, n));
   const tendon = most(biceps.flatMap((part) => slab(part, 1, L.creaseY, 0.006)), armMedial);
-  const deep = tendon.addScaledVector(armMedial, 0.004).setY(L.creaseY);
-  W.put('PC3', deep, forearmAnterior, ['upper-arm-R', 'forearm-R'], 'cubital crease · depression medial to biceps brachii tendon');
+  const deep = tendon.addScaledVector(armMedial, 0.003).setY(L.creaseY);
+  // 2026-09-23: the forearm-anterior projection landed on skin angled over the biceps, and the needle crossed both
+  // heads (13-27 mm). Here the needle goes straight back beside the tendon: brachialis, with the brachial artery
+  // just lateral to the path.
+  W.putDirect('PC3', toSkin(deep, ANTERIOR, ['upper-arm-R', 'forearm-R']).point, ANTERIOR, 'upper-arm-R', 'cubital crease · depression medial to biceps brachii tendon');
 }
 
 // ---------------------------------------------------------------- PC4–PC7: between palmaris longus and flexor carpi radialis tendons

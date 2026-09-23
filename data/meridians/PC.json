@@ -90,18 +90,19 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.19783,
-    1.15604,
-    0.00488
+    -0.19954,
+    1.15224,
+    0.00503
    ],
    "outward": [
-    0.0372,
-    0.19476,
-    0.98015
+    0,
+    0,
+    1
    ],
    "region": "upper-arm-R",
-   "depthMm": 19.5,
-   "rule": "cubital crease · depression medial to biceps brachii tendon"
+   "depthMm": 0,
+   "rule": "cubital crease · depression medial to biceps brachii tendon",
+   "projection": "direct"
   },
   {
    "code": "PC4",

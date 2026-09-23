@@ -896,18 +896,18 @@
    "status": "implemented_unverified",
    "seed": [
     0.0025,
-    1.40052,
-    0.05147
+    1.41002,
+    0.04564
    ],
    "outward": [
     0,
     0,
     1
    ],
-   "region": "thorax",
-   "depthMm": 16.9,
+   "region": "neck",
+   "depthMm": 0,
    "rule": "centre of suprasternal fossa · trachea lies deep",
-   "projection": "anterior"
+   "projection": "direct"
   },
   {
    "code": "CV23",

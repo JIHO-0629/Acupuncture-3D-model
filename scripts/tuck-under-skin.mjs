@@ -14,7 +14,7 @@
  * that way plus a margin, the displacement is grown into a smooth skirt so the surface
  * does not crease, and normals are rebuilt from the moved faces.
  *
- * Usage: node scripts/tuck-under-skin.mjs [--check]
+ * Usage: node scripts/tuck-under-skin.mjs [--check] [--only=<regex on mesh name>]
  *
  * Re-running is safe: once every vertex is enclosed, nothing moves.
  */
@@ -26,6 +26,8 @@ import { buildSurface, buildGate, OUTSIDE } from './skin-clearance.mjs';
 
 const CLEARANCE = 0.0004, MAX_DEPTH = 0.05, SMOOTHING = 10;
 const check = process.argv.includes('--check');
+const only = process.argv.find((a) => a.startsWith('--only='))?.slice(7);
+const selected = only ? new RegExp(only, 'i') : null;
 const dir = new URL('../public/models/', import.meta.url);
 const manifestPath = new URL('atlas.json', dir);
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
@@ -40,7 +42,7 @@ const buffers = new Map(), touched = new Set(), report = [];
 let gated = 0, confirmed = 0;
 
 for (const part of atlas.parts) {
-  if (part.system === 'integumentary') continue;
+  if (part.system === 'integumentary' || (selected && !selected.test(part.name))) continue;
   const required = new Float64Array(part.vertexCount);
   const outward = new Map();
   let count = 0, worst = 0;

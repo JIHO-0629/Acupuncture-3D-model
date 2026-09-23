@@ -5,7 +5,7 @@
  */
 import {
   atlas, mesh, extremeCluster, centroid, slab, v, mid, perp, most, centreOf, atHeight, radialFrom,
-  LATERAL, MEDIAL, ANTERIOR, UP, DOWN, upperLimb, meridianWriter,
+  LATERAL, MEDIAL, ANTERIOR, UP, DOWN, upperLimb, meridianWriter, toSkin,
 } from '../acupoint-kit.mjs';
 
 const W = meridianWriter('LU');
@@ -52,7 +52,10 @@ const forearmLateral = perp(LATERAL, L.forearmAxis), forearmAnterior = perp(ANTE
 {
   const tendon = most(biceps.flatMap((part) => slab(part, 1, L.creaseY, 0.006)), armLateral);
   const deep = tendon.addScaledVector(armLateral, 0.004).setY(L.creaseY + 0.003);
-  W.put('LU5', deep, forearmAnterior.clone().addScaledVector(forearmLateral, 0.35), ['upper-arm-R', 'forearm-R'], 'immediately superior to cubital crease · depression lateral to biceps brachii tendon');
+  // 2026-09-23: the projected skin faced the biceps and the needle went through its long head. Kept as the same
+  // anterolateral direction, but applied directly at the skin beside the tendon: cephalic vein, then brachialis.
+  const out = forearmAnterior.clone().addScaledVector(forearmLateral, 0.35).normalize();
+  W.putDirect('LU5', toSkin(deep, out, ['upper-arm-R', 'forearm-R']).point, out, 'upper-arm-R', 'immediately superior to cubital crease · depression lateral to biceps brachii tendon');
 }
 
 // ---------------------------------------------------------------- wrist and forearm: LU9, LU8, LU7, LU6

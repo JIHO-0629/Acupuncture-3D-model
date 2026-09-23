@@ -30,6 +30,8 @@ export interface GbPointDefinition{
  basis:string;
  seed:[number,number,number];
  projection:ProjectionMode;
+ /** With projection 'direct': the outward direction at the seed; the needle runs opposite to it. */
+ outward?:[number,number,number];
  status:'registered'|'review';
  primarySource:string;
  secondarySource:string;
@@ -90,12 +92,23 @@ const GB_POINT_INPUTS:GbPointInput[]=[
  // the midpoint of that gap. The old seed floated 39 mm behind the skin and landed on the side
  // of the neck, 62 mm below the external occipital protuberance.
  {code:'GB20',korean:'풍지',hanja:'風池',english:'Fengchi',location:'후두골 아래, 흉쇄유돌근과 등세모근 이는곳 사이 함요부',basis:'후두골 아래모서리와 흉쇄유돌근·등세모근 이는곳 사이 간격의 중점',seed:[-.047,1.560,-.062],projection:'posterior',status:'registered'},
- {code:'GB21',korean:'견정',hanja:'肩井',english:'Jianjing',location:'C7 극돌기와 견봉 외측 끝을 잇는 구역의 중점',basis:'제7경추와 견갑골 견봉부',seed:[-.125,1.402,-.005],projection:'lateral',status:'registered'},
- {code:'GB22',korean:'연액',hanja:'淵腋',english:'Yuanye',location:'팔을 든 자세의 겨드랑 중심 아래, 제4늑간 높이',basis:'피부를 따르는 가상 중간겨드랑선과 제4늑간',seed:[-.185,1.295,.010],projection:'lateral',status:'registered'},
+ // 2026-09-23: WHO midpoint of the C7 spinous process tip (0.0004, 1.4469, -0.0787) and the lateral end of the
+ // acromion (-0.1665, 1.4224, -0.0433) = (-0.083, 1.4347, -0.061), carried up to the skin on top of the shoulder.
+ // The old seed plus a lateral projection landed 82 mm away on the deltoid, and the needle went into the humerus.
+ // The needle is vertical, as in the ultrasound series behind the GB21 depth data (Chu 2018: vertical to the skin,
+ // parallel to the sagittal plane); the skin triangle here is 24 mm across and its normal leans 44 degrees.
+ {code:'GB21',korean:'견정',hanja:'肩井',english:'Jianjing',location:'C7 극돌기와 견봉 외측 끝을 잇는 선의 중점',basis:'제7경추 극돌기 끝과 견봉 외측 끝의 중점, 어깨 위 피부에서 수직 자입',seed:[-.0830,1.4554,-.0610],projection:'direct',outward:[0,1,0],status:'registered'},
+ // 2026-09-23: the arm hangs against the chest here, and a lateral projection's normal tilted the needle into
+ // biceps brachii. The point stays on the axillary skin at the 4th intercostal level and the needle goes straight
+ // medial, as it would with the arm raised. In this pose the axillary hollow leaves ~70 mm to serratus anterior.
+ {code:'GB22',korean:'연액',hanja:'淵腋',english:'Yuanye',location:'팔을 든 자세의 겨드랑 중심 아래, 제4늑간 높이',basis:'중간겨드랑선과 제4늑간, 겨드랑 피부에서 안쪽으로 수평 자입',seed:[-.2103,1.295,.010],projection:'direct',outward:[-1,0,0],status:'registered'},
  {code:'GB23',korean:'첩근',hanja:'輒筋',english:'Zhejin',location:'GB22 앞쪽, 제4늑간 높이의 흉곽 가쪽 구역',basis:'제4·5늑골과 중간겨드랑선',seed:[-.170,1.270,.038],projection:'lateral',status:'registered'},
  {code:'GB24',korean:'일월',hanja:'日月',english:'Riyue',location:'제7늑간, 전정중선 가쪽 흉곽 구역',basis:'제7·8늑골과 늑간 공간',seed:[-.120,1.165,.087],projection:'anterior',status:'registered'},
  {code:'GB25',korean:'경문',hanja:'京門',english:'Jingmen',location:'옆배, 제12늑골 자유단 바로 아래쪽',basis:'제12늑골 자유단 랜드마크·뒤겨드랑선 뒤쪽',seed:GB_LANDMARK_SEEDS.GB25!,projection:'lateral',status:'review'},
- {code:'GB26',korean:'대맥',hanja:'帶脈',english:'Daimai',location:'제11늑골 자유단 아래, 배꼽 중심과 같은 높이',basis:'제11늑골·백선 기반 가상 배꼽 높이',seed:[-.150,1.000,.025],projection:'lateral',status:'review'},
+ // 2026-09-23: the old seed sat 30 mm below the umbilicus level and 40 mm lateral, where the needle met the iliac
+ // crest at 14 mm. Now: vertically below the free end of the 11th rib (-0.108, 1.0888, -0.0049) at the height of
+ // the umbilicus landmark (y 1.0297), projected laterally to the flank skin.
+ {code:'GB26',korean:'대맥',hanja:'帶脈',english:'Daimai',location:'제11늑골 자유단 아래, 배꼽 중심과 같은 높이',basis:'제11늑골 자유단의 수직선과 배꼽 높이의 교점',seed:[-.108,1.0297,-.005],projection:'lateral',status:'review'},
  {code:'GB27',korean:'오추',hanja:'五樞',english:'Wushu',location:'배꼽 아래 3/5 구간, 위앞엉덩뼈가시 안쪽',basis:'백선상의 가상 배꼽·가상 치골결합·우측 장골',seed:[-.095,.925,.070],projection:'anterior',status:'review'},
  {code:'GB28',korean:'유도',hanja:'維道',english:'Weidao',location:'위앞엉덩뼈가시 아래안쪽의 서혜부 구역',basis:'우측 장골 전상부와 서혜인대 경로',seed:[-.120,.885,.055],projection:'anterior',status:'review'},
  {code:'GB29',korean:'거료',hanja:'居髎',english:'Juliao',location:'위앞엉덩뼈가시와 대전자 사이 피부 곡선의 중점',basis:'우측 장골과 대퇴골 대전자',seed:[-.135,.910,-.005],projection:'lateral',status:'registered'},
@@ -160,7 +173,7 @@ export function needleProfile(code:`GB${number}`):NeedleProfile{
  const finish=(profile:Omit<NeedleProfile,'sourceNeedling'|'depthValidation'|'validationSource'|'referenceStructures'>):NeedleProfile=>({...profile,...shared,referenceStructures:REFERENCE_STRUCTURES[profile.region]});
  if(number<=19)return finish({region:'face-scalp',label:'안구·안와·두개골 위험 경계',probeDepthMm:45,conceptualBoundary:false,warning:'안구·안와·두개골에 접근하면 자동 정지합니다. 특수 자침 방향은 후속 구현 대상이며 현재 궤적은 체표 법선 직자만 표시합니다.'});
  if(number===20)return finish({region:'neck',label:'경부 주요 혈관·경추 위험 경계',probeDepthMm:80,conceptualBoundary:false,warning:'경부 혈관과 신경의 위치는 개인차가 큽니다. 비율은 이 참조 모델의 첫 위험 구조를 기준으로 합니다.',pointRisk:'반대쪽 안구 방향 또는 경부 심부를 향한 임의 궤적을 임상 지침으로 사용하지 마십시오.'});
- if(number===21)return finish({region:'thorax',label:'견정 모델 경로의 첫 위험 구조',probeDepthMm:100,conceptualBoundary:false,warning:'이 모델에는 흉막 메시가 있지만, 현재 GB21 직자 경로는 상완골을 먼저 지나므로 문헌의 흉막 거리와 대응하지 않습니다.',pointRisk:'모델상 여유가 임상 안전을 뜻하지 않습니다.'});
+ if(number===21)return finish({region:'thorax',label:'견정 모델 경로의 첫 위험 구조',probeDepthMm:100,conceptualBoundary:false,warning:'어깨 위에서 수직으로 들어가는 경로입니다. 초음파 연구의 피부-흉막 거리(남 42 mm, 여 35 mm 내외)보다 이 모델의 흉막은 깊게 놓여 있어, 모델 거리를 안전 여유로 읽으면 안 됩니다.',pointRisk:'모델상 여유가 임상 안전을 뜻하지 않습니다.'});
  if(number<=24)return finish({region:'thorax',label:'기흉 위험 경계(개념 모델)',probeDepthMm:100,conceptualBoundary:true,warning:'기흉 고위험 구역입니다. 이 경로의 흉막 교차가 검증되지 않으면 늑골·호흡기 구조를 개념적 경계로 표시합니다.',pointRisk:'모델상 여유가 임상 안전을 뜻하지 않습니다.'});
  if(number<=28)return finish({region:'flank-abdomen',label:'복벽 안쪽 장기 위험 경계',probeDepthMm:100,conceptualBoundary:false,warning:'복막과 장기의 실제 위치는 체형과 자세에 따라 달라집니다. 모델 경계를 실제 환자에게 적용하지 마십시오.'});
  if(number<=30)return finish({region:'pelvis-gluteal',label:'골반 장기·혈관·뼈 위험 경계',probeDepthMm:120,conceptualBoundary:false,warning:'신경을 찌르는 것을 목표로 표현하지 않습니다. GB30의 좌골신경은 인접 위험·변이 구조로만 다룹니다.'});

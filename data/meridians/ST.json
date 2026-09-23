@@ -170,7 +170,7 @@
    "korean": "협거",
    "hanja": "頰車",
    "english": "Jiache",
-   "location": "턱뼈각 이등분선과 귓불 수평선이 만나는 점 (검수자 결정: 사진 빨간 점), 턱뼈각에서 위앞쪽 약 1촌",
+   "location": "턱뼈각에서 위앞쪽으로 1촌(가운데손가락 너비), 턱뼈각 이등분선 위 깨물근 융기부",
    "rawLocation": "턱뼈각에서 위앞쪽으로 1촌\n-턱뼈각 이등분선과 귓불 수평선이 만나는 점으로 취혈 (분홍색)\n-구각과 귓볼의 연결선으로도 생각하기도 함 (연두색)",
    "rawMethod": "옆으로 누워서 입을 벌리고 근육에 힘을 뺀 후, 오목한 곳이 나타나면 취혈.\n 위치를 턱뼈각 위앞쪽 1촌으로 정의하는데, 1촌보다는 입과 치아를 굳게 다물면 깨물근이 융기되고, 굳게 다물었던 치아를 놓으면 오목하게 느껴지는 곳에서 취혈",
    "classification": "A+B · 해부학+비례",
@@ -182,9 +182,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.05391,
-    1.5666,
-    0.0542
+    -0.05963,
+    1.53941,
+    0.01877
    ],
    "outward": [
     -0.98058,
@@ -192,8 +192,8 @@
     0.19612
    ],
    "region": "face",
-   "depthMm": 2.7,
-   "rule": "mandibular-angle bisector ∩ earlobe horizontal (reviewer decision: photo red point) · over the masseter"
+   "depthMm": 8.5,
+   "rule": "mandibular-angle bisector (reviewer decision: photo red point) · 1 F-cun anterosuperior to the angle · over the masseter"
   },
   {
    "code": "ST7",
@@ -338,12 +338,13 @@
    ],
    "outward": [
     0,
-    0.44721,
-    0.89443
+    0,
+    1
    ],
-   "region": "shoulder",
-   "depthMm": 3.5,
-   "rule": "lesser supraclavicular fossa · just above the sternal end of the clavicle · immediately lateral to the sternal head of sternocleidomastoid"
+   "region": "neck",
+   "depthMm": 0,
+   "rule": "lesser supraclavicular fossa · just above the sternal end of the clavicle · immediately lateral to the sternal head of sternocleidomastoid",
+   "projection": "direct"
   },
   {
    "code": "ST12",

@@ -4,7 +4,7 @@
  * pp. 46–68) → photo archive images/ST/ST01–45.
  *
  * Reviewer decisions (2026-09-15):
- *  - ST6 협거: intersection of the mandibular-angle bisector and the earlobe horizontal (photo red point)
+ *  - ST6 협거: on the mandibular-angle bisector (photo red point); since 2026-09-23 at 1 F-cun from the angle, see below
  *  - ST43 함곡: depression immediately proximal to the 2nd MTP joint (photo yellow point)
  * Photo notes applied: ST1 just above the palpable infraorbital-margin notch; ST2 at the foramen, not high;
  * ST4 close to the mouth angle; ST7 more anterior (directly below GB3); the 4촌 chest line and 2촌 abdominal
@@ -14,7 +14,7 @@
  */
 import fs from 'node:fs';
 import * as T from 'three';
-import { atlas, mesh, centroid, v, mid, most, landmark, meridianWriter, UP, LATERAL, ANTERIOR } from '../acupoint-kit.mjs';
+import { atlas, mesh, centroid, v, mid, most, landmark, meridianWriter, toSkin, UP, LATERAL, ANTERIOR } from '../acupoint-kit.mjs';
 import { threeMesh } from '../atlas-geometry.mjs';
 
 const W = meridianWriter('ST');
@@ -147,9 +147,13 @@ const massSuperficial = pts(mesh(atlas, 'Superficial part of right masseter'));
   log.st5 = { masseterCorner: r4(corner), mandibleBorder: r4(border) };
 }
 {
-  // Reviewer decision: 턱뼈각 이등분선 ∩ 귓불 수평선. The auricle is a presentation mesh (app/ear-anatomy.ts);
-  // its lobule inferior tip sits at y 1.5666 with the current AURICLE_OFFSET.
-  const EARLOBE_Y = 1.5666;
+  // Reviewer decision: on the mandibular-angle bisector (photo red point, 턱뼈각 이등분선 ∩ 귓불 수평선).
+  // The earlobe horizontal cannot place it on this model: the auricle presentation (app/ear-anatomy.ts) has its
+  // lobule tip at y 1.5666, 41 mm above the gonion, so the crossing landed 50 mm in front of the angle on the
+  // zygomatic bone, off the masseter (needle: zygomaticus major -> zygomatic bone at 5.5 mm). In the reviewer's
+  // photo the lobule is about 1 finger-breadth above the angle and the red point sits about that far along the
+  // bisector, which is also the source's own definition (KCMRIC/WHO: 1 F-cun anterosuperior to the angle).
+  // F_CUN is the face finger-cun this script already uses for ST4.
   const gonion = most(mandible, v(0, -1, -1).normalize());
   const condyle = landmark('mandibular_condyle');
   const bodyPoint = lowest(mandible.filter((p) => p.z > gonion.z + 0.03));
@@ -158,12 +162,12 @@ const massSuperficial = pts(mesh(atlas, 'Superficial part of right masseter'));
   const sagittal = (d) => v(0, d.y, d.z).normalize();
   const ramus = sagittal(condyle.clone().sub(gonion)), body = sagittal(bodyPoint.clone().sub(gonion));
   const bisector = ramus.clone().add(body).normalize();
-  const hit = gonion.clone().addScaledVector(bisector, (EARLOBE_Y - gonion.y) / bisector.y);
+  const hit = gonion.clone().addScaledVector(bisector, F_CUN);
   const over = massSuperficial.filter((p) => Math.abs(p.y - hit.y) < 0.004 && Math.abs(p.z - hit.z) < 0.004);
   const deep = v(over.length ? Math.min(...over.map((p) => p.x)) : hit.x - 0.012, hit.y, hit.z);
   W.put('ST6', deep, v(-1, 0, 0.2).normalize(), face,
-    'mandibular-angle bisector ∩ earlobe horizontal (reviewer decision: photo red point) · over the masseter');
-  log.st6 = { gonion: r4(gonion), bisector: r4(bisector), hit: r4(hit), onMasseter: over.length > 0 };
+    'mandibular-angle bisector (reviewer decision: photo red point) · 1 F-cun anterosuperior to the angle · over the masseter');
+  log.st6 = { gonion: r4(gonion), bisector: r4(bisector), fCunMm: +(F_CUN * 1000).toFixed(1), hit: r4(hit), onMasseter: over.length > 0 };
 }
 {
   // WHO note: directly below GB3 (above the midpoint of the zygomatic arch). Keep that z unless the coronoid
@@ -238,7 +242,9 @@ const clavicleMedial = most(pts(clavicle), v(1, 0, 0)), clavicleLateral = most(p
   const x11 = gap.sternalEdge - 0.002;
   const top = highest(pts(clavicle, (p) => Math.abs(p.x - x11) < 0.004));
   // skin-regions labels the skin over the medial clavicle 'shoulder', so it is allowed here.
-  W.put('ST11', v(x11, top.y + 0.004, top.z + 0.004), v(0, 0.45, 0.9).normalize(), ['neck', 'thorax', 'shoulder'],
+  // 2026-09-23: same skin point; the needle now goes straight back through the fossa between the SCM heads. The skin
+  // normal here faces up and forward, and following it the needle ran down into the clavicle at 8.5 mm.
+  W.putDirect('ST11', toSkin(v(x11, top.y + 0.004, top.z + 0.004), v(0, 0.45, 0.9).normalize(), ['neck', 'thorax', 'shoulder']).point, ANTERIOR, 'neck',
     'lesser supraclavicular fossa · just above the sternal end of the clavicle · immediately lateral to the sternal head of sternocleidomastoid');
   log.st11 = { cutY: +y.toFixed(4), sternalHeadLateralX: +gap.sternalEdge.toFixed(4), headGapWidthMm: +(gap.width * 1000).toFixed(1) };
 }
@@ -512,7 +518,7 @@ const foot = ['foot-R'];
 const english = ['Chengqi', 'Sibai', 'Juliao', 'Dicang', 'Daying', 'Jiache', 'Xiaguan', 'Touwei', 'Renying', 'Shuitu', 'Qishe', 'Quepen', 'Qihu', 'Kufang', 'Wuyi', 'Yingchuang', 'Ruzhong', 'Rugen', 'Burong', 'Chengman', 'Liangmen', 'Guanmen', 'Taiyi', 'Huaroumen', 'Tianshu', 'Wailing', 'Daju', 'Shuidao', 'Guilai', 'Qichong', 'Biguan', 'Futu', 'Yinshi', 'Liangqiu', 'Dubi', 'Zusanli', 'Shangjuxu', 'Tiaokou', 'Xiajuxu', 'Fenglong', 'Jiexi', 'Chongyang', 'Xiangu', 'Neiting', 'Lidui'];
 const overrides = Object.fromEntries(english.map((name, i) => [`ST${i + 1}`, { english: name }]));
 overrides.ST30.location = '샅부위, 두덩결합 위모서리와 같은 높이, 앞정중선에서 가쪽으로 2촌, 넙다리동맥이 뛰는 곳 (시트 원문의 "5촌"은 KCMRIC·WHO와 불일치하여 2촌 적용)';
-overrides.ST6.location = '턱뼈각 이등분선과 귓불 수평선이 만나는 점 (검수자 결정: 사진 빨간 점), 턱뼈각에서 위앞쪽 약 1촌';
+overrides.ST6.location = '턱뼈각에서 위앞쪽으로 1촌(가운데손가락 너비), 턱뼈각 이등분선 위 깨물근 융기부';
 W.write({
   label: '위경', name: '족양명위경', english: 'STOMACH MERIDIAN',
   primarySource: 'https://m.kmcric.com/knowledge/acupoint/ST', secondarySource: 'https://iris.who.int/handle/10665/353407',

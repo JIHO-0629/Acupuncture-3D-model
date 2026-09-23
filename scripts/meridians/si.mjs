@@ -1,5 +1,5 @@
 /** SI1–SI19 (수태양소장경). KCMRIC → WHO 2008 → local photo archive. */
-import {atlas,mesh,extremeCluster,centroid,v,mid,most,landmark,upperLimb,perp,radialFrom,meridianWriter,LATERAL,MEDIAL,ANTERIOR,POSTERIOR,UP,DOWN} from '../acupoint-kit.mjs';
+import {atlas,mesh,extremeCluster,centroid,v,mid,most,landmark,upperLimb,perp,radialFrom,meridianWriter,toSkin,LATERAL,MEDIAL,ANTERIOR,POSTERIOR,UP,DOWN} from '../acupoint-kit.mjs';
 
 const W=meridianWriter('SI'), L=upperLimb();
 const pts=(part,filter=()=>true)=>{const out=[];for(let i=0;i<part.vertexCount;i++){const p=v(part.positions[i*3],part.positions[i*3+1],part.positions[i*3+2]);if(filter(p))out.push(p);}return out;};
@@ -13,7 +13,15 @@ const ppBase=extremeCluster(pp,UP,0.03), ppTip=extremeCluster(pp,DOWN,0.03);
 const mcHead=extremeCluster(mc5,DOWN,0.03), mcBase=extremeCluster(mc5,UP,0.03);
 // Reviewer: SI2/SI3 belonged on the palmar side of the red-white border, not the dorsal hand.
 place('SI2',ppBase.clone().lerp(ppTip,0.12),ulnarPalmar,['hand-R'],'distal depression of 5th MCP joint · ulnar red-white border with palmar bias');
-place('SI3',mcHead.clone().lerp(mcBase,0.12),ulnarPalmar,['hand-R'],'proximal depression of 5th MCP joint · ulnar red-white border with palmar bias');
+// 2026-09-23: the ulnar-border skin lay directly on the 5th metacarpal, so the needle met bone at 3 mm. The point
+// keeps the reviewer's palmar bias but aims 1.5 mm palmar to the bone's palmar-ulnar corner, and the needle
+// runs across the palm: abductor and flexor digiti minimi, then the long flexors and lumbricals toward PC8.
+{
+  const base=mcHead.clone().lerp(mcBase,0.12);
+  const slice=pts(mc5).filter((p)=>Math.abs(p.y-base.y)<0.004);
+  const corner=v(Math.max(...slice.map((p)=>p.x)),base.y,Math.max(...slice.map((p)=>p.z))+0.0015);
+  W.putDirect('SI3',toSkin(corner,ulnarPalmar,['hand-R']).point,ulnarPalmar,'hand-R','proximal depression of 5th MCP joint · ulnar red-white border with palmar bias');
+}
 const triquetrum=mesh(atlas,'Right triquetral');
 place('SI4',mid(mcBase,centroid(triquetrum)),ulnarPalmar,['hand-R'],'bony interval between base of 5th metacarpal and triquetrum · red-white border');
 place('SI5',mid(L.ulnarHead,centroid(triquetrum)).add(v(0.004,0,-0.004)),ulnarDorsal,['hand-R'],'dorsal wrist depression between ulnar styloid and triquetrum');
@@ -47,7 +55,17 @@ place('SI15',v(scapularSpineMedial.x*2/3,c7.y,c7.z),POSTERIOR,['neck','shoulder'
 const neckOut=v(-0.65,0,-0.76).normalize(), mandible=mesh(atlas,'Mandible');
 place('SI16',v(-0.055,1.514,-0.025),neckOut,['neck','face'],'posterior border of sternocleidomastoid · level of thyroid cartilage superior border');
 const mandibularAngle=landmark('mandibular_angle');
-place('SI17',mandibularAngle.clone().add(v(-0.004,0,-0.004)),v(-0.55,0,0.83).normalize(),['neck','face'],'depression immediately posterior to angle of mandible · anterior border of sternocleidomastoid');
+// 2026-09-23: the old outward (-0.55, 0, 0.83) faced forward, so the projection landed on the skin over the
+// masseter and the needle started inside it (masseter -> platysma -> mandible). The point is the gap between
+// the angle and the anterior border of sternocleidomastoid, 15 mm below the angle; the skin there faces
+// lateral-posterior-inferior, and the needle is kept along that face (direct): platysma, the edge of
+// sternocleidomastoid, then the internal carotid about 20 mm deep (Chou 2015: first hazard at 24 mm).
+{
+  const out=v(-0.855,-0.252,-0.453).normalize();
+  const gap=mandibularAngle.clone().add(v(-0.003,-0.0154,-0.0119));
+  const skin=toSkin(gap,out,['neck','face']).point;
+  W.putDirect('SI17',skin,out,'neck','depression immediately posterior to angle of mandible · anterior border of sternocleidomastoid');
+}
 // Reviewer: the fixed coordinate was too lateral. Re-anchor beneath the lateral canthus on the zygomatic inferior border.
 const zygomatic=mesh(atlas,'Right zygomatic bone');
 const si18Bone=most(pts(zygomatic,(p)=>p.y<zygomatic.box.min.y+0.018&&p.x>-0.052),ANTERIOR);

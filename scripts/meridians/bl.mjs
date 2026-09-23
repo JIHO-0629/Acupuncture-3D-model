@@ -1,7 +1,7 @@
 /** BL1–BL67 (족태양방광경). KCMRIC → WHO 2008 → local photo archive. */
 import fs from 'node:fs';
 import * as T from 'three';
-import {atlas,mesh,centroid,v,mid,most,landmark,meridianWriter,LATERAL,MEDIAL,ANTERIOR,POSTERIOR,UP,DOWN} from '../acupoint-kit.mjs';
+import {atlas,mesh,centroid,v,mid,most,landmark,meridianWriter,toSkin,LATERAL,MEDIAL,ANTERIOR,POSTERIOR,UP,DOWN} from '../acupoint-kit.mjs';
 import {threeMesh} from '../atlas-geometry.mjs';
 
 const W=meridianWriter('BL');
@@ -71,7 +71,14 @@ place('BL37',bl36.clone().lerp(bl40,6/14),POSTERIOR,['thigh-R'],'on the BL36–B
 const bfMedial=(y)=>most(pts(bfLong,(p)=>Math.abs(p.y-y)<.004),MEDIAL);
 for(const [code,y,z,rule] of [['BL38',.485,-.088,'1 B-cun above BL39 · immediately medial to the long head of biceps femoris'],['BL39',.463,-.091,'lateral end of popliteal crease · immediately medial to the biceps femoris tendon']])
   place(code,v(bfMedial(y).x+.003,y,z),POSTERIOR,['thigh-R','knee-R','leg-R'],rule);
-place('BL40',bl40,POSTERIOR,['knee-R','leg-R'],'midpoint of popliteal crease (between the semitendinosus and biceps femoris ends)');
+// 2026-09-23: at the crease the two gastrocnemius heads meet in this model; the skin normal tilted the needle into
+// the lateral head. The point is where they meet, and the needle goes straight forward into the fossa.
+{
+  const heads=[mesh(atlas,'Lateral head of right gastrocnemius'),mesh(atlas,'Medial head of right gastrocnemius')];
+  const y=bl40.y,inner=[most(pts(heads[0],p=>Math.abs(p.y-y)<.004),MEDIAL),most(pts(heads[1],p=>Math.abs(p.y-y)<.004),LATERAL)];
+  const x=(inner[0].x+inner[1].x)/2;
+  W.putDirect('BL40',toSkin(v(x,y,-0.06),POSTERIOR,['knee-R','leg-R']).point,POSTERIOR,'knee-R','midpoint of popliteal crease (between the semitendinosus and biceps femoris ends) · between the gastrocnemius heads');
+}
 
 // Outer posterior line: 3 B-cun lateral. T2–T7, T9–T12, L1–L2, then S2/S4.
 const outerLevels=[['BL41','T2'],['BL42','T3'],['BL43','T4'],['BL44','T5'],['BL45','T6'],['BL46','T7'],['BL47','T9'],['BL48','T10'],['BL49','T11'],['BL50','T12'],['BL51','L1'],['BL52','L2']];
@@ -95,7 +102,14 @@ place('BL56',mid(bl55,bl57),POSTERIOR,['leg-R'],'midpoint of BL55–BL57 · betw
 place('BL57',bl57,POSTERIOR,['leg-R'],'inferior split of gastrocnemius bellies · junction with calcaneal tendon');
 place('BL58',legAt(9).setY(gastLat.box.min.y+.010).add(v(-.010,0,0)),v(-.45,0,-.89).normalize(),['leg-R'],'inferior end of lateral gastrocnemius · lateral to BL57');
 place('BL59',v(bl60.x,legAt(13).y,bl60.z),v(-.55,0,-.84).normalize(),['leg-R'],'3 B-cun vertically proximal to BL60 · posterior border of fibula');
-place('BL60',bl60.clone().setY(lateralMalleolus.y),v(-.75,0,-.66).normalize(),['leg-R','foot-R'],'depression between lateral malleolus prominence and calcaneal tendon · level with malleolus prominence');
+// 2026-09-23: the lateral projection landed on the malleolus side and the needle went through fibularis longus into
+// the fibula. The depression is halfway between the fibula's posterior border and the tendon's lateral edge; the
+// needle points across it toward KI3.
+{
+  const y=lateralMalleolus.y,fib=most(pts(fibula,p=>Math.abs(p.y-y)<.004),POSTERIOR),tendon=most(pts(achilles,p=>Math.abs(p.y-y)<.004),LATERAL);
+  const out=v(-.6,0,-.8).normalize();
+  W.putDirect('BL60',toSkin(mid(fib,tendon).setY(y),out,['leg-R','foot-R']).point,out,'foot-R','depression between lateral malleolus prominence and calcaneal tendon · level with malleolus prominence');
+}
 
 // Lateral foot and little toe.
 const mt5=mesh(atlas,'Right fifth metatarsal bone'), pp5=mesh(atlas,'Proximal phalanx of right little toe'), dp5=mesh(atlas,'Distal phalanx of right little toe');

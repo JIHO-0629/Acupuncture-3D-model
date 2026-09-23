@@ -1175,7 +1175,9 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       const computed: NeedleHit[] = [];
       pickers.forEach((mesh, i) => {
         const part = atlas.parts[i];
-        if (!mesh || part.system === "integumentary") return;
+        // The coarse native ear is hidden behind the auricle presentation and sits where
+        // no ear is drawn; TE17, TE18, SI19 and GB2 would otherwise start in its cartilage.
+        if (!mesh || part.system === "integumentary" || part.id === NATIVE_EAR_PART_ID) return;
         worldBox.copy(bounds[i]).expandByScalar(shaftRadius);
         // Ray.intersectBox returns the EXIT point when the origin is already inside the
         // box, so a structure wide enough to enclose the insertion point reports a

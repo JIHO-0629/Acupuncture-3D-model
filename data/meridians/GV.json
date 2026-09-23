@@ -239,9 +239,9 @@
    },
    "status": "implemented_unverified",
    "seed": [
-    -0.00121,
-    1.15391,
-    -0.09668
+    0,
+    1.14891,
+    -0.0965
    ],
    "outward": [
     0,
@@ -249,9 +249,9 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 17,
+   "depthMm": 0,
    "rule": "posterior median line · depression inferior to T11 spinous process",
-   "projection": "posterior"
+   "projection": "direct"
   },
   {
    "code": "GV7",
@@ -280,9 +280,9 @@
    },
    "status": "implemented_unverified",
    "seed": [
-    0.00027,
-    1.17789,
-    -0.09865
+    0,
+    1.17289,
+    -0.09756
    ],
    "outward": [
     0,
@@ -290,9 +290,9 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 13.9,
+   "depthMm": 0,
    "rule": "posterior median line · depression inferior to T10 spinous process",
-   "projection": "posterior"
+   "projection": "direct"
   },
   {
    "code": "GV8",
@@ -321,9 +321,9 @@
    },
    "status": "implemented_unverified",
    "seed": [
-    0.00007,
-    1.20475,
-    -0.10243
+    0,
+    1.19975,
+    -0.1011
    ],
    "outward": [
     0,
@@ -331,9 +331,9 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 15.5,
+   "depthMm": 0,
    "rule": "posterior median line · depression inferior to T9 spinous process",
-   "projection": "posterior"
+   "projection": "direct"
   },
   {
    "code": "GV9",

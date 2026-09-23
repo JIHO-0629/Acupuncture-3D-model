@@ -1,6 +1,6 @@
 /** GV1–GV28 (독맥). KCMRIC → WHO 2008 → local GV01–GV28 images, all 1:1 checked. */
 import fs from 'node:fs';
-import {atlas,mesh,v,most,landmark,meridianWriter,ANTERIOR,POSTERIOR} from '../acupoint-kit.mjs';
+import {atlas,mesh,v,most,landmark,meridianWriter,toSkin,ANTERIOR,POSTERIOR} from '../acupoint-kit.mjs';
 import {pts,section,nearestIndex,stepToward,advance,arcTo} from '../trunk-arc.mjs';
 
 const W=meridianWriter('GV');
@@ -11,6 +11,12 @@ place('GV1',v(0,.850,-.082),POSTERIOR,['pelvis'],'midpoint of coccyx tip and anu
 place('GV2',landmark('sacral_hiatus',null),POSTERIOR,['pelvis','lumbar'],'sacral hiatus · posterior median line','posterior');
 const levels=[['GV3','L4'],['GV4','L2'],['GV5','L1'],['GV6','T11'],['GV7','T10'],['GV8','T9'],['GV9','T7'],['GV10','T6'],['GV11','T5'],['GV12','T3'],['GV13','T1'],['GV14','C7']];
 for(const [code,level] of levels){const p=landmark(`spinous_process_${level}.inferior_border`,null);place(code,p,POSTERIOR,level.startsWith('L')?['lumbar','pelvis']:['thorax','neck'],`posterior median line · depression inferior to ${level} spinous process`,'posterior');}
+// 2026-09-23: at T9-T11 the steep spinous processes put the landmark's skin point over the tip, and the skin normal
+// tilts the needle upward into it (bone at 8-13 mm). The depression is 5 mm lower; the needle goes straight in.
+for(const [code,level] of [['GV6','T11'],['GV7','T10'],['GV8','T9']]){
+  const p=landmark(`spinous_process_${level}.inferior_border`,null).add(v(0,-0.005,0));
+  W.putDirect(code,toSkin(v(0,p.y,p.z),POSTERIOR,['thorax','lumbar']).point,POSTERIOR,'thorax',`posterior median line · depression inferior to ${level} spinous process`,{projection:'direct'});
+}
 const gv14Surface=W.get('GV14');
 W.putDirect('GV14',v(0,gv14Surface.y,gv14Surface.z),POSTERIOR,'thorax','posterior median line · depression inferior to C7 spinous process · centred',{projection:'posterior'});
 

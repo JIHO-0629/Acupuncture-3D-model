@@ -162,8 +162,9 @@
     0.92383
    ],
    "region": "upper-arm-R",
-   "depthMm": 20.5,
-   "rule": "immediately superior to cubital crease · depression lateral to biceps brachii tendon"
+   "depthMm": 0,
+   "rule": "immediately superior to cubital crease · depression lateral to biceps brachii tendon",
+   "projection": "direct"
   },
   {
    "code": "LU6",
