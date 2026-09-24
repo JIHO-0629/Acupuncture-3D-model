@@ -10,7 +10,9 @@ const place=(code,p,out,regions,rule)=>W.put(code,p.clone().addScaledVector(out,
 const headOut=(p)=>p.clone().sub(v(0,1.60,-0.01)).normalize();
 
 // Face and the 1.5 B-cun paramedian scalp line.
-place('BL1',v(-0.010,1.596,0.072),v(-0.2,0,0.98).normalize(),['face'],'depression between superomedial canthus and medial orbital wall');
+// Reviewer: the old ray sat on the nasal bridge.  Move laterally into the
+// depression between the superomedial canthus and the medial orbital wall.
+place('BL1',v(-0.0155,1.598,0.068),v(-0.1,0,0.995).normalize(),['face'],'depression between superomedial canthus and medial orbital wall · lateral correction away from nasal bridge');
 place('BL2',v(-0.012,1.615,0.070),v(-0.2,0.15,0.97).normalize(),['face','head'],'depression at medial end of eyebrow · supraorbital notch');
 const scalp=[[-.025,1.671,.052],[-.025,1.679,.044],[-.025,1.688,.030],[-.025,1.696,.012],[-.025,1.699,-.008],[-.025,1.696,-.030],[-.025,1.688,-.050],[-.025,1.676,-.066]];
 for(let i=0;i<scalp.length;i++){const p=v(...scalp[i]);place(`BL${i+3}`,p,headOut(p),['head'],`1.5 B-cun lateral scalp line · BL${i+3} standard hairline/vertex level`);}
@@ -129,5 +131,5 @@ place('BL67',nail,footOut,['foot-R'],'little-toe lateral nail-root corner · 0.1
 
 const english=['Jingming','Zanzhu','Meichong','Qucha','Wuchu','Chengguang','Tongtian','Luoque','Yuzhen','Tianzhu','Dashu','Fengmen','Feishu','Jueyinshu','Xinshu','Dushu','Geshu','Ganshu','Danshu','Pishu','Weishu','Sanjiaoshu','Shenshu','Qihaishu','Dachangshu','Yuanguanshu','Xiaochangshu','Pangguangshu','Zhonglvshu','Baihuanshu','Shangliao','Ciliao','Zhongliao','Xialiao','Huiyang','Chengfu','Yinmen','Fuxi','Weiyang','Weizhong','Fufen','Pohu','Gaohuangshu','Shentang','Yixi','Geguan','Hunmen','Yanggang','Yishe','Weicang','Huangmen','Zhishi','Baohuang','Zhibian','Heyang','Chengjin','Chengshan','Feiyang','Fuyang','Kunlun','Pucan','Shenmai','Jinmen','Jinggu','Shugu','Zutonggu','Zhiyin'];
 const overrides=Object.fromEntries(english.map((name,i)=>[`BL${i+1}`,{english:name}]));
-overrides.BL21.location='등 위쪽, 열두째 등뼈(T12) 가시돌기 아래모서리와 같은 높이, 뒤정중선에서 가쪽으로 1.5촌 (KCMRIC·WHO 기준; 로컬 자료의 열두째 갈비 표기는 사용하지 않음)';
+overrides.BL21.location='등 위쪽, 열두째 등뼈(T12) 가시돌기 아래모서리와 같은 높이, 뒤정중선에서 가쪽으로 1.5촌';
 W.write({label:'방광경',name:'족태양방광경',english:'BLADDER MERIDIAN',primarySource:'https://m.kmcric.com/knowledge/acupoint/BL',secondarySource:'https://iris.who.int/handle/10665/353407'},overrides);

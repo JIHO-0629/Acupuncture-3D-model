@@ -24,18 +24,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.01095,
-    1.596,
-    0.07663
+    -0.01541,
+    1.598,
+    0.06713
    ],
    "outward": [
-    -0.19996,
+    -0.1,
     0,
-    0.9798
+    0.99499
    ],
    "region": "face",
-   "depthMm": 8.7,
-   "rule": "depression between superomedial canthus and medial orbital wall"
+   "depthMm": 3.1,
+   "rule": "depression between superomedial canthus and medial orbital wall · lateral correction away from nasal bridge"
   },
   {
    "code": "BL2",
@@ -296,7 +296,7 @@
    "seed": [
     -0.032,
     1.52615,
-    -0.07233
+    -0.07228
    ],
    "outward": [
     0,
@@ -326,7 +326,7 @@
    "seed": [
     -0.031,
     1.42677,
-    -0.11781
+    -0.1111
    ],
    "outward": [
     0,
@@ -334,7 +334,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 41.1,
+   "depthMm": 34.4,
    "rule": "inferior border of T1 spinous process · 1.5 B-cun lateral to posterior median line"
   },
   {
@@ -356,7 +356,7 @@
    "seed": [
     -0.031,
     1.40651,
-    -0.12314
+    -0.11988
    ],
    "outward": [
     0,
@@ -364,7 +364,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 42,
+   "depthMm": 38.7,
    "rule": "inferior border of T2 spinous process · 1.5 B-cun lateral to posterior median line"
   },
   {
@@ -386,7 +386,7 @@
    "seed": [
     -0.031,
     1.38047,
-    -0.12581
+    -0.12369
    ],
    "outward": [
     0,
@@ -394,7 +394,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 32.4,
+   "depthMm": 30.3,
    "rule": "inferior border of T3 spinous process · 1.5 B-cun lateral to posterior median line"
   },
   {
@@ -416,7 +416,7 @@
    "seed": [
     -0.031,
     1.35585,
-    -0.12781
+    -0.12333
    ],
    "outward": [
     0,
@@ -424,7 +424,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 34.6,
+   "depthMm": 30.1,
    "rule": "inferior border of T4 spinous process · 1.5 B-cun lateral to posterior median line"
   },
   {
@@ -446,7 +446,7 @@
    "seed": [
     -0.031,
     1.31791,
-    -0.13178
+    -0.12074
    ],
    "outward": [
     0,
@@ -454,7 +454,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 38.1,
+   "depthMm": 27.1,
    "rule": "inferior border of T5 spinous process · 1.5 B-cun lateral to posterior median line"
   },
   {
@@ -476,7 +476,7 @@
    "seed": [
     -0.031,
     1.28749,
-    -0.12846
+    -0.12276
    ],
    "outward": [
     0,
@@ -484,7 +484,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 36.6,
+   "depthMm": 30.9,
    "rule": "inferior border of T6 spinous process · 1.5 B-cun lateral to posterior median line"
   },
   {
@@ -506,7 +506,7 @@
    "seed": [
     -0.031,
     1.25743,
-    -0.12371
+    -0.12159
    ],
    "outward": [
     0,
@@ -514,7 +514,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 33.3,
+   "depthMm": 31.2,
    "rule": "inferior border of T7 spinous process · 1.5 B-cun lateral to posterior median line"
   },
   {
@@ -536,7 +536,7 @@
    "seed": [
     -0.031,
     1.20475,
-    -0.11624
+    -0.1147
    ],
    "outward": [
     0,
@@ -544,7 +544,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 29.3,
+   "depthMm": 27.8,
    "rule": "inferior border of T9 spinous process · 1.5 B-cun lateral to posterior median line"
   },
   {
@@ -566,7 +566,7 @@
    "seed": [
     -0.031,
     1.17789,
-    -0.11073
+    -0.10996
    ],
    "outward": [
     0,
@@ -574,7 +574,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 26,
+   "depthMm": 25.2,
    "rule": "inferior border of T10 spinous process · 1.5 B-cun lateral to posterior median line"
   },
   {
@@ -596,7 +596,7 @@
    "seed": [
     -0.031,
     1.15391,
-    -0.10711
+    -0.10668
    ],
    "outward": [
     0,
@@ -604,7 +604,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 27.4,
+   "depthMm": 27,
    "rule": "inferior border of T11 spinous process · 1.5 B-cun lateral to posterior median line"
   },
   {
@@ -612,7 +612,7 @@
    "korean": "위수",
    "hanja": "胃兪",
    "english": "Weishu",
-   "location": "등 위쪽, 열두째 등뼈(T12) 가시돌기 아래모서리와 같은 높이, 뒤정중선에서 가쪽으로 1.5촌 (KCMRIC·WHO 기준; 로컬 자료의 열두째 갈비 표기는 사용하지 않음)",
+   "location": "등 위쪽, 열두째 등뼈(T12) 가시돌기 아래모서리와 같은 높이, 뒤정중선에서 가쪽으로 1.5촌",
    "rawLocation": "열두째 갈비 아래모서리와 같은 높이, 뒤정중선에서 가쪽으로 1.5촌 (T12)",
    "rawMethod": "",
    "classification": "A+B · 해부학+비례",
@@ -626,7 +626,7 @@
    "seed": [
     -0.031,
     1.12813,
-    -0.10442
+    -0.10395
    ],
    "outward": [
     0,
@@ -634,7 +634,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 35.3,
+   "depthMm": 34.8,
    "rule": "inferior border of T12 spinous process · 1.5 B-cun lateral to posterior median line"
   },
   {
@@ -656,7 +656,7 @@
    "seed": [
     -0.031,
     1.09331,
-    -0.10169
+    -0.10139
    ],
    "outward": [
     0,
@@ -664,7 +664,7 @@
     -1
    ],
    "region": "lumbar",
-   "depthMm": 39.9,
+   "depthMm": 39.6,
    "rule": "inferior border of L1 spinous process · 1.5 B-cun lateral to posterior median line"
   },
   {
@@ -686,7 +686,7 @@
    "seed": [
     -0.031,
     1.07043,
-    -0.09633
+    -0.09621
    ],
    "outward": [
     0,
@@ -694,7 +694,7 @@
     -1
    ],
    "region": "lumbar",
-   "depthMm": 38.8,
+   "depthMm": 38.7,
    "rule": "inferior border of L2 spinous process · 1.5 B-cun lateral to posterior median line"
   },
   {
@@ -716,7 +716,7 @@
    "seed": [
     -0.031,
     1.0458,
-    -0.09462
+    -0.0946
    ],
    "outward": [
     0,
@@ -746,7 +746,7 @@
    "seed": [
     -0.031,
     1.02549,
-    -0.09794
+    -0.09793
    ],
    "outward": [
     0,
@@ -1045,8 +1045,8 @@
    "status": "implemented_unverified",
    "seed": [
     -0.012,
-    0.86095,
-    -0.11722
+    0.86097,
+    -0.11725
    ],
    "outward": [
     0,
@@ -1227,7 +1227,7 @@
    "seed": [
     -0.064,
     1.40651,
-    -0.12985
+    -0.11913
    ],
    "outward": [
     0,
@@ -1235,7 +1235,7 @@
     -1
    ],
    "region": "shoulder",
-   "depthMm": 51.7,
+   "depthMm": 40.9,
    "rule": "inferior border of T2 spinous process · 3 B-cun lateral to posterior median line"
   },
   {
@@ -1257,7 +1257,7 @@
    "seed": [
     -0.064,
     1.38047,
-    -0.13609
+    -0.12375
    ],
    "outward": [
     0,
@@ -1265,7 +1265,7 @@
     -1
    ],
    "region": "shoulder",
-   "depthMm": 45.7,
+   "depthMm": 33.4,
    "rule": "inferior border of T3 spinous process · 3 B-cun lateral to posterior median line"
   },
   {
@@ -1287,7 +1287,7 @@
    "seed": [
     -0.064,
     1.35585,
-    -0.14042
+    -0.12593
    ],
    "outward": [
     0,
@@ -1295,7 +1295,7 @@
     -1
    ],
    "region": "shoulder",
-   "depthMm": 50.2,
+   "depthMm": 35.7,
    "rule": "inferior border of T4 spinous process · 3 B-cun lateral to posterior median line"
   },
   {
@@ -1317,7 +1317,7 @@
    "seed": [
     -0.064,
     1.31791,
-    -0.14202
+    -0.12576
    ],
    "outward": [
     0,
@@ -1325,7 +1325,7 @@
     -1
    ],
    "region": "shoulder",
-   "depthMm": 51.4,
+   "depthMm": 35.1,
    "rule": "inferior border of T5 spinous process · 3 B-cun lateral to posterior median line"
   },
   {
@@ -1347,15 +1347,15 @@
    "seed": [
     -0.064,
     1.28749,
-    -0.13677
+    -0.12658
    ],
    "outward": [
     0,
     0,
     -1
    ],
-   "region": "thorax",
-   "depthMm": 47.9,
+   "region": "shoulder",
+   "depthMm": 37.7,
    "rule": "inferior border of T6 spinous process · 3 B-cun lateral to posterior median line"
   },
   {
@@ -1377,7 +1377,7 @@
    "seed": [
     -0.064,
     1.25743,
-    -0.1321
+    -0.12359
    ],
    "outward": [
     0,
@@ -1385,7 +1385,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 44.7,
+   "depthMm": 36.2,
    "rule": "inferior border of T7 spinous process · 3 B-cun lateral to posterior median line"
   },
   {
@@ -1407,7 +1407,7 @@
    "seed": [
     -0.064,
     1.20475,
-    -0.12071
+    -0.11333
    ],
    "outward": [
     0,
@@ -1415,7 +1415,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 36.8,
+   "depthMm": 29.4,
    "rule": "inferior border of T9 spinous process · 3 B-cun lateral to posterior median line"
   },
   {
@@ -1437,7 +1437,7 @@
    "seed": [
     -0.064,
     1.17789,
-    -0.11469
+    -0.11076
    ],
    "outward": [
     0,
@@ -1445,7 +1445,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 32.9,
+   "depthMm": 29,
    "rule": "inferior border of T10 spinous process · 3 B-cun lateral to posterior median line"
   },
   {
@@ -1467,7 +1467,7 @@
    "seed": [
     -0.064,
     1.15391,
-    -0.10949
+    -0.1076
    ],
    "outward": [
     0,
@@ -1475,7 +1475,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 32.8,
+   "depthMm": 30.9,
    "rule": "inferior border of T11 spinous process · 3 B-cun lateral to posterior median line"
   },
   {
@@ -1497,7 +1497,7 @@
    "seed": [
     -0.064,
     1.12813,
-    -0.10369
+    -0.10261
    ],
    "outward": [
     0,
@@ -1505,7 +1505,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 37.6,
+   "depthMm": 36.5,
    "rule": "inferior border of T12 spinous process · 3 B-cun lateral to posterior median line"
   },
   {
@@ -1527,7 +1527,7 @@
    "seed": [
     -0.064,
     1.09331,
-    -0.09637
+    -0.09575
    ],
    "outward": [
     0,
@@ -1535,7 +1535,7 @@
     -1
    ],
    "region": "thorax",
-   "depthMm": 37.5,
+   "depthMm": 36.9,
    "rule": "inferior border of L1 spinous process · 3 B-cun lateral to posterior median line"
   },
   {
@@ -1557,7 +1557,7 @@
    "seed": [
     -0.064,
     1.07043,
-    -0.09177
+    -0.09146
    ],
    "outward": [
     0,
@@ -1565,7 +1565,7 @@
     -1
    ],
    "region": "pelvis",
-   "depthMm": 37.2,
+   "depthMm": 36.9,
    "rule": "inferior border of L2 spinous process · 3 B-cun lateral to posterior median line"
   },
   {

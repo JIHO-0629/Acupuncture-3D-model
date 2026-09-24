@@ -1,7 +1,7 @@
 import * as T from "three";
 import landmarkData from "../data/landmarks.json";
 import type { Atlas } from "./anatomy";
-import type { LocatorItem } from "./locator-data";
+import { intercostalLevelOf, spinousLevelOf, vertebraMeshName, type LocatorItem } from "./locator-data";
 import type { createExternalEarPresentation } from "./ear-anatomy";
 import type { createNipplePresentation } from "./nipple-presentation";
 
@@ -56,13 +56,19 @@ function nearVertex(mesh: T.Mesh, point: T.Vector3) {
 }
 
 function registeredPoint(item: LocatorItem, near: T.Vector3, code: string) {
-  if (item.en === "spine of scapula" && code === "SI12") {
+  if (item.en === "spine of scapula" && (code === "SI11" || code === "SI12")) {
     const medial = registered.find(row => row.id === "scapular_spine_medial_end" && row.side === "right")?.point;
     const lateral = registered.find(row => row.id === "acromial_angle" && row.side === "right")?.point;
     if (medial && lateral) return new T.Vector3(...medial as [number, number, number])
       .lerp(new T.Vector3(...lateral as [number, number, number]), .5);
   }
   if (item.en === "canthus" && code === "BL1") return undefined; // only the lateral canthus is registered
+  if (item.en === "spinous process") {
+    const level = spinousLevelOf(code);
+    if (!level || level === "C2") return undefined;
+    const row = registered.find(candidate => candidate.id === `spinous_process_${level}.tip`);
+    if (row?.point) return new T.Vector3(...row.point as [number, number, number]);
+  }
   const ids = item.ids.map(id => id.replace(/^landmark:/, ""));
   if (item.en === "auricular apex") ids.push("auricular_apex");
   const refSet = new Set(item.refs);
@@ -87,13 +93,16 @@ function registeredPoint(item: LocatorItem, near: T.Vector3, code: string) {
   return undefined;
 }
 
-function sourceMeshes(item: LocatorItem, atlas: Atlas, pickers: (T.Mesh | undefined)[], near: T.Vector3) {
+function sourceMeshes(item: LocatorItem, code: string, atlas: Atlas, pickers: (T.Mesh | undefined)[], near: T.Vector3) {
+  const spinousLevel = item.en === "spinous process" ? spinousLevelOf(code) : undefined;
+  const exactSpinousName = spinousLevel ? vertebraMeshName(spinousLevel).toLowerCase() : undefined;
+  const intercostalLevel = item.en === "intercostal space" ? intercostalLevelOf(code) : undefined;
   const names = new Set([...item.refs, ...(EXTRA_PARTS[item.en] ?? [])].map(value => value.toLowerCase()));
   const anatomical = atlas.parts.flatMap((part, index) => {
     const name = part.name.toLowerCase();
     const side = name.startsWith("left ") || name.includes(" of left ");
-    const named = names.has(name);
-    const rib = (item.en === "rib" || item.en === "intercostal space") && /^right (?:\w+ )?rib$/.test(name);
+    const named = exactSpinousName ? name === exactSpinousName : names.has(name);
+    const rib = (item.en === "rib" || item.en === "intercostal space") && !intercostalLevel && /^right (?:\w+ )?rib$/.test(name);
     const phalanx = ["interdigital web margin", "interphalangeal joint", "metacarpophalangeal joint", "metatarsophalangeal joint"].includes(item.en)
       && (name.includes("phalanx") || (item.en.includes("metacarpo") && name.includes("metacarpal")) || (item.en.includes("metatarso") && name.includes("metatarsal")))
       && (name.includes(" right ") || name.startsWith("right "));
@@ -119,9 +128,9 @@ export function resolveLocatorTargets(
   return items.map(item => {
     // These are subareas of one scapula mesh, not independent bones. Show their
     // registered/derived reference point without outlining the whole scapula.
-    if (item.en === "spine of scapula" && (code === "SI12" || code === "SI13"))
-      return { item, anchor: registeredPoint(item, near, code), meshes: [], approximate: code === "SI12" };
-    let meshes = sourceMeshes(item, atlas, pickers, near);
+    if (item.en === "spine of scapula" && (["SI11", "SI12", "SI13"].includes(code)))
+      return { item, anchor: registeredPoint(item, near, code), meshes: [], approximate: code !== "SI13" };
+    let meshes = sourceMeshes(item, code, atlas, pickers, near);
     let anchor = registeredPoint(item, near, code);
     if (item.kind === "custom presentation") {
       const earId = item.ids.find(id => id.startsWith("ear:"))?.slice(4);

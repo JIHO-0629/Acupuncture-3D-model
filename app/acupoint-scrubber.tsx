@@ -131,7 +131,10 @@ export function AcupointScrubber({points,activeCode,onPointChange,label='경혈 
   const media=window.matchMedia('(prefers-reduced-motion: reduce)');
   const onMotion=()=>{m.reduce=media.matches;paint();};
   onMotion();
-  const resize=new ResizeObserver(()=>measure());
+  // A breakpoint or panel resize can reset the native scrollTop before this callback.
+  // Re-anchor to the selected point; deriving the index from that transient scrollTop
+  // made the rail display GB1 while the scene and detail panel still displayed GB34.
+  const resize=new ResizeObserver(()=>measure(Math.max(0,live.current.points.findIndex(point=>point.code===live.current.activeCode))));
   resize.observe(el);
   el.addEventListener('wheel',onWheel,{passive:false});
   el.addEventListener('scroll',onScroll,{passive:true});

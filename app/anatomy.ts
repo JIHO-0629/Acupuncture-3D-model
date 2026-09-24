@@ -68,7 +68,7 @@ const KOREAN_ANATOMY_TERMS:Record<string,string>={
  'temporalis':'측두근','superficial part of masseter':'교근 천부','deep part of masseter':'교근 심부','medial pterygoid':'내측익돌근','upper head of lateral pterygoid':'외측익돌근 상두','lower head of lateral pterygoid':'외측익돌근 하두','aponeurosis of epicranius':'두개건막(모상건막)',
  'orbital part of orbicularis oculi':'안륜근 안와부','palpebral part of orbicularis oculi':'안륜근 안검부','orbicularis oris':'구륜근','corrugator supercilii':'추미근','procerus':'눈살근','nasalis':'비근','depressor septi nasi':'비중격하체근','buccinator':'협근',
  'levator labii superioris':'상순거근','levator labii superioris alaeque nasi':'상순비익거근','levator anguli oris':'구각거근','depressor anguli oris':'구각하체근','depressor labii inferioris':'하순하체근','zygomaticus major':'대관골근','zygomaticus minor':'소관골근','risorius':'소근','mentalis':'이근',
- 'latissimus dorsi':'광배근','subscapularis':'견갑하근','supraspinatus':'극상근','infraspinatus':'극하근','teres major':'대원근','teres minor':'소원근','iliotibial tract':'장경인대','flexor retinaculum of wrist':'굴근지지띠','upper lobe of lung':'폐 상엽','middle lobe of lung':'폐 중엽','lower lobe of lung':'폐 하엽'
+ 'latissimus dorsi':'광배근','subscapularis':'견갑하근','supraspinatus':'극상근','infraspinatus':'극하근','teres major':'대원근','teres minor':'소원근','iliotibial tract':'장경인대','flexor retinaculum of wrist':'굴근지지띠','upper lobe of lung':'폐 상엽','middle lobe of lung':'폐 중엽','lower lobe of lung':'폐 하엽','platysma':'넓은목근','manubrium':'복장뼈자루'
 };
 export function bilingualPartName(name:string){
  const prefix=name.match(/^(Right|Left)\s+(.+)$/i),infix=name.match(/^(.+?)\s+of\s+(right|left)\s+(.+)$/i);
@@ -77,7 +77,9 @@ export function bilingualPartName(name:string){
  const korean=KOREAN_ANATOMY_TERMS[base];
  return korean?`${name} (${side?`${side} `:''}${korean})`:name;
 }
-export const DEFAULT_VISIBLE:SystemId[] = ['cardiac','sensory','skeletal','muscular','arterial','venous','nervous','respiratory','digestive','urinary','lymphatic','endocrine','reproductive','connective'];
+// Start with the one layer being studied.  Adding every system by default made thin
+// vessels, nerves and connective sheets read as detached surface artefacts.
+export const DEFAULT_VISIBLE:SystemId[] = ['muscular'];
 export const EXPLANATIONS:Record<string,string> = {
  'heart':'A muscular pump in the chest. Its right side sends blood to the lungs; its left side sends blood through the systemic circulation.',
  'liver':'A large organ beneath the right side of the diaphragm. It processes absorbed nutrients, produces bile, and synthesizes many proteins carried in the blood.',

@@ -23,12 +23,22 @@ const coracoid = extremeCluster(scapula, ANTERIOR, 0.005, (p) => p.y > 1.37);
 const chestRegions = ['thorax', 'shoulder'];
 // Pure anterior ray: the chest skin is ~3–5 cm in front of the coracoid, and any tilt would shift the level/6 B-cun line.
 const chestOut = v(0, 0, 1);
-// LU2: depression of the infraclavicular fossa, medial to the coracoid process, 6 B-cun lateral to the midline.
-const clavicleAtSixCun = slab(clavicle, 0, sixCunX, 0.008);
-const clavicleUnderside = most(clavicleAtSixCun, DOWN);
-// Reviewer photo: the first pass sat too low in the fossa. Keep the point immediately below the clavicle.
-const lu2 = v(sixCunX, clavicleUnderside.y - 0.004, coracoid.z);
-W.put('LU2', lu2, chestOut, chestRegions, 'infraclavicular fossa immediately inferior to clavicle · medial to coracoid · 6 B-cun lateral');
+// LU2: use the actual deltopectoral interval at the 6 B-cun line.  Using the
+// coracoid depth and clavicle underside placed the surface marker on deltoid.
+const pecClavicular = mesh(atlas, 'Clavicular part of right pectoralis major');
+const deltoidClavicular = mesh(atlas, 'Clavicular part of right deltoid');
+const nearSix = (part) => {
+  const out = [];
+  for (let i = 0; i < part.vertexCount; i++) {
+    const point = v(part.positions[i * 3], part.positions[i * 3 + 1], part.positions[i * 3 + 2]);
+    if (Math.abs(point.x - sixCunX) < 0.006) out.push(point);
+  }
+  return out;
+};
+const pectoralTop = most(nearSix(pecClavicular), UP);
+const deltoidBottom = most(nearSix(deltoidClavicular), DOWN);
+const lu2 = v(sixCunX, (pectoralTop.y + deltoidBottom.y) / 2, (pectoralTop.z + deltoidBottom.z) / 2);
+W.put('LU2', lu2, chestOut, chestRegions, 'deltopectoral triangle immediately inferior to clavicle · between clavicular pectoralis major and deltoid · medial to coracoid · 6 B-cun lateral');
 // LU1: level of the 1st intercostal space (between 1st and 2nd costal cartilages at the sternal border), 6 B-cun lateral.
 const cc1Low = extremeCluster(mesh(atlas, 'Right first costal cartilage'), DOWN, 0.02);
 const cc2Top = extremeCluster(mesh(atlas, 'Right second costal cartilage'), UP, 0.02);
@@ -122,8 +132,8 @@ const wristRegions = ['forearm-R', 'hand-R'];
 
 const english = { LU1: 'Zhongfu', LU2: 'Yunmen', LU3: 'Tianfu', LU4: 'Xiabai', LU5: 'Chize', LU6: 'Kongzui', LU7: 'Lieque', LU8: 'Jingqu', LU9: 'Taiyuan', LU10: 'Yuji', LU11: 'Shaoshang' };
 const overrides = Object.fromEntries(Object.entries(english).map(([code, name]) => [code, { english: name }]));
-overrides.LU1.location = '앞가슴부위, 첫째 갈비사이공간과 같은 높이, 빗장아래오목의 가쪽, 앞정중선에서 가쪽으로 6촌. (WHO 기준 · 원본 부가메모 미사용)';
-overrides.LU2.location = '앞가슴부위, 빗장아래오목의 오목한 곳, 어깨뼈부리돌기 안쪽, 앞정중선에서 가쪽으로 6촌. (WHO 기준 · 원본 부가메모 미사용)';
+overrides.LU1.location = '앞가슴부위, 첫째 갈비사이공간과 같은 높이, 빗장아래오목의 가쪽, 앞정중선에서 가쪽으로 6촌.';
+overrides.LU2.location = '앞가슴부위, 빗장아래오목의 오목한 곳, 어깨뼈부리돌기 안쪽, 앞정중선에서 가쪽으로 6촌.';
 W.write({
   label: '폐경', name: '수태음폐경', english: 'LUNG MERIDIAN',
   primarySource: 'https://m.kmcric.com/knowledge/acupoint/LU', secondarySource: 'https://iris.who.int/handle/10665/353407',

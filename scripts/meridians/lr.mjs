@@ -153,9 +153,9 @@ putOnLine('LR12', pubis.y, 2.5, ['pelvis', 'thigh-R'], 'groin · level of the su
 
 const english = ['Dadun', 'Xingjian', 'Taichong', 'Zhongfeng', 'Ligou', 'Zhongdu', 'Xiguan', 'Ququan', 'Yinbao', 'Zuwuli', 'Yinlian', 'Jimai', 'Zhangmen', 'Qimen'];
 const overrides = Object.fromEntries(english.map((name, i) => [`LR${i + 1}`, { english: name }]));
-overrides.LR5.location = '종아리 앞안쪽면, 정강뼈 안쪽면의 중앙, 안쪽복사 융기에서 음릉천까지 13촌으로 할 때 안쪽복사 융기 위 5촌, 축빈(KI9)과 같은 높이 (KCMRIC)';
-overrides.LR6.location = '종아리 앞안쪽면, 정강뼈 안쪽면의 중앙, 안쪽복사 융기에서 음릉천까지 13촌으로 할 때 안쪽복사 융기 위 7촌 (KCMRIC)';
-overrides.LR8.location = '무릎 안쪽면, 오금주름의 안쪽끝, 반힘줄근힘줄과 반막근힘줄의 안쪽 오목한 곳 (KCMRIC)';
+overrides.LR5.location = '종아리 앞안쪽면, 정강뼈 안쪽면의 중앙, 안쪽복사 융기에서 음릉천까지 13촌으로 할 때 안쪽복사 융기 위 5촌, 축빈(KI9)과 같은 높이';
+overrides.LR6.location = '종아리 앞안쪽면, 정강뼈 안쪽면의 중앙, 안쪽복사 융기에서 음릉천까지 13촌으로 할 때 안쪽복사 융기 위 7촌';
+overrides.LR8.location = '무릎 안쪽면, 오금주름의 안쪽끝, 반힘줄근힘줄과 반막근힘줄의 안쪽 오목한 곳';
 W.write({
   label: '간경', name: '족궐음간경', english: 'LIVER MERIDIAN',
   primarySource: 'https://m.kmcric.com/knowledge/acupoint/LR', secondarySource: 'https://iris.who.int/handle/10665/353407',

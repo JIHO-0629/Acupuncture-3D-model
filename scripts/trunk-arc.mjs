@@ -93,7 +93,12 @@ const ribParts = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seven
 const ribBand = (k, x) => {
   const column = ribParts[k - 1].flatMap((part) => pts(part, (p) => Math.abs(p.x - x) < 0.004 && p.z > 0.02));
   if (column.length) return { low: lowest(column).y, high: highest(column).y };
-  const fallback = ribParts[k - 1].flatMap((part) => pts(part, (p) => p.z > 0.02 && p.x > x && p.x < x + 0.025));
+  // The 6 B-cun skin line can lie lateral to the bony rib on this reference
+  // body.  In that case use the nearest available lateral rib column instead
+  // of failing or silently falling back to a medial segment.
+  const anterior = ribParts[k - 1].flatMap((part) => pts(part, (p) => p.z > -0.02));
+  const nearestX = anterior.reduce((best, p) => Math.abs(p.x - x) < Math.abs(best - x) ? p.x : best, anterior[0]?.x ?? x);
+  const fallback = anterior.filter((p) => Math.abs(p.x - nearestX) < 0.006);
   if (!fallback.length) throw new Error(`rib ${k} not found near x=${x.toFixed(3)}`);
   return { low: lowest(fallback).y, high: highest(fallback).y };
 };

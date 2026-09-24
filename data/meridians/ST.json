@@ -6,7 +6,7 @@
  "primarySource": "https://m.kmcric.com/knowledge/acupoint/ST",
  "secondarySource": "https://iris.who.int/handle/10665/353407",
  "scale": {
-  "trunkCunMm": 20.4,
+  "trunkCunMm": 20.5,
   "upperAbdomenCunMm": 29.1,
   "lowerAbdomenCunMm": 29.1,
   "thighCunMm": 22.5,
@@ -152,9 +152,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.04266,
-    1.51309,
-    0.04012
+    -0.04999,
+    1.52154,
+    0.0352
    ],
    "outward": [
     -0.85536,
@@ -162,7 +162,7 @@
     0.45284
    ],
    "region": "face",
-   "depthMm": 6,
+   "depthMm": 12.3,
    "rule": "anterior to the angle of the mandible · depression anterior to the masseter attachment on the lower border · facial artery"
   },
   {
@@ -363,9 +363,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07883,
-    1.43121,
-    0.00951
+    -0.07921,
+    1.431,
+    0.00927
    ],
    "outward": [
     0,
@@ -373,7 +373,7 @@
     0.75996
    ],
    "region": "thorax",
-   "depthMm": 6.9,
+   "depthMm": 6.6,
    "rule": "greater supraclavicular fossa · on the vertical nipple line (4 B-cun) · depression above the clavicle"
   },
   {
@@ -393,9 +393,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07883,
-    1.40311,
-    0.04824
+    -0.07921,
+    1.40525,
+    0.04597
    ],
    "outward": [
     0,
@@ -403,7 +403,7 @@
     1
    ],
    "region": "thorax",
-   "depthMm": 18.2,
+   "depthMm": 16,
    "rule": "immediately inferior to the clavicle · on the vertical nipple line with ST12 (4 B-cun)"
   },
   {
@@ -423,14 +423,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07801,
-    1.38635,
-    0.06508
+    -0.07776,
+    1.39259,
+    0.05904
    ],
    "outward": [
-    -0.67582,
+    -0.7013,
     0,
-    0.73707
+    0.71287
    ],
    "region": "thorax",
    "depthMm": 7,
@@ -453,17 +453,17 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07836,
+    -0.07876,
     1.35685,
-    0.08885
+    0.08877
    ],
    "outward": [
-    -0.58424,
+    -0.58647,
     0,
-    0.81158
+    0.80997
    ],
    "region": "thorax",
-   "depthMm": 7.5,
+   "depthMm": 7.6,
    "rule": "2nd intercostal space · 4 B-cun lateral (skin arc) · below the 2nd rib at the sternal angle"
   },
   {
@@ -483,17 +483,17 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07751,
+    -0.07788,
     1.32139,
-    0.10654
+    0.10646
    ],
    "outward": [
-    -0.52235,
+    -0.52438,
     0,
-    0.85273
+    0.85149
    ],
    "region": "thorax",
-   "depthMm": 7.6,
+   "depthMm": 7.5,
    "rule": "3rd intercostal space · 4 B-cun lateral (skin arc)"
   },
   {
@@ -513,14 +513,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07784,
+    -0.07822,
     1.28078,
-    0.1192
+    0.11913
    ],
    "outward": [
-    -0.48808,
+    -0.49007,
     0,
-    0.8728
+    0.87169
    ],
    "region": "thorax",
    "depthMm": 7.8,
@@ -543,14 +543,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07957,
-    1.24277,
-    0.11363
+    -0.07994,
+    1.24289,
+    0.11361
    ],
    "outward": [
-    -0.51162,
+    -0.51344,
     0,
-    0.85921
+    0.85813
    ],
    "region": "thorax",
    "depthMm": 8.1,
@@ -573,17 +573,17 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.04003,
+    -0.04022,
     1.1966,
-    0.11879
+    0.1188
    ],
    "outward": [
-    -0.27714,
+    -0.27833,
     0,
-    0.96083
+    0.96049
    ],
    "region": "thorax",
-   "depthMm": 8.3,
+   "depthMm": 8.2,
    "rule": "6 B-cun above the umbilicus · 2 B-cun lateral (skin arc) · moved just below the costal arch"
   },
   {
@@ -603,14 +603,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03998,
+    -0.04017,
     1.17528,
-    0.11728
+    0.11729
    ],
    "outward": [
-    -0.2796,
+    -0.28082,
     0,
-    0.96012
+    0.95976
    ],
    "region": "thorax",
    "depthMm": 7.9,
@@ -633,14 +633,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03996,
+    -0.04015,
     1.14617,
-    0.1169
+    0.11689
    ],
    "outward": [
-    -0.28023,
+    -0.28147,
     0,
-    0.95993
+    0.95957
    ],
    "region": "thorax",
    "depthMm": 8.1,
@@ -663,14 +663,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.04,
+    -0.0402,
     1.11707,
-    0.11091
+    0.11089
    ],
    "outward": [
-    -0.29224,
+    -0.29356,
     0,
-    0.95634
+    0.95594
    ],
    "region": "thorax",
    "depthMm": 7.8,
@@ -693,14 +693,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.04009,
+    -0.04028,
     1.08796,
-    0.10992
+    0.10989
    ],
    "outward": [
-    -0.29484,
+    -0.29616,
     0,
-    0.95555
+    0.95514
    ],
    "region": "lumbar",
    "depthMm": 8,
@@ -723,17 +723,17 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03982,
+    -0.04002,
     1.05885,
-    0.10571
+    0.1057
    ],
    "outward": [
-    -0.30201,
+    -0.30336,
     0,
-    0.95331
+    0.95287
    ],
    "region": "lumbar",
-   "depthMm": 7.9,
+   "depthMm": 8,
    "rule": "1 B-cun above the centre of the umbilicus · 2 B-cun lateral (skin arc)"
   },
   {
@@ -753,14 +753,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03913,
+    -0.03931,
     1.02974,
-    0.10295
+    0.10293
    ],
    "outward": [
-    -0.30325,
+    -0.30462,
     0,
-    0.95291
+    0.95247
    ],
    "region": "lumbar",
    "depthMm": 8,
@@ -783,14 +783,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03976,
+    -0.03994,
     1.00063,
-    0.09762
+    0.09756
    ],
    "outward": [
-    -0.32023,
+    -0.32168,
     0,
-    0.94734
+    0.94685
    ],
    "region": "lumbar",
    "depthMm": 8.2,
@@ -813,14 +813,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03901,
+    -0.03918,
     0.97152,
-    0.09089
+    0.09082
    ],
    "outward": [
-    -0.33183,
+    -0.33335,
     0,
-    0.94334
+    0.9428
    ],
    "region": "lumbar",
    "depthMm": 7.5,
@@ -843,14 +843,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03873,
+    -0.03891,
     0.94241,
-    0.08401
+    0.08395
    ],
    "outward": [
-    -0.34898,
+    -0.35058,
     0,
-    0.93713
+    0.93653
    ],
    "region": "pelvis",
    "depthMm": 8.2,
@@ -873,14 +873,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.039,
+    -0.03919,
     0.9133,
-    0.07888
+    0.07883
    ],
    "outward": [
-    -0.36693,
+    -0.36858,
     0,
-    0.93025
+    0.92959
    ],
    "region": "pelvis",
    "depthMm": 8.1,
@@ -891,7 +891,7 @@
    "korean": "기충",
    "hanja": "氣衝",
    "english": "Qichong",
-   "location": "샅부위, 두덩결합 위모서리와 같은 높이, 앞정중선에서 가쪽으로 2촌, 넙다리동맥이 뛰는 곳 (시트 원문의 \"5촌\"은 KCMRIC·WHO와 불일치하여 2촌 적용)",
+   "location": "샅부위, 두덩결합 위모서리와 같은 높이, 앞정중선에서 가쪽으로 2촌, 넙다리동맥이 뛰는 곳",
    "rawLocation": "샅부위, 두덩결합 윗모서리와 같은 높이\n앞정준선에서 가쪽으로 5촌, 곡골에서 가쪽으로 2촌\n배꼽중심 아래쪽 5촌, 앞정중선 가쪽 2촌에 위치하며, 넙다리동맥이 뛰는 곳에서 취혈한다.",
    "rawMethod": "*넙다리동맥 손상을 피하기 위해 침끝은 바깥쪽이 아니라 안쪽으로 향하게 한다.\n혈관 주변이므로 제삽하지 않는다.\n\n침구대성: 힘줄 위에 말랑말랑하고 동맥이 뛰는 곳\n넙다리동맥은 기충에서만 뛰는 것은 아니고, 주변 혈자리 3~4개 정도에서도 다 뛴다.\n직자 5푼~1촌으로 자침한다.",
    "classification": "A+B · 해부학+비례",
@@ -903,14 +903,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03953,
-    0.88954,
-    0.07346
+    -0.03971,
+    0.8898,
+    0.0735
    ],
    "outward": [
-    -0.38955,
+    -0.39089,
     0,
-    0.92101
+    0.92044
    ],
    "region": "pelvis",
    "depthMm": 8.1,

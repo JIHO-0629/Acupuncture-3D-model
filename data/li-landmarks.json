@@ -221,78 +221,78 @@
   "LI13": {
    "seed": [
     -0.24369,
-    1.21336,
-    -0.02021
+    1.21337,
+    -0.02022
    ],
    "outward": [
-    -0.97127,
-    0.16313,
-    0.17324
+    -0.97113,
+    0.16339,
+    0.17383
    ],
    "depthMm": 6,
    "rule": "LI11→LI15 line at crease + 3 B-cun"
   },
   "LI14": {
    "seed": [
-    -0.23249,
-    1.2918,
-    -0.02264
+    -0.23245,
+    1.29179,
+    -0.02253
    ],
    "outward": [
-    -0.98327,
-    0.18177,
-    -0.01218
+    -0.98332,
+    0.18169,
+    -0.00846
    ],
-   "depthMm": 29.8,
+   "depthMm": 29.7,
    "rule": "deltoid V apex (insertion) · crease+6.7 B-cun"
   },
   "LI15": {
    "seed": [
-    -0.18207,
-    1.42055,
-    -0.01675
+    -0.18197,
+    1.42051,
+    -0.01683
    ],
    "outward": [
     -0.74536,
     0.29814,
     0.59628
    ],
-   "depthMm": 10.9,
+   "depthMm": 10.8,
    "rule": "hollow between anterior end of lateral acromion border and greater tubercle"
   },
   "LI16": {
    "seed": [
     -0.14077,
-    1.43843,
-    -0.0485
+    1.43425,
+    -0.04787
    ],
    "outward": [
     0,
     0.98894,
     -0.14834
    ],
-   "depthMm": 16.8,
+   "depthMm": 12.6,
    "rule": "midpoint(posterior acromial end of clavicle, superior spine of scapula)"
   },
   "LI17": {
    "seed": [
-    -0.06235,
+    -0.05903,
     1.47255,
-    -0.01212
+    -0.00648
    ],
    "outward": [
-    -0.99355,
+    -0.99969,
     0,
-    -0.11343
+    -0.02504
    ],
-   "depthMm": 17.9,
+   "depthMm": 15.4,
    "rule": "cricoid level · just posterior to SCM posterior border"
   },
   "LI18": {
    "seed": [
-    -0.05567,
+    -0.05564,
     1.50963,
-    -0.00891
+    -0.0089
    ],
    "outward": [
     -0.99755,

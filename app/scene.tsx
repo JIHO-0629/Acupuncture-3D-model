@@ -6,7 +6,7 @@ import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js
 import { createExplosionLayout } from "./explosion-layout";
 import { decodeModelResponse } from "./model-download";
 import { PointerTap } from "./pointer-tap";
-import { SYSTEMS, type Atlas, type NeedleHit, type NeedleReport, type SceneState } from "./anatomy";
+import { SYSTEMS, type Atlas, type NeedleHit, type NeedleReport, type Part, type SceneState } from "./anatomy";
 import { type ProjectionMode } from "./gb-points";
 import {atlasPoints,meridianOf,needleProfile,type AcupointCode} from "./acupoints";
 import {createExternalEarPresentation, NATIVE_EAR_PART_ID} from "./ear-anatomy";
@@ -231,6 +231,11 @@ export default function AnatomyScene({
             new T.Vector3().fromArray(p.bounds[1]),
           ),
       );
+    // Deep abdominal wall layers remain loaded for ray/path calculations and become
+    // visible when selected, but drawing their near-coplanar aponeuroses together with
+    // the superficial wall causes severe z-fighting that reads as torn muscle.
+    const defaultHiddenMuscle=(part:Part)=>part.system==='muscular'&&/internal oblique|transversus abdominis|quadratus lumborum/i.test(part.name);
+    const muscleCompanion=(part:Part,visible:Set<string>)=>visible.has('muscular')&&/aponeurosis of epicranius/i.test(part.name);
     let packingWidth = 1,
       packingHeight = 1;
     const markerPositions = new Float32Array(atlas.parts.length * 3),
@@ -514,10 +519,10 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       lineGroup = new T.Group(),
       pointGeometry = new T.SphereGeometry(0.0048, 16, 12),
       pointCoreGeometry = new T.SphereGeometry(0.0029, 16, 12),
-      pointMaterial = new T.MeshBasicMaterial({ color: 0x152f3a, depthTest: false }),
-      selectedPointMaterial = new T.MeshBasicMaterial({ color: 0x102c36, depthTest: false }),
-      pointCoreMaterial = new T.MeshBasicMaterial({ color: 0xff2f78, depthTest: false }),
-      selectedPointCoreMaterial = new T.MeshBasicMaterial({ color: 0x2cf3d1, depthTest: false });
+      pointMaterial = new T.MeshBasicMaterial({ color: 0x152f3a, depthTest: true }),
+      selectedPointMaterial = new T.MeshBasicMaterial({ color: 0x102c36, depthTest: true }),
+      pointCoreMaterial = new T.MeshBasicMaterial({ color: 0xff2f78, depthTest: true }),
+      selectedPointCoreMaterial = new T.MeshBasicMaterial({ color: 0x2cf3d1, depthTest: true });
     type PointObject = {
       code: string;
       side: "right" | "left";
@@ -1035,7 +1040,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
             color,
             transparent: true,
             opacity,
-            depthTest: false,
+            depthTest: true,
           });
         const line = new T.Line(geometry, material);
         line.renderOrder = 54;
@@ -1107,7 +1112,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
               color: 0xd6a44f,
               transparent: true,
               opacity: 0.34,
-              depthTest: false,
+              depthTest: true,
             });
             const line = new T.Line(geometry, material);
             line.renderOrder = 55;
@@ -1360,7 +1365,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
           selection = new Set(s.selected),
           hidden = new Set(s.hiddenParts);
         const visibleParts = atlas.parts.filter((p) =>
-          !hidden.has(p.id) && (s.isolate ? selection.has(p.id) : visible.has(p.system) || selection.has(p.id)),
+          !hidden.has(p.id) && (s.isolate ? selection.has(p.id) : (visible.has(p.system)&&!defaultHiddenMuscle(p)) || muscleCompanion(p,visible) || selection.has(p.id)),
         );
         const nextLayoutKey =
           visibleParts.map((p) => p.id).join(",") + ":" + camera.aspect.toFixed(3);
@@ -1407,7 +1412,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
               dx,
               dy,
               dz,
-              !hidden.has(p.id) && (s.isolate ? selected : (visible.has(p.system) && !replacedByAuricle) || selected)
+              !hidden.has(p.id) && (s.isolate ? selected : (visible.has(p.system) && !replacedByAuricle && !defaultHiddenMuscle(p)) || (muscleCompanion(p,visible)&&!replacedByAuricle) || selected)
                 ? 1
                 : 0,
             ],

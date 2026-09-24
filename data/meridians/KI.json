@@ -8,7 +8,7 @@
  "scale": {
   "legCunMm": 26.1,
   "ankleCunMm": 29,
-  "trunkCunMm": 20.4,
+  "trunkCunMm": 20.5,
   "upperAbdomenCunMm": 29.1,
   "lowerAbdomenCunMm": 29.1
  },
@@ -139,7 +139,7 @@
    "korean": "수천",
    "hanja": "水泉",
    "english": "Shuiquan",
-   "location": "발 안쪽면, 태계(KI3)에서 지면까지를 3촌으로 할 때 태계 아래 1촌, 발꿈치뼈융기 앞쪽 오목한 곳 (KCMRIC)",
+   "location": "발 안쪽면, 태계(KI3)에서 지면까지를 3촌으로 할 때 태계 아래 1촌, 발꿈치뼈융기 앞쪽 오목한 곳",
    "rawLocation": "발 안쪽면, 태계(KI3)에서 아래 1촌, 발꿈치뼈융기 앞쪽 오목한 곳",
    "rawMethod": "대종(KI4)에서부터 발꿈치뼈 윗면을 따라 쭉 가서 함몰점을 찾아 취혈하면 된다.\n태계에서 아래 1촌으로 가는 방법은 사람마다 발목 위치가 달라 참고하기 어렵다.",
    "classification": "A+B · 해부학+비례",
@@ -259,7 +259,7 @@
    "korean": "축빈",
    "hanja": "築賓",
    "english": "Zhubin",
-   "location": "종아리 뒤안쪽면, 가자미근과 발꿈치힘줄 사이, 태계(KI3)와 음릉천(SP9)을 잇는 13촌 선에서 태계 위 5촌 (KCMRIC)",
+   "location": "종아리 뒤안쪽면, 가자미근과 발꿈치힘줄 사이, 태계(KI3)와 음릉천(SP9)을 잇는 13촌 선에서 태계 위 5촌",
    "rawLocation": "종아리 뒤안쪽면, 가자미근과 발꿈치힘줄 사이, 안쪽복사 융기에서 위쪽 5촌\n태계-음곡 선에서 태계 위쪽 5촌에 위치한다.",
    "rawMethod": "무릎을 굽히고, 저항을 받으며 종아리를 뻗을 때, 정강뼈 안쪽 모서리를 따라 가자미근이 확연하게 드러남.\n가자미근-발꿈치힘줄 사이에 자침한다.",
    "classification": "A+B · 해부학+비례",
@@ -289,7 +289,7 @@
    "korean": "음곡",
    "hanja": "陰谷",
    "english": "Yingu",
-   "location": "무릎 뒤안쪽면, 오금주름 위, 반힘줄근힘줄과 반막근힘줄 사이 (KCMRIC)",
+   "location": "무릎 뒤안쪽면, 오금주름 위, 반힘줄근힘줄과 반막근힘줄 사이",
    "rawLocation": "무릎 뒤안쪽면, 반힘줄근 힘줄의 바로 가쪽, 오금주름 위",
    "rawMethod": "**반드시 무릎을 구부리고 취혈한다. \n실제로는 사람마다 차이가 있어 건과 건 사이에서 취혈한다.\n반힘줄근의 힘줄-반막근의 힘줄 사이에서 취혈\n무릎을 구부리면 틈새가 만져지는 곳에서 취혈하면 된다.",
    "classification": "A · 해부학 직접",
@@ -331,14 +331,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.00993,
+    -0.00998,
     0.88419,
     0.07612
    ],
    "outward": [
-    -0.10279,
+    -0.10328,
     0,
-    0.9947
+    0.99465
    ],
    "region": "pelvis",
    "depthMm": 8,
@@ -361,14 +361,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.00991,
+    -0.00995,
     0.9133,
-    0.08603
+    0.08602
    ],
    "outward": [
-    -0.09303,
+    -0.09347,
     0,
-    0.99566
+    0.99562
    ],
    "region": "pelvis",
    "depthMm": 7.9,
@@ -391,14 +391,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.00992,
+    -0.00996,
     0.94241,
-    0.09212
+    0.09211
    ],
    "outward": [
-    -0.08811,
+    -0.08852,
     0,
-    0.99611
+    0.99607
    ],
    "region": "pelvis",
    "depthMm": 7.7,
@@ -421,14 +421,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.01,
+    -0.01005,
     0.97152,
     0.09776
    ],
    "outward": [
-    -0.08459,
+    -0.08499,
     0,
-    0.99642
+    0.99638
    ],
    "region": "lumbar",
    "depthMm": 7.9,
@@ -451,14 +451,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.01002,
+    -0.01007,
     1.00063,
     0.10133
    ],
    "outward": [
-    -0.08232,
+    -0.08271,
     0,
-    0.99661
+    0.99657
    ],
    "region": "lumbar",
    "depthMm": 8.1,
@@ -469,7 +469,7 @@
    "korean": "황수",
    "hanja": "肓兪",
    "english": "Huangshu",
-   "location": "윗배, 배꼽 중심에서 가쪽으로 0.5촌 (KCMRIC)",
+   "location": "윗배, 배꼽 중심에서 가쪽으로 0.5촌",
    "rawLocation": "아랫배, 배꼽의 중심에서 가쪽으로 0.5촌",
    "rawMethod": "신궐(CV8) 가쪽 0.5촌에서 취혈",
    "classification": "A+B · 해부학+비례",
@@ -481,14 +481,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.00941,
+    -0.00945,
     1.02974,
-    0.09893
+    0.09894
    ],
    "outward": [
-    -0.07884,
+    -0.0792,
     0,
-    0.99689
+    0.99686
    ],
    "region": "pelvis",
    "depthMm": 7.7,
@@ -511,14 +511,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.01001,
+    -0.01006,
     1.08796,
-    0.10845
+    0.10846
    ],
    "outward": [
-    -0.0777,
+    -0.07807,
     0,
-    0.99698
+    0.99695
    ],
    "region": "lumbar",
    "depthMm": 8,
@@ -541,14 +541,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.01004,
+    -0.01008,
     1.11707,
     0.11183
    ],
    "outward": [
-    -0.07591,
+    -0.07627,
     0,
-    0.99711
+    0.99709
    ],
    "region": "lumbar",
    "depthMm": 8.1,
@@ -571,14 +571,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.00995,
+    -0.01,
     1.14617,
-    0.11422
+    0.11423
    ],
    "outward": [
-    -0.07392,
+    -0.07427,
     0,
-    0.99726
+    0.99724
    ],
    "region": "thorax",
    "depthMm": 7.7,
@@ -601,14 +601,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.01003,
+    -0.01007,
     1.17528,
     0.11473
    ],
    "outward": [
-    -0.07423,
+    -0.07457,
     0,
-    0.99724
+    0.99722
    ],
    "region": "thorax",
    "depthMm": 8.2,
@@ -631,14 +631,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.01002,
+    -0.01007,
     1.20439,
-    0.11593
+    0.11594
    ],
    "outward": [
-    -0.0735,
+    -0.07384,
     0,
-    0.9973
+    0.99727
    ],
    "region": "thorax",
    "depthMm": 8.2,
@@ -662,16 +662,16 @@
    "status": "implemented_unverified",
    "seed": [
     -0.03782,
-    1.26341,
-    0.12214
+    1.26941,
+    0.12279
    ],
    "outward": [
-    -0.25712,
+    -0.25603,
     0,
-    0.96638
+    0.96667
    ],
    "region": "thorax",
-   "depthMm": 8,
+   "depthMm": 7.9,
    "rule": "5th intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc)"
   },
   {
@@ -691,14 +691,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03806,
+    -0.03825,
     1.28648,
-    0.12131
+    0.12133
    ],
    "outward": [
-    -0.26005,
+    -0.26123,
     0,
-    0.9656
+    0.96528
    ],
    "region": "thorax",
    "depthMm": 7.9,
@@ -721,17 +721,17 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03822,
-    1.31382,
-    0.11395
+    -0.03813,
+    1.31982,
+    0.1112
    ],
    "outward": [
-    -0.27437,
+    -0.2791,
     0,
-    0.96162
+    0.96026
    ],
    "region": "thorax",
-   "depthMm": 8.1,
+   "depthMm": 8,
    "rule": "3rd intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc)"
   },
   {
@@ -751,17 +751,17 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03796,
-    1.3432,
-    0.0999
+    -0.03868,
+    1.3492,
+    0.09699
    ],
    "outward": [
-    -0.3018,
+    -0.31391,
     0,
-    0.95337
+    0.94945
    ],
    "region": "thorax",
-   "depthMm": 7.6,
+   "depthMm": 7.7,
    "rule": "2nd intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc)"
   },
   {
@@ -781,14 +781,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03923,
+    -0.03942,
     1.37253,
-    0.08207
+    0.08208
    ],
    "outward": [
-    -0.35876,
+    -0.36025,
     0,
-    0.93343
+    0.93285
    ],
    "region": "thorax",
    "depthMm": 8,
@@ -811,17 +811,17 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03892,
-    1.39189,
-    0.06742
+    -0.0389,
+    1.39689,
+    0.06363
    ],
    "outward": [
-    -0.4067,
+    -0.42177,
     0,
-    0.91356
+    0.9067
    ],
    "region": "thorax",
-   "depthMm": 7.7,
+   "depthMm": 7.8,
    "rule": "just inferior to the clavicle · 2 B-cun lateral (skin arc)"
   }
  ]

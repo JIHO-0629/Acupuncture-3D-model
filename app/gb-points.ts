@@ -57,7 +57,7 @@ const GB_POINT_INPUTS:GbPointInput[]=[
  // 2026-09-15 photo review (images/GB/GB03.png): GB3 sits directly above the zygomatic arch,
  // vertically in line with ST7 하관 below it. The old seed was 9 mm anterior to the arch
  // midpoint (z .028) and 8 mm above its superior border.
- {code:'GB3',korean:'상관',hanja:'上關',english:'Shangguan',location:'관골궁 중점의 바로 위쪽 함요부(ST7 하관의 수직 위쪽)',basis:'관골궁 중점 landmark와 측두부 표면',seed:[-.068,1.588,.028],projection:'lateral',status:'registered'},
+ {code:'GB3',korean:'상관',hanja:'上關',english:'Shangguan',location:'관골궁 위모서리, 하악골 관절돌기 위쪽의 오목한 곳',basis:'관골궁 중점 landmark와 측두부 표면',seed:[-.068,1.588,.028],projection:'lateral',status:'registered'},
  {code:'GB4',korean:'함염',hanja:'頷厭',english:'Hanyan',location:'ST8–GB7 피부 곡선의 위쪽 1/4',basis:'측두부 깨물근 경계 곡선',seed:[-.074,1.622,.030],projection:'head',status:'review'},
  {code:'GB5',korean:'현로',hanja:'懸顱',english:'Xuanlu',location:'ST8–GB7 피부 곡선의 중점',basis:'측두부 깨물근 경계 곡선',seed:[-.077,1.626,.018],projection:'head',status:'review'},
  {code:'GB6',korean:'현리',hanja:'懸釐',english:'Xuanli',location:'ST8–GB7 피부 곡선의 위쪽 3/4',basis:'측두부 깨물근 경계 곡선',seed:[-.080,1.622,.004],projection:'head',status:'review'},
@@ -77,7 +77,7 @@ const GB_POINT_INPUTS:GbPointInput[]=[
  {code:'GB9',korean:'천충',hanja:'天衝',english:'Tianchong',location:'이개근 뒤모서리 수직선, 두발경계선 위 2촌(골도분촌)',basis:'GB8 수직선 뒤 0.5촌과 Hair of head 메쉬 발제선, 두피 표면 호길이',seed:GB_HEAD_CUN_SEEDS.GB9,projection:'head',status:'review'},
  {code:'GB10',korean:'부백',hanja:'浮白',english:'Fubai',location:'GB9–GB12 곡선의 위쪽 1/3',basis:'GB9–GB12 두피 표면 곡선의 호길이 1/3',seed:GB_HEAD_CUN_SEEDS.GB10,projection:'head',status:'review'},
  {code:'GB11',korean:'두규음',hanja:'頭竅陰',english:'Touqiaoyin',location:'GB9–GB12 곡선의 위쪽 2/3',basis:'GB9–GB12 두피 표면 곡선의 호길이 2/3',seed:GB_HEAD_CUN_SEEDS.GB11,projection:'head',status:'review'},
- {code:'GB12',korean:'완골',hanja:'完骨',english:'Wangu',location:'유양돌기 아래뒤쪽, C1 높이의 표면 구역',basis:'유양돌기·제1경추·흉쇄유돌근 뒤 경계',seed:[-.067,1.570,-.065],projection:'head',status:'registered'},
+ {code:'GB12',korean:'완골',hanja:'完骨',english:'Wangu',location:'유양돌기의 뒤아래쪽 오목한 곳',basis:'유양돌기·제1경추·흉쇄유돌근 뒤 경계',seed:[-.067,1.570,-.065],projection:'head',status:'registered'},
  {code:'GB13',korean:'본신',hanja:'本神',english:'Benshen',location:'전발제 위 0.5촌(골도분촌), 전정중선 가쪽 3촌',basis:'Hair of head 메쉬 전발제, 두피 표면 호길이 (가쪽 열은 ST8 구현 전까지 x -.052 유지)',seed:GB_HEAD_CUN_SEEDS.GB13,projection:'head',status:'review'},
  {code:'GB14',korean:'양백',hanja:'陽白',english:'Yangbai',location:'동공중선, 눈썹 위 1촌(골도분촌)',basis:'눈확위모서리(전두골)와 미간~전발제 3촌 척도, 이마 표면 호길이',seed:GB_HEAD_CUN_SEEDS.GB14,projection:'head',status:'review'},
  {code:'GB15',korean:'두임읍',hanja:'頭臨泣',english:'Toulinqi',location:'동공중선, 전발제 안쪽 0.5촌(골도분촌)',basis:'동공중선 시상 단면의 Hair of head 발제선, 두피 표면 호길이',seed:GB_HEAD_CUN_SEEDS.GB15,projection:'head',status:'review'},
@@ -91,7 +91,7 @@ const GB_POINT_INPUTS:GbPointInput[]=[
  // x -.058/z -.050 and the descending trapezius' lateral edge at x -.036/z -.074; the seed is
  // the midpoint of that gap. The old seed floated 39 mm behind the skin and landed on the side
  // of the neck, 62 mm below the external occipital protuberance.
- {code:'GB20',korean:'풍지',hanja:'風池',english:'Fengchi',location:'후두골 아래, 흉쇄유돌근과 등세모근 이는곳 사이 함요부',basis:'후두골 아래모서리와 흉쇄유돌근·등세모근 이는곳 사이 간격의 중점',seed:[-.047,1.560,-.062],projection:'posterior',status:'registered'},
+ {code:'GB20',korean:'풍지',hanja:'風池',english:'Fengchi',location:'후두골 아래, 흉쇄유돌근과 등세모근 이는곳 사이 함몰부',basis:'후두골 아래모서리와 흉쇄유돌근·등세모근 이는곳 사이 간격의 중점',seed:[-.047,1.560,-.062],projection:'posterior',status:'registered'},
  // 2026-09-23: WHO midpoint of the C7 spinous process tip (0.0004, 1.4469, -0.0787) and the lateral end of the
  // acromion (-0.1665, 1.4224, -0.0433) = (-0.083, 1.4347, -0.061), carried up to the skin on top of the shoulder.
  // The old seed plus a lateral projection landed 82 mm away on the deltoid, and the needle went into the humerus.
@@ -101,9 +101,9 @@ const GB_POINT_INPUTS:GbPointInput[]=[
  // 2026-09-23: the arm hangs against the chest here, and a lateral projection's normal tilted the needle into
  // biceps brachii. The point stays on the axillary skin at the 4th intercostal level and the needle goes straight
  // medial, as it would with the arm raised. In this pose the axillary hollow leaves ~70 mm to serratus anterior.
- {code:'GB22',korean:'연액',hanja:'淵腋',english:'Yuanye',location:'팔을 든 자세의 겨드랑 중심 아래, 제4늑간 높이',basis:'중간겨드랑선과 제4늑간, 겨드랑 피부에서 안쪽으로 수평 자입',seed:[-.2103,1.295,.010],projection:'direct',outward:[-1,0,0],status:'registered'},
- {code:'GB23',korean:'첩근',hanja:'輒筋',english:'Zhejin',location:'GB22 앞쪽, 제4늑간 높이의 흉곽 가쪽 구역',basis:'제4·5늑골과 중간겨드랑선',seed:[-.170,1.270,.038],projection:'lateral',status:'registered'},
- {code:'GB24',korean:'일월',hanja:'日月',english:'Riyue',location:'제7늑간, 전정중선 가쪽 흉곽 구역',basis:'제7·8늑골과 늑간 공간',seed:[-.120,1.165,.087],projection:'anterior',status:'registered'},
+ {code:'GB22',korean:'연액',hanja:'淵腋',english:'Yuanye',location:'팔을 든 자세에서 중간겨드랑선 위, 겨드랑 중심 아래 3촌의 제4늑간',basis:'제4·5늑골 사이의 중간겨드랑선 몸통 피부(현재 팔 내림 자세), 안쪽으로 수평 자입',seed:[-.1684,1.315,.030],projection:'direct',outward:[-1,0,0],status:'registered'},
+ {code:'GB23',korean:'첩근',hanja:'輒筋',english:'Zhejin',location:'가쪽가슴부위 제4늑간, 중간겨드랑선 앞쪽 1촌',basis:'제4·5늑골과 중간겨드랑선',seed:[-.170,1.270,.038],projection:'lateral',status:'registered'},
+ {code:'GB24',korean:'일월',hanja:'日月',english:'Riyue',location:'앞가슴부위 제7늑간, 앞정중선 가쪽 4촌',basis:'제7·8늑골과 늑간 공간',seed:[-.120,1.165,.087],projection:'anterior',status:'registered'},
  {code:'GB25',korean:'경문',hanja:'京門',english:'Jingmen',location:'옆배, 제12늑골 자유단 바로 아래쪽',basis:'제12늑골 자유단 랜드마크·뒤겨드랑선 뒤쪽',seed:GB_LANDMARK_SEEDS.GB25!,projection:'lateral',status:'review'},
  // 2026-09-23: the old seed sat 30 mm below the umbilicus level and 40 mm lateral, where the needle met the iliac
  // crest at 14 mm. Now: vertically below the free end of the 11th rib (-0.108, 1.0888, -0.0049) at the height of

@@ -2,6 +2,7 @@
 import * as T from 'three';
 import {atlas,mesh,centroid,v,mid,most,landmark,meridianWriter,UP,DOWN,MEDIAL,ANTERIOR,POSTERIOR} from '../acupoint-kit.mjs';
 import {threeMesh} from '../atlas-geometry.mjs';
+import {lateralOnSkin,ringNormal,intercostalOnLine} from '../trunk-arc.mjs';
 
 const W=meridianWriter('SP');
 const pts=(part,filter=()=>true)=>{const out=[];for(let i=0;i<part.vertexCount;i++){const p=v(part.positions[i*3],part.positions[i*3+1],part.positions[i*3+2]);if(filter(p))out.push(p);}return out;};
@@ -46,7 +47,7 @@ place('SP11',medialThigh(thighY(12),0.005),MEDIAL,['thigh-R'],'junction of the u
 // Abdomen: SP12–SP15 at 4 B-cun lateral; SP16–SP20 at 4–6 B-cun lateral.
 const navel=landmark('umbilicus',null), trunkOut=ANTERIOR, lowerSpan=navel.y-pubis.y, lowerCun=lowerSpan/5;
 const abdomen=(code,y,x,rule)=>place(code,v(x,y,0.07),trunkOut,['thigh-R','pelvis','lumbar','thorax'],rule);
-abdomen('SP12',pubis.y,-0.078,'superior border of pubic symphysis · 4 B-cun lateral to anterior median line');
+abdomen('SP12',pubis.y+0.00535,-0.078,'inguinal-crease level with ST30 · 4 B-cun lateral to anterior median line');
 abdomen('SP13',pubis.y+lowerCun,-0.078,'1 B-cun above SP12 · 4 B-cun lateral to anterior median line');
 // Sheet/KCMRIC: 1.3 B-cun below the umbilicus, which also lands above the ASIS, as the reviewer expected. The old
 // formula placed it 3 B-cun below and then clamped it up to the ASIS level.
@@ -63,8 +64,11 @@ const ribBand=(number,x)=>{
 };
 const intercostal=(number,x)=>(ribBand(number,x).low+ribBand(number+1,x).high)/2;
 for(const [i,number] of [5,4,3,2].entries()){
-  const y=intercostal(number,-0.116);
-  abdomen(`SP${17+i}`,y,-0.116,`${{2:"2nd",3:"3rd",4:"4th",5:"5th"}[number]} intercostal space measured from the actual lateral rib curve · 6 B-cun lateral to anterior median line`);
+  // The rendered nipple line lies at about 5 model B-cun after its reviewed
+  // anthropometric correction; halfway to the 8 B-cun midaxillary line is 6.5.
+  const targetCun=6.5,y=intercostalOnLine(number,targetCun);
+  const surface=lateralOnSkin(y,targetCun),normal=ringNormal(surface);
+  W.put(`SP${17+i}`,surface.clone().addScaledVector(normal,-0.01),normal,['thorax','shoulder'],`${{2:"2nd",3:"3rd",4:"4th",5:"5th"}[number]} intercostal space · midpoint of nipple line and midaxillary line (6 B-cun skin arc)`);
 }
 // 2026-09-23: the arm hangs against the chest in this model, so a lateral projection landed on the skin of the
 // arm and the needle started in biceps brachii. The trunk keeps its own skin sheet under the arm; SP21 sits on
@@ -79,5 +83,5 @@ for(const [i,number] of [5,4,3,2].entries()){
 
 const english=['Yinbai','Dadu','Taibai','Gongsun','Shangqiu','Sanyinjiao','Lougu','Diji','Yinlingquan','Xuehai','Jimen','Chongmen','Fushe','Fujie','Daheng','Fuai','Shidou','Tianxi','Xiongxiang','Zhourong','Dabao'];
 const overrides=Object.fromEntries(english.map((name,i)=>[`SP${i+1}`,{english:name}]));
-overrides.SP9.location='종아리 안쪽면, 정강뼈 안쪽관절융기 아래모서리와 정강뼈 안쪽모서리가 이루는 각의 오목한 곳 (KCMRIC·WHO 기준; 사진의 2촌 표기는 수업 참고)';
+overrides.SP9.location='종아리 안쪽면, 정강뼈 안쪽관절융기 아래모서리와 정강뼈 안쪽모서리가 이루는 각의 오목한 곳';
 W.write({label:'비경',name:'족태음비경',english:'SPLEEN MERIDIAN',primarySource:'https://m.kmcric.com/knowledge/acupoint/SP',secondarySource:'https://iris.who.int/handle/10665/353407'},overrides);

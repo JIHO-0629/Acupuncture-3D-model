@@ -252,7 +252,7 @@
    "korean": "음릉천",
    "hanja": "陰陵泉",
    "english": "Yinlingquan",
-   "location": "종아리 안쪽면, 정강뼈 안쪽관절융기 아래모서리와 정강뼈 안쪽모서리가 이루는 각의 오목한 곳 (KCMRIC·WHO 기준; 사진의 2촌 표기는 수업 참고)",
+   "location": "종아리 안쪽면, 정강뼈 안쪽관절융기 아래모서리와 정강뼈 안쪽모서리가 이루는 각의 오목한 곳",
    "rawLocation": "정강뼈 안쪽관절융기 아래모서리와 정강뼈 안쪽모서리 사이의 오목한 곳\n교수님께서는 “사이”보다는 “만나는 점”으로 생각하라고 하셨음\n무릎관절면에서 아래 2촌",
    "rawMethod": "손가락으로 정강뼈 안쪽모서리를 촉지하며 따라 몸쪽으로 올라가다가 무릎관절 아래서 걸리는 곳, 오목한 곳에 취혈\n압통이 크고, 양릉천으로 투자하기도 한다.\n*깊게 하면 혈종이 생길 수 있으니 주의할 것",
    "classification": "A+B · 해부학+비례",
@@ -355,8 +355,8 @@
    "status": "implemented_unverified",
    "seed": [
     -0.078,
-    0.88419,
-    0.06774
+    0.88954,
+    0.06799
    ],
    "outward": [
     0,
@@ -364,8 +364,8 @@
     1
    ],
    "region": "thigh-R",
-   "depthMm": 1.7,
-   "rule": "superior border of pubic symphysis · 4 B-cun lateral to anterior median line"
+   "depthMm": 2,
+   "rule": "inguinal-crease level with ST30 · 4 B-cun lateral to anterior median line"
   },
   {
    "code": "SP13",
@@ -504,18 +504,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.116,
-    1.25819,
-    0.1061
+    -0.12368,
+    1.26663,
+    0.10179
    ],
    "outward": [
+    -0.71254,
     0,
-    0,
-    1
+    0.70164
    ],
    "region": "thorax",
-   "depthMm": 40.1,
-   "rule": "5th intercostal space measured from the actual lateral rib curve · 6 B-cun lateral to anterior median line"
+   "depthMm": 8,
+   "rule": "5th intercostal space · midpoint of nipple line and midaxillary line (6 B-cun skin arc)"
   },
   {
    "code": "SP18",
@@ -534,18 +534,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.116,
-    1.30777,
-    0.09611
+    -0.12407,
+    1.30588,
+    0.09171
    ],
    "outward": [
+    -0.74315,
     0,
-    0,
-    1
+    0.66912
    ],
    "region": "thorax",
-   "depthMm": 30.1,
-   "rule": "4th intercostal space measured from the actual lateral rib curve · 6 B-cun lateral to anterior median line"
+   "depthMm": 8,
+   "rule": "4th intercostal space · midpoint of nipple line and midaxillary line (6 B-cun skin arc)"
   },
   {
    "code": "SP19",
@@ -564,18 +564,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.116,
-    1.33277,
-    0.08446
+    -0.12343,
+    1.34955,
+    0.07081
    ],
    "outward": [
+    -0.8055,
     0,
-    0,
-    1
+    0.59259
    ],
    "region": "thorax",
-   "depthMm": 18.5,
-   "rule": "3rd intercostal space measured from the actual lateral rib curve · 6 B-cun lateral to anterior median line"
+   "depthMm": 7.7,
+   "rule": "3rd intercostal space · midpoint of nipple line and midaxillary line (6 B-cun skin arc)"
   },
   {
    "code": "SP20",
@@ -594,18 +594,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.116,
-    1.36844,
-    0.06599
+    -0.12428,
+    1.38102,
+    0.04938
    ],
    "outward": [
+    -0.87316,
     0,
-    0,
-    1
+    0.48743
    ],
    "region": "thorax",
-   "depthMm": 0,
-   "rule": "2nd intercostal space measured from the actual lateral rib curve · 6 B-cun lateral to anterior median line"
+   "depthMm": 6.9,
+   "rule": "2nd intercostal space · midpoint of nipple line and midaxillary line (6 B-cun skin arc)"
   },
   {
    "code": "SP21",

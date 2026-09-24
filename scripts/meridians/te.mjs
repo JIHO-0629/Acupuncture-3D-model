@@ -112,8 +112,22 @@ for (const [code, cun] of [['TE11', 2], ['TE12', 5]]) {
     `posterior arm · olecranon–acromial angle line · ${cun} B-cun proximal to the olecranon prominence`);
 }
 const postArm = v(-0.55, 0, -0.84).normalize();
-W.put('TE13', acromialAngle.clone().addScaledVector(toAngle, -3 * L.armCun).add(v(0.007,0,-0.003)), postArm, ['upper-arm-R', 'shoulder'],
-  'posterior arm · medial junction of spinal deltoid and triceps · 3 B-cun inferior to the acromial angle');
+{
+  const y = acromialAngle.y - 3 * L.armCun;
+  const deltoid = atHeight(mesh(atlas, 'Spinal part of right deltoid'), y, 0.006);
+  const triceps = [
+    ...atHeight(mesh(atlas, 'Lateral head of right triceps brachii'), y, 0.006),
+    ...atHeight(mesh(atlas, 'Long head of right triceps brachii'), y, 0.006),
+  ];
+  let pair = { a: deltoid[0], b: triceps[0], distance: Infinity };
+  for (const a of deltoid) for (const b of triceps) {
+    const distance = a.distanceToSquared(b);
+    if (distance < pair.distance) pair = { a, b, distance };
+  }
+  const junction = mid(pair.a, pair.b).setY(y);
+  W.put('TE13', junction, postArm, ['upper-arm-R', 'shoulder'],
+    'posterior arm · mesh-derived junction of spinal deltoid and triceps · 3 B-cun inferior to the acromial angle');
+}
 {
   const tubercle = most(pts(humerus, (p) => p.y > humerus.box.max.y - 0.04), v(-1, 0, -0.2).normalize());
   W.put('TE14', mid(acromialAngle, tubercle).add(v(0.008, -0.006, -0.004)), v(-0.45, 0, -0.89).normalize(), ['shoulder', 'upper-arm-R'],
@@ -198,9 +212,9 @@ W.put('TE20', v(-0.06, EAR.apex.y + 0.003, EAR.apex.z), v(-1, 0.15, 0).normalize
 
 const english = ['Guanchong', 'Yemen', 'Zhongzhu', 'Yangchi', 'Waiguan', 'Zhigou', 'Huizong', 'Sanyangluo', 'Sidu', 'Tianjing', 'Qinglengyuan', 'Xiaoluo', 'Naohui', 'Jianliao', 'Tianliao', 'Tianyou', 'Yifeng', 'Chimai', 'Luxi', 'Jiaosun', 'Ermen', 'Erheliao', 'Sizhukong'];
 const overrides = Object.fromEntries(english.map((name, i) => [`TE${i + 1}`, { english: name }]));
-overrides.TE7.location = '아래팔 뒤쪽면, 자뼈의 바로 노쪽, 손등쪽 손목주름에서 몸쪽으로 3촌, 지구(TE6)의 자쪽 (KCMRIC)';
-overrides.TE16.location = '목 앞부위, 턱뼈각과 같은 높이, 목빗근의 뒤쪽 오목한 곳 (KCMRIC)';
-overrides.TE22.location = '머리, 살쩍머리카락 경계선의 뒤쪽, 귓바퀴뿌리의 앞쪽, 이륜각 기시부 높이 (검수자 결정: 사진 기준), 얕은관자동맥의 뒤쪽';
+overrides.TE7.location = '아래팔 뒤쪽면, 자뼈의 바로 노쪽, 손등쪽 손목주름에서 몸쪽으로 3촌, 지구(TE6)의 자쪽';
+overrides.TE16.location = '목 앞부위, 턱뼈각과 같은 높이, 목빗근의 뒤쪽 오목한 곳';
+overrides.TE22.location = '머리, 살쩍머리카락 경계선의 뒤쪽, 귓바퀴뿌리의 앞쪽, 이륜각 기시부 높이, 얕은관자동맥의 뒤쪽';
 W.write({
   label: '삼초경', name: '수소양삼초경', english: 'TRIPLE ENERGIZER MERIDIAN',
   primarySource: 'https://m.kmcric.com/knowledge/acupoint/TE', secondarySource: 'https://iris.who.int/handle/10665/353407',

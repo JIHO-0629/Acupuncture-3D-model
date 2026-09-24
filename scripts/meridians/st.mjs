@@ -331,10 +331,10 @@ const putOnTrunkLine = (code, y, cun, regions, rule) => {
     'greater supraclavicular fossa · on the vertical nipple line (4 B-cun) · depression above the clavicle');
   const clavicleLow = lowest(pts(clavicle, (p) => Math.abs(p.x - lineX) < 0.004)).y;
   // Reviewer: immediately below the clavicle, on the same line as ST12.
-  W.put('ST13', v(lineX, clavicleLow - 0.003, 0.03), ANTERIOR, chest, 'immediately inferior to the clavicle · on the vertical nipple line with ST12 (4 B-cun)');
+  W.put('ST13', v(lineX, clavicleLow - 0.001, 0.03), ANTERIOR, chest, 'immediately inferior to the clavicle · on the vertical nipple line with ST12 (4 B-cun)');
   const ics = {};
   for (const [code, k, extra] of [['ST14', 1, ''], ['ST15', 2, ' · below the 2nd rib at the sternal angle'], ['ST16', 3, ''], ['ST17', 4, ' · centre of the nipple in males (WHO)'], ['ST18', 5, ' · nipple line in males']]) {
-    ics[code] = intercostal(k);
+    ics[code] = intercostal(k) + (code === 'ST14' ? 0.006 : 0);
     putOnTrunkLine(code, ics[code], 4, chest, `${['1st', '2nd', '3rd', '4th', '5th'][k - 1]} intercostal space · 4 B-cun lateral (skin arc)${extra}`);
   }
   // ST17 is the centre of the nipple, so it follows the rendered nipple (lower part of the 4th intercostal space).
@@ -517,7 +517,7 @@ const foot = ['foot-R'];
 
 const english = ['Chengqi', 'Sibai', 'Juliao', 'Dicang', 'Daying', 'Jiache', 'Xiaguan', 'Touwei', 'Renying', 'Shuitu', 'Qishe', 'Quepen', 'Qihu', 'Kufang', 'Wuyi', 'Yingchuang', 'Ruzhong', 'Rugen', 'Burong', 'Chengman', 'Liangmen', 'Guanmen', 'Taiyi', 'Huaroumen', 'Tianshu', 'Wailing', 'Daju', 'Shuidao', 'Guilai', 'Qichong', 'Biguan', 'Futu', 'Yinshi', 'Liangqiu', 'Dubi', 'Zusanli', 'Shangjuxu', 'Tiaokou', 'Xiajuxu', 'Fenglong', 'Jiexi', 'Chongyang', 'Xiangu', 'Neiting', 'Lidui'];
 const overrides = Object.fromEntries(english.map((name, i) => [`ST${i + 1}`, { english: name }]));
-overrides.ST30.location = '샅부위, 두덩결합 위모서리와 같은 높이, 앞정중선에서 가쪽으로 2촌, 넙다리동맥이 뛰는 곳 (시트 원문의 "5촌"은 KCMRIC·WHO와 불일치하여 2촌 적용)';
+overrides.ST30.location = '샅부위, 두덩결합 위모서리와 같은 높이, 앞정중선에서 가쪽으로 2촌, 넙다리동맥이 뛰는 곳';
 overrides.ST6.location = '턱뼈각에서 위앞쪽으로 1촌(가운데손가락 너비), 턱뼈각 이등분선 위 깨물근 융기부';
 W.write({
   label: '위경', name: '족양명위경', english: 'STOMACH MERIDIAN',

@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "atlas-dev", "runtimeExecutable": "C:/Users/jiho3/AppData/Local/OpenAI/Codex/runtimes/cua_node/df473e5367fa2b42/bin/node.exe", "runtimeArgs": ["node_modules/vite/bin/vite.js", "--host", "0.0.0.0", "--port", "3016"], "port": 3016 }
+  ]
+}

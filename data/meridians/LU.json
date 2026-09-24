@@ -20,7 +20,7 @@
    "korean": "중부",
    "hanja": "中府",
    "english": "Zhongfu",
-   "location": "앞가슴부위, 첫째 갈비사이공간과 같은 높이, 빗장아래오목의 가쪽, 앞정중선에서 가쪽으로 6촌. (WHO 기준 · 원본 부가메모 미사용)",
+   "location": "앞가슴부위, 첫째 갈비사이공간과 같은 높이, 빗장아래오목의 가쪽, 앞정중선에서 가쪽으로 6촌.",
    "rawLocation": "앞가슴부위, 첫째갈비사이공간과 같은 높이(실제로는 둘째 갈비사이공간에 가깝다), 빗장아래오목의 가쪽, 앞정중선에서 가쪽으로 6촌.",
    "rawMethod": "仰而取之(누워서), 動脈應手陷中(만졌을때 동맥이 뛰는, 함몰되어 있는곳)",
    "classification": "A+B · 해부학+비례",
@@ -50,7 +50,7 @@
    "korean": "운문",
    "hanja": "雲門",
    "english": "Yunmen",
-   "location": "앞가슴부위, 빗장아래오목의 오목한 곳, 어깨뼈부리돌기 안쪽, 앞정중선에서 가쪽으로 6촌. (WHO 기준 · 원본 부가메모 미사용)",
+   "location": "앞가슴부위, 빗장아래오목의 오목한 곳, 어깨뼈부리돌기 안쪽, 앞정중선에서 가쪽으로 6촌.",
    "rawLocation": "앞가슴부위, 빗장아래오목, 어깨뼈부리돌기 안쪽(실제로는 첫째 갈비사이공간과 같은 높이), 앞정중선에서 가쪽으로 6촌(직선이 아닌 곡선으로 6촌) 오목한 곳.",
    "rawMethod": "팔을들고 자침한다. \n[자침법] 가슴 바깥 방향으로 사자 5~8푼",
    "classification": "A+B · 해부학+비례",
@@ -63,8 +63,8 @@
    "status": "implemented_unverified",
    "seed": [
     -0.11647,
-    1.41289,
-    0.01631
+    1.4023,
+    0.03364
    ],
    "outward": [
     0,
@@ -72,8 +72,8 @@
     1
    ],
    "region": "thorax",
-   "depthMm": 13.5,
-   "rule": "infraclavicular fossa immediately inferior to clavicle · medial to coracoid · 6 B-cun lateral"
+   "depthMm": 26.3,
+   "rule": "deltopectoral triangle immediately inferior to clavicle · between clavicular pectoralis major and deltoid · medial to coracoid · 6 B-cun lateral"
   },
   {
    "code": "LU3",
@@ -93,13 +93,13 @@
    "status": "implemented_unverified",
    "seed": [
     -0.22242,
-    1.25968,
-    0.00261
+    1.25969,
+    0.00262
    ],
    "outward": [
-    -0.79912,
-    0.09423,
-    0.59374
+    -0.79851,
+    0.09457,
+    0.59451
    ],
    "region": "upper-arm-R",
    "depthMm": 5.6,
@@ -124,12 +124,12 @@
    "seed": [
     -0.2337,
     1.24268,
-    -0.00852
+    -0.00851
    ],
    "outward": [
-    -0.92018,
-    0.13658,
-    0.36689
+    -0.91971,
+    0.13683,
+    0.368
    ],
    "region": "upper-arm-R",
    "depthMm": 9.8,

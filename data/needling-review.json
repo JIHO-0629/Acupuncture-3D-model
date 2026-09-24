@@ -1,0 +1,3251 @@
+[
+  {
+    "point": "GB1",
+    "technique": "GB1-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB2",
+    "technique": "GB2-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB3",
+    "technique": "GB3-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB4",
+    "technique": "GB4-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB5",
+    "technique": "GB5-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB6",
+    "technique": "GB6-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB7",
+    "technique": "GB7-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB8",
+    "technique": "GB8-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB9",
+    "technique": "GB9-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB10",
+    "technique": "GB10-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB11",
+    "technique": "GB11-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB12",
+    "technique": "GB12-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB13",
+    "technique": "GB13-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB14",
+    "technique": "GB14-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB15",
+    "technique": "GB15-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB16",
+    "technique": "GB16-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB17",
+    "technique": "GB17-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB18",
+    "technique": "GB18-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB19",
+    "technique": "GB19-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB20",
+    "technique": "GB20-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB21",
+    "technique": "GB21-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB22",
+    "technique": "GB22-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB23",
+    "technique": "GB23-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB24",
+    "technique": "GB24-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB25",
+    "technique": "GB25-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB26",
+    "technique": "GB26-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB27",
+    "technique": "GB27-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB28",
+    "technique": "GB28-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB29",
+    "technique": "GB29-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB30",
+    "technique": "GB30-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB31",
+    "technique": "GB31-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB32",
+    "technique": "GB32-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB33",
+    "technique": "GB33-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB34",
+    "technique": "GB34-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB35",
+    "technique": "GB35-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB36",
+    "technique": "GB36-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB37",
+    "technique": "GB37-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB38",
+    "technique": "GB38-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB39",
+    "technique": "GB39-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB40",
+    "technique": "GB40-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB41",
+    "technique": "GB41-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB42",
+    "technique": "GB42-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB43",
+    "technique": "GB43-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GB44",
+    "technique": "GB44-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI1",
+    "technique": "LI1-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI2",
+    "technique": "LI2-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI3",
+    "technique": "LI3-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI4",
+    "technique": "LI4-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI5",
+    "technique": "LI5-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI6",
+    "technique": "LI6-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI7",
+    "technique": "LI7-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI8",
+    "technique": "LI8-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI9",
+    "technique": "LI9-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI10",
+    "technique": "LI10-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI11",
+    "technique": "LI11-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI12",
+    "technique": "LI12-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI13",
+    "technique": "LI13-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI14",
+    "technique": "LI14-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI15",
+    "technique": "LI15-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI16",
+    "technique": "LI16-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI17",
+    "technique": "LI17-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI18",
+    "technique": "LI18-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI19",
+    "technique": "LI19-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LI20",
+    "technique": "LI20-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LU1",
+    "technique": "LU1-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LU2",
+    "technique": "LU2-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LU3",
+    "technique": "LU3-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LU4",
+    "technique": "LU4-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LU5",
+    "technique": "LU5-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LU6",
+    "technique": "LU6-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LU7",
+    "technique": "LU7-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LU8",
+    "technique": "LU8-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LU9",
+    "technique": "LU9-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LU10",
+    "technique": "LU10-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LU11",
+    "technique": "LU11-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST1",
+    "technique": "ST1-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST2",
+    "technique": "ST2-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST3",
+    "technique": "ST3-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST4",
+    "technique": "ST4-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST5",
+    "technique": "ST5-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST6",
+    "technique": "ST6-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST7",
+    "technique": null,
+    "status": "locked",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST8",
+    "technique": "ST8-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST9",
+    "technique": "ST9-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST10",
+    "technique": "ST10-B",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST11",
+    "technique": "ST11-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST12",
+    "technique": "ST12-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST13",
+    "technique": "ST13-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST14",
+    "technique": "ST14-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST15",
+    "technique": "ST15-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST16",
+    "technique": "ST16-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST17",
+    "technique": null,
+    "status": "locked",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST18",
+    "technique": "ST18-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST19",
+    "technique": "ST19-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST20",
+    "technique": "ST20-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST21",
+    "technique": "ST21-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST22",
+    "technique": "ST22-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST23",
+    "technique": "ST23-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST24",
+    "technique": "ST24-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST25",
+    "technique": "ST25-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST26",
+    "technique": "ST26-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST27",
+    "technique": "ST27-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST28",
+    "technique": "ST28-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST29",
+    "technique": "ST29-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST30",
+    "technique": "ST30-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST31",
+    "technique": "ST31-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST32",
+    "technique": "ST32-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST33",
+    "technique": "ST33-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST34",
+    "technique": "ST34-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST35",
+    "technique": "ST35-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST36",
+    "technique": "ST36-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST37",
+    "technique": "ST37-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST38",
+    "technique": "ST38-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST39",
+    "technique": "ST39-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST40",
+    "technique": "ST40-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST41",
+    "technique": "ST41-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST42",
+    "technique": "ST42-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST43",
+    "technique": "ST43-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST44",
+    "technique": "ST44-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "ST45",
+    "technique": "ST45-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP1",
+    "technique": "SP1-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP2",
+    "technique": "SP2-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP3",
+    "technique": "SP3-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP4",
+    "technique": "SP4-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP5",
+    "technique": "SP5-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP6",
+    "technique": "SP6-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP7",
+    "technique": "SP7-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP8",
+    "technique": "SP8-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP9",
+    "technique": "SP9-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP10",
+    "technique": "SP10-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP11",
+    "technique": "SP11-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP12",
+    "technique": "SP12-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP13",
+    "technique": "SP13-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP14",
+    "technique": "SP14-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP15",
+    "technique": "SP15-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP16",
+    "technique": "SP16-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP17",
+    "technique": "SP17-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP18",
+    "technique": "SP18-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP19",
+    "technique": "SP19-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP20",
+    "technique": "SP20-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SP21",
+    "technique": "SP21-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "HT1",
+    "technique": "HT1-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "HT2",
+    "technique": "HT2-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "HT3",
+    "technique": "HT3-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "HT4",
+    "technique": "HT4-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "HT5",
+    "technique": "HT5-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "HT6",
+    "technique": "HT6-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "HT7",
+    "technique": "HT7-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "HT8",
+    "technique": "HT8-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "HT9",
+    "technique": "HT9-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI1",
+    "technique": "SI1-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI2",
+    "technique": "SI2-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI3",
+    "technique": "SI3-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI4",
+    "technique": "SI4-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI5",
+    "technique": "SI5-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI6",
+    "technique": "SI6-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI7",
+    "technique": "SI7-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI8",
+    "technique": "SI8-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI9",
+    "technique": "SI9-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI10",
+    "technique": "SI10-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI11",
+    "technique": "SI11-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI12",
+    "technique": "SI12-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI13",
+    "technique": "SI13-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI14",
+    "technique": "SI14-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI15",
+    "technique": "SI15-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI16",
+    "technique": "SI16-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI17",
+    "technique": "SI17-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI18",
+    "technique": "SI18-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "SI19",
+    "technique": "SI19-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL1",
+    "technique": "BL1-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL2",
+    "technique": "BL2-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL3",
+    "technique": "BL3-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL4",
+    "technique": "BL4-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL5",
+    "technique": "BL5-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL6",
+    "technique": "BL6-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL7",
+    "technique": "BL7-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL8",
+    "technique": "BL8-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL9",
+    "technique": "BL9-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL10",
+    "technique": "BL10-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL11",
+    "technique": "BL11-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL12",
+    "technique": "BL12-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL13",
+    "technique": "BL13-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL14",
+    "technique": "BL14-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL15",
+    "technique": "BL15-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL16",
+    "technique": "BL16-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL17",
+    "technique": "BL17-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL18",
+    "technique": "BL18-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL19",
+    "technique": "BL19-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL20",
+    "technique": "BL20-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL21",
+    "technique": "BL21-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL22",
+    "technique": "BL22-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL23",
+    "technique": "BL23-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL24",
+    "technique": "BL24-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL25",
+    "technique": "BL25-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL26",
+    "technique": "BL26-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL27",
+    "technique": "BL27-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL28",
+    "technique": "BL28-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL29",
+    "technique": "BL29-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL30",
+    "technique": "BL30-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL31",
+    "technique": "BL31-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL32",
+    "technique": "BL32-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL33",
+    "technique": "BL33-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL34",
+    "technique": "BL34-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL35",
+    "technique": "BL35-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL36",
+    "technique": "BL36-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL37",
+    "technique": "BL37-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL38",
+    "technique": "BL38-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL39",
+    "technique": "BL39-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL40",
+    "technique": "BL40-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL41",
+    "technique": "BL41-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL42",
+    "technique": "BL42-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL43",
+    "technique": "BL43-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL44",
+    "technique": "BL44-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL45",
+    "technique": "BL45-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL46",
+    "technique": "BL46-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL47",
+    "technique": "BL47-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL48",
+    "technique": "BL48-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL49",
+    "technique": "BL49-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL50",
+    "technique": "BL50-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL51",
+    "technique": "BL51-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL52",
+    "technique": "BL52-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL53",
+    "technique": "BL53-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL54",
+    "technique": "BL54-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL55",
+    "technique": "BL55-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL56",
+    "technique": "BL56-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL57",
+    "technique": "BL57-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL58",
+    "technique": "BL58-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL59",
+    "technique": "BL59-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL60",
+    "technique": "BL60-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL61",
+    "technique": "BL61-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL62",
+    "technique": "BL62-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL63",
+    "technique": "BL63-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL64",
+    "technique": "BL64-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL65",
+    "technique": "BL65-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL66",
+    "technique": "BL66-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "BL67",
+    "technique": "BL67-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI1",
+    "technique": "KI1-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI2",
+    "technique": "KI2-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI3",
+    "technique": "KI3-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI4",
+    "technique": "KI4-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI5",
+    "technique": "KI5-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI6",
+    "technique": "KI6-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI7",
+    "technique": "KI7-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI8",
+    "technique": "KI8-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI9",
+    "technique": "KI9-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI10",
+    "technique": "KI10-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI11",
+    "technique": "KI11-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI12",
+    "technique": "KI12-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI13",
+    "technique": "KI13-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI14",
+    "technique": "KI14-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI15",
+    "technique": "KI15-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI16",
+    "technique": "KI16-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI17",
+    "technique": "KI17-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI18",
+    "technique": "KI18-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI19",
+    "technique": "KI19-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI20",
+    "technique": "KI20-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI21",
+    "technique": "KI21-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI22",
+    "technique": "KI22-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI23",
+    "technique": "KI23-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI24",
+    "technique": "KI24-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI25",
+    "technique": "KI25-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI26",
+    "technique": "KI26-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "KI27",
+    "technique": "KI27-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "PC1",
+    "technique": "PC1-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "PC2",
+    "technique": "PC2-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "PC3",
+    "technique": "PC3-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "PC4",
+    "technique": "PC4-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "PC5",
+    "technique": "PC5-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "PC6",
+    "technique": "PC6-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "PC7",
+    "technique": "PC7-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "PC8",
+    "technique": "PC8-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "PC9",
+    "technique": "PC9-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE1",
+    "technique": "TE1-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE2",
+    "technique": "TE2-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE3",
+    "technique": "TE3-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE4",
+    "technique": "TE4-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE5",
+    "technique": "TE5-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE6",
+    "technique": "TE6-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE7",
+    "technique": "TE7-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE8",
+    "technique": "TE8-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE9",
+    "technique": "TE9-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE10",
+    "technique": "TE10-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE11",
+    "technique": "TE11-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE12",
+    "technique": "TE12-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE13",
+    "technique": "TE13-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE14",
+    "technique": "TE14-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE15",
+    "technique": "TE15-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE16",
+    "technique": "TE16-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE17",
+    "technique": "TE17-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE18",
+    "technique": "TE18-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE19",
+    "technique": "TE19-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE20",
+    "technique": "TE20-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE21",
+    "technique": "TE21-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE22",
+    "technique": "TE22-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "TE23",
+    "technique": "TE23-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LR1",
+    "technique": "LR1-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LR2",
+    "technique": "LR2-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LR3",
+    "technique": "LR3-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LR4",
+    "technique": "LR4-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LR5",
+    "technique": "LR5-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LR6",
+    "technique": "LR6-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LR7",
+    "technique": "LR7-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LR8",
+    "technique": "LR8-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LR9",
+    "technique": "LR9-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LR10",
+    "technique": "LR10-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LR11",
+    "technique": "LR11-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LR12",
+    "technique": "LR12-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LR13",
+    "technique": "LR13-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "LR14",
+    "technique": "LR14-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV1",
+    "technique": "CV1-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV2",
+    "technique": "CV2-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV3",
+    "technique": "CV3-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV4",
+    "technique": "CV4-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV5",
+    "technique": "CV5-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV6",
+    "technique": "CV6-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV7",
+    "technique": "CV7-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV8",
+    "technique": null,
+    "status": "locked",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV9",
+    "technique": "CV9-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV10",
+    "technique": "CV10-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV11",
+    "technique": "CV11-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV12",
+    "technique": "CV12-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV13",
+    "technique": "CV13-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV14",
+    "technique": "CV14-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV15",
+    "technique": "CV15-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV16",
+    "technique": "CV16-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV17",
+    "technique": "CV17-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV18",
+    "technique": "CV18-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV19",
+    "technique": "CV19-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV20",
+    "technique": "CV20-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV21",
+    "technique": "CV21-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV22",
+    "technique": "CV22-C",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV23",
+    "technique": "CV23-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "CV24",
+    "technique": "CV24-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV1",
+    "technique": "GV1-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV2",
+    "technique": "GV2-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV3",
+    "technique": "GV3-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV4",
+    "technique": "GV4-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV5",
+    "technique": "GV5-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV6",
+    "technique": "GV6-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV7",
+    "technique": "GV7-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV8",
+    "technique": "GV8-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV9",
+    "technique": "GV9-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV10",
+    "technique": "GV10-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV11",
+    "technique": "GV11-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV12",
+    "technique": "GV12-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV13",
+    "technique": "GV13-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV14",
+    "technique": "GV14-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV15",
+    "technique": "GV15-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV16",
+    "technique": "GV16-A",
+    "status": "review_required",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV17",
+    "technique": "GV17-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV18",
+    "technique": "GV18-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV19",
+    "technique": "GV19-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV20",
+    "technique": "GV20-B",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV21",
+    "technique": "GV21-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV22",
+    "technique": "GV22-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV23",
+    "technique": "GV23-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV24",
+    "technique": "GV24-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV25",
+    "technique": "GV25-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV26",
+    "technique": "GV26-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV27",
+    "technique": "GV27-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  },
+  {
+    "point": "GV28",
+    "technique": "GV28-A",
+    "status": "open",
+    "reviewer": null,
+    "reviewedOn": null,
+    "capture": null,
+    "dataVersion": "2026-09-24-first-study"
+  }
+]

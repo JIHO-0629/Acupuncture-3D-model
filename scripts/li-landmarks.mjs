@@ -215,7 +215,9 @@ const greaterTubercle = registered('greater_tubercle');
   const cricoidY = centroid(mesh(atlas, 'Cricoid cartilage')).y;
   const at17 = atHeight(scm, cricoidY, 0.003, (p) => p.x < -0.01);
   const posterior = most(at17, v(-0.4, 0, -1));
-  const deep17 = posterior.clone().add(v(-0.002, 0, -0.005));
+  // Keep the point immediately against the posterior border.  The previous
+  // 5 mm posterior offset visibly detached it from SCM.
+  const deep17 = posterior.clone().add(v(-0.001, 0, -0.001));
   put('LI17', deep17, perp(deep17.clone().sub(neckCentre(cricoidY)), UP), 'cricoid level · just posterior to SCM posterior border');
   const thyroidTop = mesh(atlas, 'Thyroid cartilage').box.max.y;
   const at18 = atHeight(scm, thyroidTop, 0.003, (p) => p.x < -0.01);

@@ -158,17 +158,20 @@ for (const [code, k] of [['KI22', 5], ['KI23', 4], ['KI24', 3], ['KI25', 2], ['K
     log.ki22 = { measuredY: +ics[code].toFixed(4), clearFromMm: mm(clear[0]), clearToMm: mm(clear.at(-1)) };
     ics[code] += (clear[0] + clear.at(-1)) / 2;
   }
+  // Reviewer capture: these three paths still ran along a rib edge.  Move to
+  // the visually confirmed centre of the adjacent intercostal gap.
+  if (code === 'KI22' || code === 'KI24' || code === 'KI25') ics[code] += 0.006;
   putOnLine(code, ics[code], 2, chest, `${['1st', '2nd', '3rd', '4th', '5th'][k - 1]} intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc)`);
 }
-putOnLine('KI27', clavicleLowOnLine(2) - 0.006, 2, chest, 'just inferior to the clavicle · 2 B-cun lateral (skin arc)');
+putOnLine('KI27', clavicleLowOnLine(2) - 0.001, 2, chest, 'just inferior to the clavicle · 2 B-cun lateral (skin arc)');
 log.trunk = { trunkCunMm: mm(TRUNK_CUN), upperCunMm: mm(upperCun), lowerCunMm: mm(lowerCun), ics: Object.fromEntries(Object.entries(ics).map(([k, y]) => [k, +y.toFixed(4)])) };
 
 const english = ['Yongquan', 'Rangu', 'Taixi', 'Dazhong', 'Shuiquan', 'Zhaohai', 'Fuliu', 'Jiaoxin', 'Zhubin', 'Yingu', 'Henggu', 'Dahe', 'Qixue', 'Siman', 'Zhongzhu', 'Huangshu', 'Shangqu', 'Shiguan', 'Yindu', 'Futonggu', 'Youmen', 'Bulang', 'Shenfeng', 'Lingxu', 'Shencang', 'Yuzhong', 'Shufu'];
 const overrides = Object.fromEntries(english.map((name, i) => [`KI${i + 1}`, { english: name }]));
-overrides.KI5.location = '발 안쪽면, 태계(KI3)에서 지면까지를 3촌으로 할 때 태계 아래 1촌, 발꿈치뼈융기 앞쪽 오목한 곳 (KCMRIC)';
-overrides.KI9.location = '종아리 뒤안쪽면, 가자미근과 발꿈치힘줄 사이, 태계(KI3)와 음릉천(SP9)을 잇는 13촌 선에서 태계 위 5촌 (KCMRIC)';
-overrides.KI10.location = '무릎 뒤안쪽면, 오금주름 위, 반힘줄근힘줄과 반막근힘줄 사이 (KCMRIC)';
-overrides.KI16.location = '윗배, 배꼽 중심에서 가쪽으로 0.5촌 (KCMRIC)';
+overrides.KI5.location = '발 안쪽면, 태계(KI3)에서 지면까지를 3촌으로 할 때 태계 아래 1촌, 발꿈치뼈융기 앞쪽 오목한 곳';
+overrides.KI9.location = '종아리 뒤안쪽면, 가자미근과 발꿈치힘줄 사이, 태계(KI3)와 음릉천(SP9)을 잇는 13촌 선에서 태계 위 5촌';
+overrides.KI10.location = '무릎 뒤안쪽면, 오금주름 위, 반힘줄근힘줄과 반막근힘줄 사이';
+overrides.KI16.location = '윗배, 배꼽 중심에서 가쪽으로 0.5촌';
 W.write({
   label: '신경', name: '족소음신경', english: 'KIDNEY MERIDIAN',
   primarySource: 'https://m.kmcric.com/knowledge/acupoint/KI', secondarySource: 'https://iris.who.int/handle/10665/353407',

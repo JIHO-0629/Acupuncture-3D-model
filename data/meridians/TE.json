@@ -197,7 +197,7 @@
    "korean": "회종",
    "hanja": "會宗",
    "english": "Huizong",
-   "location": "아래팔 뒤쪽면, 자뼈의 바로 노쪽, 손등쪽 손목주름에서 몸쪽으로 3촌, 지구(TE6)의 자쪽 (KCMRIC)",
+   "location": "아래팔 뒤쪽면, 자뼈의 바로 노쪽, 손등쪽 손목주름에서 몸쪽으로 3촌, 지구(TE6)의 자쪽",
    "rawLocation": "아래팔 뒤쪽면, 자뼈의 바로 노쪽, 손등쪽 손목주름에서 몸쪽으로 3촌.",
    "rawMethod": "[취혈방법] ⽀溝지구(TE6)의 자쪽(또는 가쪽)에서 취혈한다.",
    "classification": "A+B · 해부학+비례",
@@ -299,14 +299,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.20404,
-    1.13686,
+    -0.20403,
+    1.13684,
     -0.08197
    ],
    "outward": [
-    0.01569,
-    0.08541,
-    -0.99622
+    0.01562,
+    0.08488,
+    -0.99627
    ],
    "region": "upper-arm-R",
    "depthMm": 28.4,
@@ -329,14 +329,14 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.20185,
-    1.15472,
+    -0.20186,
+    1.1547,
     -0.08566
    ],
    "outward": [
-    0.01569,
-    0.08541,
-    -0.99622
+    0.01562,
+    0.08488,
+    -0.99627
    ],
    "region": "upper-arm-R",
    "depthMm": 29.6,
@@ -359,17 +359,17 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.1937,
-    1.20805,
-    -0.093
+    -0.19371,
+    1.20803,
+    -0.09297
    ],
    "outward": [
-    0.01569,
-    0.08541,
-    -0.99622
+    0.01562,
+    0.08488,
+    -0.99627
    ],
    "region": "upper-arm-R",
-   "depthMm": 35.5,
+   "depthMm": 35.4,
    "rule": "posterior arm · olecranon–acromial angle line · 5 B-cun proximal to the olecranon prominence"
   },
   {
@@ -389,9 +389,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.18872,
-    1.35986,
-    -0.10334
+    -0.21475,
+    1.35923,
+    -0.07726
    ],
    "outward": [
     -0.54779,
@@ -399,8 +399,8 @@
     -0.83662
    ],
    "region": "upper-arm-R",
-   "depthMm": 45.8,
-   "rule": "posterior arm · medial junction of spinal deltoid and triceps · 3 B-cun inferior to the acromial angle"
+   "depthMm": 45.7,
+   "rule": "posterior arm · mesh-derived junction of spinal deltoid and triceps · 3 B-cun inferior to the acromial angle"
   },
   {
    "code": "TE14",
@@ -419,9 +419,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.18753,
+    -0.18352,
     1.39709,
-    -0.0914
+    -0.08346
    ],
    "outward": [
     -0.45122,
@@ -429,7 +429,7 @@
     -0.89241
    ],
    "region": "shoulder",
-   "depthMm": 45.3,
+   "depthMm": 36.4,
    "rule": "shoulder girdle · depression between the acromial angle and the greater tubercle (posterior to LI15)"
   },
   {
@@ -451,7 +451,7 @@
    "seed": [
     -0.0745,
     1.42355,
-    -0.12125
+    -0.10842
    ],
    "outward": [
     0,
@@ -459,7 +459,7 @@
     -1
    ],
    "region": "shoulder",
-   "depthMm": 48.8,
+   "depthMm": 35.9,
    "rule": "scapular region · depression immediately superior to the superior angle of the scapula, projected straight to the skin (KCMRIC 부위)"
   },
   {
@@ -467,7 +467,7 @@
    "korean": "천유",
    "hanja": "天牖",
    "english": "Tianyou",
-   "location": "목 앞부위, 턱뼈각과 같은 높이, 목빗근의 뒤쪽 오목한 곳 (KCMRIC)",
+   "location": "목 앞부위, 턱뼈각과 같은 높이, 목빗근의 뒤쪽 오목한 곳",
    "rawLocation": "목 앞부위, 턱뼈각과 같은 높이,목빗근의 뒤쪽 오목한 곳으로 목빗근 앞쪽의 天容(SI17)과 같은 높이에 위치한다. (둘째 목뼈 수준)",
    "rawMethod": "",
    "classification": "A · 해부학 직접",
@@ -479,9 +479,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.05182,
+    -0.05181,
     1.5285,
-    -0.03747
+    -0.03745
    ],
    "outward": [
     -0.6,
@@ -647,7 +647,7 @@
    "korean": "이화료",
    "hanja": "耳和髎",
    "english": "Erheliao",
-   "location": "머리, 살쩍머리카락 경계선의 뒤쪽, 귓바퀴뿌리의 앞쪽, 이륜각 기시부 높이 (검수자 결정: 사진 기준), 얕은관자동맥의 뒤쪽",
+   "location": "머리, 살쩍머리카락 경계선의 뒤쪽, 귓바퀴뿌리의 앞쪽, 이륜각 기시부 높이, 얕은관자동맥의 뒤쪽",
    "rawLocation": "머리,관자놀이 머리카락(살쩍머리카락 :관자놀 이쪽 머리카락)경계선의 뒤쪽,귓바퀴뿌리의 앞쪽,얕은 관자동맥의 뒤쪽.",
    "rawMethod": "[취혈방법] 귀 위끝선과 살쩍머리카락 뒷경계선의 교점 → 얕은관자동맥의 경유지 → 관자근의 경계지역",
    "classification": "A · 해부학 직접",

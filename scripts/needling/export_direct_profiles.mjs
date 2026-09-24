@@ -20,6 +20,13 @@
 //   leg          popliteal crease - lateral malleolus prominence = 16 B-cun
 //   foot         medial malleolus prominence - sole = 3 B-cun
 //
+// It also rebuilds each profile's caution from the verbatim KCMRIC text (kcmric-raw/). The first export cut
+// LU2's note mid-sentence, filed BL25's second depth line as a caution and showed PC9's moxibustion ban
+// ("禁灸") as a needling risk. A caution is now a whole source item that is neither the straight-needle line
+// already shown, nor another needling technique or depth, nor a moxibustion-only rule. Points whose source
+// records needling as forbidden outright (禁鍼, 不可刺; not conditional or "careful" wording) get
+// noNeedling, and the viewer locks their simulation.
+//
 // usage: node scripts/needling/export_direct_profiles.mjs [--check]
 import fs from 'node:fs';
 import path from 'node:path';
@@ -71,6 +78,15 @@ function unitFor(label, p) {
   throw new Error(`no cun unit for region ${label}`);
 }
 
+// WHO body-region overrides. Skin-triangle labels are unreliable where a ray can
+// reach the trunk through the hand/arm or where neighbouring thorax/abdomen triangles
+// meet. These are anatomical region assignments, independent of the current mesh hit.
+const WHO_UNIT = new Map(Object.entries({
+  LI4:'hand', LI12:'arm', LI14:'arm', HT2:'arm', ST11:'face', CV1:'lowerAbdomen', GB28:'lowerAbdomen', GB21:'back',
+  ST19:'upperAbdomen', ST20:'upperAbdomen', ST21:'upperAbdomen', ST22:'upperAbdomen', SP16:'upperAbdomen',
+  KI19:'upperAbdomen', KI20:'upperAbdomen', KI21:'upperAbdomen', CV13:'upperAbdomen', CV15:'upperAbdomen',
+}));
+
 // Skin projection exactly as app/scene.tsx does it, keeping the triangle so its region can be read.
 const atlas = loadAtlas();
 const skin = mesh(atlas, 'Skin'), skinObject = threeMesh(skin);
@@ -97,21 +113,58 @@ function skinRegion(def) {
   return { label: regions.regions[regionOfTriangle[best.faceIndex]].label, point: best.point };
 }
 
+const kcmric = new Map(fs.readdirSync(path.join(root, 'scripts/needling/kcmric-raw')).flatMap((file) =>
+  read(`scripts/needling/kcmric-raw/${file}`)).map((row) => [row.code, row.raw ?? '']));
+/** Source items: '-' starts an item, other lines continue the previous one. */
+const itemsOf = (raw) => {
+  const items = [];
+  for (const line of raw.split('\n').map((l) => l.trim()).filter(Boolean)) {
+    if (line.startsWith('-') || !items.length) items.push(line.replace(/^-\s*/, ''));
+    else items[items.length - 1] += ' ' + line;
+  }
+  return items;
+};
+// Another technique: it gives a depth, bleeds, or is a condition-specific way of needling. Advice such as
+// "宜橫刺 (…肺尖部…)" names a technique but no depth, and stays a caution.
+const TECHNIQUE = /[\d.]+\s*[寸分]|三稜鍼|出血|點刺|透刺|치료시|治療時/;
+const MOXA_ONLY = (item) => /禁灸/.test(item) && !/禁鍼|禁刺|不可刺/.test(item);
+// Outright bans only: not pregnancy, a patient group ("婦人", "水病者") or "needle with care".
+const FORBIDDEN = (item) => /禁鍼|不可刺/.test(item) && !/孕婦|임신|婦人|者\s*禁|신중히|慎/.test(item);
+function cautionOf(code, straightLine) {
+  const items = itemsOf(kcmric.get(code) ?? '').filter((item) => item !== straightLine && !TECHNIQUE.test(item) && !MOXA_ONLY(item));
+  return { caution: items.join(' / '), forbidden: items.filter(FORBIDDEN) };
+}
+
 const definitions = new Map(allPoints().map((p) => [p.code, p]));
-const changes = [];
+// KCMRIC has four usable straight-path rows whose wording does not begin with the
+// exact token "直刺". Preserve the source wording instead of dropping the technique.
+Object.assign(profiles, {
+  LI3: { minCun: 0.2, maxCun: 0.3, modelMaxMm: 0, raw: '0.2～0.3寸 (鍼尖을 橈側에서 尺側을 향해 刺入)', caution: '', techniqueId: 'LI3-A' },
+  BL61: { minCun: 0.3, maxCun: 0.5, modelMaxMm: 0, raw: '0.3～0.5寸 直刺 혹은 斜刺를 함.', caution: '', techniqueId: 'BL61-A' },
+  CV14: { minCun: 0.4, maxCun: 0.8, modelMaxMm: 0, raw: '直刺 4～8分 (不宜深刺)', caution: '', techniqueId: 'CV14-A' },
+  GV22: { minCun: 0.2, maxCun: 0.3, modelMaxMm: 0, raw: '刺 0.2～0.3寸', caution: '', techniqueId: 'GV22-A' },
+});
+const changes = [], cautionChanges = [];
 for (const [code, profile] of Object.entries(profiles)) {
   const def = definitions.get(code);
   if (!def) throw new Error(`no point definition for ${code}`);
   const { label, point } = skinRegion(def);
-  const key = unitFor(label, point), unit = UNITS[key];
+  const key = WHO_UNIT.get(code) ?? unitFor(label, point), unit = UNITS[key];
   const modelMaxMm = +(profile.maxCun * unit.mm).toFixed(1);
   changes.push({ code, from: profile.modelMaxMm, to: modelMaxMm, key, label });
   profile.modelMaxMm = modelMaxMm;
   profile.mmPerCun = +unit.mm.toFixed(1);
   profile.cunBasis = unit.basis;
+  const { caution, forbidden } = cautionOf(code, profile.raw);
+  if (caution !== profile.caution) cautionChanges.push(`  ${code.padEnd(5)} "${profile.caution}" -> "${caution}"`);
+  profile.caution = caution;
+  if (forbidden.length) profile.noNeedling = forbidden.join(' / '); else delete profile.noNeedling;
 }
 console.log('units (mm per cun):', Object.entries(UNITS).map(([k, u]) => `${k} ${u.mm.toFixed(1)}`).join(', '));
 const moved = changes.filter((c) => Math.abs(c.to - c.from) >= 0.5);
 console.log(`${changes.length} profiles; ${moved.length} limits changed by 0.5 mm or more`);
 for (const c of moved) console.log(`  ${c.code.padEnd(5)} ${String(c.from).padStart(5)} -> ${String(c.to).padStart(5)} mm  (${c.label} -> ${c.key})`);
+console.log(`${cautionChanges.length} cautions changed`);
+console.log(cautionChanges.join('\n'));
+console.log('no needling:', Object.entries(profiles).filter(([, p]) => p.noNeedling).map(([c, p]) => `${c} (${p.noNeedling})`).join(', '));
 if (!check) fs.writeFileSync(profilesPath, JSON.stringify(profiles));
