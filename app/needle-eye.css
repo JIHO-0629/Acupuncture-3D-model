@@ -12,18 +12,18 @@
 }
 
 .studio .acupuncture-panel {
-  transition: width 220ms cubic-bezier(.32,.72,0,1);
+  transition:width var(--dur-base) var(--ease);
 }
 
 .studio .scene,
 .studio .atlas-annotation {
   transform: translateX(var(--needle-eye-scene-shift, 0));
-  transition: transform 260ms cubic-bezier(.32,.72,0,1);
+  transition:transform var(--dur-base) var(--ease);
 }
 
 .studio .identity,
 .studio .atlas-point-identifier {
-  transition: opacity 220ms ease, transform 260ms cubic-bezier(.32,.72,0,1);
+  transition:opacity var(--dur-base) var(--ease),transform var(--dur-base) var(--ease);
 }
 
 .studio.needle-eye-analysis .identity,
@@ -41,8 +41,8 @@
   top: 29px;
   width: 300px;
   color: var(--eye-ink);
-  font-family: 'S-Core Dream', Inter, ui-sans-serif, sans-serif;
-  animation: hud-enter 260ms cubic-bezier(.32,.72,0,1) both;
+  font-family:var(--font-body);
+  animation:hud-enter 260ms var(--ease) both;
 }
 
 @keyframes hud-enter {
@@ -62,17 +62,17 @@
 .needle-eye-hud > header > div {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 8px;
 }
 
 .needle-eye-hud > header span {
   color: #72886d;
-  font-size: 9px;
+  font-size:var(--text-caption);
   letter-spacing: .14em;
 }
 
 .needle-eye-hud > header b {
-  font-size: 15px;
+  font-size:var(--text-body);
   font-weight: 600;
 }
 
@@ -112,7 +112,7 @@
 }
 
 .hud-depth {
-  padding-top: 10px;
+  padding-top: 12px;
   border-top: 1px solid #d5ddd1;
 }
 
@@ -120,10 +120,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 9px;
+  margin-bottom: 8px;
   color: #52644f;
-  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
-  font-size: 10px;
+  font-family:var(--font-body);font-variant-numeric:tabular-nums;
+  font-size:var(--text-caption);
 }
 
 .hud-depth small {
@@ -134,7 +134,7 @@
 .hud-depth-track {
   position: relative;
   height: 1px;
-  margin: 0 5px;
+  margin: 0 4px;
   background: #b9c5b5;
 }
 
@@ -168,7 +168,7 @@
   border-radius: 10px 0 0 10px;
   background: #ffffffeb;
   backdrop-filter: blur(20px);
-  font-family: 'S-Core Dream', Inter, ui-sans-serif, sans-serif;
+  font-family:var(--font-body);
 }
 
 .needle-eye-launcher button {
@@ -220,7 +220,7 @@
 }
 
 .needle-eye-launcher button:disabled {
-  opacity: .28;
+  opacity: var(--disabled-opacity);
   cursor: default;
 }
 
@@ -297,11 +297,11 @@
   grid-column: 3;
   grid-row: 5;
   min-width: 0;
-  margin-top: 10px;
+  margin-top: 12px;
   padding-left: 24px;
   border-left: 1px solid var(--eye-rule);
   color: var(--eye-ink);
-  font-family: 'S-Core Dream', Inter, ui-sans-serif, sans-serif;
+  font-family:var(--font-body);
 }
 
 .compass-heading {
@@ -309,7 +309,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--eye-rule-soft);
 }
 
@@ -320,13 +320,13 @@
 }
 
 .compass-heading b {
-  font-size: 13px;
+  font-size:var(--text-footnote);
   font-weight: 600;
 }
 
 .compass-heading span,
 .compass-heading em {
-  font-size: 9px;
+  font-size:var(--text-caption);
   font-style: normal;
   font-weight: 300;
   color: var(--eye-muted);
@@ -334,13 +334,13 @@
 
 .compass-heading em {
   white-space: nowrap;
-  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  font-family:var(--font-body);font-variant-numeric:tabular-nums;
 }
 
 .compass-plot-wrap {
   display: flex;
   justify-content: center;
-  padding: 12px 0 5px;
+  padding: 12px 0 4px;
 }
 
 .compass-plot {
@@ -352,7 +352,7 @@
 
 .compass-plot text {
   fill: var(--eye-muted);
-  font-family: 'S-Core Dream', Inter, sans-serif;
+  font-family:var(--font-body);
   font-size: 10px;
   font-weight: 400;
 }
@@ -404,7 +404,7 @@
 }
 
 .structure {
-  transition: opacity 260ms ease;
+  transition:opacity var(--dur-base) var(--ease);
 }
 
 .structure circle,
@@ -490,32 +490,32 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 7px 11px;
-  padding-top: 10px;
+  gap: 8px 12px;
+  padding-top: 12px;
   border-top: 1px solid var(--eye-rule-soft);
-  font-size: 9px;
+  font-size:var(--text-caption);
   color: var(--eye-muted);
 }
 
 .compass-reading > span {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
 }
 
 .compass-structure-list {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .compass-structure-list > span {
   display: grid;
   grid-template-columns: 9px minmax(82px, auto) minmax(0, 1fr);
   align-items: center;
-  gap: 6px;
-  transition: opacity 220ms ease;
+  gap: 8px;
+  transition:opacity var(--dur-base) var(--ease);
 }
 
 .compass-structure-list b,
@@ -528,27 +528,27 @@
 
 .compass-structure-list b {
   color: var(--eye-ink);
-  font-size: 9px;
+  font-size:var(--text-caption);
   font-weight: 500;
 }
 
 .compass-structure-list em {
   color: var(--eye-muted);
-  font-size: 8px;
+  font-size:var(--text-caption);
   font-style: normal;
   text-align: right;
 }
 
 .compass-reading small {
   flex-basis: 100%;
-  font-size: 9px;
+  font-size:var(--text-caption);
   font-weight: 300;
 }
 
 .compass-structure-list .structure-refs {
   grid-column: 2 / -1;
-  margin-top: -3px;
-  font-size: 8px;
+  margin-top: -4px;
+  font-size:var(--text-caption);
   color: var(--eye-muted);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -593,10 +593,10 @@
 
   .studio.needle-eye-workspace .needle-panel {
     grid-template-columns: 25px minmax(220px, .9fr) minmax(250px, 1.1fr);
-    column-gap: 18px;
+    column-gap: 20px;
   }
 
-  .needle-eye-compass { padding-left: 18px; }
+  .needle-eye-compass { padding-left: 20px; }
 }
 
 @media (max-width: 767px) {
@@ -639,8 +639,8 @@
   }
 
   .needle-eye-compass {
-    margin-top: 18px;
-    padding: 18px 0 0;
+    margin-top: 20px;
+    padding: 20px 0 0;
     border-top: 1px solid var(--eye-rule);
     border-left: 0;
   }
@@ -650,7 +650,7 @@
     left: 16px;
     top: 82px;
     width: min(300px, calc(100vw - 32px));
-    padding: 12px 14px;
+    padding: 12px 16px;
     border: 1px solid var(--eye-rule-soft);
     border-radius: 12px;
     background: rgb(250 249 244 / .9);
