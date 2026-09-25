@@ -9,6 +9,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { bilingualPartName, varianceOf, VARIANCE_LABEL, type NeedleHit, type NeedleReport, type Variance } from './anatomy';
 import { needleProfile, needlePathOf, type AcupointCode, type NeedlePathHazard, type NeedlePathLayer } from './acupoints';
+import { reviewMode } from './review-mode';
 
 const HEIGHT = 280, LABEL_GAP = 8;
 const SKIN = { id: '__skin', name: '피부·피하조직', english: 'Skin & subcutis', distanceMm: 0, variance: 2 as Variance };
@@ -20,9 +21,11 @@ type Entry = {
   source?: 'model' | 'concept' | 'reordered' | 'void' | 'bone';
   hazard?: NeedlePathHazard; below?: boolean;
 };
+/** Reviewer tags (?review only). The public column keeps the dashed concept styling without the words. */
 const SOURCE_TAG: Record<string, string> = {
   concept: '개념층 · 모델 없음', reordered: '순서 보정 · 모델 위치가 다름', void: '모델 없음 · 빈 구간',
 };
+const layerName = (english: string) => (reviewMode ? english : english.replace(/\s*\(not modelled\)$/, ''));
 
 /** Depths for layers the reviewed path lists without one: spread them evenly between the
  *  neighbouring known depths, and 2 mm apart past the last one. */
@@ -91,7 +94,7 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
     const at = spread(layers, Math.min(bone?.mm ?? view0, view0) * 0.98);
     entries.push({ id: SKIN.id, english: SKIN.english, korean: SKIN.name, at: 0, variance: SKIN.variance, kind: 'layer', source: 'model' });
     const cells: Entry[] = layers.map((layer, index) => ({
-      id: `L${index}-${layer.en}`, english: layer.atlas ? split({ id: '', name: layer.atlas, system: 'muscular', distanceMm: 0 }).english : layer.en,
+      id: `L${index}-${layer.en}`, english: layer.atlas ? split({ id: '', name: layer.atlas, system: 'muscular', distanceMm: 0 }).english : layerName(layer.en),
       korean: layer.ko, at: Math.round(at[index] * 10) / 10, variance: layer.kind === 'model' ? 2 : null, kind: 'layer', source: layer.kind,
     }));
     if (bone) cells.push({ id: `bone-${bone.en}`, english: bone.en, korean: bone.ko, at: bone.mm, variance: 1, kind: 'layer', source: 'bone' });
@@ -286,7 +289,7 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
                 {entry.kind === 'hazard' ? (
                   <span className="strata-risk-tag">위험 구조 · 통과하지 않음 · {hazardDepthText(entry.hazard!, limitMm)}</span>
                 ) : (
-                  <span className="pct">{entry.kind === 'beyond' ? '범위 밖 · 미통과' : `${pct(entry.at)}%`}{entry.source && SOURCE_TAG[entry.source] ? ` · ${SOURCE_TAG[entry.source]}` : ''}</span>
+                  <span className="pct">{entry.kind === 'beyond' ? '범위 밖 · 미통과' : `${pct(entry.at)}%`}{reviewMode && entry.source && SOURCE_TAG[entry.source] ? ` · ${SOURCE_TAG[entry.source]}` : ''}</span>
                 )}
                 {entry.risk && <span className="strata-risk-tag">위험 구조 · 모델 교차</span>}
               </span>
@@ -319,8 +322,8 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
       </p>
       {curated && !!reviewed!.hazards?.length && <p className="strata-risk-summary">위험 구조 {reviewed!.hazards.length}개는 바늘이 지나는 층이 아닙니다. 경로 주변이나 더 깊은 곳에 있어 피해야 하는 구조입니다.</p>}
       {curated && reviewed!.zone && <p className="strata-zone">{reviewed!.zone}: 신경과 혈관이 모이는 부위입니다. 얕게, 천천히 자입합니다.</p>}
-      {curated && reviewed!.dropped && <p className="strata-denom">경로에서 뺀 모델 구조: {reviewed!.dropped.names.join(', ')}{reviewed!.dropped.why ? ` (${reviewed!.dropped.why})` : ''}</p>}
-      {curated && reviewed!.directionBasis && reviewed!.direction && <p className="strata-denom">자입 방향: {reviewed!.directionBasis}</p>}
+      {reviewMode && curated && reviewed!.dropped && <p className="strata-denom">경로에서 뺀 모델 구조: {reviewed!.dropped.names.join(', ')}{reviewed!.dropped.why ? ` (${reviewed!.dropped.why})` : ''}</p>}
+      {reviewMode && curated && reviewed!.directionBasis && reviewed!.direction && <p className="strata-denom">자입 방향: {reviewed!.directionBasis}</p>}
       {!curated && report.hazardHits.length > 0 && <p className="strata-risk-summary">위험 구조 {report.hazardHits.length}개 모델 경로 교차. 원본 깊이까지 표시하지만 안전 자침 경로를 뜻하지 않습니다.</p>}
       <p className={`strata-halt${ratio >= 99.5 ? ' on' : ''}${refusing ? ' flare' : ''}`}>모델 표시 범위의 끝입니다 — 더 들어가지 않습니다.</p>
     </div>

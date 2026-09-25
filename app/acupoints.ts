@@ -5,6 +5,7 @@ import directNeedling from '../data/needling-direct.json';
 import needlingReview from '../data/needling-review.json';
 import needlingPaths from '../data/needling-paths.json';
 import liLandmarks from '../data/li-landmarks.json';
+import {reviewMode} from './review-mode';
 import luData from '../data/meridians/LU.json';
 import htData from '../data/meridians/HT.json';
 import pcData from '../data/meridians/PC.json';
@@ -154,6 +155,8 @@ export function needleProfile(code:AcupointCode):NeedleProfile{
  const reviewed=needlePathOf(code),base=sourceNeedleProfile(code),review=needlingReviewOf(code);
  const source=reviewed&&!reviewed.blocked?{...base,pointRisk:riskText(base.pointRisk,reviewed.posture,reviewed.note)}:base;
  if(review.status!=='review_required')return source;
+ // Outside ?review the path still says it is under review, in the learner's words, not the release pipeline's.
+ if(!reviewMode)return {...source,warning:`이 혈의 자침 경로는 아직 검수 중인 참고 자료입니다. ${source.warning}`};
  return {...source,label:`검수용 · ${source.label}`,
   depthValidation:`${source.depthValidation} · 배포 승인 대기`,warning:`검수용 경로입니다. 승인 전에는 배포 공개되지 않습니다. ${source.warning}`};
 }
