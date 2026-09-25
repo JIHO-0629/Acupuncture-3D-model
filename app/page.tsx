@@ -17,6 +17,7 @@ import {AcupointScrubber} from './acupoint-scrubber';
 import {MeridianRail} from './meridian-rail';
 import {LocatorGuide} from './locator-guide';
 import {hasLocatorItems} from './locator-data';
+import {FeedbackButton} from './feedback';
 const initial:SceneState={explode:0,visible:DEFAULT_VISIBLE,selected:[],isolate:false,view:'three-quarter',rotate:false,reset:0,needle:{enabled:true,depthRatio:0,revision:0},acupuncture:{visible:true,selectedCode:'GB34',showAll:true,showLines:false}};
 const RELATION_LABEL={INTERSECT:'지나감',APPROACH:'근접',AVOID:'피해야 함'} as const;
 
@@ -134,6 +135,7 @@ export default function Home(){
         <Button variant="ghost" onClick={()=>{setState(s=>({...s,selected:nearbyPartIds,isolate:true,explode:0,rotate:false,regionFocus:{center:selectedGbPoint.seed,radiusMm:regionRadius,revision:(s.regionFocus?.revision??0)+1}}));setDetails(false);}}>주변 구조만 ({nearbyPartIds.length})</Button>
         <Button variant="ghost" disabled={!needlePathPartIds.length} onClick={showNeedlePath}>경로 구조 보기 ({needlePathPartIds.length})</Button>
         <Button variant="ghost" disabled={!needleReport?.available} onClick={animateInsertion}>자침 경로 재생</Button>
+        <FeedbackButton acupoint={selectedGbPoint.code} meridian={meridian.id}/>
       </div>
       {profile.probeDepthMm<=0?<p className="strata-empty">이 혈은 자침 시뮬레이션을 제공하지 않습니다.</p>:needleReport&&needleReport.code===selectedGbPoint.code?<StrataColumn report={needleReport} ratio={needle.depthRatio} onRatio={updateNeedle}/>:<p className="strata-empty">경로를 계산하는 중입니다.</p>}
       <p className={`safety-warning ${profile.region==='thorax'?'critical':''}`}>{profile.warning}{profile.pointRisk&&<><br/>{profile.pointRisk}</>}</p>
