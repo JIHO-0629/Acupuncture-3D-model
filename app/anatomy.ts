@@ -79,7 +79,7 @@ export function bilingualPartName(name:string){
 }
 // Start with the one layer being studied.  Adding every system by default made thin
 // vessels, nerves and connective sheets read as detached surface artefacts.
-export const DEFAULT_VISIBLE:SystemId[] = ['muscular'];
+export const DEFAULT_VISIBLE:SystemId[]=SYSTEMS.filter(system=>system.id!=='integumentary').map(system=>system.id);
 export const EXPLANATIONS:Record<string,string> = {
  'heart':'A muscular pump in the chest. Its right side sends blood to the lungs; its left side sends blood through the systemic circulation.',
  'liver':'A large organ beneath the right side of the diaphragm. It processes absorbed nutrients, produces bile, and synthesizes many proteins carried in the blood.',
