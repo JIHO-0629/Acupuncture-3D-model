@@ -1,34 +1,35 @@
-.needling-workspace-preview {
-  --preview-paper: #faf9f4;
-  --preview-rule: #cbd4c5;
-  --preview-rule-soft: #dce2d8;
-  --preview-ink: #26342d;
-  --preview-muted: #7d8a79;
-  --preview-teal: #1f5f52;
-  --preview-purple: #7c73d9;
-  --preview-rust: #a9574b;
-  --preview-boundary: #74695c;
+/* Needle's-eye view (app/needle-eye.tsx): HUD, launcher, compass and the widened workspace. */
+.studio {
+  --eye-paper: #faf9f4;
+  --eye-rule: #cbd4c5;
+  --eye-rule-soft: #dce2d8;
+  --eye-ink: #26342d;
+  --eye-muted: #7d8a79;
+  --eye-teal: #1f5f52;
+  --eye-purple: #7c73d9;
+  --eye-rust: #a9574b;
+  --eye-boundary: #74695c;
 }
 
-.needling-workspace-preview .acupuncture-panel {
+.studio .acupuncture-panel {
   transition: width 220ms cubic-bezier(.32,.72,0,1);
 }
 
-.needling-workspace-preview .scene,
-.needling-workspace-preview .atlas-annotation {
-  transform: translateX(var(--preview-scene-shift, 0));
+.studio .scene,
+.studio .atlas-annotation {
+  transform: translateX(var(--needle-eye-scene-shift, 0));
   transition: transform 260ms cubic-bezier(.32,.72,0,1);
 }
 
-.needling-workspace-preview .identity,
-.needling-workspace-preview .atlas-point-identifier {
+.studio .identity,
+.studio .atlas-point-identifier {
   transition: opacity 220ms ease, transform 260ms cubic-bezier(.32,.72,0,1);
 }
 
-.needling-workspace-preview.preview-analysis .identity,
-.needling-workspace-preview.preview-analysis .acupoint-rail,
-.needling-workspace-preview.preview-analysis .atlas-point-identifier,
-.needling-workspace-preview.preview-analysis .atlas-leader {
+.studio.needle-eye-analysis .identity,
+.studio.needle-eye-analysis .acupoint-rail,
+.studio.needle-eye-analysis .atlas-point-identifier,
+.studio.needle-eye-analysis .atlas-leader {
   display: none !important;
 }
 
@@ -38,7 +39,7 @@
   left: 32px;
   top: 29px;
   width: 300px;
-  color: var(--preview-ink);
+  color: var(--eye-ink);
   font-family: 'S-Core Dream', Inter, ui-sans-serif, sans-serif;
   animation: hud-enter 260ms cubic-bezier(.32,.72,0,1) both;
 }
@@ -123,7 +124,7 @@
 }
 
 .hud-depth small {
-  color: var(--preview-muted);
+  color: var(--eye-muted);
   font: 300 9px 'S-Core Dream', Inter, sans-serif;
 }
 
@@ -137,7 +138,7 @@
 .hud-depth-track i {
   position: absolute;
   inset: 0 auto 0 0;
-  background: var(--preview-teal);
+  background: var(--eye-teal);
 }
 
 .hud-depth-track b {
@@ -146,7 +147,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--preview-teal);
+  background: var(--eye-teal);
   transform: translate(-50%, -50%);
 }
 
@@ -220,7 +221,7 @@
   cursor: default;
 }
 
-.needling-workspace-preview .auxiliary-tools {
+.studio .auxiliary-tools {
   left: 70px;
   top: auto;
   bottom: 55px;
@@ -234,7 +235,7 @@
   box-shadow: none;
 }
 
-.needling-workspace-preview .auxiliary-tools button {
+.studio .auxiliary-tools button {
   width: 48px !important;
   min-width: 48px;
   min-height: 54px;
@@ -242,11 +243,11 @@
   border-radius: 0;
 }
 
-.needling-workspace-preview .auxiliary-tools button span {
+.studio .auxiliary-tools button span {
   display: none;
 }
 
-.needling-workspace-preview .layers-panel.mobile-open {
+.studio .layers-panel.mobile-open {
   left: 22px;
   right: auto;
   top: auto;
@@ -257,34 +258,34 @@
   z-index: 23;
 }
 
-.needling-workspace-preview .locator-guide .locator-caption {
+.studio .locator-guide .locator-caption {
   left: 22px;
   bottom: 120px;
 }
 
-.needling-workspace-preview.preview-workspace .acupuncture-panel:not(.is-collapsed) {
+.studio.needle-eye-workspace .acupuncture-panel:not(.is-collapsed) {
   width: clamp(700px, 47vw, 780px) !important;
 }
 
-.needling-workspace-preview.preview-workspace .needle-panel {
+.studio.needle-eye-workspace .needle-panel {
   grid-template-columns: 25px minmax(245px, .92fr) minmax(286px, 1.08fr);
   column-gap: 24px;
 }
 
-.needling-workspace-preview.preview-workspace .needle-panel > .needle-heading,
-.needling-workspace-preview.preview-workspace .needle-panel > .needling-source,
-.needling-workspace-preview.preview-workspace .needle-panel > .profile-heading,
-.needling-workspace-preview.preview-workspace .needle-panel > .point-actions,
-.needling-workspace-preview.preview-workspace .needle-panel > .safety-warning,
-.needling-workspace-preview.preview-workspace .needle-panel > .needle-unavailable,
-.needling-workspace-preview.preview-workspace .needle-panel > .reference-path,
-.needling-workspace-preview.preview-workspace .needle-panel > details {
+.studio.needle-eye-workspace .needle-panel > .needle-heading,
+.studio.needle-eye-workspace .needle-panel > .needling-source,
+.studio.needle-eye-workspace .needle-panel > .profile-heading,
+.studio.needle-eye-workspace .needle-panel > .point-actions,
+.studio.needle-eye-workspace .needle-panel > .safety-warning,
+.studio.needle-eye-workspace .needle-panel > .needle-unavailable,
+.studio.needle-eye-workspace .needle-panel > .reference-path,
+.studio.needle-eye-workspace .needle-panel > details {
   grid-column: 2 / 4;
 }
 
-.needling-workspace-preview.preview-workspace .needle-panel > .strata,
-.needling-workspace-preview.preview-workspace .needle-panel > .strata-column,
-.needling-workspace-preview.preview-workspace .needle-panel > .strata-empty {
+.studio.needle-eye-workspace .needle-panel > .strata,
+.studio.needle-eye-workspace .needle-panel > .strata-column,
+.studio.needle-eye-workspace .needle-panel > .strata-empty {
   grid-column: 2;
   grid-row: 5;
 }
@@ -295,8 +296,8 @@
   min-width: 0;
   margin-top: 10px;
   padding-left: 24px;
-  border-left: 1px solid var(--preview-rule);
-  color: var(--preview-ink);
+  border-left: 1px solid var(--eye-rule);
+  color: var(--eye-ink);
   font-family: 'S-Core Dream', Inter, ui-sans-serif, sans-serif;
 }
 
@@ -306,7 +307,7 @@
   justify-content: space-between;
   gap: 12px;
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--preview-rule-soft);
+  border-bottom: 1px solid var(--eye-rule-soft);
 }
 
 .compass-heading > div {
@@ -325,7 +326,7 @@
   font-size: 9px;
   font-style: normal;
   font-weight: 300;
-  color: var(--preview-muted);
+  color: var(--eye-muted);
 }
 
 .compass-heading em {
@@ -347,14 +348,14 @@
 }
 
 .compass-plot text {
-  fill: var(--preview-muted);
+  fill: var(--eye-muted);
   font-family: 'S-Core Dream', Inter, sans-serif;
   font-size: 10px;
   font-weight: 400;
 }
 
 .compass-plot .direction {
-  fill: var(--preview-ink);
+  fill: var(--eye-ink);
   font-size: 10px;
 }
 
@@ -370,23 +371,23 @@
 
 .compass-plot .direction-bottom {
   text-anchor: middle;
-  fill: var(--preview-muted);
+  fill: var(--eye-muted);
 }
 
 .compass-plot .direction-left {
   text-anchor: start;
-  fill: var(--preview-muted);
+  fill: var(--eye-muted);
 }
 
 .direction-mark {
   fill: none;
-  stroke: var(--preview-muted);
+  stroke: var(--eye-muted);
   stroke-width: 1;
 }
 
 .range-ring {
   fill: none;
-  stroke: var(--preview-rule);
+  stroke: var(--eye-rule);
   stroke-width: 1;
 }
 
@@ -410,37 +411,37 @@
 }
 
 .structure.nerve circle {
-  stroke: var(--preview-purple);
+  stroke: var(--eye-purple);
 }
 
 .structure.nerve text {
-  fill: var(--preview-purple);
+  fill: var(--eye-purple);
 }
 
 .structure.artery circle {
-  stroke: var(--preview-rust);
+  stroke: var(--eye-rust);
 }
 
 .structure.artery text {
-  fill: var(--preview-rust);
+  fill: var(--eye-rust);
 }
 
 .structure.vein circle {
-  stroke: var(--preview-rust);
+  stroke: var(--eye-rust);
   stroke-dasharray: 2.5 2.5;
 }
 
 .structure.vein text {
-  fill: var(--preview-rust);
+  fill: var(--eye-rust);
 }
 
 .structure.bundle circle {
-  stroke: var(--preview-purple);
+  stroke: var(--eye-purple);
   stroke-dasharray: 6 2 1.5 2;
 }
 
 .structure.bundle text {
-  fill: var(--preview-purple);
+  fill: var(--eye-purple);
 }
 
 .structure.is-crossing circle {
@@ -448,7 +449,7 @@
 }
 
 .structure.boundary path {
-  stroke: var(--preview-boundary);
+  stroke: var(--eye-boundary);
 }
 
 .structure.boundary .boundary-soft {
@@ -458,27 +459,27 @@
 
 .structure.boundary .boundary-band {
   fill: none;
-  stroke: var(--preview-boundary);
+  stroke: var(--eye-boundary);
   stroke-width: 9;
   opacity: .2;
 }
 
 .structure.boundary text {
-  fill: var(--preview-boundary);
+  fill: var(--eye-boundary);
   text-anchor: end;
 }
 
 .needle-axis-halo {
-  fill: var(--preview-teal);
+  fill: var(--eye-teal);
   opacity: .08;
 }
 
 .needle-axis {
-  fill: var(--preview-teal);
+  fill: var(--eye-teal);
 }
 
 .compass-plot .axis-label {
-  fill: var(--preview-teal);
+  fill: var(--eye-teal);
   font-size: 9px;
 }
 
@@ -488,9 +489,9 @@
   flex-wrap: wrap;
   gap: 7px 11px;
   padding-top: 10px;
-  border-top: 1px solid var(--preview-rule-soft);
+  border-top: 1px solid var(--eye-rule-soft);
   font-size: 9px;
-  color: var(--preview-muted);
+  color: var(--eye-muted);
 }
 
 .compass-reading > span {
@@ -523,13 +524,13 @@
 }
 
 .compass-structure-list b {
-  color: var(--preview-ink);
+  color: var(--eye-ink);
   font-size: 9px;
   font-weight: 500;
 }
 
 .compass-structure-list em {
-  color: var(--preview-muted);
+  color: var(--eye-muted);
   font-size: 8px;
   font-style: normal;
   text-align: right;
@@ -545,7 +546,7 @@
   grid-column: 2 / -1;
   margin-top: -3px;
   font-size: 8px;
-  color: var(--preview-muted);
+  color: var(--eye-muted);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -554,12 +555,12 @@
 .compass-structure-list .structure-refs a {
   color: inherit;
   text-decoration: underline;
-  text-decoration-color: var(--preview-rule);
+  text-decoration-color: var(--eye-rule);
   text-underline-offset: 2px;
 }
 
 .compass-structure-list .structure-refs a:hover {
-  color: var(--preview-ink);
+  color: var(--eye-ink);
 }
 
 .legend {
@@ -569,123 +570,25 @@
   border-radius: 50%;
 }
 
-.nerve-legend { color: var(--preview-purple); }
+.nerve-legend { color: var(--eye-purple); }
 .artery-legend,
-.vein-legend { color: var(--preview-rust); }
+.vein-legend { color: var(--eye-rust); }
 .vein-legend { border-style: dashed; }
-.bundle-legend { color: var(--preview-purple); border-style: dotted; }
+.bundle-legend { color: var(--eye-purple); border-style: dotted; }
 .boundary-legend {
   width: 12px;
   height: 5px;
-  color: var(--preview-boundary);
+  color: var(--eye-boundary);
   border-width: 0 0 1.5px;
   border-radius: 0;
 }
 
-.study-memo {
-  position: sticky;
-  z-index: 4;
-  bottom: 0;
-  grid-column: 1 / -1;
-  margin: 24px -34px 0;
-  background: var(--preview-paper);
-  border-top: 1px solid #bdc7b6;
-  font-family: 'S-Core Dream', Inter, ui-sans-serif, sans-serif;
-}
-
-.study-memo-toggle {
-  width: 100%;
-  min-height: 46px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 10px 34px;
-  border: 0;
-  background: var(--preview-paper);
-  color: var(--preview-ink);
-  text-align: left;
-  font: inherit;
-}
-
-.study-memo-toggle:hover,
-.study-memo-toggle:focus-visible {
-  background: #f1f2ec;
-}
-
-.study-memo-toggle > span:first-child {
-  display: flex;
-  align-items: baseline;
-  gap: 11px;
-  min-width: 0;
-}
-
-.study-memo-toggle b {
-  font-size: 12px;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.study-memo-toggle small,
-.study-memo-state,
-.study-memo-editor small {
-  color: var(--preview-muted);
-  font-size: 9px;
-  font-weight: 300;
-}
-
-.study-memo-toggle small {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.study-memo-state {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  white-space: nowrap;
-}
-
-.study-memo-editor {
-  display: block;
-  padding: 0 34px 16px;
-}
-
-.study-memo-editor textarea {
-  display: block;
-  width: 100%;
-  min-height: 128px;
-  resize: vertical;
-  padding: 13px 0;
-  border: 0;
-  border-top: 1px solid var(--preview-rule-soft);
-  border-bottom: 1px solid var(--preview-rule-soft);
-  border-radius: 0;
-  outline: none;
-  background: transparent;
-  color: var(--preview-ink);
-  font: inherit;
-  font-size: 12px;
-  line-height: 1.7;
-}
-
-.study-memo-editor textarea:focus {
-  border-top-color: var(--preview-teal);
-  border-bottom-color: var(--preview-teal);
-}
-
-.study-memo-editor > small {
-  display: block;
-  margin-top: 8px;
-}
-
 @media (max-width: 1100px) {
-  .needling-workspace-preview.preview-workspace .acupuncture-panel:not(.is-collapsed) {
+  .studio.needle-eye-workspace .acupuncture-panel:not(.is-collapsed) {
     width: min(700px, calc(100vw - 44px)) !important;
   }
 
-  .needling-workspace-preview.preview-workspace .needle-panel {
+  .studio.needle-eye-workspace .needle-panel {
     grid-template-columns: 25px minmax(220px, .9fr) minmax(250px, 1.1fr);
     column-gap: 18px;
   }
@@ -694,39 +597,39 @@
 }
 
 @media (max-width: 767px) {
-  .needling-workspace-preview.preview-analysis:not(.preview-workspace) .acupuncture-panel {
+  .studio.needle-eye-analysis:not(.needle-eye-workspace) .acupuncture-panel {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
   }
 
-  .needling-workspace-preview.preview-analysis:not(.preview-workspace) .view-controls {
+  .studio.needle-eye-analysis:not(.needle-eye-workspace) .view-controls {
     display: none;
   }
 
-  .needling-workspace-preview.preview-workspace .needle-eye-hud {
+  .studio.needle-eye-workspace .needle-eye-hud {
     display: none;
   }
 
-  .needling-workspace-preview.preview-workspace .acupuncture-panel:not(.is-collapsed) {
+  .studio.needle-eye-workspace .acupuncture-panel:not(.is-collapsed) {
     width: auto !important;
   }
 
-  .needling-workspace-preview.preview-workspace .needle-panel {
+  .studio.needle-eye-workspace .needle-panel {
     grid-template-columns: 20px minmax(0, 1fr);
   }
 
-  .needling-workspace-preview.preview-workspace .needle-panel > .needle-heading,
-  .needling-workspace-preview.preview-workspace .needle-panel > .needling-source,
-  .needling-workspace-preview.preview-workspace .needle-panel > .profile-heading,
-  .needling-workspace-preview.preview-workspace .needle-panel > .point-actions,
-  .needling-workspace-preview.preview-workspace .needle-panel > .strata,
-  .needling-workspace-preview.preview-workspace .needle-panel > .strata-column,
-  .needling-workspace-preview.preview-workspace .needle-panel > .strata-empty,
-  .needling-workspace-preview.preview-workspace .needle-panel > .safety-warning,
-  .needling-workspace-preview.preview-workspace .needle-panel > .needle-unavailable,
-  .needling-workspace-preview.preview-workspace .needle-panel > .reference-path,
-  .needling-workspace-preview.preview-workspace .needle-panel > details,
+  .studio.needle-eye-workspace .needle-panel > .needle-heading,
+  .studio.needle-eye-workspace .needle-panel > .needling-source,
+  .studio.needle-eye-workspace .needle-panel > .profile-heading,
+  .studio.needle-eye-workspace .needle-panel > .point-actions,
+  .studio.needle-eye-workspace .needle-panel > .strata,
+  .studio.needle-eye-workspace .needle-panel > .strata-column,
+  .studio.needle-eye-workspace .needle-panel > .strata-empty,
+  .studio.needle-eye-workspace .needle-panel > .safety-warning,
+  .studio.needle-eye-workspace .needle-panel > .needle-unavailable,
+  .studio.needle-eye-workspace .needle-panel > .reference-path,
+  .studio.needle-eye-workspace .needle-panel > details,
   .needle-eye-compass {
     grid-column: 2;
     grid-row: auto;
@@ -735,18 +638,20 @@
   .needle-eye-compass {
     margin-top: 18px;
     padding: 18px 0 0;
-    border-top: 1px solid var(--preview-rule);
+    border-top: 1px solid var(--eye-rule);
     border-left: 0;
   }
 
-  .study-memo { margin-inline: -20px; }
-  .study-memo-toggle,
-  .study-memo-editor { padding-inline: 20px; }
-
+      /* On a phone the HUD sits over the body, so it needs a paper backing to stay legible. */
   .needle-eye-hud {
     left: 16px;
     top: 82px;
     width: min(300px, calc(100vw - 32px));
+    padding: 12px 14px;
+    border: 1px solid var(--eye-rule-soft);
+    border-radius: 12px;
+    background: rgb(250 249 244 / .9);
+    backdrop-filter: blur(14px);
   }
 
   .needle-eye-launcher {
@@ -754,14 +659,14 @@
     bottom: 50px;
   }
 
-  .needling-workspace-preview .auxiliary-tools {
+  .studio .auxiliary-tools {
     left: 60px;
     right: auto;
     top: auto;
     bottom: 50px;
   }
 
-  .needling-workspace-preview .layers-panel.mobile-open {
+  .studio .layers-panel.mobile-open {
     left: 12px;
     right: 12px;
     bottom: 116px;
@@ -770,7 +675,7 @@
     max-height: calc(100dvh - 140px);
   }
 
-  .needling-workspace-preview .locator-guide .locator-caption {
+  .studio .locator-guide .locator-caption {
     left: 12px;
     right: 12px;
     bottom: 116px;
@@ -779,6 +684,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .needling-workspace-preview .acupuncture-panel,
+  .studio .acupuncture-panel,
   .structure { transition: none; }
 }

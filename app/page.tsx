@@ -18,6 +18,8 @@ import {MeridianRail} from './meridian-rail';
 import {LocatorGuide} from './locator-guide';
 import {hasLocatorItems} from './locator-data';
 import {FeedbackButton} from './feedback';
+import {NeedleEyeCompass,NeedleEyeHud,NeedleEyeLauncher,useNeedleEyeData} from './needle-eye';
+import './needle-eye.css';
 const initial:SceneState={explode:0,visible:DEFAULT_VISIBLE,selected:[],isolate:false,view:'three-quarter',rotate:false,reset:0,needle:{enabled:true,depthRatio:0,revision:0},acupuncture:{visible:true,selectedCode:'GB34',showAll:true,showLines:false}};
 const RELATION_LABEL={INTERSECT:'지나감',APPROACH:'근접',AVOID:'피해야 함'} as const;
 
@@ -49,9 +51,29 @@ export default function Home(){
   const availableMeridians=useMemo(()=>Object.values(MERIDIANS),[]);
   const profile=needleProfile(selectedGbPoint.code);
   const needlingReview=needlingReviewOf(selectedGbPoint.code);
+  // Needle's-eye view: the HUD opens over the scene; expanding it widens the panel and puts the compass beside the strata.
+  const needleEye=useNeedleEyeData(),needleEyeProfile=needleEye?.points[selectedGbPoint.code],needleEyeAvailable=!!needleEyeProfile;
+  const [needleEyeOpen,setNeedleEyeOpen]=useState(false),[needleEyeWorkspace,setNeedleEyeWorkspace]=useState(false),[sceneShift,setSceneShift]=useState(0);
+  const closeNeedleEye=()=>{setNeedleEyeOpen(false);setNeedleEyeWorkspace(false);};
+  const toggleNeedleEye=()=>{if(needleEyeOpen){closeNeedleEye();return;}setLocatorActive(false);setPanel(p=>p==='layers'?null:p);setNeedleEyeOpen(true);};
+  useEffect(()=>{if(needleEye&&!needleEyeAvailable){setNeedleEyeOpen(false);setNeedleEyeWorkspace(false);}},[needleEye,needleEyeAvailable]);
+  // Centre the scene in the space the HUD and the (widened) panel leave free.
+  useEffect(()=>{
+   const panelElement=acupuncturePanel.current;
+   if(!panelElement)return;
+   const update=()=>{
+    if(!needleEyeOpen||window.innerWidth<768){setSceneShift(0);return;}
+    const rect=panelElement.getBoundingClientRect(),leftReserve=needleEyeWorkspace?300:350,rightReserve=Math.max(0,window.innerWidth-rect.left+22),free=window.innerWidth-leftReserve-rightReserve;
+    if(free<360){setSceneShift(0);return;}
+    setSceneShift(Math.round(Math.max(-window.innerWidth*.22,Math.min(window.innerWidth*.12,leftReserve+free/2-window.innerWidth/2))));
+   };
+   update();
+   const resize=new ResizeObserver(update);resize.observe(panelElement);window.addEventListener('resize',update);
+   return()=>{resize.disconnect();window.removeEventListener('resize',update);};
+  },[needleEyeOpen,needleEyeWorkspace]);
   const updateNeedle=(depthRatio:number)=>setState(s=>{const current=s.needle??needle;return{...s,needle:{...current,depthRatio,revision:current.revision+1}};});
   const selectAcupoint=(code:string,focus=true)=>{const normalized=code.trim().toUpperCase().replace(/\s+/g,''),point=allPoints.find(item=>item.code===normalized)??allPoints.find(item=>item.korean===code.trim()||item.hanja===code.trim()||item.english.toUpperCase()===normalized);if(!point)return;const trunk=Math.abs(point.seed[0])<.16&&point.seed[1]>.72&&point.seed[1]<1.52;setLocatorActive(current=>current&&hasLocatorItems(point.code));setPointQuery(point.code);setNeedleReport(null);setState(s=>({...s,selected:[],isolate:false,rotate:false,needle:{enabled:true,depthRatio:0,revision:(s.needle?.revision??0)+1},acupuncture:{visible:true,selectedCode:point.code,showAll:false,showLines:false},regionFocus:focus?{center:point.seed,radiusMm:trunk?220:!point.code.startsWith('GB')?100:point.projection==='dorsal-foot'?100:70,viewHint:point.projection==='dorsal-foot'?'dorsal-foot':undefined,revision:(s.regionFocus?.revision??0)+1}:s.regionFocus}));setDetails(false);};
-  const toggleLocator=()=>{if(locatorActive){setLocatorActive(false);return;}selectAcupoint(hasLocatorItems(selectedGbPoint.code)?selectedGbPoint.code:'KI4');if(window.innerWidth<900)setPanelCollapsed(true);setLocatorRevision(value=>value+1);setLocatorActive(true);};
+  const toggleLocator=()=>{if(locatorActive){setLocatorActive(false);return;}closeNeedleEye();selectAcupoint(hasLocatorItems(selectedGbPoint.code)?selectedGbPoint.code:'KI4');if(window.innerWidth<900)setPanelCollapsed(true);setLocatorRevision(value=>value+1);setLocatorActive(true);};
   // "전체 경혈 보기": keep the selection, show the whole meridian and return the camera to the overview.
   const showWholeMeridian=()=>setState(s=>({...s,acupuncture:{visible:true,selectedCode:selectedGbPoint.code,showAll:true,showLines:false},regionFocus:undefined,reset:s.reset+1}));
   const moveGbPoint=(direction:-1|1)=>{const index=meridianPoints.findIndex(point=>point.code===selectedGbPoint.code),next=meridianPoints[index+direction];if(next)selectAcupoint(next.code);};
@@ -80,7 +102,7 @@ export default function Home(){
  const restoreMuscles=()=>setHiddenGroups([]);
  const toggle=(id:SystemId)=>{setDetails(false);setState(s=>({...s,selected:[],isolate:false,visible:s.visible.includes(id)?s.visible.filter(x=>x!==id):[...s.visible,id]}));};
  const reset=()=>{setState(s=>({...initial,visible:DEFAULT_VISIBLE,reset:s.reset+1}));restoreMuscles();setChosen(null);setDetails(false);setPanel(null);};
- const openPanel=(next:'layers'|'search')=>{setDetails(false);setPanel(p=>p===next?null:next);};
+ const openPanel=(next:'layers'|'search')=>{setDetails(false);if(next==='layers')closeNeedleEye();setPanel(p=>p===next?null:next);};
  const clampPanelPosition=(left:number,top:number,width:number,height:number)=>{const margin=12;return{left:Math.min(Math.max(margin,left),Math.max(margin,window.innerWidth-width-margin)),top:Math.min(Math.max(margin,top),Math.max(margin,window.innerHeight-height-margin))};};
  const startPanelDrag=(event:React.PointerEvent<HTMLDivElement>)=>{if(event.button!==0||window.innerWidth<=767||!acupuncturePanel.current)return;const rect=acupuncturePanel.current.getBoundingClientRect();panelDrag.current={pointerId:event.pointerId,startX:event.clientX,startY:event.clientY,left:rect.left,top:rect.top};event.currentTarget.setPointerCapture(event.pointerId);event.preventDefault();};
  const movePanelDrag=(event:React.PointerEvent<HTMLDivElement>)=>{const drag=panelDrag.current,panelElement=acupuncturePanel.current;if(!drag||drag.pointerId!==event.pointerId||!panelElement)return;const rect=panelElement.getBoundingClientRect();setPanelPosition(clampPanelPosition(drag.left+event.clientX-drag.startX,drag.top+event.clientY-drag.startY,rect.width,rect.height));};
@@ -88,7 +110,7 @@ export default function Home(){
  const movePanelWithKeyboard=(event:React.KeyboardEvent<HTMLButtonElement>)=>{if(window.innerWidth<=767)return;const offsets:{[key:string]:[number,number]}={ArrowLeft:[-16,0],ArrowRight:[16,0],ArrowUp:[0,-16],ArrowDown:[0,16]};if(event.key==='Home'){event.preventDefault();event.stopPropagation();setPanelPosition(null);return;}const offset=offsets[event.key];if(!offset||!acupuncturePanel.current)return;event.preventDefault();event.stopPropagation();const rect=acupuncturePanel.current.getBoundingClientRect();setPanelPosition(current=>clampPanelPosition((current?.left??rect.left)+offset[0],(current?.top??rect.top)+offset[1],rect.width,rect.height));};
  useEffect(()=>{const keepPanelOnScreen=()=>setPanelPosition(current=>{if(!current||!acupuncturePanel.current)return current;const rect=acupuncturePanel.current.getBoundingClientRect(),next=clampPanelPosition(current.left,current.top,rect.width,rect.height);return next.left===current.left&&next.top===current.top?current:next;});window.addEventListener('resize',keepPanelOnScreen);return()=>window.removeEventListener('resize',keepPanelOnScreen);},[]);
  useEffect(()=>{const frame=requestAnimationFrame(()=>setPanelPosition(current=>{if(!current||!acupuncturePanel.current)return current;const rect=acupuncturePanel.current.getBoundingClientRect();return clampPanelPosition(current.left,current.top,rect.width,rect.height);}));return()=>cancelAnimationFrame(frame);},[panelCollapsed]);
- return <main className="studio">
+ return <main className={`studio ${needleEyeOpen?'needle-eye-analysis':''} ${needleEyeWorkspace?'needle-eye-workspace':''}`} style={{'--needle-eye-scene-shift':`${sceneShift}px`} as React.CSSProperties}>
    {atlas&&<AnatomyScene atlas={atlas} state={{...state,needle,locatorGuide:locatorActive,inspectorOpen:details&&selectedParts.length>0,hiddenParts}} onSelect={choosePart} onPointSelect={code=>selectAcupoint(code,false)} onProgress={n=>{setProgress(n);if(n===100)setError('');}} onError={setError} onNeedleReport={setNeedleReport} onAnnotationFrame={updateAnnotation}/>}
   <div className="vignette"/>
   <header className="identity"><div className="eyebrow"><span className="status-dot"/> FIRST-STUDY EDITION</div><h1>Acupoint Atlas<Badge variant="outline" className="edition">3D</Badge></h1><div className="identity-meta">{atlas?atlas.parts.length.toLocaleString():'—'} anatomical structures <span>·</span> 361 acupoints</div></header><section className="acupoint-rail" aria-label="Selected acupoint"><div className="eyebrow">SELECTED ACUPOINT · {meridian.label}</div><AcupointScrubber points={scrubPoints} activeCode={selectedGbPoint.code} onPointChange={selectAcupoint} label={`${meridian.name} 경혈 탐색`} hotkeys/><div className="acupoint-rail-meta"><em>{selectedGbIndex+1} / {meridianPoints.length}</em></div><p className="acupoint-rail-hint">↑↓ Navigate · Esc Overview</p></section>
@@ -97,6 +119,8 @@ export default function Home(){
    :<AnnotationOverlay annotation={{id:selectedGbPoint.code,primary:`${selectedGbPoint.code} · ${selectedGbPoint.korean}`,secondary:selectedGbPoint.code==='GB34'?'fibular head':selectedGbPoint.english}} channel={annotationChannel}/>
   }
   <nav className="top-actions" aria-label="Explorer panels"><Button variant="ghost" className={panel==='search'?'active':''} onClick={()=>openPanel('search')} aria-label="Search anatomy"><Search size={18}/><span>Find a structure</span><kbd>/</kbd></Button><Button variant="ghost" className="icon-button" aria-label="About this atlas" onClick={()=>{setDetails(false);setPanel(null);setAbout(true);}}><Info size={18}/></Button></nav>
+  <NeedleEyeLauncher active={needleEyeOpen} available={needleEyeAvailable} onToggle={toggleNeedleEye}/>
+  {needleEyeOpen&&needleEyeProfile&&needleEye&&<NeedleEyeHud profile={needleEyeProfile} references={needleEye.references} depth={needle.depthRatio} pointCode={selectedGbPoint.code} pointName={selectedGbPoint.korean} expanded={needleEyeWorkspace} onExpand={()=>setNeedleEyeWorkspace(value=>!value)}/>}
   <nav className="auxiliary-tools glass" aria-label="보조 해부 도구"><Button variant="ghost" className={locatorActive?'active':''} onClick={toggleLocator} aria-pressed={locatorActive} title="표지점 구조물 취혈 가이드"><Sparkles size={18}/><span>{locatorActive?'가이드 닫기':'취혈 가이드'}</span></Button><Button variant="ghost" onClick={()=>openPanel('layers')} aria-expanded={panel==='layers'} aria-controls="anatomy-layers" title="해부 레이어와 모델 분리"><Layers3 size={19}/><span>해부 도구</span></Button><Button variant="ghost" onClick={()=>selected&&hideMuscle(selected.id)} disabled={progress<100||selectedParts.length!==1||!hideable(selected)||!state.visible.includes(selected!.system)||hiddenSet.has(selected?.id??'')} aria-label="선택한 구조 한 층 벗기기" title="선택한 구조 하나만 숨기기"><Layers3 size={18}/><span>한 층 벗기기</span></Button><Button variant="ghost" onClick={undoMuscleHide} disabled={!hiddenGroups.length} aria-label="마지막 숨김 되돌리기" title="마지막 숨김 되돌리기"><Undo2 size={18}/><span>되돌리기</span></Button></nav>
   <section id="anatomy-layers" className={`layers-panel glass ${panel==='layers'?'mobile-open':''}`} aria-label="Anatomical layers">
    <div className="panel-heading"><span>해부 레이어</span><div className="panel-heading-actions"><Badge variant="secondary" className="small-number">{activeSystems.length}</Badge><Button variant="ghost" className="panel-close icon-button" onClick={()=>setPanel(null)} aria-label="해부 도구 닫기"><X size={17}/></Button></div></div>
@@ -132,12 +156,13 @@ export default function Home(){
       <div className="archive-index profile-index">03</div>
       <div className="profile-heading">Needling Profile <span>자침 층서</span></div>
       <div className="point-actions">
-        <Button variant="ghost" onClick={()=>{setState(s=>({...s,selected:nearbyPartIds,isolate:true,explode:0,rotate:false,regionFocus:{center:selectedGbPoint.seed,radiusMm:regionRadius,revision:(s.regionFocus?.revision??0)+1}}));setDetails(false);}}>주변 구조만 ({nearbyPartIds.length})</Button>
+        <Button variant="ghost" onClick={()=>{if(needleEyeAvailable){if(needleEyeOpen)closeNeedleEye();else toggleNeedleEye();}setState(s=>({...s,selected:nearbyPartIds,isolate:true,explode:0,rotate:false,regionFocus:{center:selectedGbPoint.seed,radiusMm:regionRadius,revision:(s.regionFocus?.revision??0)+1}}));setDetails(false);}}>주변 구조만 ({nearbyPartIds.length})</Button>
         <Button variant="ghost" disabled={!needlePathPartIds.length} onClick={showNeedlePath}>경로 구조 보기 ({needlePathPartIds.length})</Button>
         <Button variant="ghost" disabled={!needleReport?.available} onClick={animateInsertion}>자침 경로 재생</Button>
         <FeedbackButton acupoint={selectedGbPoint.code} meridian={meridian.id}/>
       </div>
       {profile.probeDepthMm<=0?<p className="strata-empty">이 혈은 자침 시뮬레이션을 제공하지 않습니다.</p>:needleReport&&needleReport.code===selectedGbPoint.code?<StrataColumn report={needleReport} ratio={needle.depthRatio} onRatio={updateNeedle}/>:<p className="strata-empty">경로를 계산하는 중입니다.</p>}
+      {needleEyeWorkspace&&needleEyeProfile&&needleEye&&<NeedleEyeCompass profile={needleEyeProfile} references={needleEye.references} depth={needle.depthRatio}/>}
       <p className={`safety-warning ${profile.region==='thorax'?'critical':''}`}>{profile.warning}{profile.pointRisk&&<><br/>{profile.pointRisk}</>}</p>
       {profile.probeDepthMm>0&&needleReport?.code===selectedGbPoint.code&&!needleReport.available&&<p className="needle-unavailable">이 경로에서는 깊이 조절을 할 수 없습니다.</p>}
       {!!profile.relations?.length&&<div className="reference-path"><b>문헌 구조 관계</b><ol>{profile.relations.map(({kind,structure})=><li key={`${kind}-${structure}`}>{RELATION_LABEL[kind]} · {structure}</li>)}</ol><small>문헌에 기록된 관계입니다. 이 모델의 경로와 다를 수 있습니다.</small></div>}
