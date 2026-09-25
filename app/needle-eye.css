@@ -162,15 +162,15 @@
   overflow: hidden;
   border: 1px solid #c5cec0;
   border-right: 0;
-  border-radius: 12px 0 0 12px;
+  border-radius: 10px 0 0 10px;
   background: #ffffffeb;
   backdrop-filter: blur(20px);
   font-family: 'S-Core Dream', Inter, ui-sans-serif, sans-serif;
 }
 
 .needle-eye-launcher button {
-  width: 48px;
-  min-height: 54px;
+  width: 42px;
+  min-height: 46px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -185,8 +185,8 @@
 
 .needle-eye-launcher button:first-child i {
   position: relative;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border: 1px solid #637a5e;
   border-radius: 50%;
 }
@@ -196,8 +196,8 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 4px;
-  height: 4px;
+  width: 3px;
+  height: 3px;
   border-radius: 50%;
   background: #637a5e;
   transform: translate(-50%, -50%);
@@ -222,7 +222,7 @@
 }
 
 .studio .auxiliary-tools {
-  left: 70px;
+  left: 64px;
   top: auto;
   bottom: 55px;
   display: flex;
@@ -231,14 +231,14 @@
   opacity: 1;
   pointer-events: auto;
   border-left: 0;
-  border-radius: 0 12px 12px 0;
+  border-radius: 0 10px 10px 0;
   box-shadow: none;
 }
 
 .studio .auxiliary-tools button {
-  width: 48px !important;
-  min-width: 48px;
-  min-height: 54px;
+  width: 42px !important;
+  min-width: 42px;
+  min-height: 46px;
   padding: 4px;
   border-radius: 0;
 }
@@ -660,7 +660,7 @@
   }
 
   .studio .auxiliary-tools {
-    left: 60px;
+    left: 54px;
     right: auto;
     top: auto;
     bottom: 50px;
