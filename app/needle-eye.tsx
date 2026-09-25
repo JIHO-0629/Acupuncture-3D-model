@@ -4,7 +4,7 @@
  * so the 180 KB table stays out of the first bundle. Distances and bearings are atlas-relative
  * teaching data, not patient-specific safety margins.
  */
-import {useEffect,useMemo,useState} from 'react';
+import {useEffect,useMemo,useRef,useState} from 'react';
 import {Maximize2,Minimize2} from 'lucide-react';
 
 export type NeedleEyeStructure={
@@ -68,15 +68,16 @@ function depthLabel(structure:NeedleEyeStructure,currentMm:number|null){
   return `모델 깊이 ${structure.depthMm} mm${ahead}`;
 }
 
-export function NeedleEyeCompass({profile,references,depth}:{profile:NeedleEyeProfile;references:NeedleEyeData['references'];depth:number}){
+export function NeedleEyeCompass({profile,references,depth,onSimulationGesture}:{profile:NeedleEyeProfile;references:NeedleEyeData['references'];depth:number;onSimulationGesture?:(direction:-1|1)=>void}){
   const currentMm=needleEyeDepthMm(profile,depth);
+  const pinchDistance=useRef<number|null>(null);
   const visibleStructures=useMemo(()=>profile.structures
     .map((structure,index)=>({structure,index,opacity:structureOpacity(currentMm,depth,structure)}))
     .filter(item=>item.opacity>.04),[currentMm,depth,profile]);
   const {orientation}=profile;
   return <section className="needle-eye-compass" aria-label="현재 자침 단면의 주변 구조">
     <div className="compass-heading"><div><b>Needle’s-eye Compass</b><span>시술자 시점 단면 · 재생 연동</span></div><em>모델 기준 · 비척도</em></div>
-    <div className="compass-plot-wrap">
+    <div className="compass-plot-wrap" onWheel={event=>{if(!onSimulationGesture||event.deltaY===0)return;event.preventDefault();onSimulationGesture(event.deltaY>0?1:-1);}} onTouchStart={event=>{if(event.touches.length!==2)return;const first=event.touches.item(0),second=event.touches.item(1);if(first&&second)pinchDistance.current=Math.hypot(first.clientX-second.clientX,first.clientY-second.clientY);}} onTouchMove={event=>{if(!onSimulationGesture||event.touches.length!==2)return;const first=event.touches.item(0),second=event.touches.item(1);if(!first||!second)return;const next=Math.hypot(first.clientX-second.clientX,first.clientY-second.clientY),previous=pinchDistance.current;if(previous!=null&&Math.abs(next-previous)>=10){event.preventDefault();onSimulationGesture(next>previous?1:-1);pinchDistance.current=next;}}} onTouchEnd={()=>{pinchDistance.current=null;}}>
       <svg className="compass-plot" viewBox="0 0 300 300" role="img" aria-labelledby="compass-title compass-desc">
         <title id="compass-title">침 축을 중심으로 본 주변 위험 구조</title>
         <desc id="compass-desc">{`${orientation.view}. 위는 ${orientation.up}, 오른쪽은 ${orientation.right}, 아래는 ${orientation.down}, 왼쪽은 ${orientation.left}입니다.`}</desc>
@@ -122,12 +123,12 @@ export function NeedleEyeCompass({profile,references,depth}:{profile:NeedleEyePr
   </section>;
 }
 
-export function NeedleEyeHud({profile,references,depth,pointCode,pointName,expanded,onExpand}:{profile:NeedleEyeProfile;references:NeedleEyeData['references'];depth:number;pointCode:string;pointName:string;expanded:boolean;onExpand:()=>void}){
+export function NeedleEyeHud({profile,references,depth,pointCode,pointName,expanded,onExpand,onSimulationGesture}:{profile:NeedleEyeProfile;references:NeedleEyeData['references'];depth:number;pointCode:string;pointName:string;expanded:boolean;onExpand:()=>void;onSimulationGesture:(direction:-1|1)=>void}){
   const mm=needleEyeDepthMm(profile,depth),clamped=Math.max(0,Math.min(100,depth));
   return <aside className={`needle-eye-hud ${expanded?'is-expanded':''}`} aria-label="Needle's Eye 관찰 모드">
     <header><div><span>NEEDLE’S EYE</span><b>{pointCode} · {pointName}</b></div>
       <button type="button" aria-label={expanded?'Needle’s Eye 축소':'Needle’s Eye 확대'} onClick={onExpand}>{expanded?<Minimize2 size={15}/>:<Maximize2 size={15}/>}</button></header>
-    {!expanded&&<NeedleEyeCompass profile={profile} references={references} depth={depth}/>}
+    {!expanded&&<NeedleEyeCompass profile={profile} references={references} depth={depth} onSimulationGesture={onSimulationGesture}/>}
     <div className="hud-depth">
       <div><span>MODEL {mm==null?'—':mm.toFixed(1).replace(/\.0$/,'')} mm</span><small>재생 연동</small></div>
       <div className="hud-depth-track" aria-label={`모델 자침 진행 ${depth}%`}><i style={{width:`${clamped}%`}}/><b style={{left:`${clamped}%`}}/></div>

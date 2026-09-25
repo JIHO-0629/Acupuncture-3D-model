@@ -29,7 +29,8 @@
 .studio.needle-eye-analysis .identity,
 .studio.needle-eye-analysis .acupoint-rail,
 .studio.needle-eye-analysis .atlas-point-identifier,
-.studio.needle-eye-analysis .atlas-leader {
+.studio.needle-eye-analysis .atlas-leader,
+.studio.needle-eye-analysis .atlas-annotation {
   display: none !important;
 }
 
@@ -98,6 +99,8 @@
 
 .needle-eye-hud .compass-plot-wrap {
   padding: 8px 0 2px;
+  cursor: ns-resize;
+  touch-action: none;
 }
 
 .needle-eye-hud .compass-plot {

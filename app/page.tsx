@@ -26,6 +26,7 @@ const RELATION_LABEL={INTERSECT:'지나감',APPROACH:'근접',AVOID:'피해야 �
 export default function Home(){
  const detailTitle=useRef<HTMLHeadingElement>(null);
   const acupuncturePanel=useRef<HTMLElement>(null);
+  const needlePanel=useRef<HTMLDivElement>(null);
   const panelDrag=useRef<{pointerId:number,startX:number,startY:number,left:number,top:number}|null>(null);
   const [atlas,setAtlas]=useState<Atlas|null>(null),[state,setState]=useState(initial),[progress,setProgress]=useState(0),[error,setError]=useState(''),[panel,setPanel]=useState<'layers'|'search'|null>(null),[details,setDetails]=useState(false),[about,setAbout]=useState(false),[query,setQuery]=useState(''),[pointQuery,setPointQuery]=useState('GB34'),[chosen,setChosen]=useState<Concept|null>(null),[needleReport,setNeedleReport]=useState<NeedleReport|null>(null);
   const [panelPosition,setPanelPosition]=useState<{left:number,top:number}|null>(null);
@@ -72,6 +73,7 @@ export default function Home(){
    return()=>{resize.disconnect();window.removeEventListener('resize',update);};
   },[needleEyeOpen,needleEyeWorkspace]);
   const updateNeedle=(depthRatio:number)=>setState(s=>{const current=s.needle??needle;return{...s,needle:{...current,depthRatio,revision:current.revision+1}};});
+  const adjustNeedleFromCompass=(direction:-1|1)=>{updateNeedle(Math.max(0,Math.min(100,needle.depthRatio+direction*5)));const panelElement=acupuncturePanel.current,simulation=needlePanel.current;if(!panelElement||!simulation)return;const offset=simulation.getBoundingClientRect().top-panelElement.getBoundingClientRect().top;panelElement.scrollTo({top:Math.max(0,panelElement.scrollTop+offset-12),behavior:'smooth'});};
   const selectAcupoint=(code:string,focus=true)=>{const normalized=code.trim().toUpperCase().replace(/\s+/g,''),point=allPoints.find(item=>item.code===normalized)??allPoints.find(item=>item.korean===code.trim()||item.hanja===code.trim()||item.english.toUpperCase()===normalized);if(!point)return;const trunk=Math.abs(point.seed[0])<.16&&point.seed[1]>.72&&point.seed[1]<1.52;setLocatorActive(current=>current&&hasLocatorItems(point.code));setPointQuery(point.code);setNeedleReport(null);setState(s=>({...s,selected:[],isolate:false,rotate:false,needle:{enabled:true,depthRatio:0,revision:(s.needle?.revision??0)+1},acupuncture:{visible:true,selectedCode:point.code,showAll:false,showLines:false},regionFocus:focus?{center:point.seed,radiusMm:trunk?220:!point.code.startsWith('GB')?100:point.projection==='dorsal-foot'?100:70,viewHint:point.projection==='dorsal-foot'?'dorsal-foot':undefined,revision:(s.regionFocus?.revision??0)+1}:s.regionFocus}));setDetails(false);};
   const toggleLocator=()=>{if(locatorActive){setLocatorActive(false);return;}closeNeedleEye();selectAcupoint(hasLocatorItems(selectedGbPoint.code)?selectedGbPoint.code:'KI4');if(window.innerWidth<900)setPanelCollapsed(true);setLocatorRevision(value=>value+1);setLocatorActive(true);};
   // "전체 경혈 보기": keep the selection, show the whole meridian and return the camera to the overview.
@@ -120,7 +122,7 @@ export default function Home(){
   }
   <nav className="top-actions" aria-label="Explorer panels"><Button variant="ghost" className={panel==='search'?'active':''} onClick={()=>openPanel('search')} aria-label="Search anatomy"><Search size={18}/><span>Find a structure</span><kbd>/</kbd></Button><Button variant="ghost" className="icon-button" aria-label="About this atlas" onClick={()=>{setDetails(false);setPanel(null);setAbout(true);}}><Info size={18}/></Button></nav>
   <NeedleEyeLauncher active={needleEyeOpen} available={needleEyeAvailable} onToggle={toggleNeedleEye}/>
-  {needleEyeOpen&&needleEyeProfile&&needleEye&&<NeedleEyeHud profile={needleEyeProfile} references={needleEye.references} depth={needle.depthRatio} pointCode={selectedGbPoint.code} pointName={selectedGbPoint.korean} expanded={needleEyeWorkspace} onExpand={()=>setNeedleEyeWorkspace(value=>!value)}/>}
+  {needleEyeOpen&&needleEyeProfile&&needleEye&&<NeedleEyeHud profile={needleEyeProfile} references={needleEye.references} depth={needle.depthRatio} pointCode={selectedGbPoint.code} pointName={selectedGbPoint.korean} expanded={needleEyeWorkspace} onExpand={()=>setNeedleEyeWorkspace(value=>!value)} onSimulationGesture={adjustNeedleFromCompass}/>}
   <nav className="auxiliary-tools glass" aria-label="보조 해부 도구"><Button variant="ghost" className={locatorActive?'active':''} onClick={toggleLocator} aria-pressed={locatorActive} title="표지점 구조물 취혈 가이드"><Sparkles size={18}/><span>{locatorActive?'가이드 닫기':'취혈 가이드'}</span></Button><Button variant="ghost" onClick={()=>openPanel('layers')} aria-expanded={panel==='layers'} aria-controls="anatomy-layers" title="해부 레이어와 모델 분리"><Layers3 size={19}/><span>해부 도구</span></Button><Button variant="ghost" onClick={()=>selected&&hideMuscle(selected.id)} disabled={progress<100||selectedParts.length!==1||!hideable(selected)||!state.visible.includes(selected!.system)||hiddenSet.has(selected?.id??'')} aria-label="선택한 구조 한 층 벗기기" title="선택한 구조 하나만 숨기기"><Layers3 size={18}/><span>한 층 벗기기</span></Button><Button variant="ghost" onClick={undoMuscleHide} disabled={!hiddenGroups.length} aria-label="마지막 숨김 되돌리기" title="마지막 숨김 되돌리기"><Undo2 size={18}/><span>되돌리기</span></Button><FeedbackButton acupoint={selectedGbPoint.code} meridian={meridian.id} toolbar/></nav>
   <section id="anatomy-layers" className={`layers-panel glass ${panel==='layers'?'mobile-open':''}`} aria-label="Anatomical layers">
    <div className="panel-heading"><span>해부 레이어</span><div className="panel-heading-actions"><Badge variant="secondary" className="small-number">{activeSystems.length}</Badge><Button variant="ghost" className="panel-close icon-button" onClick={()=>setPanel(null)} aria-label="해부 도구 닫기"><X size={17}/></Button></div></div>
@@ -149,7 +151,7 @@ export default function Home(){
 
     </div>
     <div className="archive-section">
-    <div className={`needle-panel needle-${profile.region}`}>
+    <div ref={needlePanel} className={`needle-panel needle-${profile.region}`}>
       <div className="archive-index">02</div>
       <div className="needle-heading"><b>Needling</b><span>{profile.probeDepthMm<=0?'자침 시뮬레이션 없음':'오른쪽 참조 모델 · 피부에 수직 자입'}</span></div>
       <div className="needling-source"><span>문헌 자침법</span><b>{profile.sourceNeedling}</b><small>{profile.depthValidation} · <a href={profile.validationSource} target="_blank" rel="noreferrer">검증 출처</a></small></div>
