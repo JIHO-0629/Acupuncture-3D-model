@@ -61,9 +61,11 @@ interface Props {
   ratio: number;
   onRatio: (ratio: number) => void;
   disabled?: boolean;
+  /** Incremented when a control outside the column tries to go past the limit. */
+  refuseSignal?: number;
 }
 
-export default function StrataColumn({ report, ratio, onRatio, disabled }: Props) {
+export default function StrataColumn({ report, ratio, onRatio, disabled, refuseSignal }: Props) {
   const coreRef = useRef<HTMLDivElement>(null);
   const columnRef = useRef<HTMLDivElement>(null);
   const labelsRef = useRef<HTMLDivElement>(null);
@@ -167,6 +169,8 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
     refuseTimer.current = window.setTimeout(() => { setRefusing(false); refuseTimer.current = null; }, 620);
   }, []);
   useEffect(() => () => { if (refuseTimer.current !== null) clearTimeout(refuseTimer.current); }, []);
+  // A push past the limit from elsewhere (the Needle's-eye compass) refuses here too, where the limit lives.
+  useEffect(() => { if (refuseSignal) refuse(); }, [refuseSignal, refuse]);
 
   // Entering a layer nudges only the readout text. Shaking the panel for an ordinary
   // crossing would read as an error and drown out the boundary's own signal.
