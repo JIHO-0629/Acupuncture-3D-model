@@ -215,6 +215,11 @@
   background: currentColor;
 }
 
+.needle-eye-launcher button:disabled {
+  opacity: .28;
+  cursor: default;
+}
+
 .needling-workspace-preview .auxiliary-tools {
   left: 70px;
   top: auto;
@@ -410,6 +415,19 @@
   fill: var(--preview-rust);
 }
 
+.structure.vein circle {
+  stroke: var(--preview-rust);
+  stroke-dasharray: 2.5 2.5;
+}
+
+.structure.vein text {
+  fill: var(--preview-rust);
+}
+
+.structure.is-crossing circle {
+  stroke-width: 2.5;
+}
+
 .structure.boundary path {
   stroke: var(--preview-boundary);
 }
@@ -417,6 +435,13 @@
 .structure.boundary .boundary-soft {
   opacity: .28;
   stroke-width: 8;
+}
+
+.structure.boundary .boundary-band {
+  fill: none;
+  stroke: var(--preview-boundary);
+  stroke-width: 9;
+  opacity: .2;
 }
 
 .structure.boundary text {
@@ -455,6 +480,42 @@
   gap: 5px;
 }
 
+.compass-structure-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.compass-structure-list > span {
+  display: grid;
+  grid-template-columns: 9px minmax(82px, auto) minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  transition: opacity 220ms ease;
+}
+
+.compass-structure-list b,
+.compass-structure-list em {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.compass-structure-list b {
+  color: var(--preview-ink);
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.compass-structure-list em {
+  color: var(--preview-muted);
+  font-size: 8px;
+  font-style: normal;
+  text-align: right;
+}
+
 .compass-reading small {
   flex-basis: 100%;
   font-size: 9px;
@@ -469,7 +530,9 @@
 }
 
 .nerve-legend { color: var(--preview-purple); }
-.artery-legend { color: var(--preview-rust); }
+.artery-legend,
+.vein-legend { color: var(--preview-rust); }
+.vein-legend { border-style: dashed; }
 .boundary-legend {
   width: 12px;
   height: 5px;

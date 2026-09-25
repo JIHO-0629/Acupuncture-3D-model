@@ -609,7 +609,7 @@
    "status": "implemented_unverified",
    "seed": [
     0,
-    1.24215,
+    1.2335,
     0.10989
    ],
    "outward": [
@@ -619,7 +619,7 @@
    ],
    "region": "thorax",
    "depthMm": 0.5,
-   "rule": "anterior median line · tip of the xiphoid process (registered surface landmark)",
+   "rule": "anterior median line · tip of the xiphoid process (registered surface landmark) · 2026-09-25 자침 경로 검수 반영: 1 B-cun below the xiphisternal junction (8 B-cun to the umbilicus); the old seed was the xiphoid tip itself",
    "projection": "anterior"
   },
   {

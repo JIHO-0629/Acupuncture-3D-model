@@ -157,8 +157,8 @@
    },
    "status": "implemented_unverified",
    "seed": [
-    -0.00143,
-    1.07043,
+    0,
+    1.06793,
     -0.0944
    ],
    "outward": [
@@ -168,7 +168,7 @@
    ],
    "region": "lumbar",
    "depthMm": 36.8,
-   "rule": "posterior median line · depression inferior to L2 spinous process",
+   "rule": "posterior median line · depression inferior to L2 spinous process · 2026-09-25 자침 경로 검수 반영: interspinous depression below the L2 spinous process",
    "projection": "posterior"
   },
   {
@@ -198,8 +198,8 @@
    },
    "status": "implemented_unverified",
    "seed": [
-    0.00051,
-    1.09331,
+    0,
+    1.0921,
     -0.09555
    ],
    "outward": [
@@ -209,7 +209,7 @@
    ],
    "region": "lumbar",
    "depthMm": 33.7,
-   "rule": "posterior median line · depression inferior to L1 spinous process",
+   "rule": "posterior median line · depression inferior to L1 spinous process · 2026-09-25 자침 경로 검수 반영: interspinous depression below the L1 spinous process",
    "projection": "posterior"
   },
   {

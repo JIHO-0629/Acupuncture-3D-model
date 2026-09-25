@@ -13,6 +13,9 @@ browser; each script writes files that are reviewed by hand before anything is u
 | `raycast_prototype.mjs` | The same for GB21, GB30 and GB38 only, with more printout. Used while designing the schema. |
 | `export_direct_profiles.mjs` | Recomputes `modelMaxMm` in `data/needling-direct.json`: the source cun range times the proportional unit of the skin region under the point (WHO segments measured on this body). Replaces the height-only segment choice of `raycast_all.mjs` for the viewer. |
 | `audit_depth.mjs` | Walks every straight-needle profile along the viewer's ray and writes `reports/needling-depth-audit-<date>.md/.json` with what lies inside the documented range (flags: empty, bone, hazard). |
+| `relocate-review-2026-09-25.mjs` | Applies the seed moves decided in the 2026-09-25 path review (intercostal centring, popliteal crease, interspinous depressions, ST9, BL10, LR11, KI12/13, CV15, BL35) to `data/meridians/*.json`. `--gb` prints the GB22/23/25/28/30 values set in `app/gb-points.ts`. |
+| `path-spec.mjs` | Reviewer decisions per point: direction rule, dropped model layers, concept layers, hazards, notes. |
+| `build-needle-paths.mjs` | Writes `data/needling-paths.json` (read by the viewer and the strata column) and `reports/needling-paths-<date>.md`: direction, anatomically ordered layers (model, concept, void), first bone, and hazards kept out of the passed layers. Shares geometry with `path-geometry.mjs`; Korean names in `anatomy-ko.mjs`. Rerun after any seed or mesh change. |
 | `make_config.mjs` / `write_workbook.ps1` | Write the sheets into the reviewer's .xlsm through Excel. |
 | `verify_placement.mjs`, `depth_order.mjs`, `qa_all.mjs`, `verify_workbook.mjs` | Checks: structures poking outside the skin, layer order at a few probes, and sanity of the generated rows. |
 

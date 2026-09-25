@@ -107,7 +107,10 @@ for (const row of rows) {
           ? { ...item, ko: "방패연골" }
           : row.en === "cricoid cartilage"
             ? { ...item, ko: "반지연골" }
-            : item;
+            // The source sheet writes the umbilicus as 제(臍); the guide showed a lone "제" (KI11 review).
+            : row.en === "umbilicus"
+              ? { ...item, ko: "배꼽" }
+              : item;
     const group = byCode.get(code) ?? [];
     group.push(localized);
     byCode.set(code, group);
@@ -144,6 +147,12 @@ addItem("LU2", {
 for (const code of ["CV20", "CV21"]) addItem(code, {
   key: -2, en: "manubrium", ko: "복장뼈자루", codes: [code], status: "가능",
   kind: "BodyParts3D mesh", refs: ["Manubrium"], ids: ["FMA7486"], system: "skeletal", note: "", color: "bone",
+});
+
+// GB28 lies just above the inguinal ligament (review 2026-09-25); LR12 just below it.
+for (const code of ["GB28", "LR12"]) addItem(code, {
+  key: -3, en: "inguinal ligament", ko: "샅고랑인대", codes: [code], status: "가능",
+  kind: "BodyParts3D mesh", refs: ["Right inguinal ligament"], ids: ["BP3_FMA21964"], system: "connective", note: "", color: "soft",
 });
 
 export function locatorItems(code: string): LocatorItem[] {

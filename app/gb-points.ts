@@ -101,18 +101,18 @@ const GB_POINT_INPUTS:GbPointInput[]=[
  // 2026-09-23: the arm hangs against the chest here, and a lateral projection's normal tilted the needle into
  // biceps brachii. The point stays on the axillary skin at the 4th intercostal level and the needle goes straight
  // medial, as it would with the arm raised. In this pose the axillary hollow leaves ~70 mm to serratus anterior.
- {code:'GB22',korean:'연액',hanja:'淵腋',english:'Yuanye',location:'팔을 든 자세에서 중간겨드랑선 위, 겨드랑 중심 아래 3촌의 제4늑간',basis:'제4·5늑골 사이의 중간겨드랑선 몸통 피부(현재 팔 내림 자세), 안쪽으로 수평 자입',seed:[-.1684,1.315,.030],projection:'direct',outward:[-1,0,0],status:'registered'},
- {code:'GB23',korean:'첩근',hanja:'輒筋',english:'Zhejin',location:'가쪽가슴부위 제4늑간, 중간겨드랑선 앞쪽 1촌',basis:'제4·5늑골과 중간겨드랑선',seed:[-.170,1.270,.038],projection:'lateral',status:'registered'},
+ {code:'GB22',korean:'연액',hanja:'淵腋',english:'Yuanye',location:'팔을 든 자세에서 중간겨드랑선 위, 겨드랑 중심 아래 3촌의 제4늑간',basis:'팔을 든 자세를 가정한 중간겨드랑선의 제4늑간(모델은 팔 내림 자세라 가슴벽 바깥 9 mm에 둔 가정 체표). 2026-09-25 검수: 제4·5늑골 사이 중앙',seed:[-.134,1.318,.000],projection:'direct',outward:[-1,0,0],status:'registered'},
+ {code:'GB23',korean:'첩근',hanja:'輒筋',english:'Zhejin',location:'가쪽가슴부위 제4늑간, 중간겨드랑선 앞쪽 1촌',basis:'팔을 든 자세를 가정한 제4늑간, 중간겨드랑선 앞 1촌(가슴벽 바깥 9 mm 가정 체표). 2026-09-25 검수: 제4·5늑골 사이',seed:[-.128,1.307,.024],projection:'direct',outward:[-.958,0,.287],status:'registered'},
  {code:'GB24',korean:'일월',hanja:'日月',english:'Riyue',location:'앞가슴부위 제7늑간, 앞정중선 가쪽 4촌',basis:'제7·8늑골과 늑간 공간',seed:[-.120,1.165,.087],projection:'anterior',status:'registered'},
- {code:'GB25',korean:'경문',hanja:'京門',english:'Jingmen',location:'옆배, 제12늑골 자유단 바로 아래쪽',basis:'제12늑골 자유단 랜드마크·뒤겨드랑선 뒤쪽',seed:GB_LANDMARK_SEEDS.GB25!,projection:'lateral',status:'review'},
+ {code:'GB25',korean:'경문',hanja:'京門',english:'Jingmen',location:'옆배, 제12늑골 자유단 바로 아래쪽',basis:'제12늑골 자유단에서 가장 가까운 피부로 수직으로 올라온 점(2026-09-25 검수)',seed:[-.10618,1.0826,-.06078],projection:'direct',outward:[-.69049,-.23944,-.68257],status:'review'},
  // 2026-09-23: the old seed sat 30 mm below the umbilicus level and 40 mm lateral, where the needle met the iliac
  // crest at 14 mm. Now: vertically below the free end of the 11th rib (-0.108, 1.0888, -0.0049) at the height of
  // the umbilicus landmark (y 1.0297), projected laterally to the flank skin.
  {code:'GB26',korean:'대맥',hanja:'帶脈',english:'Daimai',location:'제11늑골 자유단 아래, 배꼽 중심과 같은 높이',basis:'제11늑골 자유단의 수직선과 배꼽 높이의 교점',seed:[-.108,1.0297,-.005],projection:'lateral',status:'review'},
  {code:'GB27',korean:'오추',hanja:'五樞',english:'Wushu',location:'배꼽 아래 3/5 구간, 위앞엉덩뼈가시 안쪽',basis:'백선상의 가상 배꼽·가상 치골결합·우측 장골',seed:[-.095,.925,.070],projection:'anterior',status:'review'},
- {code:'GB28',korean:'유도',hanja:'維道',english:'Weidao',location:'위앞엉덩뼈가시 아래안쪽의 서혜부 구역',basis:'우측 장골 전상부와 서혜인대 경로',seed:[-.120,.885,.055],projection:'anterior',status:'review'},
+ {code:'GB28',korean:'유도',hanja:'維道',english:'Weidao',location:'위앞엉덩뼈가시 아래안쪽의 서혜부 구역',basis:'샅고랑인대 바로 위(인대 위모서리 +6 mm), 위앞엉덩뼈가시 아래안쪽. 2026-09-25 검수: 인대 아래 넓적다리에 있던 점을 평행하게 올림',seed:[-.120,.971,.055],projection:'anterior',status:'review'},
  {code:'GB29',korean:'거료',hanja:'居髎',english:'Juliao',location:'위앞엉덩뼈가시와 대전자 사이 피부 곡선의 중점',basis:'우측 장골과 대퇴골 대전자',seed:[-.135,.910,-.005],projection:'lateral',status:'registered'},
- {code:'GB30',korean:'환도',hanja:'環跳',english:'Huantiao',location:'대전자–천골열공 곡선의 가쪽 1/3 구역',basis:'대퇴골 대전자와 천골',seed:[-.135,.840,-.085],projection:'posterior',status:'review'},
+ {code:'GB30',korean:'환도',hanja:'環跳',english:'Huantiao',location:'대전자–천골열공 곡선의 가쪽 1/3 구역',basis:'큰돌기 융기와 엉치뼈틈새를 잇는 선의 가쪽 1/3 지점(2026-09-25 검수)',seed:[-.1003,.8609,-.100],projection:'posterior',status:'review'},
  {code:'GB31',korean:'풍시',hanja:'風市',english:'Fengshi',location:'바로 섰을 때 가운데손가락 끝 높이, 장경인대 뒤쪽 오목한 곳',basis:'모델의 가운데손가락 끝 높이·장경인대 후연',seed:GB_LANDMARK_SEEDS.GB31!,projection:'lateral',status:'review'},
  {code:'GB32',korean:'중독',hanja:'中瀆',english:'Zhongdu',location:'장경인대 뒤쪽, 오금주름 위 7촌',basis:'랜드마크 기반 대전자–슬와횡문 19촌 축·장경인대 후연',seed:GB_LANDMARK_SEEDS.GB32!,projection:'lateral',status:'review'},
  {code:'GB33',korean:'슬양관',hanja:'膝陽關',english:'Xiyangguan',location:'대퇴이두근건과 장경인대 사이, 외측상과 위뒤쪽',basis:'대퇴골·대퇴이두근·장경인대',seed:[-.145,.435,-.045],projection:'lateral',status:'registered'},

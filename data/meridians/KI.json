@@ -301,9 +301,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03376,
-    0.44819,
-    -0.05392
+    -0.03634,
+    0.4592,
+    -0.0723
    ],
    "outward": [
     0.19996,
@@ -312,7 +312,7 @@
    ],
    "region": "thigh-R",
    "depthMm": 13.4,
-   "rule": "posteromedial knee · popliteal crease · immediately lateral to the semitendinosus tendon"
+   "rule": "posteromedial knee · popliteal crease · immediately lateral to the semitendinosus tendon · 2026-09-25 자침 경로 검수 반영: on the popliteal crease line, immediately lateral to the semitendinosus tendon"
   },
   {
    "code": "KI11",
@@ -361,7 +361,7 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.00995,
+    -0.0135,
     0.9133,
     0.08602
    ],
@@ -372,7 +372,7 @@
    ],
    "region": "pelvis",
    "depthMm": 7.9,
-   "rule": "4 B-cun below the centre of the umbilicus · 0.5 B-cun lateral (skin arc)"
+   "rule": "4 B-cun below the centre of the umbilicus · 0.5 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: 0.5 B-cun measured to the rectus abdominis, off the linea alba"
   },
   {
    "code": "KI13",
@@ -391,7 +391,7 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.00996,
+    -0.0135,
     0.94241,
     0.09211
    ],
@@ -402,7 +402,7 @@
    ],
    "region": "pelvis",
    "depthMm": 7.7,
-   "rule": "3 B-cun below the centre of the umbilicus · 0.5 B-cun lateral (skin arc)"
+   "rule": "3 B-cun below the centre of the umbilicus · 0.5 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: 0.5 B-cun measured to the rectus abdominis, off the linea alba"
   },
   {
    "code": "KI14",
@@ -662,7 +662,7 @@
    "status": "implemented_unverified",
    "seed": [
     -0.03782,
-    1.26941,
+    1.25341,
     0.12279
    ],
    "outward": [
@@ -672,7 +672,7 @@
    ],
    "region": "thorax",
    "depthMm": 7.9,
-   "rule": "5th intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc)"
+   "rule": "5th intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 5 (-12 mm)"
   },
   {
    "code": "KI23",
@@ -732,7 +732,7 @@
    ],
    "region": "thorax",
    "depthMm": 8,
-   "rule": "3rd intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc)"
+   "rule": "3rd intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 3 (+0 mm)"
   },
   {
    "code": "KI25",
@@ -752,7 +752,7 @@
    "status": "implemented_unverified",
    "seed": [
     -0.03868,
-    1.3492,
+    1.3532,
     0.09699
    ],
    "outward": [
@@ -762,7 +762,7 @@
    ],
    "region": "thorax",
    "depthMm": 7.7,
-   "rule": "2nd intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc)"
+   "rule": "2nd intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 2 (+4 mm)"
   },
   {
    "code": "KI26",
@@ -782,7 +782,7 @@
    "status": "implemented_unverified",
    "seed": [
     -0.03942,
-    1.37253,
+    1.38553,
     0.08208
    ],
    "outward": [
@@ -792,7 +792,7 @@
    ],
    "region": "thorax",
    "depthMm": 8,
-   "rule": "1st intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc)"
+   "rule": "1st intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 1 (+13 mm)"
   },
   {
    "code": "KI27",

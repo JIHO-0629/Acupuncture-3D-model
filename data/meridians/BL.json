@@ -294,18 +294,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.032,
+    -0.04089,
     1.52615,
-    -0.07228
+    -0.064
    ],
    "outward": [
+    -0.28,
     0,
-    0,
-    -1
+    -0.96
    ],
    "region": "neck",
    "depthMm": 1.3,
-   "rule": "level with the superior border of the C2 spinous process · lateral to the trapezius, 1.3 B-cun lateral"
+   "rule": "level with the superior border of the C2 spinous process · lateral to the trapezius, 1.3 B-cun lateral · 2026-09-25 자침 경로 검수 반영: moved lateral to the lateral border of trapezius at the C2 level"
   },
   {
    "code": "BL11",
@@ -1045,8 +1045,8 @@
    "status": "implemented_unverified",
    "seed": [
     -0.012,
-    0.86097,
-    -0.11725
+    0.83297,
+    -0.12211
    ],
    "outward": [
     0,
@@ -1055,7 +1055,7 @@
    ],
    "region": "pelvis",
    "depthMm": 30.2,
-   "rule": "0.5 B-cun lateral to the tip of the coccyx (lower end of the sacrococcygeal mesh)"
+   "rule": "0.5 B-cun lateral to the tip of the coccyx (lower end of the sacrococcygeal mesh) · 2026-09-25 자침 경로 검수 반영: 0.5 B-cun lateral to the estimated coccyx tip (the atlas has no coccyx mesh)"
   },
   {
    "code": "BL36",
@@ -1164,9 +1164,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.10625,
-    0.463,
-    -0.07625
+    -0.1063,
+    0.4592,
+    -0.0767
    ],
    "outward": [
     0,
@@ -1175,7 +1175,7 @@
    ],
    "region": "leg-R",
    "depthMm": 10.7,
-   "rule": "lateral end of popliteal crease · immediately medial to the biceps femoris tendon"
+   "rule": "lateral end of popliteal crease · immediately medial to the biceps femoris tendon · 2026-09-25 자침 경로 검수 반영: on the popliteal crease line, immediately medial to the biceps femoris long head"
   },
   {
    "code": "BL40",
@@ -1194,9 +1194,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07201,
-    0.44819,
-    -0.0903
+    -0.07182,
+    0.4592,
+    -0.0895
    ],
    "outward": [
     0,
@@ -1205,7 +1205,7 @@
    ],
    "region": "knee-R",
    "depthMm": 0,
-   "rule": "midpoint of popliteal crease (between the semitendinosus and biceps femoris ends) · between the gastrocnemius heads",
+   "rule": "midpoint of popliteal crease (between the semitendinosus and biceps femoris ends) · between the gastrocnemius heads · 2026-09-25 자침 경로 검수 반영: on the popliteal crease line, midway between biceps femoris and semitendinosus",
    "projection": "direct"
   },
   {

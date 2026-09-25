@@ -8,7 +8,7 @@ import { decodeModelResponse } from "./model-download";
 import { PointerTap } from "./pointer-tap";
 import { SYSTEMS, type Atlas, type NeedleHit, type NeedleReport, type Part, type SceneState } from "./anatomy";
 import { type ProjectionMode } from "./gb-points";
-import {atlasPoints,meridianOf,needleProfile,type AcupointCode} from "./acupoints";
+import {atlasPoints,meridianOf,needleProfile,needlePathOf,type AcupointCode} from "./acupoints";
 import {createExternalEarPresentation, NATIVE_EAR_PART_ID} from "./ear-anatomy";
 import { createNipplePresentation } from "./nipple-presentation";
 import { createLandmarkDebug, landmarkDebugRequested } from "./landmark-debug";
@@ -1075,28 +1075,40 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
             0x6f675c,
             0.22,
           );
-        addSurfaceGuide(
-          [
-            [-0.153, 0.437, -0.05],
-            [-0.125, 0.435, -0.073],
-            [-0.096, 0.434, -0.081],
-            [-0.068, 0.435, -0.074],
-          ],
-          "posterior",
-          0x6f675c,
-          0.24,
-        );
-        addSurfaceGuide(
-          [
-            [0.153, 0.437, -0.05],
-            [0.125, 0.435, -0.073],
-            [0.096, 0.434, -0.081],
-            [0.068, 0.435, -0.074],
-          ],
-          "posterior",
-          0x6f675c,
-          0.24,
-        );
+      }
+      // Creases the review asked to see on the skin (2026-09-25). The model skin has no fold, so
+      // each crease is drawn through the projected points defined on it: the popliteal crease
+      // (BL39, BL40, KI10; 10 mm above the knee joint line) and the cubital crease (LI11 to HT3).
+      const addCrease = (codes: string[], color: number, opacity: number) => {
+        for (const side of ["right", "left"] as const) {
+          const points = codes
+            .map((code) => pointObjects.find((item) => item.code === code && item.side === side))
+            .filter((item): item is PointObject => !!item)
+            .map((item) => item.surface.clone().addScaledVector(item.normal, 0.0012));
+          if (points.length < 2) continue;
+          const curve = new T.CatmullRomCurve3(points, false, "centripetal", 0.3),
+            geometry = new T.BufferGeometry().setFromPoints(curve.getPoints(40)),
+            line = new T.Line(geometry, new T.LineBasicMaterial({ color, transparent: true, opacity, depthTest: true }));
+          line.renderOrder = 54;
+          lineGroup.add(line);
+        }
+      };
+      if (config?.visible) {
+        addCrease(["BL39", "BL40", "KI10"], 0x8a5a3c, 0.62);
+        addCrease(["LI11", "LU5", "PC3", "HT3"], 0x8a5a3c, 0.62);
+        // GB22/GB23 assume the arm raised; the 4th intercostal space is marked on the chest wall
+        // under the hanging arm, so the line ignores depth to stay readable through it.
+        if (config.selectedCode === "GB22" || config.selectedCode === "GB23") {
+          for (const sign of [-1, 1]) {
+            const geometry = new T.BufferGeometry().setFromPoints(
+              [[0.134, 1.318, -0.03], [0.134, 1.318, 0], [0.128, 1.307, 0.024], [0.12, 1.3, 0.045]].map(([x, y, z]) => new T.Vector3(sign * x, y, z)),
+            ),
+              line = new T.Line(geometry, new T.LineDashedMaterial({ color: 0x8f3a2e, dashSize: 0.004, gapSize: 0.003, transparent: true, opacity: 0.8, depthTest: false }));
+            line.computeLineDistances();
+            line.renderOrder = 56;
+            lineGroup.add(line);
+          }
+        }
       }
       if (config?.visible && config.showAll && config.showLines) {
         for (const side of ["right", "left"] as const) {
@@ -1148,8 +1160,11 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       const object = pointObjects.find((item) => item.code === code && item.side === "right");
       if (!object) return;
       const profile = needleProfile(definition.code),
+        reviewedPath = needlePathOf(definition.code),
         surface = object.surface,
-        trajectory = object.normal.clone().negate(),
+        // Reviewed points carry their direction (build-needle-paths.mjs): a skin-averaged
+        // normal, the midline plane, a sacral foramen or the contralateral eye.
+        trajectory = reviewedPath?.direction ? new T.Vector3(...reviewedPath.direction) : object.normal.clone().negate(),
         // Look a short way past the documented range so the next model layer can
         // be identified as *outside* the range, never as a passed layer.
         probeDepthMm = profile.documentedMaxMm
@@ -1226,7 +1241,10 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         boundary = sourceRangeBoundary ? undefined : hazardHits[0],
         usedConceptualBoundary = !boundary && !sourceRangeBoundary,
         boundaryMm = boundary?.distanceMm ?? profile.probeDepthMm,
-        limitMm = Math.max(0, Math.round(boundaryMm * (sourceRangeBoundary ? 1 : 0.9) * 10) / 10),
+        // A needle does not pass bone. Reviewed paths name their own bone (a dropped scapula
+        // stays dropped); other points stop at the first skeletal mesh on the ray.
+        boneMm = reviewedPath ? reviewedPath.bone?.mm : intersections.find((hit) => hit.system === "skeletal")?.distanceMm,
+        limitMm = Math.max(0, Math.round(Math.min(boundaryMm * (sourceRangeBoundary ? 1 : 0.9), boneMm !== undefined && boneMm > 0 ? boneMm - 0.3 : Infinity) * 10) / 10),
         depthMm = limitMm * Math.min(100, Math.max(0, config.depthRatio)) / 100,
         depth = depthMm / 1000,
         totalLength = Math.max(0.025, Math.min(0.17, probeDepth + 0.018)),
@@ -1599,16 +1617,20 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       // past 75 to 90 mm the camera has already moved through that leg, so it is hidden
       // while the view is wide and dithers back in as the camera closes on the point.
       const focusedPoint =
-        s.regionFocus && s.acupuncture?.selectedCode
+        (s.regionFocus || s.locatorGuide) && s.acupuncture?.selectedCode
           ? acupoints.find((item) => item.code === s.acupuncture?.selectedCode)
           : undefined;
-      const ghosting = !!focusedPoint && focusedPoint.seed[1] < kneeY && (focusedPoint.outward?.[0] ?? 0) > 0.2;
+      // Medial knee points (SP9, LR7, LR8) sit at or just above the patella's lower edge, and
+      // the opposite knee blocks them too, so the faded region reaches 70 mm above the point.
+      const ghosting = !!focusedPoint && focusedPoint.seed[1] < kneeY + 0.03 && (focusedPoint.outward?.[0] ?? 0) > 0.2;
+      const ghostHeight = ghosting ? Math.max(kneeY, focusedPoint!.seed[1] + 0.07) : kneeY;
       // Points are placed on the viewer's right, which is -x, so the limb in the way is +x.
+      // With the locator guide open the landmarks must stay readable, so the limb stays hidden.
       const coverage = ghosting
-        ? T.MathUtils.clamp((0.12 - camera.position.distanceTo(controls.target)) / 0.06, 0, 1)
+        ? s.locatorGuide ? 0 : T.MathUtils.clamp((0.12 - camera.position.distanceTo(controls.target)) / 0.06, 0, 1)
         : 1;
-      if (ghostUniform.value.x !== (ghosting ? 1 : 0) || Math.abs(ghostUniform.value.z - coverage) > 0.004) {
-        ghostUniform.value.set(ghosting ? 1 : 0, kneeY, coverage);
+      if (ghostUniform.value.x !== (ghosting ? 1 : 0) || ghostUniform.value.y !== ghostHeight || Math.abs(ghostUniform.value.z - coverage) > 0.004) {
+        ghostUniform.value.set(ghosting ? 1 : 0, ghostHeight, coverage);
         dirty = true;
       }
       if (cameraTransitioning) {

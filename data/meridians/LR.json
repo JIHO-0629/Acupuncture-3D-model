@@ -330,9 +330,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.04524,
+    -0.02724,
     0.84076,
-    0.05667
+    0.0484
    ],
    "outward": [
     0,
@@ -341,7 +341,7 @@
    ],
    "region": "pelvis",
    "depthMm": 25.9,
-   "rule": "2 B-cun distal to ST30 · lateral to adductor longus"
+   "rule": "2 B-cun distal to ST30 · lateral to adductor longus · 2026-09-25 자침 경로 검수 반영: moved medially onto adductor longus (the old seed lay over the femoral artery)"
   },
   {
    "code": "LR12",

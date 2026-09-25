@@ -1,0 +1,4318 @@
+{
+ "_about": "Needle's-eye screening dataset. Distances and bearings are atlas-relative teaching data, not patient-specific safety margins.",
+ "_policy": {
+  "inclusion": "pleura/lung, major vessels, major nerves, spinal cord/medulla, heart/trachea",
+  "rings": "relative proximity zones; never labelled as millimetres",
+  "cross": "center overlap is used only when the reviewed atlas ray intersects the structure",
+  "unknown": "concept structures without a model bearing remain in the list and are not assigned an invented point position"
+ },
+ "_references": {
+  "who": "https://www.who.int/publications/i/item/978-92-4-001688-0",
+  "neckShoulderMri": "https://pubmed.ncbi.nlm.nih.gov/26224017/",
+  "gb21Ultrasound": "https://pubmed.ncbi.nlm.nih.gov/29936338/",
+  "bl40Mri": "https://pubmed.ncbi.nlm.nih.gov/33032445/",
+  "st36Cadaver": "https://pubmed.ncbi.nlm.nih.gov/16903599/",
+  "commonFibularCadaver": "https://pubmed.ncbi.nlm.nih.gov/31918532/",
+  "radialNerveLi13": "https://pubmed.ncbi.nlm.nih.gov/31312289/",
+  "poplitealAnatomy": "https://www.ncbi.nlm.nih.gov/books/NBK532891/",
+  "lungPleuraAnatomy": "https://www.ncbi.nlm.nih.gov/books/NBK470197/"
+ },
+ "points": {
+  "GB24": {
+   "region": "chest",
+   "modelMaxMm": 8.5,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "GB24-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": "갈비가로막오목: 흉막 아래끝은 중쇄골선에서 여덟째갈비뼈 높이(개념 표시)",
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "LR14": {
+   "region": "chest",
+   "modelMaxMm": 5.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LR14-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": "제6늑간 흉막 아래오목(개념 표시)",
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "LU2": {
+   "region": "chest",
+   "modelMaxMm": 8.5,
+   "orientation": {
+    "up": "앞",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LU2-0",
+     "label": "겨드랑정맥",
+     "english": "axillary vein",
+     "kind": "vein",
+     "relation": "near",
+     "depthMm": 18.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 4.4,
+      "yMm": -14.4,
+      "distanceMm": 15.1
+     }
+    },
+    {
+     "id": "LU2-1",
+     "label": "겨드랑동맥",
+     "english": "axillary artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 29.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 5.6,
+      "yMm": -24.2,
+      "distanceMm": 24.9
+     }
+    },
+    {
+     "id": "LU2-2",
+     "label": "팔신경얼기 다발",
+     "english": "Posterior cord of brachial plexus",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 7.9,
+      "yMm": -31.7,
+      "distanceMm": 32.7
+     }
+    },
+    {
+     "id": "LU2-3",
+     "label": "겨드랑 신경혈관다발",
+     "english": "Axillary neurovascular bundle",
+     "kind": "artery",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": "작은가슴근 깊은 곳. 자침 상한 너머",
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "CV15": {
+   "region": "chest",
+   "modelMaxMm": 14.9,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "CV15-0",
+     "label": "간·심장",
+     "english": "Liver / heart",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": false,
+     "note": "깊이 직자하거나 위로 사자하지 않음(오른쪽 간, 왼쪽 심장)",
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "GB22": {
+   "region": "chest",
+   "modelMaxMm": 6,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "GB22-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 19.4,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "GB23": {
+   "region": "chest",
+   "modelMaxMm": 5.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "GB23-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 16.4,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "KI22": {
+   "region": "chest",
+   "modelMaxMm": 5.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "KI22-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 28.3,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "KI25": {
+   "region": "chest",
+   "modelMaxMm": 6.8,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "KI25-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 39.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "KI26": {
+   "region": "chest",
+   "modelMaxMm": 6.8,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "KI26-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 32.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "ST14": {
+   "region": "chest",
+   "modelMaxMm": 5.1,
+   "orientation": {
+    "up": "앞",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST14-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 37.6,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "ST15": {
+   "region": "chest",
+   "modelMaxMm": 5.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST15-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 44.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "ST16": {
+   "region": "chest",
+   "modelMaxMm": 5.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST16-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 48.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "KI23": {
+   "region": "chest",
+   "modelMaxMm": 6.8,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "KI23-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 34.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "KI24": {
+   "region": "chest",
+   "modelMaxMm": 6.8,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "KI24-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 38.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "KI27": {
+   "region": "chest",
+   "modelMaxMm": 6.8,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "KI27-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "PC1": {
+   "region": "chest",
+   "modelMaxMm": 5.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "PC1-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 44.6,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "SP17": {
+   "region": "chest",
+   "modelMaxMm": 5.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SP17-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 34.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "SP19": {
+   "region": "chest",
+   "modelMaxMm": 5.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SP19-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 56.3,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "SP20": {
+   "region": "chest",
+   "modelMaxMm": 6.8,
+   "orientation": {
+    "up": "앞",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SP20-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 50.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "SP21": {
+   "region": "chest",
+   "modelMaxMm": 5.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SP21-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 35.6,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "ST13": {
+   "region": "chest",
+   "modelMaxMm": 5.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST13-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 36.6,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "ST18": {
+   "region": "chest",
+   "modelMaxMm": 5.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST18-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 27.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "ST17": {
+   "region": "chest",
+   "modelMaxMm": null,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST17-0",
+     "label": "흉막·허파",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 37.8,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "LU1": {
+   "region": "chest",
+   "modelMaxMm": 8.5,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LU1-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 55.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "SP18": {
+   "region": "chest",
+   "modelMaxMm": 5.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SP18-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 48.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "BL36": {
+   "region": "thigh",
+   "modelMaxMm": 33.4,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL36-0",
+     "label": "궁둥신경",
+     "english": "Sciatic nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 35,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -11,
+      "yMm": 5,
+      "distanceMm": 12.1
+     }
+    }
+   ]
+  },
+  "LR9": {
+   "region": "thigh",
+   "modelMaxMm": 15.6,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LR9-0",
+     "label": "넙다리동맥",
+     "english": "femoral artery",
+     "kind": "artery",
+     "relation": "cross",
+     "depthMm": 28.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "관통하지 않음. 타겟 아님",
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    },
+    {
+     "id": "LR9-1",
+     "label": "넙다리정맥",
+     "english": "femoral vein",
+     "kind": "vein",
+     "relation": "cross",
+     "depthMm": 39.7,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "관통하지 않음. 타겟 아님",
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    },
+    {
+     "id": "LR9-2",
+     "label": "오금정맥",
+     "english": "popliteal vein",
+     "kind": "vein",
+     "relation": "cross",
+     "depthMm": 40.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "SP11": {
+   "region": "thigh",
+   "modelMaxMm": 11.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SP11-0",
+     "label": "넙다리동맥",
+     "english": "femoral artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 15.3,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "깊은 곳 모음근관. 자침 상한 너머",
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 14.8,
+      "yMm": 8.6,
+      "distanceMm": 17.1
+     }
+    }
+   ]
+  },
+  "LR10": {
+   "region": "thigh",
+   "modelMaxMm": 29.7,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LR10-0",
+     "label": "넙다리신경",
+     "english": "Femoral nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 35.8,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -1.9,
+      "yMm": 3.3,
+      "distanceMm": 3.8
+     }
+    },
+    {
+     "id": "LR10-1",
+     "label": "깊은넙다리정맥",
+     "english": "deep femoral vein",
+     "kind": "vein",
+     "relation": "near",
+     "depthMm": 37.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 3,
+      "yMm": 0.7,
+      "distanceMm": 3
+     }
+    }
+   ]
+  },
+  "BL37": {
+   "region": "thigh",
+   "modelMaxMm": 33.4,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL37-0",
+     "label": "궁둥신경",
+     "english": "Sciatic nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 53.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -4.1,
+      "yMm": 2.2,
+      "distanceMm": 4.6
+     }
+    }
+   ]
+  },
+  "BL42": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL42-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 63.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "바깥줄(3촌) 등 부위는 흉막까지 얕음",
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "BL43": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL43-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "BL44": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL44-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "BL23": {
+   "region": "back",
+   "modelMaxMm": 20.2,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL23-0",
+     "label": "폐쇄신경",
+     "english": "Obturator nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 68.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 2.2,
+      "yMm": 1.7,
+      "distanceMm": 2.8
+     }
+    },
+    {
+     "id": "BL23-1",
+     "label": "넙다리신경",
+     "english": "Femoral nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 68.3,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 1.3,
+      "yMm": 4.5,
+      "distanceMm": 4.7
+     }
+    }
+   ]
+  },
+  "BL52": {
+   "region": "back",
+   "modelMaxMm": 20.2,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL52-0",
+     "label": "넙다리신경",
+     "english": "Femoral nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 65.8,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 0.2,
+      "yMm": 1.3,
+      "distanceMm": 1.3
+     }
+    },
+    {
+     "id": "BL52-1",
+     "label": "음부넙다리신경",
+     "english": "Genitofemoral nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 73.8,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -0.6,
+      "yMm": 1,
+      "distanceMm": 1.2
+     }
+    }
+   ]
+  },
+  "BL11": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL11-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 63.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "BL12": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL12-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 65.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "BL13": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL13-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 61.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "BL14": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL14-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "BL15": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL15-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 47.4,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "BL16": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL16-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 48,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "BL17": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL17-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 47.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "BL18": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL18-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "BL19": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL19-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 48.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "BL41": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL41-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "BL45": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL45-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 46.6,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "BL46": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL46-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "BL47": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL47-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "BL48": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL48-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "BL50": {
+   "region": "back",
+   "modelMaxMm": 12.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL50-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "GV3": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "GV3-0",
+     "label": "말총",
+     "english": "Cauda equina",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 57.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -0.4,
+      "yMm": 0.7,
+      "distanceMm": 0.8
+     }
+    }
+   ]
+  },
+  "BL49": {
+   "region": "back",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL49-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "BL10": {
+   "region": "neck",
+   "modelMaxMm": 9.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL10-0",
+     "label": "척추동맥",
+     "english": "Vertebral artery",
+     "kind": "artery",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": false,
+     "note": "깊은 곳, 자침 상한 너머",
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "GB20": {
+   "region": "neck",
+   "modelMaxMm": 18.3,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "GB20-0",
+     "label": "척추동맥",
+     "english": "vertebral artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 38.6,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 1.5,
+      "yMm": -2.7,
+      "distanceMm": 3.1
+     }
+    },
+    {
+     "id": "GB20-1",
+     "label": "척추동맥·숨뇌",
+     "english": "Vertebral artery / medulla",
+     "kind": "artery",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": 50,
+     "depthSource": "문헌값",
+     "emph": false,
+     "note": null,
+     "basis": "Chou 2015 MRI: 피부→위험조직 50 mm doi:10.1136/bmjopen-2015-007819",
+     "bearing": null
+    },
+    {
+     "id": "GB20-2",
+     "label": "숨뇌(연수)",
+     "english": "Medulla oblongata",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 52.7,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -15.8,
+      "yMm": 10,
+      "distanceMm": 18.7
+     }
+    }
+   ]
+  },
+  "GB21": {
+   "region": "neck",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "앞",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "GB21-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": 38,
+     "depthSource": "문헌값",
+     "emph": true,
+     "note": "견정은 기흉 보고가 가장 많은 혈입니다. 깊이 직자하지 않습니다",
+     "basis": "Chu 2018 초음파: 피부→흉막 38.1±6.4 mm doi:10.1155/2018/2308102 · 마른 사람은 더 얕음(Chen 2018 doi:10.1016/j.jams.2018.06.004) · Chou 2015 MRI 56 mm",
+     "bearing": null
+    }
+   ]
+  },
+  "GV15": {
+   "region": "neck",
+   "modelMaxMm": 9.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "GV15-0",
+     "label": "척수경막",
+     "english": "Spinal dura",
+     "kind": "nerve",
+     "relation": "cross",
+     "depthMm": 35.3,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    },
+    {
+     "id": "GV15-1",
+     "label": "척수",
+     "english": "White matter of spinal cord",
+     "kind": "nerve",
+     "relation": "cross",
+     "depthMm": 35.7,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": "Zhou 2019 MRI 안전깊이 47.7±5.1 mm doi:10.13703/j.0255-2930.2019.06.014 · Chou 2015 49 mm",
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    },
+    {
+     "id": "GV15-2",
+     "label": "앞척수동맥",
+     "english": "anterior spinal artery",
+     "kind": "artery",
+     "relation": "cross",
+     "depthMm": 49.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    },
+    {
+     "id": "GV15-3",
+     "label": "숨뇌(연수)",
+     "english": "Medulla oblongata",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 36.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 0.2,
+      "yMm": 0.2,
+      "distanceMm": 0.3
+     }
+    }
+   ]
+  },
+  "LI18": {
+   "region": "neck",
+   "modelMaxMm": 9.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LI18-0",
+     "label": "온목동맥·속목정맥 (목동맥집)",
+     "english": "Carotid sheath",
+     "kind": "vein",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": 13,
+     "depthSource": "문헌값",
+     "emph": true,
+     "note": "목빗근 깊은 곳. 이 모델에는 이 높이의 목동맥집 메시가 없음",
+     "basis": "Chou 2015 MRI: 피부→주요 목혈관 13 mm doi:10.1136/bmjopen-2015-007819",
+     "bearing": null
+    },
+    {
+     "id": "LI18-1",
+     "label": "더부신경",
+     "english": "Accessory nerve (XI)",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 21.7,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 4.4,
+      "yMm": -1.2,
+      "distanceMm": 4.5
+     }
+    },
+    {
+     "id": "LI18-2",
+     "label": "척추동맥",
+     "english": "vertebral artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 40.7,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -0.3,
+      "yMm": -2.3,
+      "distanceMm": 2.3
+     }
+    }
+   ]
+  },
+  "SI16": {
+   "region": "neck",
+   "modelMaxMm": 9.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SI16-0",
+     "label": "더부신경",
+     "english": "Accessory nerve (XI)",
+     "kind": "nerve",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": false,
+     "note": "목빗근 뒤모서리 깊은 곳, 뒤목삼각을 지남(개념 표시)",
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "ST9": {
+   "region": "neck",
+   "modelMaxMm": 5.5,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST9-0",
+     "label": "온목동맥(경동맥)",
+     "english": "Common carotid artery",
+     "kind": "artery",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": 16,
+     "depthSource": "문헌값",
+     "emph": true,
+     "note": "이 모델에는 이 높이의 경동맥 메시가 없어 개념 표시입니다. 손가락으로 경동맥을 밀어내고 자입",
+     "basis": "Chou 2015 MRI: 피부→주요 목혈관 16 mm doi:10.1136/bmjopen-2015-007819",
+     "bearing": null
+    }
+   ]
+  },
+  "ST12": {
+   "region": "neck",
+   "modelMaxMm": 8.5,
+   "orientation": {
+    "up": "앞",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST12-0",
+     "label": "빗장밑동맥",
+     "english": "subclavian artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 15.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -0.2,
+      "yMm": 2,
+      "distanceMm": 2
+     }
+    },
+    {
+     "id": "ST12-1",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": "첫째갈비뼈 너머 흉막꼭대기",
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "SI15": {
+   "region": "neck",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SI15-0",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "ST11": {
+   "region": "neck",
+   "modelMaxMm": 9.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST11-0",
+     "label": "팔머리정맥",
+     "english": "brachiocephalic vein",
+     "kind": "vein",
+     "relation": "cross",
+     "depthMm": 14.8,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "실제로는 복장목뿔근보다 깊음. 모델 메시가 겹쳐 얕게 나옴",
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    },
+    {
+     "id": "ST11-1",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 42,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "흉막꼭대기",
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    },
+    {
+     "id": "ST11-2",
+     "label": "속목정맥",
+     "english": "internal jugular vein",
+     "kind": "vein",
+     "relation": "near",
+     "depthMm": 24.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -2.7,
+      "yMm": 14.1,
+      "distanceMm": 14.3
+     }
+    },
+    {
+     "id": "ST11-3",
+     "label": "빗장밑정맥",
+     "english": "subclavian vein",
+     "kind": "vein",
+     "relation": "near",
+     "depthMm": 25.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -0.9,
+      "yMm": 14.2,
+      "distanceMm": 14.2
+     }
+    },
+    {
+     "id": "ST11-4",
+     "label": "온목동맥",
+     "english": "common carotid artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 28.3,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -15.4,
+      "yMm": 10,
+      "distanceMm": 18.4
+     }
+    },
+    {
+     "id": "ST11-5",
+     "label": "Brachiocephalic artery",
+     "english": "Brachiocephalic artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 37.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -13.8,
+      "yMm": 10.6,
+      "distanceMm": 17.4
+     }
+    },
+    {
+     "id": "ST11-6",
+     "label": "빗장밑동맥",
+     "english": "subclavian artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 41.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -15.5,
+      "yMm": 11,
+      "distanceMm": 19
+     }
+    }
+   ]
+  },
+  "LI17": {
+   "region": "neck",
+   "modelMaxMm": 9.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LI17-0",
+     "label": "팔신경얼기 뿌리",
+     "english": "Roots of brachial plexus",
+     "kind": "nerve",
+     "relation": "cross",
+     "depthMm": 18.7,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "SI14": {
+   "region": "neck",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SI14-0",
+     "label": "흉막·허파",
+     "english": "Pleura",
+     "kind": "boundary",
+     "relation": "cross",
+     "depthMm": 61.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "TE16": {
+   "region": "neck",
+   "modelMaxMm": 9.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "TE16-0",
+     "label": "척추동맥",
+     "english": "vertebral artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 30.7,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -0.8,
+      "yMm": 1.3,
+      "distanceMm": 1.5
+     }
+    }
+   ]
+  },
+  "SI17": {
+   "region": "neck",
+   "modelMaxMm": 9.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SI17-0",
+     "label": "속목동맥",
+     "english": "internal carotid artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 26,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -18.2,
+      "yMm": 6.7,
+      "distanceMm": 19.4
+     }
+    }
+   ]
+  },
+  "BL39": {
+   "region": "knee",
+   "modelMaxMm": 23.8,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL39-0",
+     "label": "온종아리신경",
+     "english": "Common fibular nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 30,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 11.2,
+      "yMm": 1.9,
+      "distanceMm": 11.3
+     }
+    },
+    {
+     "id": "BL39-1",
+     "label": "정강신경",
+     "english": "Tibial nerve",
+     "kind": "nerve",
+     "relation": "cross",
+     "depthMm": 39,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    },
+    {
+     "id": "BL39-2",
+     "label": "오금동맥",
+     "english": "popliteal artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 47.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 1.9,
+      "yMm": 1.4,
+      "distanceMm": 2.4
+     }
+    }
+   ]
+  },
+  "BL40": {
+   "region": "knee",
+   "modelMaxMm": 35.7,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL40-0",
+     "label": "정강신경",
+     "english": "Tibial nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 37.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "가장 얕음",
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -4.2,
+      "yMm": -1.1,
+      "distanceMm": 4.3
+     }
+    },
+    {
+     "id": "BL40-1",
+     "label": "오금동맥",
+     "english": "popliteal artery",
+     "kind": "artery",
+     "relation": "cross",
+     "depthMm": 44.7,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "실제로는 가장 깊고 정맥이 신경과 동맥 사이에 있음. 문헌(Hou 2020 MRI, doi:10.1177/0964528420958714)에서는 피부→동맥 약 26 mm로 이 모델보다 얕음",
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    },
+    {
+     "id": "BL40-2",
+     "label": "오금정맥",
+     "english": "popliteal vein",
+     "kind": "vein",
+     "relation": "near",
+     "depthMm": 49.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -0.8,
+      "yMm": -0.1,
+      "distanceMm": 0.8
+     }
+    }
+   ]
+  },
+  "GB34": {
+   "region": "knee",
+   "modelMaxMm": 26.7,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "GB34-0",
+     "label": "온종아리신경",
+     "english": "Common fibular nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 24.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "종아리뼈머리 뒤를 감아 지나며 위치 변이가 있음",
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 18.3,
+      "yMm": -7.4,
+      "distanceMm": 19.7
+     }
+    },
+    {
+     "id": "GB34-1",
+     "label": "오금정맥",
+     "english": "popliteal vein",
+     "kind": "vein",
+     "relation": "cross",
+     "depthMm": 37.7,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": "자침 상한 너머",
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    },
+    {
+     "id": "GB34-2",
+     "label": "오금동맥",
+     "english": "popliteal artery",
+     "kind": "artery",
+     "relation": "cross",
+     "depthMm": 45.7,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": "자침 상한 너머",
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "BL38": {
+   "region": "knee",
+   "modelMaxMm": 22.3,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL38-0",
+     "label": "온종아리신경",
+     "english": "Common fibular nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 27.4,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 15.3,
+      "yMm": -1.3,
+      "distanceMm": 15.4
+     }
+    },
+    {
+     "id": "BL38-1",
+     "label": "오금동맥",
+     "english": "popliteal artery",
+     "kind": "artery",
+     "relation": "cross",
+     "depthMm": 39.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    },
+    {
+     "id": "BL38-2",
+     "label": "정강신경",
+     "english": "Tibial nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 31.3,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 0.6,
+      "yMm": 1.8,
+      "distanceMm": 1.9
+     }
+    }
+   ]
+  },
+  "KI10": {
+   "region": "knee",
+   "modelMaxMm": 22.3,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "KI10-0",
+     "label": "오금동맥",
+     "english": "popliteal artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 44,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -0.8,
+      "yMm": -0.2,
+      "distanceMm": 0.8
+     }
+    },
+    {
+     "id": "KI10-1",
+     "label": "오금정맥",
+     "english": "popliteal vein",
+     "kind": "vein",
+     "relation": "near",
+     "depthMm": 51.3,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -0.3,
+      "yMm": 0,
+      "distanceMm": 0.3
+     }
+    }
+   ]
+  },
+  "LR11": {
+   "region": "abdomen",
+   "modelMaxMm": 20.8,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LR11-0",
+     "label": "넙다리동맥",
+     "english": "femoral artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 8.3,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "가쪽에 있음. 타겟하지 않음",
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 19.9,
+      "yMm": -8.9,
+      "distanceMm": 21.8
+     }
+    },
+    {
+     "id": "LR11-1",
+     "label": "넙다리신경",
+     "english": "Femoral nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 36.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 39.5,
+      "yMm": 1.2,
+      "distanceMm": 39.6
+     }
+    },
+    {
+     "id": "LR11-2",
+     "label": "medial circumflex femoral vein",
+     "english": "medial circumflex femoral vein",
+     "kind": "vein",
+     "relation": "near",
+     "depthMm": 45.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 35.5,
+      "yMm": 0.6,
+      "distanceMm": 35.5
+     }
+    }
+   ]
+  },
+  "SP12": {
+   "region": "abdomen",
+   "modelMaxMm": 15.6,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SP12-0",
+     "label": "넙다리신경",
+     "english": "Femoral nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 42.6,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -13.6,
+      "yMm": 1.5,
+      "distanceMm": 13.7
+     }
+    },
+    {
+     "id": "SP12-1",
+     "label": "넙다리동맥",
+     "english": "femoral artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -25.4,
+      "yMm": -10.9,
+      "distanceMm": 27.6
+     }
+    }
+   ]
+  },
+  "LR12": {
+   "region": "abdomen",
+   "modelMaxMm": 14.9,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LR12-0",
+     "label": "넙다리신경",
+     "english": "Femoral nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 42.7,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 24.3,
+      "yMm": -3.6,
+      "distanceMm": 24.5
+     }
+    },
+    {
+     "id": "LR12-1",
+     "label": "바깥엉덩·넙다리동맥",
+     "english": "femoral artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 42.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 4.1,
+      "yMm": 0.8,
+      "distanceMm": 4.2
+     }
+    },
+    {
+     "id": "LR12-2",
+     "label": "바깥엉덩·넙다리정맥",
+     "english": "femoral vein",
+     "kind": "vein",
+     "relation": "near",
+     "depthMm": 46,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -3.3,
+      "yMm": -9.5,
+      "distanceMm": 10
+     }
+    },
+    {
+     "id": "LR12-3",
+     "label": "넙다리동맥",
+     "english": "femoral artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 42.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 4.1,
+      "yMm": 0.8,
+      "distanceMm": 4.2
+     }
+    },
+    {
+     "id": "LR12-4",
+     "label": "깊은넙다리정맥",
+     "english": "deep femoral vein",
+     "kind": "vein",
+     "relation": "near",
+     "depthMm": 45.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -1.6,
+      "yMm": -1.1,
+      "distanceMm": 1.9
+     }
+    }
+   ]
+  },
+  "ST30": {
+   "region": "abdomen",
+   "modelMaxMm": 14.9,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST30-0",
+     "label": "넙다리동맥",
+     "english": "femoral artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 55.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 12.8,
+      "yMm": -0.2,
+      "distanceMm": 12.8
+     }
+    }
+   ]
+  },
+  "SI12": {
+   "region": "shoulder",
+   "modelMaxMm": 10.1,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SI12-0",
+     "label": "팔신경얼기·겨드랑동맥",
+     "english": "Brachial plexus / axillary artery",
+     "kind": "artery",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": false,
+     "note": "가시위오목 바닥 너머, 자침 상한 훨씬 아래",
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "HT1": {
+   "region": "arm",
+   "modelMaxMm": 10,
+   "orientation": {
+    "up": "앞",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "HT1-0",
+     "label": "겨드랑동맥·정맥·팔신경얼기",
+     "english": "Axillary neurovascular bundle",
+     "kind": "vein",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": "자침 상한 아래 깊은 곳",
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "HT2": {
+   "region": "arm",
+   "modelMaxMm": 10,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "HT2-0",
+     "label": "위팔동맥",
+     "english": "brachial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 18,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "경로 근처. 통과하는 층이 아님",
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 1.8,
+      "yMm": 3.2,
+      "distanceMm": 3.7
+     }
+    }
+   ]
+  },
+  "LI13": {
+   "region": "arm",
+   "modelMaxMm": 10,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LI13-0",
+     "label": "노신경",
+     "english": "Radial nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 31.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "목표가 아님. 방향이 틀어지면 찌를 수 있음(Tang & Cheng 2019 doi:10.1089/acu.2019.1335)",
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 13.5,
+      "yMm": -0.8,
+      "distanceMm": 13.5
+     }
+    }
+   ]
+  },
+  "PC3": {
+   "region": "arm",
+   "modelMaxMm": 20,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "PC3-0",
+     "label": "위팔동맥",
+     "english": "brachial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 18.6,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -9.4,
+      "yMm": -1,
+      "distanceMm": 9.4
+     }
+    }
+   ]
+  },
+  "SI8": {
+   "region": "arm",
+   "modelMaxMm": 11.2,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SI8-0",
+     "label": "자신경",
+     "english": "Ulnar nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 3.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "자신경고랑의 자신경. 해부학적으로 이 오목 바로 아래를 지남(KCMRIC 원문에는 언급 없음)",
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -13.4,
+      "yMm": 0.5,
+      "distanceMm": 13.4
+     }
+    }
+   ]
+  },
+  "LI11": {
+   "region": "arm",
+   "modelMaxMm": 30,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LI11-0",
+     "label": "노신경",
+     "english": "Radial nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 14,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -4.8,
+      "yMm": 0.1,
+      "distanceMm": 4.8
+     }
+    }
+   ]
+  },
+  "LU5": {
+   "region": "arm",
+   "modelMaxMm": 10,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LU5-0",
+     "label": "노신경",
+     "english": "Radial nerve",
+     "kind": "nerve",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": false,
+     "note": "위팔노근과 위팔근 사이",
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "LI12": {
+   "region": "arm",
+   "modelMaxMm": 14,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LI12-0",
+     "label": "위팔동맥",
+     "english": "brachial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 67.6,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 2.8,
+      "yMm": -0.3,
+      "distanceMm": 2.8
+     }
+    }
+   ]
+  },
+  "TE12": {
+   "region": "arm",
+   "modelMaxMm": 14,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "TE12-0",
+     "label": "deep brachial artery",
+     "english": "deep brachial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 46.6,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -1,
+      "yMm": -1.5,
+      "distanceMm": 1.9
+     }
+    }
+   ]
+  },
+  "LI10": {
+   "region": "forearm",
+   "modelMaxMm": 26.9,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LI10-0",
+     "label": "노신경 깊은가지",
+     "english": "Deep branch of radial nerve",
+     "kind": "nerve",
+     "relation": "concept",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": false,
+     "note": "손뒤침근 속",
+     "basis": null,
+     "bearing": null
+    }
+   ]
+  },
+  "PC4": {
+   "region": "forearm",
+   "modelMaxMm": 22.4,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "PC4-0",
+     "label": "정중신경",
+     "english": "Median nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 17.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -2.5,
+      "yMm": -0.3,
+      "distanceMm": 2.5
+     }
+    }
+   ]
+  },
+  "TE7": {
+   "region": "forearm",
+   "modelMaxMm": 20.2,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "TE7-0",
+     "label": "정중신경",
+     "english": "Median nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 39.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -4.9,
+      "yMm": -0.3,
+      "distanceMm": 4.9
+     }
+    }
+   ]
+  },
+  "LI6": {
+   "region": "forearm",
+   "modelMaxMm": 11.2,
+   "orientation": {
+    "up": "앞",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "LI6-0",
+     "label": "노동맥",
+     "english": "radial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 14.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -2.3,
+      "yMm": 1,
+      "distanceMm": 2.5
+     }
+    }
+   ]
+  },
+  "PC5": {
+   "region": "forearm",
+   "modelMaxMm": 22.4,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "PC5-0",
+     "label": "정중신경",
+     "english": "Median nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 14.4,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -1,
+      "yMm": 2.1,
+      "distanceMm": 2.3
+     }
+    }
+   ]
+  },
+  "PC6": {
+   "region": "forearm",
+   "modelMaxMm": 22.4,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "PC6-0",
+     "label": "정중신경",
+     "english": "Median nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 10.7,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -1.8,
+      "yMm": -2.7,
+      "distanceMm": 3.2
+     }
+    }
+   ]
+  },
+  "TE5": {
+   "region": "forearm",
+   "modelMaxMm": 22.4,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "TE5-0",
+     "label": "정중신경",
+     "english": "Median nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 36.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -2.2,
+      "yMm": 2.2,
+      "distanceMm": 3.1
+     }
+    }
+   ]
+  },
+  "TE6": {
+   "region": "forearm",
+   "modelMaxMm": 22.4,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "TE6-0",
+     "label": "정중신경",
+     "english": "Median nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 40.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -2.7,
+      "yMm": -0.9,
+      "distanceMm": 2.9
+     }
+    }
+   ]
+  },
+  "BL27": {
+   "region": "gluteal",
+   "modelMaxMm": 20.2,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL27-0",
+     "label": "궁둥신경",
+     "english": "Sciatic nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 87.4,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 6.4,
+      "yMm": 0.2,
+      "distanceMm": 6.4
+     }
+    }
+   ]
+  },
+  "BL28": {
+   "region": "gluteal",
+   "modelMaxMm": 20.2,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL28-0",
+     "label": "궁둥신경",
+     "english": "Sciatic nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 80.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -0.2,
+      "yMm": -1,
+      "distanceMm": 1
+     }
+    }
+   ]
+  },
+  "BL30": {
+   "region": "gluteal",
+   "modelMaxMm": 20.2,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL30-0",
+     "label": "궁둥신경",
+     "english": "Sciatic nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 74.4,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 16.2,
+      "yMm": -1.8,
+      "distanceMm": 16.3
+     }
+    }
+   ]
+  },
+  "BL31": {
+   "region": "gluteal",
+   "modelMaxMm": 24.3,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL31-0",
+     "label": "궁둥신경",
+     "english": "Sciatic nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 64.4,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": "엉치뼈 가쪽 깊은 곳을 지남. 방향이 가쪽으로 틀어지면 가까워짐",
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -2.2,
+      "yMm": -5.6,
+      "distanceMm": 6
+     }
+    }
+   ]
+  },
+  "BL32": {
+   "region": "gluteal",
+   "modelMaxMm": 20.2,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL32-0",
+     "label": "음부신경",
+     "english": "Pudendal nerve",
+     "kind": "nerve",
+     "relation": "cross",
+     "depthMm": 39.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    },
+    {
+     "id": "BL32-1",
+     "label": "궁둥신경",
+     "english": "Sciatic nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 46.8,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": "엉치뼈 가쪽 깊은 곳을 지남. 방향이 가쪽으로 틀어지면 가까워짐",
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -0.3,
+      "yMm": -0.8,
+      "distanceMm": 0.9
+     }
+    }
+   ]
+  },
+  "BL33": {
+   "region": "gluteal",
+   "modelMaxMm": 20.2,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL33-0",
+     "label": "궁둥신경",
+     "english": "Sciatic nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 58.6,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": "엉치뼈 가쪽 깊은 곳을 지남. 방향이 가쪽으로 틀어지면 가까워짐",
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 8.4,
+      "yMm": 12.7,
+      "distanceMm": 15.2
+     }
+    }
+   ]
+  },
+  "BL34": {
+   "region": "gluteal",
+   "modelMaxMm": 20.2,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL34-0",
+     "label": "궁둥신경",
+     "english": "Sciatic nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": false,
+     "note": "엉치뼈 가쪽 깊은 곳을 지남. 방향이 가쪽으로 틀어지면 가까워짐",
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 21.8,
+      "yMm": 20.4,
+      "distanceMm": 29.9
+     }
+    }
+   ]
+  },
+  "BL35": {
+   "region": "gluteal",
+   "modelMaxMm": 16.2,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL35-0",
+     "label": "궁둥신경",
+     "english": "Sciatic nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 45.7,
+      "yMm": 9.2,
+      "distanceMm": 46.6
+     }
+    }
+   ]
+  },
+  "BL54": {
+   "region": "gluteal",
+   "modelMaxMm": 30.3,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL54-0",
+     "label": "궁둥신경",
+     "english": "Sciatic nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 73.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 0.8,
+      "yMm": 1.6,
+      "distanceMm": 1.8
+     }
+    }
+   ]
+  },
+  "GB30": {
+   "region": "gluteal",
+   "modelMaxMm": 44.5,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "GB30-0",
+     "label": "궁둥신경",
+     "english": "Sciatic nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 55.6,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "끝까지 자침하면 궁둥신경의 찌릿한 득기 반응이 나타나는 깊이",
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -10.6,
+      "yMm": -1.4,
+      "distanceMm": 10.7
+     }
+    }
+   ]
+  },
+  "BL29": {
+   "region": "gluteal",
+   "modelMaxMm": 20.2,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL29-0",
+     "label": "궁둥신경",
+     "english": "Sciatic nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 68.4,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 5,
+      "yMm": 2.4,
+      "distanceMm": 5.5
+     }
+    }
+   ]
+  },
+  "BL53": {
+   "region": "gluteal",
+   "modelMaxMm": 30.3,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL53-0",
+     "label": "궁둥신경",
+     "english": "Sciatic nerve",
+     "kind": "nerve",
+     "relation": "cross",
+     "depthMm": 69.3,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "KI7": {
+   "region": "leg",
+   "modelMaxMm": 11.9,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "KI7-0",
+     "label": "뒤정강정맥",
+     "english": "posterior tibial vein",
+     "kind": "vein",
+     "relation": "cross",
+     "depthMm": 0,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    },
+    {
+     "id": "KI7-1",
+     "label": "뒤정강동맥",
+     "english": "posterior tibial artery",
+     "kind": "artery",
+     "relation": "cross",
+     "depthMm": 7.6,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  },
+  "SP6": {
+   "region": "leg",
+   "modelMaxMm": 35.7,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SP6-0",
+     "label": "뒤정강동맥",
+     "english": "posterior tibial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 16.4,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -10.9,
+      "yMm": 0.7,
+      "distanceMm": 10.9
+     }
+    },
+    {
+     "id": "SP6-1",
+     "label": "정강신경",
+     "english": "Tibial nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 31.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -2.7,
+      "yMm": -1.3,
+      "distanceMm": 3
+     }
+    }
+   ]
+  },
+  "ST36": {
+   "region": "leg",
+   "modelMaxMm": 35.7,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST36-0",
+     "label": "앞정강동맥",
+     "english": "anterior tibial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 40.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "뼈사이막 앞쪽의 앞정강 신경혈관다발",
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 4.3,
+      "yMm": 1.6,
+      "distanceMm": 4.6
+     }
+    },
+    {
+     "id": "ST36-1",
+     "label": "깊은종아리신경",
+     "english": "Deep fibular nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 43.4,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": true,
+     "note": "앞정강동맥과 함께 앞칸을 지나감",
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 8.7,
+      "yMm": -3.3,
+      "distanceMm": 9.3
+     }
+    },
+    {
+     "id": "ST36-2",
+     "label": "정강신경",
+     "english": "Tibial nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 59.3,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 2.5,
+      "yMm": 0.6,
+      "distanceMm": 2.5
+     }
+    }
+   ]
+  },
+  "ST40": {
+   "region": "leg",
+   "modelMaxMm": 23.8,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST40-0",
+     "label": "깊은종아리신경",
+     "english": "Deep fibular nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 25.8,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -3.1,
+      "yMm": 1.3,
+      "distanceMm": 3.4
+     }
+    }
+   ]
+  },
+  "BL56": {
+   "region": "leg",
+   "modelMaxMm": 23.8,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL56-0",
+     "label": "뒤정강동맥",
+     "english": "posterior tibial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 66.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -2.5,
+      "yMm": 0.7,
+      "distanceMm": 2.6
+     }
+    }
+   ]
+  },
+  "BL58": {
+   "region": "leg",
+   "modelMaxMm": 28.6,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "BL58-0",
+     "label": "뒤정강동맥",
+     "english": "posterior tibial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 56.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -3.5,
+      "yMm": 1.3,
+      "distanceMm": 3.7
+     }
+    }
+   ]
+  },
+  "GB35": {
+   "region": "leg",
+   "modelMaxMm": 19,
+   "orientation": {
+    "up": "앞",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "GB35-0",
+     "label": "얕은종아리신경",
+     "english": "Superficial fibular nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 14.7,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -1.1,
+      "yMm": 4.1,
+      "distanceMm": 4.3
+     }
+    }
+   ]
+  },
+  "GB36": {
+   "region": "leg",
+   "modelMaxMm": 19,
+   "orientation": {
+    "up": "앞",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "GB36-0",
+     "label": "얕은종아리신경",
+     "english": "Superficial fibular nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 15.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 1.3,
+      "yMm": 2.5,
+      "distanceMm": 2.8
+     }
+    }
+   ]
+  },
+  "GB38": {
+   "region": "leg",
+   "modelMaxMm": 16.7,
+   "orientation": {
+    "up": "앞",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "GB38-0",
+     "label": "얕은종아리신경",
+     "english": "Superficial fibular nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 9.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -0.5,
+      "yMm": 0.2,
+      "distanceMm": 0.6
+     }
+    }
+   ]
+  },
+  "KI8": {
+   "region": "leg",
+   "modelMaxMm": 11.9,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "KI8-0",
+     "label": "정강신경",
+     "english": "Tibial nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 22.2,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -1,
+      "yMm": 0.3,
+      "distanceMm": 1
+     }
+    }
+   ]
+  },
+  "KI9": {
+   "region": "leg",
+   "modelMaxMm": 19,
+   "orientation": {
+    "up": "앞",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "KI9-0",
+     "label": "뒤정강정맥",
+     "english": "posterior tibial vein",
+     "kind": "vein",
+     "relation": "near",
+     "depthMm": 3.8,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -1.1,
+      "yMm": 1.7,
+      "distanceMm": 2.1
+     }
+    },
+    {
+     "id": "KI9-1",
+     "label": "뒤정강동맥",
+     "english": "posterior tibial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 20.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 0.4,
+      "yMm": 0.5,
+      "distanceMm": 0.6
+     }
+    }
+   ]
+  },
+  "SP7": {
+   "region": "leg",
+   "modelMaxMm": 23.8,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SP7-0",
+     "label": "뒤정강동맥",
+     "english": "posterior tibial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 24.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -2.3,
+      "yMm": 1.9,
+      "distanceMm": 3
+     }
+    },
+    {
+     "id": "SP7-1",
+     "label": "정강신경",
+     "english": "Tibial nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 43.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -2.4,
+      "yMm": -1.7,
+      "distanceMm": 2.9
+     }
+    }
+   ]
+  },
+  "SP8": {
+   "region": "leg",
+   "modelMaxMm": 23.8,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "SP8-0",
+     "label": "뒤정강동맥",
+     "english": "posterior tibial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 56.8,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 2.2,
+      "yMm": -0.6,
+      "distanceMm": 2.2
+     }
+    }
+   ]
+  },
+  "ST37": {
+   "region": "leg",
+   "modelMaxMm": 35.7,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST37-0",
+     "label": "앞정강동맥",
+     "english": "anterior tibial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 17.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -2.2,
+      "yMm": -2,
+      "distanceMm": 3
+     }
+    },
+    {
+     "id": "ST37-1",
+     "label": "뒤정강동맥",
+     "english": "posterior tibial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 62.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -3.7,
+      "yMm": 1.8,
+      "distanceMm": 4.1
+     }
+    }
+   ]
+  },
+  "ST38": {
+   "region": "leg",
+   "modelMaxMm": 23.8,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST38-0",
+     "label": "앞정강동맥",
+     "english": "anterior tibial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 10.7,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -2.3,
+      "yMm": 0.7,
+      "distanceMm": 2.4
+     }
+    }
+   ]
+  },
+  "ST39": {
+   "region": "leg",
+   "modelMaxMm": 23.8,
+   "orientation": {
+    "up": "머리쪽",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "ST39-0",
+     "label": "앞정강동맥",
+     "english": "anterior tibial artery",
+     "kind": "artery",
+     "relation": "near",
+     "depthMm": 8.9,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": -3.1,
+      "yMm": 2.7,
+      "distanceMm": 4.2
+     }
+    },
+    {
+     "id": "ST39-1",
+     "label": "깊은종아리신경",
+     "english": "Deep fibular nerve",
+     "kind": "nerve",
+     "relation": "near",
+     "depthMm": 22.1,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "model-nearest",
+      "xMm": 3.1,
+      "yMm": -0.9,
+      "distanceMm": 3.3
+     }
+    }
+   ]
+  },
+  "GB37": {
+   "region": "leg",
+   "modelMaxMm": 21.4,
+   "orientation": {
+    "up": "앞",
+    "right": "가쪽"
+   },
+   "structures": [
+    {
+     "id": "GB37-0",
+     "label": "얕은종아리신경",
+     "english": "Superficial fibular nerve",
+     "kind": "nerve",
+     "relation": "cross",
+     "depthMm": 10.5,
+     "literatureReferenceMm": null,
+     "depthSource": "참조 모델",
+     "emph": false,
+     "note": null,
+     "basis": null,
+     "bearing": {
+      "status": "axis-crossing",
+      "xMm": 0,
+      "yMm": 0,
+      "distanceMm": 0
+     }
+    }
+   ]
+  }
+ }
+}

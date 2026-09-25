@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Needle's-eye Compass — 별도 시안</title>
+  <style>
+    :root{
+      --paper:#f3f2ec;--panel:#faf9f4;--ink:#223026;--ink-2:#465149;--muted:#7f897c;
+      --rule:#cbd2c7;--rule-2:#dfe3dc;--green:#315f56;--green-soft:#e1ebe6;
+      --purple:#7770c8;--purple-soft:#eceafd;--rust:#a34e40;--rust-soft:#f5e6e1;
+      --bone:#9a8d75;--shadow:rgba(39,54,42,.12);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"Noto Sans KR","Apple SD Gothic Neo",sans-serif;letter-spacing:-.015em}
+    button,input{font:inherit}
+    button{color:inherit}
+    .page{min-height:100vh;padding:38px 42px 54px;background:
+      radial-gradient(circle at 50% 0,rgba(255,255,255,.82),transparent 42%),var(--paper)}
+    .mast{max-width:1360px;margin:0 auto 18px;display:flex;align-items:flex-end;justify-content:space-between;color:var(--muted)}
+    .mast small{font:10px/1.4 ui-monospace,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase}
+    .mast p{margin:0;font-size:11px}
+    .sheet{max-width:1360px;margin:auto;background:var(--panel);border:1px solid #bcc7b8;box-shadow:0 24px 70px var(--shadow)}
+    .sheet-head{display:grid;grid-template-columns:28px 1fr auto;gap:18px;align-items:start;padding:24px 30px 22px;border-bottom:1px solid var(--rule)}
+    .index{font:11px/1.5 ui-monospace,Consolas,monospace;color:#6e816a;font-variant-numeric:tabular-nums}
+    h1{margin:0 0 5px;font-size:19px;font-weight:600;letter-spacing:-.035em}
+    .sheet-head p{margin:0;font-size:11px;line-height:1.55;color:var(--muted)}
+    .status{display:flex;align-items:center;gap:7px;margin-top:2px;font:10px/1.3 ui-monospace,Consolas,monospace;color:var(--green)}
+    .status i{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(49,95,86,.09)}
+    .toolbar{display:flex;gap:7px;padding:13px 30px;border-bottom:1px solid var(--rule-2)}
+    .toolbar button{min-height:34px;padding:0 13px;border:1px solid var(--rule);background:transparent;font-size:10.5px;cursor:pointer;transition:.2s}
+    .toolbar button:hover,.toolbar button.on{border-color:#91a38e;background:#f0f3ed;color:#274d45}
+    .toolbar button.on:before{content:"";display:inline-block;width:5px;height:5px;margin-right:7px;border-radius:50%;background:var(--green);vertical-align:1px}
+    .workarea{display:grid;grid-template-columns:minmax(410px,.9fr) minmax(520px,1.1fr);min-height:690px}
+    .profile,.compass-panel{padding:26px 30px 28px;min-width:0}
+    .profile{border-right:1px solid var(--rule)}
+    .section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:24px}
+    .section-head b{display:block;margin-bottom:5px;font-size:13px;font-weight:600}
+    .section-head span{font-size:10.5px;color:var(--muted)}
+    .tiny-kicker{font:9px/1.4 ui-monospace,Consolas,monospace!important;letter-spacing:.1em;text-transform:uppercase;color:#899484!important}
+    .profile-plot{display:grid;grid-template-columns:38px 102px 1fr;gap:0;min-height:355px;touch-action:none;cursor:ns-resize}
+    .scale{position:relative;height:330px;font:9px/1 ui-monospace,Consolas,monospace;color:#98a096}
+    .scale span{position:absolute;right:9px;transform:translateY(-50%)}
+    .scale span:after{content:"";position:absolute;left:22px;top:4px;width:6px;border-top:1px solid #aeb6ab}
+    .column{position:relative;height:330px;border:1px solid #cbd2c8;background:#f3f5f2;overflow:hidden}
+    .layer{position:absolute;left:0;right:0;border-bottom:1px solid #d8ddd5;transition:background .22s}
+    .layer.passed{background:#e5e9e5}.layer.active{background:var(--green-soft)}
+    .limit{position:absolute;left:0;right:0;top:84%;border-top:1px dashed rgba(49,95,86,.45)}
+    .boundary{position:absolute;left:0;right:0;top:92%;height:2px;background:var(--rust)}
+    .needle{position:absolute;left:-1px;right:-1px;height:2px;background:var(--green);z-index:4;box-shadow:0 0 0 3px rgba(49,95,86,.09);transition:top .12s ease}
+    .needle:after{content:"";position:absolute;right:-1px;top:-4px;border-left:8px solid var(--green);border-top:5px solid transparent;border-bottom:5px solid transparent}
+    .labels{position:relative;height:330px;padding-left:31px}
+    .label{position:absolute;left:30px;right:0;transform:translateY(-12px);transition:opacity .2s,color .2s}
+    .label:before{content:"";position:absolute;right:calc(100% + 8px);top:12px;width:24px;border-top:1px solid #c8cec5}
+    .label b{display:block;font-size:12px;font-weight:500;line-height:1.35}.label em{display:block;font-style:normal;font-size:11px;color:#69736b;line-height:1.4}
+    .label small{display:block;margin-top:3px;font:9px/1.3 ui-monospace,Consolas,monospace;color:#9aa299}
+    .label.active b{color:#18231b;font-weight:600}.label.risk b,.label.risk em{color:var(--rust)}
+    .readout{display:flex;align-items:flex-start;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:1px solid var(--rule-2)}
+    .readout small{display:block;margin-bottom:4px;font:9px/1.3 ui-monospace,Consolas,monospace;letter-spacing:.11em;color:#90988f;text-transform:uppercase}
+    .readout b{font-size:13px;font-weight:550}.readout span{font:500 23px/1 ui-monospace,Consolas,monospace}.readout span i{font:11px/1 sans-serif;font-style:normal;color:#667167}
+    .profile-note{margin:16px 0 0;padding-top:13px;border-top:1px solid var(--rule-2);font-size:10.5px;line-height:1.6;color:#6b756c}
+    .compass-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+    .compass-head h2{margin:0 0 5px;font-size:16px;font-weight:600;letter-spacing:-.03em}
+    .compass-head p{margin:0;font-size:10.5px;color:var(--muted)}
+    .mode{display:inline-flex;align-items:center;gap:6px;padding:6px 8px;border:1px solid #c7cec3;background:#f5f6f1;font:9px/1 ui-monospace,Consolas,monospace;color:#687566;white-space:nowrap}
+    .mode:before{content:"";width:5px;height:5px;border-radius:50%;background:#7b8977}
+    .compass-wrap{display:grid;grid-template-columns:minmax(330px,1fr) 190px;gap:18px;align-items:center}
+    .dial-shell{position:relative;display:grid;place-items:center;min-height:394px}
+    .dial{width:min(100%,392px);height:auto;overflow:visible}
+    .ring{fill:none;stroke:#bec6ba;stroke-width:1}.ring.inner{stroke-dasharray:3.5 4.5}.axis{stroke:#6e7d70;stroke-width:1}
+    .axis-label{fill:#617064;font-size:10px;font-weight:500}.ring-label{fill:#8c968b;font:9px ui-monospace,Consolas,monospace;letter-spacing:.04em}
+    .center-halo{fill:#f7f8f4;stroke:#c1c9bd;stroke-width:1}.center{fill:var(--green)}
+    .center-label{fill:#33483e;font-size:10px;font-weight:600}.center-sub{fill:#8a9589;font:8px ui-monospace,Consolas,monospace}
+    .structure{transition:opacity .28s ease,transform .32s cubic-bezier(.2,.75,.25,1);transform-origin:center}
+    .nerve circle{fill:var(--panel);stroke:var(--purple);stroke-width:2}.nerve .tick{stroke:var(--purple);stroke-width:1}
+    .artery circle{fill:var(--panel);stroke:var(--rust);stroke-width:2}.artery circle:last-of-type{stroke-width:1;opacity:.45}
+    .membrane path{fill:none;stroke:var(--bone);stroke-width:9;stroke-linecap:round;opacity:.68}.membrane path:last-child{stroke:#f4f1e9;stroke-width:5;stroke-dasharray:3 5}
+    .svg-name{font-size:10px;font-weight:600}.svg-meta{font:8.5px ui-monospace,Consolas,monospace;fill:#8c958b}
+    .nerve text.svg-name{fill:#5f58ae}.artery text.svg-name{fill:#8e4035}.membrane text.svg-name{fill:#6e6659}
+    .off-slice{opacity:.16}.near-slice{opacity:.48}.on-slice{opacity:1}
+    .edge-fade{fill:url(#edgeFade);pointer-events:none}
+    .depth-chip{position:absolute;left:6px;bottom:14px;padding:7px 9px;border:1px solid var(--rule-2);background:rgba(250,249,244,.86);font:9px/1.45 ui-monospace,Consolas,monospace;color:#758074;backdrop-filter:blur(5px)}
+    .depth-chip b{color:#3f5549;font-weight:600}
+    .fact-list{align-self:stretch;padding-top:20px;border-left:1px solid var(--rule-2)}
+    .fact-list h3{margin:0 0 10px;padding-left:15px;font-size:10px;font-weight:600;color:#677268}
+    .fact{padding:12px 0 12px 15px;border-top:1px solid var(--rule-2);transition:opacity .2s}
+    .fact-title{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:600}.dot{width:7px;height:7px;border:1.5px solid;border-radius:50%}.dot.purple{border-color:var(--purple)}.dot.rust{border-color:var(--rust)}.dot.bone{border-color:var(--bone);border-radius:1px}
+    .fact p{margin:7px 0 0;font-size:10px;line-height:1.5;color:#727c73}.fact code{display:block;margin-top:5px;font:9px/1.45 ui-monospace,Consolas,monospace;color:#919990}
+    .crossing{display:flex;align-items:center;gap:7px;margin:10px 0 0;padding:9px 0 0 15px;border-top:1px solid var(--rule-2);font-size:10px;color:#536358}.crossing i{width:12px;height:12px;border:1px solid #8a9788;border-radius:50%;position:relative}.crossing i:after{content:"";position:absolute;left:2px;right:2px;top:5px;border-top:1px solid #8a9788;transform:rotate(-38deg)}
+    .calibration{margin-top:14px;padding:15px 16px;border:1px solid #d5dacf;background:#f5f5f0}
+    .calibration-top{display:flex;justify-content:space-between;align-items:center;gap:16px}
+    .calibration b{font-size:10.5px;font-weight:600}.calibration strong{font:9px/1 ui-monospace,Consolas,monospace;color:#88785e;font-weight:500}
+    .calibration p{margin:8px 0 0;font-size:10px;line-height:1.55;color:#6d766d}
+    .calibration .rule{display:flex;align-items:center;gap:7px;margin-top:9px;font:9px/1.4 ui-monospace,Consolas,monospace;color:#7e887e}.calibration .rule i{width:28px;border-top:1px dashed #8d978c}
+    .sheet-foot{display:flex;justify-content:space-between;gap:24px;padding:13px 30px;border-top:1px solid var(--rule);font-size:9.5px;line-height:1.5;color:#858f84}
+    @media(max-width:980px){.page{padding:18px}.workarea{grid-template-columns:1fr}.profile{border-right:0;border-bottom:1px solid var(--rule)}.compass-wrap{grid-template-columns:1fr 180px}}
+    @media(max-width:640px){.page{padding:0}.mast{display:none}.sheet{border-left:0;border-right:0}.sheet-head,.profile,.compass-panel{padding-left:20px;padding-right:20px}.toolbar{padding-left:20px;overflow:auto}.profile-plot{grid-template-columns:32px 82px 1fr}.compass-wrap{display:block}.fact-list{border-left:0;border-top:1px solid var(--rule-2)}.dial-shell{min-height:350px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="mast"><small>Separate concept study · 2026.09</small><p>기존 화면을 수정하지 않은 독립 시안</p></header>
+    <article class="sheet">
+      <header class="sheet-head">
+        <span class="index">03</span>
+        <div><h1>Needling Profile</h1><p>현재 자침 층서와 같은 깊이의 주변 위험 구조를 함께 확인합니다.</p></div>
+        <div class="status"><i></i>ST36 · 우측 참조 모델</div>
+      </header>
+
+      <nav class="toolbar" aria-label="자침 보기 선택">
+        <button type="button" id="nearbyToggle" class="on" aria-pressed="true">주변 구조만 (3)</button>
+        <button type="button">경로 구조 보기 (2)</button>
+        <button type="button" id="playButton">자침 경로 재생</button>
+      </nav>
+
+      <div class="workarea">
+        <section class="profile" aria-labelledby="profileTitle">
+          <div class="section-head"><div><b id="profileTitle">Needling Profile</b><span>자침 층서 · 기존 세로 프로파일 유지</span></div><span class="tiny-kicker">relative depth</span></div>
+          <div class="profile-plot" id="profilePlot" role="slider" tabindex="0" aria-label="현재 바늘 끝 깊이" aria-valuemin="0" aria-valuemax="100" aria-valuenow="58">
+            <div class="scale">
+              <span style="top:0%">0</span><span style="top:25%">25</span><span style="top:50%">50</span><span style="top:75%">75</span><span style="top:100%">100</span>
+            </div>
+            <div class="column" id="column">
+              <div class="layer" data-until="22" style="top:0;height:22%"></div>
+              <div class="layer" data-until="66" style="top:22%;height:44%"></div>
+              <div class="layer" data-until="82" style="top:66%;height:16%"></div>
+              <div class="layer" data-until="100" style="top:82%;height:18%"></div>
+              <div class="limit"></div><div class="boundary"></div><div class="needle" id="needle" style="top:58%"></div>
+            </div>
+            <div class="labels">
+              <div class="label" data-from="0" data-to="22" style="top:4%"><b>Skin &amp; subcutis</b><em>피부·피하조직</em><small>0–22%</small></div>
+              <div class="label" data-from="22" data-to="66" style="top:30%"><b>Right tibialis anterior</b><em>우측 앞정강근</em><small>22–66%</small></div>
+              <div class="label" data-from="66" data-to="82" style="top:69%"><b>Interosseous membrane</b><em>우측 뼈사이막</em><small>66–82%</small></div>
+              <div class="label risk" data-from="82" data-to="100" style="top:88%"><b>Posterior boundary</b><em>후방 경계</em><small>모델 표시 범위</small></div>
+            </div>
+          </div>
+          <div class="readout"><div><small>현재 층</small><b id="currentLayer">우측 앞정강근</b></div><span id="depthReadout">58<i>%</i></span></div>
+          <p class="profile-note">100%는 이 참조 모델에서 정한 표시 범위의 끝입니다. 환자의 실제 깊이 또는 안전 자침 깊이를 뜻하지 않습니다.</p>
+        </section>
+
+        <section class="compass-panel" id="compassPanel" aria-labelledby="compassTitle">
+          <header class="compass-head"><div><h2 id="compassTitle">Needle’s-eye Compass</h2><p>현재 바늘 끝 단면 · 해부학 방향 고정</p></div><span class="mode">모델 기준 · 비척도</span></header>
+          <div class="compass-wrap">
+            <div class="dial-shell">
+              <svg class="dial" viewBox="0 0 400 400" role="img" aria-labelledby="dialTitle dialDesc">
+                <title id="dialTitle">현재 바늘 끝 깊이의 주변 위험 구조</title>
+                <desc id="dialDesc">침 축이 중앙에 있고 앞쪽은 위, 가쪽은 오른쪽입니다. 실제 밀리미터 눈금이 아닌 상대 위치를 보여줍니다.</desc>
+                <defs><radialGradient id="edgeFade"><stop offset="72%" stop-color="#faf9f4" stop-opacity="0"/><stop offset="100%" stop-color="#faf9f4" stop-opacity=".86"/></radialGradient></defs>
+                <line class="axis" x1="200" y1="34" x2="200" y2="18"/><path class="axis" d="M196 25l4-7 4 7" fill="none"/>
+                <text class="axis-label" x="200" y="11" text-anchor="middle">앞</text>
+                <line class="axis" x1="366" y1="200" x2="382" y2="200"/><path class="axis" d="M375 196l7 4-7 4" fill="none"/>
+                <text class="axis-label" x="389" y="204">가쪽</text>
+                <circle class="ring" cx="200" cy="200" r="154"/><circle class="ring inner" cx="200" cy="200" r="88"/>
+                <text class="ring-label" x="200" y="103" text-anchor="middle">축 근처</text><text class="ring-label" x="200" y="39" text-anchor="middle">주변 시야</text>
+                <g class="structure nerve on-slice" id="nerve" transform="translate(151 246)">
+                  <circle cx="0" cy="0" r="10"/><path class="tick" d="M-5 0h10M0-5v10" opacity=".32"/>
+                  <text class="svg-name" x="-13" y="25" text-anchor="end">깊은종아리신경</text><text class="svg-meta" x="-13" y="37" text-anchor="end">같은 단면 · 앞안쪽</text>
+                </g>
+                <g class="structure artery near-slice" id="artery" transform="translate(263 226)">
+                  <circle cx="0" cy="0" r="13"/><circle cx="0" cy="0" r="8"/>
+                  <text class="svg-name" x="18" y="18">앞정강동맥</text><text class="svg-meta" x="18" y="30">약간 아래 · 앞가쪽</text>
+                </g>
+                <g class="structure membrane near-slice" id="membrane">
+                  <path d="M67 292 Q200 356 333 292"/><path d="M67 292 Q200 356 333 292"/>
+                  <text class="svg-name" x="200" y="347" text-anchor="middle">뼈사이막</text><text class="svg-meta" x="200" y="360" text-anchor="middle">넓은 구조 · arc로 표시</text>
+                </g>
+                <circle class="center-halo" cx="200" cy="200" r="22"/><circle class="center" cx="200" cy="200" r="4.5"/>
+                <text class="center-label" x="200" y="239" text-anchor="middle">침 축</text><text class="center-sub" x="200" y="251" text-anchor="middle">현재 바늘 끝</text>
+                <circle class="edge-fade" cx="200" cy="200" r="155"/>
+              </svg>
+              <div class="depth-chip"><b id="chipDepth">깊이 58%</b><br/>현재 단면과의 거리로 농도 조절</div>
+            </div>
+            <aside class="fact-list" aria-label="주변 위험 구조 요약">
+              <h3>현재 단면 주변</h3>
+              <div class="fact" id="nerveFact"><div class="fact-title"><i class="dot purple"></i>깊은종아리신경</div><p>침 축과 가까우나 중심선과 겹치지 않음</p><code id="nerveState">같은 단면 · 앞안쪽</code></div>
+              <div class="fact" id="arteryFact"><div class="fact-title"><i class="dot rust"></i>앞정강동맥</div><p>관 구조는 채우지 않은 윤곽선으로 표시</p><code id="arteryState">약간 아래 · 앞가쪽</code></div>
+              <div class="fact" id="membraneFact"><div class="fact-title"><i class="dot bone"></i>뼈사이막</div><p>넓은 구조는 점이 아닌 arc로 진입</p><code id="membraneState">약간 아래 · 후방</code></div>
+              <div class="crossing"><i></i><span>경로 교차 없음</span></div>
+            </aside>
+          </div>
+          <section class="calibration">
+            <div class="calibration-top"><b>mm를 확정할 수 없을 때</b><strong>CALIBRATION REQUIRED</strong></div>
+            <p>기본 화면은 방향·단면 일치·상대 근접도만 보여줍니다. 모델 스케일이 검증된 경우에만 단일값 대신 <strong>≈ 추정 범위</strong>를 추가합니다.</p>
+            <div class="rule"><i></i>점선 ring = 상대적 보기 범위 · 안전거리 아님</div>
+          </section>
+        </section>
+      </div>
+      <footer class="sheet-foot"><span>단일 참조 모델의 기하학적 관계이며, 환자의 실제 해부 변이를 대체하지 않습니다.</span><span>앞 ↑ · 가쪽 → · 모델 회전과 무관하게 방향 고정</span></footer>
+    </article>
+  </main>
+  <script>
+    const plot=document.querySelector('#profilePlot');
+    const needle=document.querySelector('#needle');
+    const readout=document.querySelector('#depthReadout');
+    const chip=document.querySelector('#chipDepth');
+    const current=document.querySelector('#currentLayer');
+    const layers=[...document.querySelectorAll('.layer')];
+    const labels=[...document.querySelectorAll('.label')];
+    const structures={
+      nerve:{el:document.querySelector('#nerve'),fact:document.querySelector('#nerveFact'),state:document.querySelector('#nerveState'),peak:60,spread:22,pos:[151,246],label:'앞안쪽'},
+      artery:{el:document.querySelector('#artery'),fact:document.querySelector('#arteryFact'),state:document.querySelector('#arteryState'),peak:70,spread:20,pos:[263,226],label:'앞가쪽'},
+      membrane:{el:document.querySelector('#membrane'),fact:document.querySelector('#membraneFact'),state:document.querySelector('#membraneState'),peak:76,spread:25,label:'후방'}
+    };
+    let depth=58,playing=false,raf=0;
+    const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+    function sliceState(delta){const d=Math.abs(delta);return d<=7?'같은 단면':d<=17?(delta>0?'약간 아래':'약간 위'):'현재 단면 밖'}
+    function update(next){
+      depth=clamp(Math.round(next),0,100); needle.style.top=depth+'%';readout.innerHTML=depth+'<i>%</i>';chip.textContent='깊이 '+depth+'%';plot.setAttribute('aria-valuenow',depth);
+      let activeName='피부·피하조직';
+      labels.forEach((label)=>{const from=+label.dataset.from,to=+label.dataset.to,on=depth>=from&&depth<to;label.classList.toggle('active',on);if(on)activeName=label.querySelector('em').textContent});
+      current.textContent=activeName;
+      layers.forEach((layer,index)=>{const until=+layer.dataset.until,from=index?+layers[index-1].dataset.until:0;layer.classList.toggle('passed',depth>=until);layer.classList.toggle('active',depth>=from&&depth<until)});
+      Object.values(structures).forEach((item)=>{const delta=item.peak-depth,d=Math.abs(delta),opacity=clamp(1-d/item.spread,.08,1);item.el.style.opacity=opacity;item.fact.style.opacity=clamp(.38+opacity*.62,.38,1);if(item.pos){const drift=delta*.42;item.el.setAttribute('transform',`translate(${item.pos[0]} ${item.pos[1]+drift})`)}item.state.textContent=sliceState(delta)+' · '+item.label});
+    }
+    function depthFromPointer(event){const box=document.querySelector('#column').getBoundingClientRect();update(((event.clientY-box.top)/box.height)*100)}
+    let dragging=false;
+    plot.addEventListener('pointerdown',e=>{dragging=true;plot.setPointerCapture(e.pointerId);depthFromPointer(e)});
+    plot.addEventListener('pointermove',e=>{if(dragging)depthFromPointer(e)});plot.addEventListener('pointerup',()=>dragging=false);plot.addEventListener('pointercancel',()=>dragging=false);
+    plot.addEventListener('keydown',e=>{if(['ArrowDown','ArrowRight'].includes(e.key)){update(depth+(e.shiftKey?10:2));e.preventDefault()}if(['ArrowUp','ArrowLeft'].includes(e.key)){update(depth-(e.shiftKey?10:2));e.preventDefault()}if(e.key==='Home')update(0);if(e.key==='End')update(100)});
+    document.querySelector('#nearbyToggle').addEventListener('click',e=>{const panel=document.querySelector('#compassPanel'),pressed=e.currentTarget.getAttribute('aria-pressed')==='true';e.currentTarget.setAttribute('aria-pressed',String(!pressed));e.currentTarget.classList.toggle('on',!pressed);panel.style.display=pressed?'none':''});
+    document.querySelector('#playButton').addEventListener('click',e=>{if(playing){cancelAnimationFrame(raf);playing=false;e.currentTarget.textContent='자침 경로 재생';return}playing=true;e.currentTarget.textContent='재생 중지';const started=performance.now();const start=depth;function tick(now){const t=Math.min(1,(now-started)/2600);update(start+(100-start)*(1-Math.pow(1-t,2.4)));if(t<1&&playing)raf=requestAnimationFrame(tick);else{playing=false;e.currentTarget.textContent='자침 경로 재생'}}raf=requestAnimationFrame(tick)});
+    update(depth);
+  </script>
+</body>
+</html>

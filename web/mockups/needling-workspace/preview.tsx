@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
 import { ChevronDown, ChevronUp, Maximize2, Minimize2 } from 'lucide-react';
 import Home from '../../../app/page';
+import needleEyeData from '../../../data/needle-eye.json';
 
 type PreviewState = 'normal' | 'analysis' | 'workspace' | 'memo';
 
@@ -10,19 +11,75 @@ function readPreviewState(): PreviewState {
   return value === 'analysis' || value === 'workspace' || value === 'memo' ? value : 'normal';
 }
 
-function structureOpacity(depth: number, target: number, reach: number) {
-  return Math.max(0.2, 1 - Math.abs(depth - target) / reach);
+type NeedleEyeStructure = {
+  id: string;
+  label: string;
+  english: string;
+  kind: 'nerve' | 'artery' | 'vein' | 'boundary';
+  relation: 'cross' | 'near' | 'concept';
+  depthMm: number | null;
+  literatureReferenceMm: number | null;
+  depthSource: '참조 모델' | '문헌값' | '해부 개념';
+  emph: boolean;
+  note: string | null;
+  basis: string | null;
+  bearing: null | {
+    status: 'axis-crossing' | 'model-nearest';
+    xMm: number;
+    yMm: number;
+    distanceMm: number;
+  };
+};
+
+type NeedleEyeProfile = {
+  region: string;
+  modelMaxMm: number | null;
+  orientation: { up: string; right: string };
+  structures: NeedleEyeStructure[];
+};
+
+const needleEyeProfiles = needleEyeData.points as Record<string, NeedleEyeProfile>;
+
+function structureOpacity(currentMm: number, progress: number, structure: NeedleEyeStructure) {
+  if (structure.depthMm == null) return structure.kind === 'boundary' ? .14 + progress * .007 : .18;
+  const delta = Math.abs(currentMm - structure.depthMm);
+  if (delta <= 3) return 1;
+  if (delta <= 9) return .55 - (delta - 3) * .055;
+  return 0;
 }
 
-function NeedleEyeCompass({ depth }: { depth: number }) {
-  const structures = useMemo(
-    () => ({
-      nerve: structureOpacity(depth, 38, 35),
-      artery: structureOpacity(depth, 55, 34),
-      boundary: structureOpacity(depth, 72, 30),
-    }),
-    [depth],
-  );
+function structurePosition(structure: NeedleEyeStructure, index: number) {
+  if (!structure.bearing) return null;
+  if (structure.bearing.status === 'axis-crossing') {
+    return { x: 150, y: 150, radius: 12 + index * 3 };
+  }
+  const { xMm, yMm, distanceMm } = structure.bearing;
+  const length = Math.hypot(xMm, yMm) || 1;
+  const radius = Math.max(28, Math.min(94, 28 + distanceMm * 2.7));
+  return {
+    x: 150 + (xMm / length) * radius,
+    y: 150 - (yMm / length) * radius,
+    radius: structure.kind === 'nerve' ? 8 : 11,
+  };
+}
+
+function depthLabel(structure: NeedleEyeStructure) {
+  if (structure.depthSource === '문헌값') return '문헌 근거 · 개인차 큼';
+  if (structure.depthMm == null) return `${structure.depthSource} · 깊이 미확정`;
+  return `${structure.depthSource} 해당 깊이 ${structure.depthMm} mm`;
+}
+
+function NeedleEyeCompass({ depth, depthMm, pointCode }: { depth: number; depthMm: string; pointCode: string }) {
+  const profile = needleEyeProfiles[pointCode];
+  const currentMm = profile?.modelMaxMm != null ? profile.modelMaxMm * depth / 100 : Number.parseFloat(depthMm) || 0;
+  const visibleStructures = useMemo(() => {
+    if (!profile) return [];
+    return profile.structures
+      .map((structure, index) => ({ structure, index, opacity: structureOpacity(currentMm, depth, structure) }))
+      .filter((item) => item.opacity > .04);
+  }, [currentMm, depth, profile]);
+
+  if (!profile) return null;
 
   return (
     <section className="needle-eye-compass" aria-label="현재 자침 단면의 주변 구조">
@@ -38,9 +95,9 @@ function NeedleEyeCompass({ depth }: { depth: number }) {
         <svg className="compass-plot" viewBox="0 0 300 300" role="img" aria-labelledby="compass-title compass-desc">
           <title id="compass-title">침 축을 중심으로 본 주변 위험 구조</title>
           <desc id="compass-desc">앞쪽이 위, 가쪽이 오른쪽이며 신경, 동맥, 넓은 경계 구조의 상대 위치를 표시합니다.</desc>
-          <text className="direction direction-front" x="150" y="18">앞</text>
+          <text className="direction direction-front" x="150" y="18">{profile.orientation.up}</text>
           <path className="direction-mark" d="M150 31v20m0-20-5 7m5-7 5 7" />
-          <text className="direction direction-lateral" x="279" y="159">가쪽</text>
+          <text className="direction direction-lateral" x="279" y="159">{profile.orientation.right}</text>
           <path className="direction-mark" d="M249 150h19m0 0-7-5m7 5-7 5" />
 
           <circle className="range-ring range-ring-outer" cx="150" cy="150" r="105" />
@@ -48,19 +105,25 @@ function NeedleEyeCompass({ depth }: { depth: number }) {
           <text className="ring-label" x="150" y="82">주변권</text>
           <text className="ring-label" x="150" y="118">근접권</text>
 
-          <g className="structure nerve" style={{ opacity: structures.nerve }}>
-            <circle cx="119" cy="180" r="10" />
-            <text x="84" y="205">신경</text>
-          </g>
-          <g className="structure artery" style={{ opacity: structures.artery }}>
-            <circle cx="207" cy="139" r="14" />
-            <text x="225" y="143">동맥</text>
-          </g>
-          <g className="structure boundary" style={{ opacity: structures.boundary }}>
-            <path d="M239 82c21 17 32 39 34 68s-9 56-31 77" />
-            <path className="boundary-soft" d="M248 72c25 20 39 46 41 77s-11 64-38 90" />
-            <text x="219" y="65">넓은 경계</text>
-          </g>
+          {visibleStructures.filter(({ structure }) => structure.kind === 'boundary').map(({ structure, opacity }) => (
+            <g key={structure.id} className="structure boundary" style={{ opacity }}>
+              <circle className="boundary-band" cx="150" cy="150" r="113" />
+              <text x="241" y="75">{structure.label.replace(/\s*\(.+\)$/, '')}</text>
+            </g>
+          ))}
+
+          {visibleStructures.filter(({ structure }) => structure.kind !== 'boundary').slice(0, 4).map(({ structure, index, opacity }) => {
+            const position = structurePosition(structure, index);
+            if (!position) return null;
+            const labelX = position.x < 150 ? position.x - 12 : position.x + 12;
+            const labelAnchor = position.x < 150 ? 'end' : 'start';
+            return (
+              <g key={structure.id} className={`structure ${structure.kind} ${structure.relation === 'cross' ? 'is-crossing' : ''}`} style={{ opacity }}>
+                <circle cx={position.x} cy={position.y} r={position.radius} />
+                <text x={labelX} y={position.y + 4} textAnchor={labelAnchor}>{structure.label}</text>
+              </g>
+            );
+          })}
 
           <circle className="needle-axis-halo" cx="150" cy="150" r="17" />
           <circle className="needle-axis" cx="150" cy="150" r="4" />
@@ -69,10 +132,16 @@ function NeedleEyeCompass({ depth }: { depth: number }) {
       </div>
 
       <div className="compass-reading" aria-live="polite">
-        <span><i className="legend nerve-legend" />신경</span>
-        <span><i className="legend artery-legend" />혈관</span>
-        <span><i className="legend boundary-legend" />경계면</span>
-        <small>링은 실제 mm가 아닌 상대 거리 구역입니다.</small>
+        <div className="compass-structure-list">
+          {profile.structures.map((structure) => (
+            <span key={structure.id} style={{ opacity: Math.max(.34, structureOpacity(currentMm, depth, structure)) }}>
+              <i className={`legend ${structure.kind}-legend`} />
+              <b>{structure.label}</b>
+              <em>{structure.relation === 'cross' ? '경로 교차 · ' : ''}{depthLabel(structure)}</em>
+            </span>
+          ))}
+        </div>
+        <small>링은 상대 거리 구역입니다. 수치는 환자 안전거리가 아니라 출처가 표시된 모델·문헌 깊이입니다.</small>
       </div>
     </section>
   );
@@ -104,7 +173,7 @@ function NeedleEyeHud({
           {expanded ? <Minimize2 size={15} /> : <Maximize2 size={15} />}
         </button>
       </header>
-      {!expanded && <NeedleEyeCompass depth={depth} />}
+      {!expanded && <NeedleEyeCompass depth={depth} depthMm={depthMm} pointCode={pointCode} />}
       <div className="hud-depth">
         <div><span>MODEL {depthMm} mm</span><small>재생 연동</small></div>
         <div className="hud-depth-track" aria-label={`모델 자침 진행 ${depth}%`}>
@@ -118,14 +187,16 @@ function NeedleEyeHud({
 
 function NeedleEyeLauncher({
   active,
+  available,
   onToggle,
 }: {
   active: boolean;
+  available: boolean;
   onToggle: () => void;
 }) {
   return (
     <nav className="needle-eye-launcher" aria-label="관찰 모드와 보조 도구">
-      <button type="button" className={active ? 'is-active' : ''} aria-label="Needle’s Eye" aria-pressed={active} onClick={onToggle}>
+      <button type="button" className={active ? 'is-active' : ''} aria-label={available ? 'Needle’s Eye' : '이 혈자리는 주요 위험구조 Needle’s Eye 대상이 아닙니다'} aria-pressed={active} disabled={!available} onClick={onToggle}>
         <i /><span className="sr-only">Needle’s Eye</span>
       </button>
     </nav>
@@ -185,6 +256,12 @@ export default function NeedlingWorkspacePreview() {
   const [pointCode, setPointCode] = useState('GB34');
   const [pointName, setPointName] = useState('양릉천');
   const [sceneShift, setSceneShift] = useState(0);
+  const needleEyeAvailable = Boolean(needleEyeProfiles[pointCode]);
+  const needleEyeDepthMm = useMemo(() => {
+    const max = needleEyeProfiles[pointCode]?.modelMaxMm;
+    if (max == null) return depthMm;
+    return (max * depth / 100).toFixed(1).replace(/\.0$/, '');
+  }, [depth, depthMm, pointCode]);
 
   useEffect(() => {
     let timer = 0;
@@ -306,6 +383,12 @@ export default function NeedlingWorkspacePreview() {
     };
   }, [panelTarget, analysisOpen, workspaceOpen]);
 
+  useEffect(() => {
+    if (needleEyeAvailable) return;
+    setAnalysisOpen(false);
+    setWorkspaceOpen(false);
+  }, [needleEyeAvailable]);
+
   const closeAuxiliaryModes = () => {
     if (!auxTarget) return;
     const buttons = Array.from(auxTarget.querySelectorAll<HTMLButtonElement>('button'));
@@ -321,6 +404,7 @@ export default function NeedlingWorkspacePreview() {
       <Home />
       <NeedleEyeLauncher
         active={analysisOpen}
+        available={needleEyeAvailable}
         onToggle={() => {
           if (!analysisOpen) closeAuxiliaryModes();
           setAnalysisOpen((value) => {
@@ -332,14 +416,14 @@ export default function NeedlingWorkspacePreview() {
       {analysisOpen ? (
         <NeedleEyeHud
           depth={depth}
-          depthMm={depthMm}
+          depthMm={needleEyeDepthMm}
           pointCode={pointCode}
           pointName={pointName}
           expanded={workspaceOpen}
           onExpand={() => setWorkspaceOpen((value) => !value)}
         />
       ) : null}
-      {workspaceOpen && needleTarget ? createPortal(<NeedleEyeCompass depth={depth} />, needleTarget) : null}
+      {workspaceOpen && needleTarget ? createPortal(<NeedleEyeCompass depth={depth} depthMm={needleEyeDepthMm} pointCode={pointCode} />, needleTarget) : null}
       {panelTarget ? createPortal(
         <StudyMemo open={memoOpen} onOpenChange={setMemoOpen} pointCode={pointCode} />,
         panelTarget,

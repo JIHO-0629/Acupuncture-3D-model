@@ -272,9 +272,9 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.02931,
+    -0.034,
     1.49648,
-    0.02152
+    0.014
    ],
    "outward": [
     -0.49828,
@@ -283,7 +283,7 @@
    ],
    "region": "neck",
    "depthMm": 8.9,
-   "rule": "level of the C4 vertebral body (superior thyroid border region) · anterior to sternocleidomastoid · common carotid pulse"
+   "rule": "level of the C4 vertebral body (superior thyroid border region) · anterior to sternocleidomastoid · common carotid pulse · 2026-09-25 자침 경로 검수 반영: moved onto the anterior border of sternocleidomastoid at the C4 level (the old seed lay over the thyrohyoid, medial to the muscle)"
   },
   {
    "code": "ST10",
@@ -424,7 +424,7 @@
    "status": "implemented_unverified",
    "seed": [
     -0.07776,
-    1.39259,
+    1.40559,
     0.05904
    ],
    "outward": [
@@ -434,7 +434,7 @@
    ],
    "region": "thorax",
    "depthMm": 7,
-   "rule": "1st intercostal space · 4 B-cun lateral (skin arc)"
+   "rule": "1st intercostal space · 4 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 1 (+13 mm)"
   },
   {
    "code": "ST15",
@@ -454,7 +454,7 @@
    "status": "implemented_unverified",
    "seed": [
     -0.07876,
-    1.35685,
+    1.37185,
     0.08877
    ],
    "outward": [
@@ -464,7 +464,7 @@
    ],
    "region": "thorax",
    "depthMm": 7.6,
-   "rule": "2nd intercostal space · 4 B-cun lateral (skin arc) · below the 2nd rib at the sternal angle"
+   "rule": "2nd intercostal space · 4 B-cun lateral (skin arc) · below the 2nd rib at the sternal angle · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 2 (+15 mm)"
   },
   {
    "code": "ST16",
@@ -484,7 +484,7 @@
    "status": "implemented_unverified",
    "seed": [
     -0.07788,
-    1.32139,
+    1.33339,
     0.10646
    ],
    "outward": [
@@ -494,7 +494,7 @@
    ],
    "region": "thorax",
    "depthMm": 7.5,
-   "rule": "3rd intercostal space · 4 B-cun lateral (skin arc)"
+   "rule": "3rd intercostal space · 4 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 3 (+12 mm)"
   },
   {
    "code": "ST17",

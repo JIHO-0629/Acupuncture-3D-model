@@ -12,6 +12,7 @@
     "check": "tsc --noEmit",
     "check:release": "node scripts/release/validate-release.mjs",
     "generate:needling-review": "node scripts/release/generate-needling-review.mjs",
+    "generate:needle-eye": "node scripts/needling/build-needle-eye.mjs",
     "restore:reviewed-geometry": "node scripts/release/restore-source-geometry.mjs"
   },
   "dependencies": {

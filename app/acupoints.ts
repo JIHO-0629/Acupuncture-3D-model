@@ -3,6 +3,7 @@ import {GB_POINTS,needleProfile as gbNeedleProfile,type GbPointDefinition,type N
 import source from '../data/li-source.json';
 import directNeedling from '../data/needling-direct.json';
 import needlingReview from '../data/needling-review.json';
+import needlingPaths from '../data/needling-paths.json';
 import liLandmarks from '../data/li-landmarks.json';
 import luData from '../data/meridians/LU.json';
 import htData from '../data/meridians/HT.json';
@@ -80,14 +81,10 @@ export function meridianOf(code:string):MeridianId{const prefix=code.match(/^[A-
 const needleRegionOf=(skinRegion:string):NeedleRegion=>/thorax|shoulder/.test(skinRegion)?'thorax':/face|head|oral/.test(skinRegion)?'face-scalp':/neck/.test(skinRegion)?'neck':/lumbar|pelvis/.test(skinRegion)?'flank-abdomen':/thigh|knee/.test(skinRegion)?'thigh-knee':/leg/.test(skinRegion)?'leg':/foot/.test(skinRegion)?'ankle-foot':'upper-limb';
 // Compared against the primary workbook's straight-path model rows (repo 2d4aa8e).
 // A structure missing from the model path is a model limit, never permission to needle.
+// LI18, ST9, ST36, BL40 and GB20 moved to data/needling-paths.json hazards (review 2026-09-25).
 const PATH_NOTES:Partial<Record<AcupointCode,string>>={
- LI18:'이 모델의 직자 경로에는 목의 큰 혈관이 나타나지 않지만, 실제로는 가까이 있습니다.',
- ST9:'이 모델의 직자 경로에는 총경동맥이 나타나지 않지만, 실제로는 바로 옆에 있습니다.',
- ST36:'이 모델의 직자 경로에는 앞정강동맥이 나타나지 않지만, 실제로는 깊은 곳에 있습니다.',
  SI16:'이 모델의 직자 경로에는 목의 큰 혈관이 나타나지 않지만, 실제로는 가까이 있습니다.',
- BL40:'이 모델에서는 오금동맥보다 오금정맥이 먼저 나타납니다. 실제 위치 관계는 사람마다 다릅니다.',
  TE16:'이 모델의 직자 경로에는 목의 큰 혈관이 나타나지 않지만, 실제로는 가까이 있습니다.',
- GB20:'이 모델의 직자 경로는 목의 혈관보다 뒤통수뼈에 먼저 닿습니다. 문헌의 반대쪽 눈 방향 자입과는 경로가 다릅니다.',
  GV16:'이 모델의 직자 경로는 뒤통수뼈에 먼저 닿습니다. 실제로는 깊은 곳에 경막과 연수가 있습니다.',
  CV12:'이 모델에는 복막이 없어, 배벽 다음에 바로 위(胃)가 나타납니다.',
 };
@@ -118,7 +115,17 @@ const RESEARCH_RELATIONS:Partial<Record<AcupointCode,NeedleRelation[]>>={
  CV12:[{kind:'AVOID',structure:'복막'}],
 };
 const riskText=(...parts:(string|undefined)[])=>parts.filter(Boolean).join(' ')||undefined;
+/** Reviewed path of a multi-layer point (scripts/needling/build-needle-paths.mjs, review of 2026-09-25).
+ *  Layers are superficial→deep; a layer without mm is a concept layer (no mesh, or out of order in the
+ *  model) placed by anatomical sequence. Hazards are never passed layers: the panel lists them apart. */
+export interface NeedlePathLayer{ko:string;en:string;mm:number|null;end:number|null;kind:'model'|'concept'|'reordered'|'void';atlas?:string;why?:string}
+export interface NeedlePathHazard{ko:string;en:string;mm:number|null;source:'model'|'literature'|'concept';relation:'cross'|'near'|'concept';emph?:boolean;note?:string;basis?:string;literatureMm?:number}
+export interface NeedlePath{region:string;blocked?:string;direction?:[number,number,number];directionBasis?:string;faceDeviationDeg?:number;layers?:NeedlePathLayer[];hazards?:NeedlePathHazard[];bone?:{ko:string;en:string;mm:number};dropped?:{names:string[];why?:string};note?:string;posture?:string;zone?:string;modelMaxMm?:number|null}
+const NEEDLE_PATHS=needlingPaths as unknown as Record<string,NeedlePath>;
+export function needlePathOf(code:string):NeedlePath|undefined{return code.startsWith('_')?undefined:NEEDLE_PATHS[code];}
 function sourceNeedleProfile(code:AcupointCode):NeedleProfile {
+ const reviewed=needlePathOf(code);
+ if(reviewed?.blocked)return lockedProfile(needleRegionOf(reviewed.region==='neck'?'neck':'thorax'),reviewed.blocked,directNeedling[code as keyof typeof directNeedling]?.raw??'',`https://m.kmcric.com/knowledge/acupoint/${meridianOf(code)}/${code}`);
  const direct=directNeedling[code as keyof typeof directNeedling];
  const forbiddenSource=noNeedlingOf(code);
  const straight=direct&&!forbiddenSource?{label:'문헌 직자 범위의 모델 상한',probeDepthMm:direct.modelMaxMm,documentedMaxMm:direct.modelMaxMm,
@@ -144,7 +151,8 @@ function sourceNeedleProfile(code:AcupointCode):NeedleProfile {
 }
 
 export function needleProfile(code:AcupointCode):NeedleProfile{
- const source=sourceNeedleProfile(code),review=needlingReviewOf(code);
+ const reviewed=needlePathOf(code),base=sourceNeedleProfile(code),review=needlingReviewOf(code);
+ const source=reviewed&&!reviewed.blocked?{...base,pointRisk:riskText(base.pointRisk,reviewed.posture,reviewed.note)}:base;
  if(review.status!=='review_required')return source;
  return {...source,label:`검수용 · ${source.label}`,
   depthValidation:`${source.depthValidation} · 배포 승인 대기`,warning:`검수용 경로입니다. 승인 전에는 배포 공개되지 않습니다. ${source.warning}`};

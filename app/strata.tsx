@@ -8,15 +8,42 @@
  */
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { bilingualPartName, varianceOf, VARIANCE_LABEL, type NeedleHit, type NeedleReport, type Variance } from './anatomy';
-import { needleProfile, type AcupointCode } from './acupoints';
+import { needleProfile, needlePathOf, type AcupointCode, type NeedlePathHazard, type NeedlePathLayer } from './acupoints';
 
 const HEIGHT = 280, LABEL_GAP = 8;
 const SKIN = { id: '__skin', name: '피부·피하조직', english: 'Skin & subcutis', distanceMm: 0, variance: 2 as Variance };
 
 type Entry = {
   id: string; english: string; korean: string; at: number;
-  variance: Variance | null; kind: 'layer' | 'boundary' | 'beyond'; risk?: boolean;
+  variance: Variance | null; kind: 'layer' | 'boundary' | 'beyond' | 'hazard'; risk?: boolean;
+  /** Reviewed paths: how the layer is known. Hazards carry their own depth text. */
+  source?: 'model' | 'concept' | 'reordered' | 'void' | 'bone';
+  hazard?: NeedlePathHazard; below?: boolean;
 };
+const SOURCE_TAG: Record<string, string> = {
+  concept: '개념층 · 모델 없음', reordered: '순서 보정 · 모델 위치가 다름', void: '모델 없음 · 빈 구간',
+};
+
+/** Depths for layers the reviewed path lists without one: spread them evenly between the
+ *  neighbouring known depths, and 2 mm apart past the last one. */
+function spread(layers: NeedlePathLayer[], floor: number): number[] {
+  const out = layers.map((l) => l.mm);
+  let prev = 0;
+  for (let i = 0; i < out.length; i++) {
+    if (out[i] != null) { out[i] = Math.max(prev, out[i]!); prev = out[i]!; continue; }
+    let j = i; while (j < out.length && out[j] == null) j++;
+    const next = j < out.length ? Math.max(out[j]!, prev) : Math.min(prev + 2 * (j - i + 1), floor);
+    for (let k = i; k < j; k++) out[k] = prev + ((next - prev) * (k - i + 1)) / (j - i + 1);
+    prev = out[j - 1]!; i = j - 1;
+  }
+  return out as number[];
+}
+function hazardDepthText(h: NeedlePathHazard, limitMm: number) {
+  if (h.mm == null && h.literatureMm == null) return '깊이 표시 없음 · 개념';
+  const mm = h.literatureMm ?? h.mm!;
+  const where = h.literatureMm != null ? `문헌 약 ${Math.round(mm)} mm` : h.source === 'literature' ? `문헌 약 ${Math.round(mm)} mm` : `모델 ${Math.round(mm)} mm`;
+  return mm > limitMm ? `${where} · 자침 상한 너머` : where;
+}
 
 /** Split "Right fibula (우측 비골)" back into its two halves so the Korean can be styled
  *  on its own line at a readable size instead of trailing the English in parentheses. */
@@ -51,8 +78,35 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
   const limitMm = report.limitMm ?? 0;
   const riskIds = new Set(report.hazardHits.map((hit) => hit.id));
 
+  const reviewed = needlePathOf(report.code);
+  const curated = !!reviewed?.layers;
   const entries: Entry[] = [];
-  if (boundaryMm > 0) {
+  const viewOf = (b: number) => (report.sourceRangeBoundary ? Math.max(b * 1.45, b + 5) : b * 1.45);
+  if (curated && boundaryMm > 0) {
+    // Reviewed path: anatomical layer order from data/needling-paths.json. Hazards are
+    // listed in their own lane and never become a band the needle passes through.
+    const layers = reviewed!.layers!;
+    const bone = reviewed!.bone;
+    const view0 = viewOf(boundaryMm);
+    const at = spread(layers, Math.min(bone?.mm ?? view0, view0) * 0.98);
+    entries.push({ id: SKIN.id, english: SKIN.english, korean: SKIN.name, at: 0, variance: SKIN.variance, kind: 'layer', source: 'model' });
+    const cells: Entry[] = layers.map((layer, index) => ({
+      id: `L${index}-${layer.en}`, english: layer.atlas ? split({ id: '', name: layer.atlas, system: 'muscular', distanceMm: 0 }).english : layer.en,
+      korean: layer.ko, at: Math.round(at[index] * 10) / 10, variance: layer.kind === 'model' ? 2 : null, kind: 'layer', source: layer.kind,
+    }));
+    if (bone) cells.push({ id: `bone-${bone.en}`, english: bone.en, korean: bone.ko, at: bone.mm, variance: 1, kind: 'layer', source: 'bone' });
+    for (const cell of cells) {
+      if (cell.at < boundaryMm) entries.push(cell);
+    }
+    entries.push({ id: '__boundary', english: report.boundaryLabel, korean: '', at: boundaryMm, variance: null, kind: 'boundary' });
+    for (const cell of cells) if (cell.at >= boundaryMm && cell.at <= view0) entries.push({ ...cell, kind: 'beyond' });
+    (reviewed!.hazards ?? []).forEach((hazard, index) => {
+      const depth = hazard.literatureMm ?? hazard.mm;
+      const placed = depth == null ? view0 : Math.min(depth, view0);
+      entries.push({ id: `H${index}-${hazard.ko}`, english: hazard.en, korean: hazard.ko, at: placed, variance: 3, kind: 'hazard', hazard, below: depth == null || depth > view0 });
+    });
+    entries.sort((a, b) => a.at - b.at || (a.kind === 'hazard' ? 1 : 0) - (b.kind === 'hazard' ? 1 : 0));
+  } else if (boundaryMm > 0) {
     entries.push({ id: SKIN.id, english: SKIN.english, korean: SKIN.name, at: 0, variance: SKIN.variance, kind: 'layer' });
     for (const hit of allHits) {
       if (hit.distanceMm >= boundaryMm) continue;
@@ -66,10 +120,8 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
       at: boundaryMm, variance: boundaryHit ? varianceOf(boundaryHit.name, boundaryHit.system) : null, kind: 'boundary',
     });
   }
-  const view = report.sourceRangeBoundary
-    ? Math.max(boundaryMm * 1.45, boundaryMm + 5)
-    : boundaryMm * 1.45;
-  for (const hit of allHits) {
+  const view = viewOf(boundaryMm);
+  if (!curated) for (const hit of allHits) {
     if (hit.distanceMm <= boundaryMm || hit.distanceMm > view) continue;
     const { english, korean } = split(hit);
     entries.push({ id: hit.id, english, korean, at: hit.distanceMm, variance: varianceOf(hit.name, hit.system), kind: 'beyond' });
@@ -78,7 +130,7 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
   const y = (mm: number) => (view > 0 ? (mm / view) * HEIGHT : 0);
   const pct = (mm: number) => (boundaryMm > 0 ? Math.round((mm / boundaryMm) * 100) : 0);
   const needleMm = (limitMm * ratio) / 100;
-  const reachedIndex = needleMm <= 0 ? 0 : entries.reduce((found, entry, index) => (entry.kind !== 'beyond' && needleMm >= entry.at ? index : found), 0);
+  const reachedIndex = needleMm <= 0 ? 0 : entries.reduce((found, entry, index) => (entry.kind !== 'beyond' && entry.kind !== 'hazard' && needleMm >= entry.at ? index : found), 0);
   const current = entries[reachedIndex];
 
   /** Measure each label and stack them apart, so a name that wraps to three lines in a
@@ -127,7 +179,7 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
   const resist = (raw: number) => {
     const width = 1.2, curve = 2.8;
     for (const entry of entries) {
-      if (entry.at <= 0 || entry.at > limitMm) continue;
+      if (entry.kind === 'hazard' || entry.at <= 0 || entry.at > limitMm) continue;
       const delta = raw - entry.at;
       if (Math.abs(delta) < width) return entry.at + Math.sign(delta) * Math.pow(Math.abs(delta) / width, curve) * width;
     }
@@ -187,11 +239,13 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
 
         <div className={`strata-column${refusing ? ' flare' : ''}`} ref={columnRef} style={{ height: HEIGHT }}>
           {entries.map((entry, index) => {
-            const next = entries[index + 1];
+            // Hazards are not tissue the needle passes: no band, only a tick on the column edge.
+            if (entry.kind === 'hazard') return <div key={`${entry.id}-${index}`} className={`strata-hazard-tick${entry.hazard?.emph ? ' emph' : ''}`} style={{ top: y(entry.at) }} />;
+            const next = entries.slice(index + 1).find((candidate) => candidate.kind !== 'hazard');
             return (
               <div
                 key={`${entry.id}-${index}`}
-                className={`strata-band${entry.kind !== 'layer' ? ' beyond' : ''}${index === reachedIndex && entry.kind === 'layer' ? ' active' : ''}${index < reachedIndex ? ' passed' : ''}`}
+                className={`strata-band${entry.kind !== 'layer' ? ' beyond' : ''}${entry.source === 'concept' || entry.source === 'reordered' ? ' concept' : ''}${entry.source === 'void' ? ' void' : ''}${index === reachedIndex && entry.kind === 'layer' ? ' active' : ''}${index < reachedIndex ? ' passed' : ''}`}
                 style={{ top: y(entry.at), height: Math.max(0, (next ? y(next.at) : HEIGHT) - y(entry.at)) }}
               />
             );
@@ -208,7 +262,8 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
                 key={`${entry.id}-${index}`}
                 d={`M0 ${y(entry.at)} H9 L19 ${(tops[index] ?? 0) + ((labelRefs.current[index]?.offsetHeight ?? 0) / 2)} H28`}
                 fill="none" strokeWidth="1"
-                stroke={entry.risk || entry.kind === 'boundary' ? 'var(--strata-critical)' : index <= reachedIndex && entry.kind === 'layer' ? 'var(--strata-accent)' : 'var(--strata-rule)'}
+                strokeDasharray={entry.kind === 'hazard' ? '2 2' : undefined}
+                stroke={entry.risk || entry.kind === 'boundary' || entry.kind === 'hazard' ? 'var(--strata-critical)' : index <= reachedIndex && entry.kind === 'layer' ? 'var(--strata-accent)' : 'var(--strata-rule)'}
               />
             ))}
           </svg>
@@ -216,7 +271,8 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
             <div
               key={`${entry.id}-${index}`}
               ref={(node) => { labelRefs.current[index] = node; }}
-              className={`strata-label${entry.kind === 'boundary' ? ' stop' : ''}${entry.kind === 'beyond' ? ' beyond' : ''}${entry.risk ? ' risk' : ''}${index <= reachedIndex && entry.kind === 'layer' ? ' on' : ''}`}
+              className={`strata-label${entry.kind === 'boundary' ? ' stop' : ''}${entry.kind === 'beyond' ? ' beyond' : ''}${entry.risk ? ' risk' : ''}${entry.kind === 'hazard' ? ` hazard${entry.hazard?.emph ? ' emph' : ''}` : ''}${entry.source && SOURCE_TAG[entry.source] ? ' concept' : ''}${index <= reachedIndex && entry.kind === 'layer' ? ' on' : ''}`}
+              title={entry.hazard?.basis}
               style={{ top: tops[index] ?? y(entry.at) }}
             >
               <span className="en">{entry.english}</span>
@@ -227,9 +283,14 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
                     {[1, 2, 3].map((dot) => <s key={dot} className={dot <= entry.variance! ? 'f' : ''} />)}
                   </span>
                 )}
-                <span className="pct">{entry.kind === 'beyond' ? '범위 밖 · 미통과' : `${pct(entry.at)}%`}</span>
+                {entry.kind === 'hazard' ? (
+                  <span className="strata-risk-tag">위험 구조 · 통과하지 않음 · {hazardDepthText(entry.hazard!, limitMm)}</span>
+                ) : (
+                  <span className="pct">{entry.kind === 'beyond' ? '범위 밖 · 미통과' : `${pct(entry.at)}%`}{entry.source && SOURCE_TAG[entry.source] ? ` · ${SOURCE_TAG[entry.source]}` : ''}</span>
+                )}
                 {entry.risk && <span className="strata-risk-tag">위험 구조 · 모델 교차</span>}
               </span>
+              {entry.hazard?.note && <span className="note">{entry.hazard.note}</span>}
             </div>
           ))}
         </div>
@@ -243,7 +304,7 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
         </div>
         <div className="strata-read">
           <span className="big">{Math.round(pct(needleMm))}</span><span className="u">%</span>
-          <span className="of">{entries.filter((e) => e.kind !== 'beyond').length - 1}개 중 {reachedIndex}개 통과</span>
+          <span className="of">{entries.filter((e) => e.kind === 'layer').length - 1}개 중 {entries.filter((e, i) => e.kind === 'layer' && i > 0 && i <= reachedIndex).length}개 통과</span>
         </div>
       </div>
       <p className="strata-denom">
@@ -256,7 +317,11 @@ export default function StrataColumn({ report, ratio, onRatio, disabled }: Props
             조작 상한은 경계의 90%입니다. 참조 모델의 값이며 환자에게 그대로 적용되지 않습니다.</>
         )}
       </p>
-      {report.hazardHits.length > 0 && <p className="strata-risk-summary">위험 구조 {report.hazardHits.length}개 모델 경로 교차. 원본 깊이까지 표시하지만 안전 자침 경로를 뜻하지 않습니다.</p>}
+      {curated && !!reviewed!.hazards?.length && <p className="strata-risk-summary">위험 구조 {reviewed!.hazards.length}개는 바늘이 지나는 층이 아닙니다. 경로 주변이나 더 깊은 곳에 있어 피해야 하는 구조입니다.</p>}
+      {curated && reviewed!.zone && <p className="strata-zone">{reviewed!.zone}: 신경과 혈관이 모이는 부위입니다. 얕게, 천천히 자입합니다.</p>}
+      {curated && reviewed!.dropped && <p className="strata-denom">경로에서 뺀 모델 구조: {reviewed!.dropped.names.join(', ')}{reviewed!.dropped.why ? ` (${reviewed!.dropped.why})` : ''}</p>}
+      {curated && reviewed!.directionBasis && reviewed!.direction && <p className="strata-denom">자입 방향: {reviewed!.directionBasis}</p>}
+      {!curated && report.hazardHits.length > 0 && <p className="strata-risk-summary">위험 구조 {report.hazardHits.length}개 모델 경로 교차. 원본 깊이까지 표시하지만 안전 자침 경로를 뜻하지 않습니다.</p>}
       <p className={`strata-halt${ratio >= 99.5 ? ' on' : ''}${refusing ? ' flare' : ''}`}>모델 표시 범위의 끝입니다 — 더 들어가지 않습니다.</p>
     </div>
   );

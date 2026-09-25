@@ -505,7 +505,7 @@
    "status": "implemented_unverified",
    "seed": [
     -0.12368,
-    1.26663,
+    1.24063,
     0.10179
    ],
    "outward": [
@@ -515,7 +515,7 @@
    ],
    "region": "thorax",
    "depthMm": 8,
-   "rule": "5th intercostal space · midpoint of nipple line and midaxillary line (6 B-cun skin arc)"
+   "rule": "5th intercostal space · midpoint of nipple line and midaxillary line (6 B-cun skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 5 (-26 mm)"
   },
   {
    "code": "SP18",
@@ -565,7 +565,7 @@
    "status": "implemented_unverified",
    "seed": [
     -0.12343,
-    1.34955,
+    1.35655,
     0.07081
    ],
    "outward": [
@@ -575,7 +575,7 @@
    ],
    "region": "thorax",
    "depthMm": 7.7,
-   "rule": "3rd intercostal space · midpoint of nipple line and midaxillary line (6 B-cun skin arc)"
+   "rule": "3rd intercostal space · midpoint of nipple line and midaxillary line (6 B-cun skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 3 (+15 mm)"
   },
   {
    "code": "SP20",
@@ -595,7 +595,7 @@
    "status": "implemented_unverified",
    "seed": [
     -0.12428,
-    1.38102,
+    1.40602,
     0.04938
    ],
    "outward": [
@@ -605,7 +605,7 @@
    ],
    "region": "thorax",
    "depthMm": 6.9,
-   "rule": "2nd intercostal space · midpoint of nipple line and midaxillary line (6 B-cun skin arc)"
+   "rule": "2nd intercostal space · midpoint of nipple line and midaxillary line (6 B-cun skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 2 (+26 mm)"
   },
   {
    "code": "SP21",

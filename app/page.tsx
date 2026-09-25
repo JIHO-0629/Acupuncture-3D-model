@@ -41,7 +41,7 @@ export default function Home(){
   const meridian=MERIDIANS[meridianOf(selectedGbPoint.code)];
   // Same test the scene uses to fade the opposite limb: a point below the knee whose
   // surface faces the midline. The knee line is the patella's lower edge on this body.
-  const medialBelowKnee=selectedGbPoint.seed[1]<0.4396&&(selectedGbPoint.outward?.[0]??0)>0.2;
+  const medialBelowKnee=selectedGbPoint.seed[1]<0.4396+0.03&&(selectedGbPoint.outward?.[0]??0)>0.2;
   const meridianPoints=allPoints.filter(point=>meridianOf(point.code)===meridian.id);
   const selectedGbIndex=meridianPoints.findIndex(point=>point.code===selectedGbPoint.code);
   const scrubPoints=useMemo(()=>allPoints.filter(point=>meridianOf(point.code)===meridian.id).map(point=>({code:point.code,primary:point.korean,secondary:`${point.hanja} · ${point.english}`})),[allPoints,meridian.id]);
