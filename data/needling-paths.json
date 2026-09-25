@@ -1713,13 +1713,6 @@
     "relation": "cross",
     "emph": true,
     "note": "관통하지 않음. 타겟 아님"
-   },
-   {
-    "ko": "오금정맥",
-    "en": "popliteal vein",
-    "mm": 40.9,
-    "source": "model",
-    "relation": "cross"
    }
   ],
   "bone": {
@@ -6280,9 +6273,9 @@
     "emph": true
    },
    {
-    "ko": "정강신경",
-    "en": "Tibial nerve",
-    "mm": 39,
+    "ko": "오금정맥",
+    "en": "popliteal vein",
+    "mm": 38.2,
     "source": "model",
     "relation": "cross"
    }
@@ -6317,11 +6310,19 @@
    {
     "ko": "정강신경",
     "en": "Tibial nerve",
-    "mm": 37.5,
+    "mm": 33.8,
     "source": "model",
     "relation": "near",
     "emph": true,
     "note": "가장 얕음"
+   },
+   {
+    "ko": "오금정맥",
+    "en": "popliteal vein",
+    "mm": 40.3,
+    "source": "model",
+    "relation": "near",
+    "emph": true
    },
    {
     "ko": "오금동맥",
@@ -6331,14 +6332,6 @@
     "relation": "cross",
     "emph": true,
     "note": "실제로는 가장 깊고 정맥이 신경과 동맥 사이에 있음. 문헌(Hou 2020 MRI, doi:10.1177/0964528420958714)에서는 피부→동맥 약 26 mm로 이 모델보다 얕음"
-   },
-   {
-    "ko": "오금정맥",
-    "en": "popliteal vein",
-    "mm": 49.9,
-    "source": "model",
-    "relation": "near",
-    "emph": true
    }
   ],
   "bone": {
@@ -6442,7 +6435,7 @@
    {
     "ko": "오금정맥",
     "en": "popliteal vein",
-    "mm": 37.7,
+    "mm": 41.3,
     "source": "model",
     "relation": "cross",
     "note": "자침 상한 너머"
@@ -6506,6 +6499,20 @@
     "mm": 27.4,
     "source": "model",
     "relation": "near"
+   },
+   {
+    "ko": "정강신경",
+    "en": "Tibial nerve",
+    "mm": 29.5,
+    "source": "model",
+    "relation": "cross"
+   },
+   {
+    "ko": "오금정맥",
+    "en": "popliteal vein",
+    "mm": 29.9,
+    "source": "model",
+    "relation": "cross"
    },
    {
     "ko": "오금동맥",
@@ -6613,7 +6620,15 @@
     "atlas": "Right plantaris"
    }
   ],
-  "hazards": [],
+  "hazards": [
+   {
+    "ko": "오금정맥",
+    "en": "popliteal vein",
+    "mm": 42.1,
+    "source": "model",
+    "relation": "cross"
+   }
+  ],
   "bone": {
    "ko": "넙다리뼈",
    "en": "femur",
@@ -13052,7 +13067,7 @@
    {
     "ko": "뒤정강정맥",
     "en": "posterior tibial vein",
-    "mm": 0,
+    "mm": 3.6,
     "source": "model",
     "relation": "cross"
    },

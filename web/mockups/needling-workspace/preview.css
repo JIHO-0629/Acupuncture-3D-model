@@ -368,6 +368,16 @@
   text-anchor: end;
 }
 
+.compass-plot .direction-bottom {
+  text-anchor: middle;
+  fill: var(--preview-muted);
+}
+
+.compass-plot .direction-left {
+  text-anchor: start;
+  fill: var(--preview-muted);
+}
+
 .direction-mark {
   fill: none;
   stroke: var(--preview-muted);
@@ -422,6 +432,15 @@
 
 .structure.vein text {
   fill: var(--preview-rust);
+}
+
+.structure.bundle circle {
+  stroke: var(--preview-purple);
+  stroke-dasharray: 6 2 1.5 2;
+}
+
+.structure.bundle text {
+  fill: var(--preview-purple);
 }
 
 .structure.is-crossing circle {
@@ -522,6 +541,27 @@
   font-weight: 300;
 }
 
+.compass-structure-list .structure-refs {
+  grid-column: 2 / -1;
+  margin-top: -3px;
+  font-size: 8px;
+  color: var(--preview-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.compass-structure-list .structure-refs a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--preview-rule);
+  text-underline-offset: 2px;
+}
+
+.compass-structure-list .structure-refs a:hover {
+  color: var(--preview-ink);
+}
+
 .legend {
   width: 8px;
   height: 8px;
@@ -533,6 +573,7 @@
 .artery-legend,
 .vein-legend { color: var(--preview-rust); }
 .vein-legend { border-style: dashed; }
+.bundle-legend { color: var(--preview-purple); border-style: dotted; }
 .boundary-legend {
   width: 12px;
   height: 5px;
