@@ -118,7 +118,7 @@ const GB_POINT_INPUTS:GbPointInput[]=[
  {code:'GB33',korean:'슬양관',hanja:'膝陽關',english:'Xiyangguan',location:'대퇴이두근건과 장경인대 사이, 외측상과 위뒤쪽',basis:'대퇴골·대퇴이두근·장경인대',seed:[-.145,.435,-.045],projection:'lateral',status:'registered'},
  {code:'GB34',korean:'양릉천',hanja:'陽陵泉',english:'Yanglingquan',location:'비골두의 앞먼쪽 피부 구역',basis:'비골 근위부·경골 사이의 전외측 구역',seed:[-.122,.414,-.014],projection:'lateral',status:'registered'},
  {code:'GB35',korean:'양교',hanja:'陽交',english:'Yangjiao',location:'종아리 비골쪽면, 비골 뒤쪽, 외과 융기 위 7촌',basis:'16촌 하퇴축·경골–비골 국소 단면의 비골 후연',seed:GB_LANDMARK_SEEDS.GB35!,projection:'lateral',status:'review'},
- {code:'GB36',korean:'외구',hanja:'外丘',english:'Waiqiu',location:'종아리 비골쪽면, 비골 앞쪽, 외과 융기 위 7촌',basis:'16촌 하퇴축·경골–비골 국소 단면의 비골 전연',seed:GB_LANDMARK_SEEDS.GB36!,projection:'lateral',status:'review'},
+ {code:'GB36',korean:'외구',hanja:'外丘',english:'Waiqiu',location:'종아리 비골쪽면, 비골 앞쪽, 외과 융기 위 7촌',basis:'16촌 하퇴축의 외과 위 7촌 높이, 양릉천(GB34)에서 곧게 내려온 선 위 (검수 2026-09-26: 사진처럼 GB34 수직선에 맞춤)',seed:[GB_LANDMARK_SEEDS.GB36![0],GB_LANDMARK_SEEDS.GB36![1],-.014],projection:'lateral',status:'review'},
  {code:'GB37',korean:'광명',hanja:'光明',english:'Guangming',location:'종아리 비골쪽면, 비골 앞쪽, 외과 융기 위 5촌',basis:'16촌 하퇴축·경골–비골 국소 단면의 비골 전연',seed:GB_LANDMARK_SEEDS.GB37!,projection:'lateral',status:'review'},
  {code:'GB38',korean:'양보',hanja:'陽輔',english:'Yangfu',location:'종아리 비골쪽면, 비골 앞쪽, 외과 융기 위 4촌',basis:'16촌 하퇴축·경골–비골 국소 단면의 비골 전연',seed:GB_LANDMARK_SEEDS.GB38!,projection:'lateral',status:'review'},
  {code:'GB39',korean:'현종',hanja:'懸鍾',english:'Xuanzhong',location:'종아리 비골쪽면, 비골 앞쪽, 외과 융기 위 3촌',basis:'16촌 하퇴축·경골–비골 국소 단면의 비골 전연',seed:GB_LANDMARK_SEEDS.GB39!,projection:'lateral',status:'review'},

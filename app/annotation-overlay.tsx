@@ -54,7 +54,7 @@ export function AnnotationOverlay({ annotation, channel }: { annotation: AtlasAn
       const now = performance.now();
       if (uiDirty) {
         resizeObserver.disconnect(); uiRects=[];
-        document.querySelectorAll('.acupuncture-panel,.identity,.atlas-point-identifier,.top-actions,.view-controls,.auxiliary-tools,.detail-sheet').forEach(node => {
+        document.querySelectorAll('.acupuncture-panel,.identity,.atlas-point-identifier,.acupoint-rail,.top-actions,.view-controls,.mobile-camera-controls,.auxiliary-tools,.needle-eye-launcher,.needle-eye-hud,.detail-sheet,.scene-caption,.tutorial-invite,.feature-hint').forEach(node => {
           resizeObserver.observe(node);
           const rect=node.getBoundingClientRect(); if(rect.width&&rect.height) uiRects.push(rect);
         });
