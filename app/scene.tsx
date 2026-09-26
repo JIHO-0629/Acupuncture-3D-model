@@ -707,21 +707,58 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
     depthRing.visible = false;
     scene.add(currentLayerGroup, focusGroup, depthRing);
     // The pick is named in the scene too: an x-rayed shape alone does not say what it is.
-    const focusLabelCanvas = document.createElement("canvas"),
-      focusLabelTexture = new T.CanvasTexture(focusLabelCanvas),
-      focusLabelMaterial = new T.SpriteMaterial({ map: focusLabelTexture, transparent: true, depthTest: false, depthWrite: false, sizeAttenuation: false }),
+    const focusLabelCanvas = document.createElement("canvas");
+    let focusLabelTexture = new T.CanvasTexture(focusLabelCanvas);
+    const focusLabelMaterial = new T.SpriteMaterial({ map: focusLabelTexture, transparent: true, depthTest: false, depthWrite: false, sizeAttenuation: false }),
       focusLabel = new T.Sprite(focusLabelMaterial);
     focusLabelTexture.colorSpace = T.SRGBColorSpace;
     focusLabel.renderOrder = 76;
     focusLabel.visible = false;
-    focusLabel.center.set(-0.06, 0.5);
+    // Anchor the tag's left edge a little right of the ring, so it never sits on the point marker.
+    focusLabel.center.set(-0.18, 0.5);
     scene.add(focusLabel);
+    // The pick's name is an HTML tag styled like the locator tags (app/globals.css .focus-tag), placed each frame
+    // from its 3D anchor and nudged down past any other tag or label it would cover.
+    const focusTag = document.createElement("div");
+    focusTag.className = "focus-tag";
+    focusTag.hidden = true;
+    focusTag.innerHTML = "<i></i><span></span>";
+    el.appendChild(focusTag);
+    let focusTagAnchor: T.Vector3 | null = null;
+    const placeFocusTag = () => {
+      if (!focusTagAnchor) { focusTag.hidden = true; return; }
+      const p = focusTagAnchor.clone().project(camera);
+      if (p.z < -1 || p.z > 1) { focusTag.hidden = true; return; }
+      focusTag.hidden = false;
+      const host = el.getBoundingClientRect(), x = ((p.x + 1) * el.clientWidth) / 2, y = ((1 - p.y) * el.clientHeight) / 2;
+      const height = focusTag.offsetHeight || 26, width = focusTag.offsetWidth || 90, gap = 8;
+      const others = [...document.querySelectorAll<HTMLElement>(".locator-tag.is-anchored, .atlas-annotation.is-visible .atlas-annotation-label")].map((node) => node.getBoundingClientRect()).filter((r) => r.width);
+      let left = x + 16, top = y - height / 2;
+      for (let step = 0; step < 8; step++) {
+        const box = { left: host.left + left - gap, right: host.left + left + width + gap, top: host.top + top - gap, bottom: host.top + top + height + gap };
+        const hit = others.find((r) => !(r.right < box.left || r.left > box.right || r.bottom < box.top || r.top > box.bottom));
+        if (!hit) break;
+        top = hit.bottom - host.top + gap;
+      }
+      focusTag.style.transform = `translate(${Math.round(left)}px, ${Math.round(top)}px)`;
+    };
     const drawFocusLabel = (text: string, tone: StructureFocus["tone"]) => {
       const scale = 2, font = `600 ${15 * scale}px 'S-Core Dream', 'Noto Sans KR', sans-serif`, context = focusLabelCanvas.getContext("2d")!;
       context.font = font;
       const width = Math.ceil(context.measureText(text).width) + 28 * scale, height = 30 * scale;
-      focusLabelCanvas.width = width;
-      focusLabelCanvas.height = height;
+      // A texture keeps the size it was first uploaded at; a longer or shorter name needs a new one, or the old
+      // name shows through beside the new (two tags on screen).
+      if (focusLabelCanvas.width !== width || focusLabelCanvas.height !== height) {
+        focusLabelCanvas.width = width;
+        focusLabelCanvas.height = height;
+        focusLabelTexture.dispose();
+      focusTag.remove();
+        focusLabelTexture = new T.CanvasTexture(focusLabelCanvas);
+        focusLabelTexture.colorSpace = T.SRGBColorSpace;
+        focusLabelMaterial.map = focusLabelTexture;
+        focusLabelMaterial.needsUpdate = true;
+      }
+      context.clearRect(0, 0, width, height);
       context.font = font;
       context.fillStyle = "rgba(250,249,244,.94)";
       context.strokeStyle = `#${FOCUS_COLORS[tone].toString(16).padStart(6, "0")}`;
@@ -761,15 +798,19 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         depthRing.quaternion.setFromUnitVectors(new T.Vector3(0, 0, 1), needleTrajectory);
         depthRingMaterial.color.setHex(FOCUS_COLORS[f!.tone]);
       }
-      focusLabel.visible = !!f && (depthRing.visible || focusGroup.children.length > 0);
-      if (focusLabel.visible) {
+      focusLabel.visible = false;
+      const tagShown = !!f && (depthRing.visible || focusGroup.children.length > 0);
+      focusTagAnchor = null;
+      if (tagShown) {
         if (depthRing.visible) focusLabel.position.copy(depthRing.position);
         else {
           const box = new T.Box3();
           for (const child of focusGroup.children) box.expandByObject(child);
           box.getCenter(focusLabel.position);
         }
-        drawFocusLabel(f!.label, f!.tone);
+        focusTagAnchor = focusLabel.position.clone();
+        focusTag.querySelector("span")!.textContent = f!.label;
+        focusTag.dataset.tone = f!.tone;
       }
       // The layer the tip is in is context, not a pick: it yields to an explicit focus on the same part.
       const layer = currentLayerId && !f?.partIds.includes(currentLayerId) ? [currentLayerId] : [];
@@ -1103,7 +1144,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         }
       });
       lineGroup.clear();
-      const projectedBySide: { right: {code:string;point:T.Vector3}[]; left: {code:string;point:T.Vector3}[] } = { right: [], left: [] };
+      const projectedByMeridian: Record<string, { right: {code:string;point:T.Vector3}[]; left: {code:string;point:T.Vector3}[] }> = {};
       for (const definition of acupoints) {
         for (const side of pointSides(definition.code)) {
           const object = pointObjects.find(
@@ -1131,7 +1172,8 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
           const markerScale=selected?Math.max(0.8,definition.code.startsWith('GB')?1.08:.3):(definition.code.startsWith('GB')?1:.3);
           object.marker.userData.baseScale = markerScale;
           markerZoom = -1;
-          if(meridianOf(definition.code)===meridianOf(config?.selectedCode??'GB34')) projectedBySide[side].push({code:definition.code,point:object.marker.position.clone()});
+          const meridianId = meridianOf(definition.code);
+          (projectedByMeridian[meridianId] ??= { right: [], left: [] })[side].push({code:definition.code,point:object.marker.position.clone()});
         }
       }
       const addSurfaceGuide = (
@@ -1224,25 +1266,30 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
           }
         }
       }
-      if (config?.visible && config.showAll && config.showLines) {
-        for (const side of ["right", "left"] as const) {
-          const rows=projectedBySide[side], selectedMeridian=meridianOf(config.selectedCode??'GB34');
-          const segments=selectedMeridian==='BL'?
-            [rows.filter(row=>Number(row.code.slice(2))<=40),rows.filter(row=>{const n=Number(row.code.slice(2));return n>=41&&n<=54;}),[rows.find(row=>row.code==='BL40')!,...rows.filter(row=>Number(row.code.slice(2))>=55)]]:
-            [rows];
-          for(const segment of segments){
-            if(segment.length<2)continue;
-            const curve = new T.CatmullRomCurve3(segment.map(row=>row.point), false, "centripetal", 0.28),
-            geometry = new T.BufferGeometry().setFromPoints(curve.getPoints(Math.max(32,segment.length*8))),
-            material = new T.LineBasicMaterial({
-              color: 0xd6a44f,
-              transparent: true,
-              opacity: 0.34,
-              depthTest: true,
-            });
-            const line = new T.Line(geometry, material);
-            line.renderOrder = 55;
-            lineGroup.add(line);
+      // Overview state (no single point zoomed in): trace every meridian across the whole body,
+      // thin enough to read as a network rather than compete with the selected point.
+      if (config?.visible && config.showAll) {
+        for (const meridianId of Object.keys(projectedByMeridian)) {
+          const bucket = projectedByMeridian[meridianId];
+          for (const side of ["right", "left"] as const) {
+            const rows=bucket[side];
+            const segments=meridianId==='BL'?
+              [rows.filter(row=>Number(row.code.slice(2))<=40),rows.filter(row=>{const n=Number(row.code.slice(2));return n>=41&&n<=54;}),[rows.find(row=>row.code==='BL40')!,...rows.filter(row=>Number(row.code.slice(2))>=55)]]:
+              [rows];
+            for(const segment of segments){
+              if(segment.length<2)continue;
+              const curve = new T.CatmullRomCurve3(segment.map(row=>row.point), false, "centripetal", 0.28),
+              geometry = new T.BufferGeometry().setFromPoints(curve.getPoints(Math.max(32,segment.length*8))),
+              material = new T.LineBasicMaterial({
+                color: 0xd6a44f,
+                transparent: true,
+                opacity: 0.2,
+                depthTest: true,
+              });
+              const line = new T.Line(geometry, material);
+              line.renderOrder = 55;
+              lineGroup.add(line);
+            }
           }
         }
       }
@@ -1884,6 +1931,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       if (dirty) {
         if (showLocatorMask && locatorGroup.visible) locatorGpu.render(camera);
         renderer.render(scene, camera);
+        placeFocusTag();
         if (showLocatorMask && locatorGroup.visible) locatorGpu.compositeOnScreen();
         targets = [];
         if (amount > 0.45) {

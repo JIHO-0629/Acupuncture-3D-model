@@ -51,7 +51,7 @@ export const VARIANCE_LABEL:Record<Variance,string>={1:'변이 낮음',2:'변이
 export interface NeedleState {enabled:boolean;depthRatio:number;revision:number}
 /** needle-side frames the whole shaft from an oblique angle so its depth reads; the others look down the skin normal. */
 export interface RegionFocus {center:[number,number,number];radiusMm:number;revision:number;viewHint?:'dorsal-foot'|'needle-side'}
-export interface AcupunctureState {visible:boolean;selectedCode:string;showAll:boolean;showLines:boolean}
+export interface AcupunctureState {visible:boolean;selectedCode:string;showAll:boolean}
 export interface SceneState {/** Unobstructed viewport (px from each edge) the focused region is framed into. */viewInsets?:{top:number;right:number;bottom:number;left:number};inspectorOpen?:boolean;locatorGuide?:boolean;hiddenParts?:string[];needlePlayback?:boolean;zoomCommand?:{factor:number;revision:number};explode:number;visible:SystemId[];selected:string[];isolate:boolean;view:View;rotate:boolean;reset:number;needle?:NeedleState;acupuncture?:AcupunctureState;regionFocus?:RegionFocus}
 const KOREAN_ANATOMY_TERMS:Record<string,string>={
  'abductor digiti minimi of foot':'소지외전근','abductor hallucis':'무지외전근','adductor brevis':'단내전근','adductor longus':'장내전근','adductor magnus':'대내전근','adductor minimus':'소내전근','adductor hallucis':'무지내전근',
