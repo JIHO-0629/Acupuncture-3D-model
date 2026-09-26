@@ -7,7 +7,7 @@ const copy:Record<Exclude<TutorialStep,'invite'>,{title:string;body:string;selec
  zoom:{title:'가까이 확대해 보세요',body:'스크롤하거나 두 손가락으로 벌려 확대해 보세요.',selector:'.scene canvas'},
  point:{title:'GB34 양릉천을 눌러 보세요',body:'다리 바깥쪽의 GB34 마커를 직접 누르세요.',selector:'.atlas-annotation.is-visible:not(.is-occluded) .atlas-annotation-anchor'},
  landmark:{title:'비골을 확인해 보세요',body:'위치 설명에서 ‘비골’을 눌러 3D 구조를 강조하세요.',selector:'[data-tutorial="fibula"]'},
- play:{title:'자침 경로를 재생해 보세요',body:'재생 버튼을 누르고 움직임이 끝날 때까지 지켜보세요.',selector:'[data-tutorial="play"]'},
+ play:{title:'자침 경로를 재생해 보세요',body:'재생 버튼을 누르고 움직임이 끝날 때까지 지켜보세요. Needle\'s Eye 화면 위에서 스크롤하면 바늘도 함께 움직입니다.',selector:'[data-tutorial="play"]'},
  strata:{title:'지나가는 층을 확인해 보세요',body:'층서 행 하나를 눌러 3D에서 해당 구조를 보세요.',selector:'.strata-label.pickable'},
  finish:{title:'이제 혼자 탐색할 수 있어요',body:'아래 도구에서 다른 기능을 열 수 있고, 오른쪽 위 ?에서 언제든 다시 볼 수 있습니다.',selector:'[data-tutorial="help"]'},
 };
