@@ -141,6 +141,6 @@ export function NeedleEyeHud({profile,references,depth,pointCode,pointName,expan
 
 export function NeedleEyeLauncher({active,available,onToggle}:{active:boolean;available:boolean;onToggle:()=>void}){
   return <nav className="needle-eye-launcher" aria-label="관찰 모드와 보조 도구">
-    <button type="button" className={active?'is-active':''} aria-label={available?'Needle’s Eye':'이 혈자리는 주요 위험구조 Needle’s Eye 대상이 아닙니다'} aria-pressed={active} disabled={!available} onClick={onToggle}><i/><span className="sr-only">Needle’s Eye</span></button>
+    <button type="button" className={active?'is-active':''} aria-label={available?'Needle’s Eye':'이 혈자리는 주요 위험구조 Needle’s Eye 대상이 아닙니다'} aria-pressed={active} disabled={!available} data-tip="Needle's Eye|바늘 끝에서 본 주변 신경·혈관 (자침 시뮬레이터와 연동)" data-tip-off="이 혈에는 주요 위험 구조 데이터가 없습니다" onClick={onToggle}><i/><span className="sr-only">Needle’s Eye</span></button>
   </nav>;
 }

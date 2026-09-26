@@ -47,5 +47,5 @@ export function FeedbackButton({acupoint,meridian,toolbar=false}:{acupoint?:stri
     const context=feedbackContext({acupoint,meridian}),url=feedbackUrl(context);
     loadTally().then(tally=>tally.openPopup?.(TALLY_FORM_ID,{layout:'modal',hiddenFields:context})).catch(()=>window.open(url,'_blank','noopener,noreferrer'));
   };
-  return <Button variant="ghost" className={`feedback-button ${toolbar?'feedback-button-toolbar':''}`} onClick={openFeedback} aria-label="현재 경혈에 대한 피드백 보내기" title="현재 경혈과 화면 정보를 포함해 피드백 보내기"><MessageSquare size={toolbar?18:15}/><span>피드백</span></Button>;
+  return <Button variant="ghost" className={`feedback-button ${toolbar?'feedback-button-toolbar':''}`} onClick={openFeedback} aria-label="현재 경혈에 대한 피드백 보내기" data-tip="피드백|이 혈과 화면에 대한 의견을 보냅니다"><MessageSquare size={toolbar?18:15}/><span>피드백</span></Button>;
 }

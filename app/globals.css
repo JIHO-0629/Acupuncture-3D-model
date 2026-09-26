@@ -379,3 +379,16 @@ h1 .edition{font-family:inherit;font-weight:500;font-size:var(--text-caption);le
 /* Acupoints lead the structure search. */
 .search-result-point .search-result-name b{font-variant-numeric:tabular-nums;margin-right:4px}
 .search-result-point .search-result-name small{font-size:var(--text-caption);color:#7d8a79;margin-left:4px}
+/* Button tips (app/button-tips.tsx): name and one line of what an icon button does. */
+.button-tip{position:fixed;z-index:60;transform:translate(-50%,-100%);display:flex;flex-direction:column;gap:2px;max-width:min(260px,calc(100vw - 16px));padding:8px 12px;border-radius:8px;background:#22301f;color:#f4f6f1;font-family:var(--font-body);font-size:var(--text-footnote);line-height:1.4;box-shadow:0 4px 16px #1825362e;pointer-events:none;animation:button-tip-in var(--dur-fast) var(--ease)}
+.button-tip.is-below{transform:translate(-50%,0)}
+.button-tip b{font-weight:600}
+.button-tip span{font-size:var(--text-caption);color:#c9d3c4}
+@keyframes button-tip-in{from{opacity:0}to{opacity:1}}
+[data-tip]{-webkit-touch-callout:none}
+/* Phones: the Needle's Eye launcher matches the 42 px tool buttons beside it (it stood 4 px taller), and the camera
+   buttons sit under the title instead of over it. */
+@media(max-width:767px){
+.studio .needle-eye-launcher button{width:42px;height:42px;min-height:0}
+.studio .mobile-camera-controls{top:var(--inset-top,108px)}
+}
