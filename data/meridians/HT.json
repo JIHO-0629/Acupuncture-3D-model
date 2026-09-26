@@ -271,18 +271,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.22386,
-    0.76269,
-    0.06946
+    -0.22665,
+    0.75848,
+    0.07849
    ],
    "outward": [
-    -0.69856,
-    -0.56928,
-    -0.43352
+    -0.90191,
+    -0.31517,
+    -0.29533
    ],
    "region": "hand-R",
-   "depthMm": 1.5,
-   "rule": "little finger distal phalanx · radial nail-root corner + 0.1 F-cun proximal-radial"
+   "depthMm": 1.1,
+   "rule": "little finger distal phalanx · radial nail-root corner + 0.1 F-cun proximal (0.88 × bone length back from the skin tip, skin cross-section edge 70° from the dorsum toward the radial side)"
   }
  ]
 }

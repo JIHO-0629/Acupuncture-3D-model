@@ -1353,18 +1353,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.1436,
-    0.02134,
-    0.12147
+    -0.14471,
+    0.01737,
+    0.12561
    ],
    "outward": [
-    -0.58187,
-    0.78092,
-    -0.22714
+    -0.58699,
+    0.80146,
+    -0.1145
    ],
    "region": "foot-R",
-   "depthMm": 7.3,
-   "rule": "2nd toe · 0.1 F-cun proximal-lateral to the lateral corner of the toenail root (nail footprint estimated from the distal phalanx)"
+   "depthMm": 8.6,
+   "rule": "second toe distal phalanx · lateral nail-root corner + 0.1 F-cun proximal (0.88 × bone length back from the skin tip, bone edge projected 35° from the dorsum toward the lateral side)"
   }
  ]
 }

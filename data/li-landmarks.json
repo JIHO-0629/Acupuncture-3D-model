@@ -52,17 +52,17 @@
  "points": {
   "LI1": {
    "seed": [
-    -0.31218,
-    0.74825,
-    0.0716
+    -0.31649,
+    0.74459,
+    0.08225
    ],
    "outward": [
-    -0.80462,
-    -0.41959,
-    -0.42014
+    -0.9275,
+    -0.10707,
+    -0.35817
    ],
-   "depthMm": 7.8,
-   "rule": "distal phalanx radial-dorsal corner at nail root (28% of 19 mm from base) + 0.1 F-cun proximal"
+   "depthMm": 1,
+   "rule": "index finger distal phalanx · radial nail-root corner + 0.1 F-cun proximal (0.88 × bone length back from the skin tip, skin cross-section edge 70° from the dorsum toward the radial side)"
   },
   "LI2": {
    "seed": [

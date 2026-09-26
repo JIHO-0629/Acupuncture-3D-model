@@ -2006,18 +2006,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.1724,
-    0.01294,
-    0.08067
+    -0.17269,
+    0.01242,
+    0.08227
    ],
    "outward": [
-    -0.75173,
-    0.45104,
-    -0.48111
+    -0.72338,
+    0.57285,
+    -0.38544
    ],
    "region": "foot-R",
-   "depthMm": 9.9,
-   "rule": "little-toe lateral nail-root corner · 0.1 F-cun proximal"
+   "depthMm": 5,
+   "rule": "little toe distal phalanx · lateral nail-root corner + 0.1 F-cun proximal (0.88 × bone length back from the skin tip, bone edge projected 55° from the dorsum toward the lateral side)"
   }
  ]
 }

@@ -29,18 +29,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.2443,
-    0.74938,
-    0.07406
+    -0.24428,
+    0.74545,
+    0.0936
    ],
    "outward": [
-    0.62849,
-    0,
-    -0.77782
+    0.95816,
+    -0.25507,
+    -0.12989
    ],
    "region": "hand-R",
-   "depthMm": 8.6,
-   "rule": "ring finger · ulnar nail-root corner · 0.1 F-cun proximal"
+   "depthMm": 0.8,
+   "rule": "ring finger distal phalanx · ulnar nail-root corner + 0.1 F-cun proximal (0.88 × bone length back from the skin tip, skin cross-section edge 70° from the dorsum toward the ulnar side)"
   },
   {
    "code": "TE2",

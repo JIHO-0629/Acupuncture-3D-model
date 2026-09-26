@@ -333,18 +333,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.32428,
-    0.81939,
-    0.06568
+    -0.32697,
+    0.81327,
+    0.06895
    ],
    "outward": [
-    -0.92187,
-    0.38597,
-    -0.03449
+    -0.80557,
+    0.50694,
+    0.30671
    ],
    "region": "hand-R",
-   "depthMm": 9.3,
-   "rule": "thumb distal phalanx · radial nail-root corner + 0.1 F-cun proximal-lateral"
+   "depthMm": 0.9,
+   "rule": "thumb distal phalanx · radial nail-root corner + 0.1 F-cun proximal (0.88 × bone length back from the skin tip, skin cross-section edge 70° from the dorsum toward the radial side)"
   }
  ]
 }

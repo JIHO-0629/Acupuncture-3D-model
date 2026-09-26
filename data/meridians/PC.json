@@ -271,18 +271,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.27861,
-    0.73049,
-    0.09506
+    -0.28015,
+    0.72835,
+    0.10309
    ],
    "outward": [
-    -0.15571,
-    -0.47269,
-    0.86736
+    -0.12688,
+    -0.67918,
+    0.72292
    ],
    "region": "hand-R",
-   "depthMm": 1.5,
-   "rule": "centre of middle-finger tip with slight palmar bias (WHO standard; radial nail-root corner alternative noted)"
+   "depthMm": 3.1,
+   "rule": "centre of the middle-finger tip on the skin (the skin runs past the bone here; WHO standard, radial nail-root corner alternative noted)"
   }
  ]
 }

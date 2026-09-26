@@ -30,18 +30,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.12114,
-    0.02059,
-    0.11682
+    -0.12155,
+    0.02064,
+    0.12338
    ],
    "outward": [
-    -0.55514,
-    0.82132,
-    -0.13137
+    -0.30839,
+    0.95087,
+    0.02731
    ],
    "region": "foot-R",
-   "depthMm": 0.2,
-   "rule": "great toe · 0.1 F-cun proximal-lateral to the lateral corner of the toenail root (nail footprint estimated from the distal phalanx)"
+   "depthMm": 10.3,
+   "rule": "big toe distal phalanx · lateral nail-root corner + 0.1 F-cun proximal (0.88 × bone length back from the skin tip, bone edge projected 15° from the dorsum toward the lateral side)"
   },
   {
    "code": "LR2",

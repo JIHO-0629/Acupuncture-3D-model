@@ -24,18 +24,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.09817,
-    0.01187,
-    0.12196
+    -0.10396,
+    0.01558,
+    0.13179
    ],
    "outward": [
-    0.92468,
-    0,
-    0.38075
+    0.6741,
+    0.56464,
+    0.47621
    ],
    "region": "foot-R",
-   "depthMm": 8,
-   "rule": "hallux medial nail-root corner · 0.1 F-cun proximal-medial"
+   "depthMm": 8.3,
+   "rule": "big toe distal phalanx · medial nail-root corner + 0.1 F-cun proximal (0.88 × bone length back from the skin tip, bone edge projected 55° from the dorsum toward the medial side)"
   },
   {
    "code": "SP2",

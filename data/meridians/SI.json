@@ -24,18 +24,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.21994,
-    0.76683,
-    0.0687
+    -0.21781,
+    0.76013,
+    0.07961
    ],
    "outward": [
-    0.92468,
-    0,
-    -0.38075
+    0.96537,
+    -0.11063,
+    -0.23625
    ],
    "region": "hand-R",
-   "depthMm": 3.9,
-   "rule": "little-finger ulnar nail-root corner · 0.1 F-cun proximal"
+   "depthMm": 1.1,
+   "rule": "little finger distal phalanx · ulnar nail-root corner + 0.1 F-cun proximal (0.88 × bone length back from the skin tip, skin cross-section edge 70° from the dorsum toward the ulnar side)"
   },
   {
    "code": "SI2",

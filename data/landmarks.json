@@ -3764,14 +3764,14 @@
    "side": "right",
    "kind": "point",
    "point": [
-    -0.16047,
-    0.01469,
-    0.09655
+    -0.16667,
+    0.01157,
+    0.1011
    ],
    "type": "estimated",
    "anatomicalConfidence": "low",
    "frameConfidence": "medium",
-   "derivation": "lateral-dorsal corner of a conceptual nail footprint scaled only from the fourth distal phalanx; toenails are not modelled in BodyParts3D, so the landmark remains explicitly estimated",
+   "derivation": "2026-09-26 unified jing-well rule: fourth toe distal phalanx · lateral nail-root corner + 0.1 F-cun proximal (0.88 × bone length back from the skin tip, bone edge projected 55° from the dorsum toward the lateral side)",
    "sources": [
     "Middle phalanx of right fourth toe",
     "Distal phalanx of right fourth toe",
