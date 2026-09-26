@@ -10,6 +10,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { bilingualPartName, varianceOf, VARIANCE_LABEL, type NeedleHit, type NeedleReport, type Variance } from './anatomy';
 import { needleProfile, needlePathOf, type AcupointCode, type NeedlePathHazard, type NeedlePathLayer } from './acupoints';
 import { reviewMode } from './review-mode';
+import { focusTargetProps, type FocusHandlers, type StructureFocus } from './focus-channel';
 
 const HEIGHT = 280, LABEL_GAP = 8;
 const SKIN = { id: '__skin', name: '피부·피하조직', english: 'Skin & subcutis', distanceMm: 0, variance: 2 as Variance };
@@ -48,12 +49,10 @@ function hazardDepthText(h: NeedlePathHazard, limitMm: number) {
   return mm > limitMm ? `${where} · 자침 상한 너머` : where;
 }
 
-/** Split "Right fibula (우측 비골)" back into its two halves so the Korean can be styled
- *  on its own line at a readable size instead of trailing the English in parentheses. */
+/** Split "우측 비골 (Right fibula)" so the Korean leads at a readable size. */
 function split(hit: NeedleHit) {
   const label = bilingualPartName(hit.name);
-  const match = /^(.*?)\s*\(([^)]*)\)$/.exec(label);
-  return { english: match ? match[1] : label, korean: match ? match[2] : '' };
+  return { english: hit.name, korean: label.endsWith(` (${hit.name})`) ? label.slice(0,-hit.name.length-3) : '' };
 }
 
 interface Props {
@@ -63,9 +62,12 @@ interface Props {
   disabled?: boolean;
   /** Incremented when a control outside the column tries to go past the limit. */
   refuseSignal?: number;
+  /** Rows name structures: hovering or tapping one picks it out in the scene (focus-channel.ts). */
+  focus?: FocusHandlers;
 }
 
-export default function StrataColumn({ report, ratio, onRatio, disabled, refuseSignal }: Props) {
+export default function StrataColumn({ report, ratio, onRatio, disabled, refuseSignal, focus }: Props) {
+  const partCache = useRef(new Map<string, string[]>());
   const coreRef = useRef<HTMLDivElement>(null);
   const columnRef = useRef<HTMLDivElement>(null);
   const labelsRef = useRef<HTMLDivElement>(null);
@@ -137,6 +139,39 @@ export default function StrataColumn({ report, ratio, onRatio, disabled, refuseS
   const needleMm = (limitMm * ratio) / 100;
   const reachedIndex = needleMm <= 0 ? 0 : entries.reduce((found, entry, index) => (entry.kind !== 'beyond' && entry.kind !== 'hazard' && needleMm >= entry.at ? index : found), 0);
   const current = entries[reachedIndex];
+
+  // Which atlas meshes a row stands for. Model rows carry their hit; reviewed rows and hazards
+  // only a name. Concept and empty layers have no mesh: the scene marks their depth on the shaft.
+  const hitIds = new Set(allHits.map((hit) => hit.id));
+  const partsOf = (entry: Entry): string[] => {
+    if (entry.id === SKIN.id || entry.source === 'concept' || entry.source === 'void') return [];
+    if (hitIds.has(entry.id)) return [entry.id];
+    const cacheKey = `${report.code}:${entry.english}`;
+    const cached = partCache.current.get(cacheKey);
+    if (cached) return cached;
+    const named = allHits.find((hit) => hit.name.toLowerCase() === entry.english.toLowerCase());
+    const found = named ? [named.id] : focus?.partIdsFor(entry.english) ?? [];
+    partCache.current.set(cacheKey, found);
+    return found;
+  };
+  const focusOf = (entry: Entry, pinned: boolean): StructureFocus => ({
+    key: `strata:${report.code}:${entry.id}`,
+    label: entry.korean || entry.english,
+    partIds: partsOf(entry),
+    depthMm: entry.kind === 'hazard' ? entry.hazard?.mm ?? entry.hazard?.literatureMm ?? null : entry.at,
+    tone: entry.kind === 'hazard' || entry.kind === 'boundary' || entry.risk ? 'hazard' : 'layer',
+    source: 'strata',
+    pinned,
+  });
+  const pinned = focus?.pinned ?? null;
+  const isFocused = (entry: Entry) => !!pinned && (pinned.key === `strata:${report.code}:${entry.id}`
+    || (pinned.source !== 'strata' && pinned.partIds.length > 0 && partsOf(entry).some((id) => pinned.partIds.includes(id))));
+  const focusedIndex = entries.findIndex(isFocused);
+  // A structure picked in the scene brings its row into view.
+  useEffect(() => {
+    if (pinned?.source !== 'scene' || focusedIndex < 0) return;
+    labelRefs.current[focusedIndex]?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  }, [pinned, focusedIndex]);
 
   /** Measure each label and stack them apart, so a name that wraps to three lines in a
    *  narrow panel still cannot collide with its neighbour. */
@@ -278,12 +313,13 @@ export default function StrataColumn({ report, ratio, onRatio, disabled, refuseS
             <div
               key={`${entry.id}-${index}`}
               ref={(node) => { labelRefs.current[index] = node; }}
-              className={`strata-label${entry.kind === 'boundary' ? ' stop' : ''}${entry.kind === 'beyond' ? ' beyond' : ''}${entry.risk ? ' risk' : ''}${entry.kind === 'hazard' ? ` hazard${entry.hazard?.emph ? ' emph' : ''}` : ''}${entry.source && SOURCE_TAG[entry.source] ? ' concept' : ''}${index <= reachedIndex && entry.kind === 'layer' ? ' on' : ''}`}
-              title={entry.hazard?.basis}
+              className={`strata-label${entry.kind === 'boundary' ? ' stop' : ''}${entry.kind === 'beyond' ? ' beyond' : ''}${entry.risk ? ' risk' : ''}${entry.kind === 'hazard' ? ` hazard${entry.hazard?.emph ? ' emph' : ''}` : ''}${entry.source && SOURCE_TAG[entry.source] ? ' concept' : ''}${index <= reachedIndex && entry.kind === 'layer' ? ' on' : ''}${index === focusedIndex ? ' focused' : ''}${focus ? ' pickable' : ''}`}
+              title={entry.hazard?.basis ?? (focus ? '3D에서 보기 · 한 번 더 누르면 해제' : undefined)}
+              {...focusTargetProps(focus, (isPinned) => focusOf(entry, isPinned))}
               style={{ top: tops[index] ?? y(entry.at) }}
             >
-              <span className="en">{entry.english}</span>
               {entry.korean && <span className="ko">{entry.korean}</span>}
+              <span className="en">{entry.korean ? `(${entry.english})` : entry.english}</span>
               <span className="meta">
                 {entry.variance && (
                   <span className={`vari v${entry.variance}`} title={VARIANCE_LABEL[entry.variance]}>
@@ -306,8 +342,8 @@ export default function StrataColumn({ report, ratio, onRatio, disabled, refuseS
       <div className="strata-foot">
         <div className="strata-now" key={crossing}>
           <span className="k">현재 층</span>
-          <span className="en">{current.english}</span>
           {current.korean && <span className="ko">{current.korean}</span>}
+          <span className="en">{current.korean ? `(${current.english})` : current.english}</span>
         </div>
         <div className="strata-read">
           <span className="big">{Math.round(pct(needleMm))}</span><span className="u">%</span>
@@ -319,8 +355,8 @@ export default function StrataColumn({ report, ratio, onRatio, disabled, refuseS
         {report.sourceRangeBoundary ? (
           <>100% = 문헌 범위 상한을 참조 모델의 국소 비례로 환산한 지점. 위험 구조가 없음을 뜻하지 않습니다.</>
         ) : (
-          <>눈금 100% = <b>{entries.find((e) => e.kind === 'boundary')?.english}</b>
-            {entries.find((e) => e.kind === 'boundary')?.korean ? ` (${entries.find((e) => e.kind === 'boundary')!.korean})` : ''}까지의 거리.
+          <>눈금 100% = <b>{entries.find((e) => e.kind === 'boundary')?.korean || entries.find((e) => e.kind === 'boundary')?.english}</b>
+            {entries.find((e) => e.kind === 'boundary')?.korean ? ` (${entries.find((e) => e.kind === 'boundary')!.english})` : ''}까지의 거리.
             조작 상한은 경계의 90%입니다. 참조 모델의 값이며 환자에게 그대로 적용되지 않습니다.</>
         )}
       </p>

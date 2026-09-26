@@ -16,6 +16,7 @@ import { locatorItems } from "./locator-data";
 import { resolveLocatorTargets } from "./locator-geometry";
 import { createLocatorGpu, type GuideMesh } from "./locator-gpu";
 import type { AnnotationFrame } from "./annotation-overlay";
+import type { FocusChannel, StructureFocus } from "./focus-channel";
 
 // These ulnar hand points otherwise send the camera medially through the torso.
 // A posterior-oblique approach keeps the selected surface between camera and anatomy.
@@ -42,6 +43,10 @@ interface Props {
   onError: (s: string) => void;
   onNeedleReport?: (report: NeedleReport) => void;
   onAnnotationFrame?: (frame: AnnotationFrame | null) => void;
+  /** Structure picked out in the panel; drawn through the tissue in front of it. */
+  focus?: FocusChannel;
+  /** A tap on a structure the needle path meets, while a point is in focus. */
+  onPathPartTap?: (id: string) => void;
 }
 export default function AnatomyScene({
   atlas,
@@ -52,14 +57,18 @@ export default function AnatomyScene({
   onError,
   onNeedleReport,
   onAnnotationFrame,
+  focus,
+  onPathPartTap,
 }: Props) {
   const host = useRef<HTMLDivElement>(null),
     latest = useRef(state),
     select = useRef(onSelect),
     pointSelect = useRef(onPointSelect),
     needleReport = useRef(onNeedleReport),
-    annotationFrame = useRef(onAnnotationFrame);
+    annotationFrame = useRef(onAnnotationFrame),
+    pathPartTap = useRef(onPathPartTap);
   latest.current = state;
+  pathPartTap.current = onPathPartTap;
   select.current = onSelect;
   pointSelect.current = onPointSelect;
   needleReport.current = onNeedleReport;
@@ -74,6 +83,7 @@ export default function AnatomyScene({
       lastReset = -1,
       lastIsolate = "",
       lastRegion = "",
+      lastInsets = "",
       layoutKey = "",
       amount = 0;
     let lastState: SceneState | null = null,
@@ -465,6 +475,20 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         if (!disposed) onError(e instanceof Error ? e.message : "Could not load the anatomy.");
       }
     })();
+    /** Centre the view in the part of the viewport the panels leave free, and return how much
+     *  farther the camera must stand for a region framed to the full height to fit that part. */
+    const applyInsets = (insets?: { top: number; right: number; bottom: number; left: number }) => {
+      const w = el.clientWidth, h = el.clientHeight,
+        left = Math.min(insets?.left ?? 0, w * 0.6), right = Math.min(insets?.right ?? 0, w * 0.6),
+        top = Math.min(insets?.top ?? 0, h * 0.6), bottom = Math.min(insets?.bottom ?? 0, h * 0.7);
+      if (!left && !right && !top && !bottom) {
+        camera.clearViewOffset();
+        return 1;
+      }
+      camera.setViewOffset(w, h, (right - left) / 2, (bottom - top) / 2, w, h);
+      const free = Math.min(Math.max(120, w - left - right), Math.max(120, h - top - bottom));
+      return T.MathUtils.clamp(h / free, 1, 3);
+    };
     const fit = (view: string, extent = 0) => {
       if (latest.current.regionFocus) return;
       const aspect = camera.aspect,
@@ -543,6 +567,9 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       normal: T.Vector3;
     };
     const pointObjects: PointObject[] = [];
+    // Markers are sized for the whole body; up close a 1 cm sphere hides the very skin it marks,
+    // so they shrink with camera distance (applied in the frame loop, -1 forces a refresh).
+    let markerZoom = -1;
     const makePointLabel = (code: string, side: "right" | "left") => {
       const canvas = document.createElement("canvas");
       canvas.width = 256;
@@ -609,6 +636,109 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       needleHandle = new T.Mesh(handleGeometry, handleMaterial);
     needle.visible = needleHandle.visible = false;
     scene.add(needle, needleHandle);
+    // The shaft inside the body is behind skin and muscle from every angle, so a second,
+    // depth-blind pass draws it through them. Only while a point is in focus: at full-body
+    // scale it would be a dot on top of everything.
+    const needleGhostMaterial = new T.MeshBasicMaterial({ color: 0x163a44, transparent: true, opacity: 0.55, depthTest: false, depthWrite: false }),
+      needleGhost = new T.Mesh(needleGeometry, needleGhostMaterial);
+    needleGhost.renderOrder = 72;
+    needleGhost.visible = false;
+    scene.add(needleGhost);
+    // The needle path as the scene last computed it, for framing, focus rings and taps.
+    const needleSurface = new T.Vector3(), needleTrajectory = new T.Vector3(0, 0, -1);
+    let needleActive = false, needleLimitMm = 0, pathPartIds = new Set<string>(), currentLayerId: string | null = null;
+    const partIndexById = new Map(atlas.parts.map((part, index) => [part.id, index]));
+    // Structure focus: the picked parts drawn through the tissue in front of them, a ring on the
+    // shaft at their depth, and the layer the needle tip is in. Overlays reuse the picking
+    // geometry, so they cost no extra buffers.
+    const FOCUS_COLORS = { layer: 0x1f8a7a, hazard: 0xd23c3c, landmark: 0xd9a032 } as const;
+    const overlayMaterial = (color: number, opacity: number) =>
+      new T.MeshBasicMaterial({ color, transparent: true, opacity, depthTest: false, depthWrite: false });
+    const focusMaterials = {
+      layer: overlayMaterial(FOCUS_COLORS.layer, 0.42),
+      hazard: overlayMaterial(FOCUS_COLORS.hazard, 0.45),
+      landmark: overlayMaterial(FOCUS_COLORS.landmark, 0.45),
+    };
+    const currentLayerMaterial = overlayMaterial(0x5aa597, 0.16);
+    const focusGroup = new T.Group(), currentLayerGroup = new T.Group();
+    focusGroup.renderOrder = currentLayerGroup.renderOrder = 70;
+    const depthRingGeometry = new T.RingGeometry(0.0021, 0.0031, 40),
+      depthRingMaterial = new T.MeshBasicMaterial({ color: FOCUS_COLORS.layer, side: T.DoubleSide, transparent: true, depthTest: false, depthWrite: false }),
+      depthRing = new T.Mesh(depthRingGeometry, depthRingMaterial);
+    depthRing.renderOrder = 74;
+    depthRing.visible = false;
+    scene.add(currentLayerGroup, focusGroup, depthRing);
+    // The pick is named in the scene too: an x-rayed shape alone does not say what it is.
+    const focusLabelCanvas = document.createElement("canvas"),
+      focusLabelTexture = new T.CanvasTexture(focusLabelCanvas),
+      focusLabelMaterial = new T.SpriteMaterial({ map: focusLabelTexture, transparent: true, depthTest: false, depthWrite: false, sizeAttenuation: false }),
+      focusLabel = new T.Sprite(focusLabelMaterial);
+    focusLabelTexture.colorSpace = T.SRGBColorSpace;
+    focusLabel.renderOrder = 76;
+    focusLabel.visible = false;
+    focusLabel.center.set(-0.06, 0.5);
+    scene.add(focusLabel);
+    const drawFocusLabel = (text: string, tone: StructureFocus["tone"]) => {
+      const scale = 2, font = `600 ${15 * scale}px 'S-Core Dream', 'Noto Sans KR', sans-serif`, context = focusLabelCanvas.getContext("2d")!;
+      context.font = font;
+      const width = Math.ceil(context.measureText(text).width) + 28 * scale, height = 30 * scale;
+      focusLabelCanvas.width = width;
+      focusLabelCanvas.height = height;
+      context.font = font;
+      context.fillStyle = "rgba(250,249,244,.94)";
+      context.strokeStyle = `#${FOCUS_COLORS[tone].toString(16).padStart(6, "0")}`;
+      context.lineWidth = 2 * scale;
+      context.beginPath();
+      context.roundRect(scale, scale, width - 2 * scale, height - 2 * scale, 6 * scale);
+      context.fill();
+      context.stroke();
+      context.fillStyle = "#22301f";
+      context.textBaseline = "middle";
+      context.fillText(text, 14 * scale, height / 2 + scale);
+      focusLabelTexture.needsUpdate = true;
+      // sizeAttenuation off: a scale of 2·tan(fov/2) fills the viewport height, so the tag keeps its pixel size.
+      const screen = (height / scale / Math.max(320, el.clientHeight)) * 2 * Math.tan(T.MathUtils.degToRad(camera.fov / 2));
+      focusLabel.scale.set(screen * width / height, screen, 1);
+    };
+    let focusState: StructureFocus | null = focus?.latest ?? null, focusDirty = true, overlaidLayer: string | null = null;
+    const unsubscribeFocus = focus?.subscribe((next) => { focusState = next; focusDirty = true; dirty = true; });
+    const fillOverlay = (group: T.Group, ids: string[], material: T.Material) => {
+      group.clear();
+      for (const id of ids) {
+        const index = partIndexById.get(id), picker = index === undefined ? undefined : pickers[index];
+        if (!picker) continue;
+        const overlay = new T.Mesh(picker.geometry, material);
+        overlay.position.copy(picker.position);
+        overlay.renderOrder = group.renderOrder;
+        overlay.frustumCulled = false;
+        group.add(overlay);
+      }
+    };
+    const updateFocusOverlays = () => {
+      const f = focusState;
+      fillOverlay(focusGroup, f?.partIds ?? [], focusMaterials[f?.tone ?? "layer"]);
+      depthRing.visible = !!f && f.depthMm != null && needleActive;
+      if (depthRing.visible) {
+        depthRing.position.copy(needleSurface).addScaledVector(needleTrajectory, f!.depthMm! / 1000);
+        depthRing.quaternion.setFromUnitVectors(new T.Vector3(0, 0, 1), needleTrajectory);
+        depthRingMaterial.color.setHex(FOCUS_COLORS[f!.tone]);
+      }
+      focusLabel.visible = !!f && (depthRing.visible || focusGroup.children.length > 0);
+      if (focusLabel.visible) {
+        if (depthRing.visible) focusLabel.position.copy(depthRing.position);
+        else {
+          const box = new T.Box3();
+          for (const child of focusGroup.children) box.expandByObject(child);
+          box.getCenter(focusLabel.position);
+        }
+        drawFocusLabel(f!.label, f!.tone);
+      }
+      // The layer the tip is in is context, not a pick: it yields to an explicit focus on the same part.
+      const layer = currentLayerId && !f?.partIds.includes(currentLayerId) ? [currentLayerId] : [];
+      fillOverlay(currentLayerGroup, layer, currentLayerMaterial);
+      overlaidLayer = currentLayerId;
+      focusDirty = false;
+    };
     const projectionDirection = (seed: T.Vector3, mode: ProjectionMode, side: "right" | "left") => {
       if (mode === "anterior") return new T.Vector3(0, 0, 1);
       if (mode === "posterior") return new T.Vector3(0, 0, -1);
@@ -960,8 +1090,8 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
           object.marker.material = selected ? selectedPointMaterial : pointMaterial;
           object.core.material = selected ? selectedPointCoreMaterial : pointCoreMaterial;
           const markerScale=(selected ? 1.08 : 1)*(definition.code.startsWith('GB')?1:.3);
-          object.marker.scale.setScalar(markerScale);
-          object.core.scale.setScalar(markerScale);
+          object.marker.userData.baseScale = markerScale;
+          markerZoom = -1;
           if(meridianOf(definition.code)===meridianOf(config?.selectedCode??'GB34')) projectedBySide[side].push({code:definition.code,point:object.marker.position.clone()});
         }
       }
@@ -1107,6 +1237,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         definition = code ? acupoints.find((item) => item.code === code) : undefined;
       if (!config?.enabled || !ready || !definition) {
         needle.visible = needleHandle.visible = false;
+        needleActive = false;
         return;
       }
       const object = pointObjects.find((item) => item.code === code && item.side === "right");
@@ -1125,6 +1256,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         probeDepth = probeDepthMm / 1000;
       if(probeDepth<=0){
         needle.visible=needleHandle.visible=false;
+        needleActive=false;pathPartIds=new Set();currentLayerId=null;focusDirty=true;
         publishNeedleReport({code:definition.code,available:false,limitMm:null,boundaryMm:null,boundaryId:null,boundaryLabel:profile.label,conceptual:false,hits:[],pathHits:[],hazardHits:[],allHits:[]});
         return;
       }
@@ -1210,8 +1342,18 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       needleHandle.scale.set(1, handleLength, 1);
       needleHandle.quaternion.copy(needle.quaternion);
       needle.visible = needleHandle.visible = true;
+      needleGhost.position.copy(needle.position);
+      needleGhost.scale.copy(needle.scale);
+      needleGhost.quaternion.copy(needle.quaternion);
       const pathHits = intersections.filter((hit) => hit.distanceMm <= limitMm),
         hits = pathHits.filter((hit) => hit.distanceMm <= depthMm);
+      needleSurface.copy(surface);
+      needleTrajectory.copy(trajectory);
+      needleActive = true;
+      needleLimitMm = limitMm;
+      pathPartIds = new Set(intersections.map((hit) => hit.id));
+      currentLayerId = depthMm > 0 ? hits[hits.length - 1]?.id ?? null : null;
+      if (currentLayerId !== overlaidLayer) focusDirty = true;
       publishNeedleReport({
         code: definition.code,
         available: limitMm > 0,
@@ -1300,7 +1442,10 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         );
       if (found >= 0) {
         hover.hidden = true;
-        select.current(atlas.parts[found].id);
+        // With a point in focus, a structure on its needle path belongs to the strata, not the inspector.
+        const id = atlas.parts[found].id;
+        if (latest.current.regionFocus && needleActive && pathPartIds.has(id) && pathPartTap.current) pathPartTap.current(id);
+        else select.current(id);
       }
     };
     renderer.domElement.addEventListener("pointerdown", down);
@@ -1426,6 +1571,15 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         lastNeedle = needleKey;
         dirty = true;
       }
+      const ghostShown = needle.visible && !!s.regionFocus && amount < 0.05;
+      if (needleGhost.visible !== ghostShown) {
+        needleGhost.visible = ghostShown;
+        dirty = true;
+      }
+      if (focusDirty && ready) {
+        updateFocusOverlays();
+        dirty = true;
+      }
       if (s.view !== lastView || s.reset !== lastReset) {
         fit(s.view, amount);
         lastView = s.view;
@@ -1505,10 +1659,35 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         }
         lastIsolate = isolateKey;
       }
-      const regionKey = JSON.stringify(s.regionFocus);
+      const regionKey = JSON.stringify(s.regionFocus), insetsKey = JSON.stringify(s.viewInsets ?? null);
+      // Panels moved or resized under a focused region: re-centre the view, leave the camera where it is.
+      if (regionKey === lastRegion && insetsKey !== lastInsets && s.regionFocus && !s.isolate) {
+        applyInsets(s.viewInsets);
+        dirty = true;
+      }
+      lastInsets = insetsKey;
       if (regionKey !== lastRegion) {
-        if (s.regionFocus) {
-          camera.clearViewOffset();
+        if (!s.regionFocus && lastRegion && lastRegion !== "undefined" && !s.isolate) camera.clearViewOffset();
+        if (s.regionFocus && s.regionFocus.viewHint === "needle-side" && needleActive) {
+          // Whole shaft in profile: the camera leaves the skin normal by 55°, toward the side the
+          // current view already favours so the swing is short, and never toward the midline.
+          const outward = needleTrajectory.clone().negate(),
+            center = needleSurface.clone().addScaledVector(needleTrajectory, needleLimitMm / 2000),
+            side = camera.position.clone().sub(controls.target);
+          side.addScaledVector(needleTrajectory, -side.dot(needleTrajectory));
+          if (side.lengthSq() < 1e-6) side.crossVectors(needleTrajectory, new T.Vector3(0, 1, 0));
+          if (side.lengthSq() < 1e-6) side.set(0, 0, 1);
+          side.normalize();
+          const radial = new T.Vector3(needleSurface.x, 0, needleSurface.z);
+          if (radial.lengthSq() > 1e-6 && side.dot(radial.normalize()) < -0.2) side.negate();
+          const angle = T.MathUtils.degToRad(55),
+            direction = outward.multiplyScalar(Math.cos(angle)).addScaledVector(side, Math.sin(angle)).normalize(),
+            radius = Math.max(0.045, needleLimitMm / 1000 + 0.02),
+            distance = (radius / (2 * Math.tan(T.MathUtils.degToRad(camera.fov / 2)))) * 1.35 * applyInsets(s.viewInsets);
+          camera.up.set(0, 1, 0);
+          moveCamera(center, center.clone().addScaledVector(direction, distance));
+        } else if (s.regionFocus) {
+          const insetScale = applyInsets(s.viewInsets);
           const selectedSurface = s.acupuncture?.selectedCode
               ? pointObjects.find(
                   (point) => point.code === s.acupuncture?.selectedCode && point.side === "right",
@@ -1528,7 +1707,7 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
               Math.max(
                 0.05,
                 (radius / (2 * Math.tan(T.MathUtils.degToRad(camera.fov / 2)))) * 1.35,
-              ) * (footView ? 1.12 : 1),
+              ) * (footView ? 1.12 : 1) * insetScale,
             pointCode = s.acupuncture?.selectedCode as AcupointCode | undefined,
             direction = (
               footView
@@ -1645,6 +1824,17 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       } else if (!selectedPoint || !s.acupuncture?.visible) annotationFrame.current?.(null);
       if (controls.autoRotate) dirty = true;
       if (dirty) {
+        const zoom = T.MathUtils.clamp(camera.position.distanceTo(controls.target) / 0.3, 0.22, 1);
+        if (Math.abs(zoom - markerZoom) > 0.01) {
+          markerZoom = zoom;
+          for (const point of pointObjects) {
+            const scale = (point.marker.userData.baseScale ?? 1) * zoom;
+            point.marker.scale.setScalar(scale);
+            point.core.scale.setScalar(scale);
+          }
+        }
+      }
+      if (dirty) {
         if (showLocatorMask && locatorGroup.visible) locatorGpu.render(camera);
         renderer.render(scene, camera);
         if (showLocatorMask && locatorGroup.visible) locatorGpu.compositeOnScreen();
@@ -1736,6 +1926,14 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       needleMaterial.dispose();
       handleGeometry.dispose();
       handleMaterial.dispose();
+      unsubscribeFocus?.();
+      needleGhostMaterial.dispose();
+      Object.values(focusMaterials).forEach((material) => material.dispose());
+      currentLayerMaterial.dispose();
+      depthRingGeometry.dispose();
+      depthRingMaterial.dispose();
+      focusLabelTexture.dispose();
+      focusLabelMaterial.dispose();
       pointGeometry.dispose();
       pointCoreGeometry.dispose();
       pointMaterial.dispose();

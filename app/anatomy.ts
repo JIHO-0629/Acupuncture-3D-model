@@ -1,3 +1,4 @@
+import {koreanAnatomyName} from './anatomy-translation';
 export type SystemId = 'skeletal'|'muscular'|'arterial'|'venous'|'nervous'|'digestive'|'respiratory'|'urinary'|'reproductive'|'lymphatic'|'endocrine'|'integumentary'|'connective'|'sensory'|'cardiac';
 export const SYSTEMS: {id:SystemId;name:string;color:string;description:string}[] = [
  {id:'skeletal',name:'Skeleton',color:'#e2d9ba',description:'Bones form the supporting framework of the body, protect organs, and provide attachment points for muscles. Their internal tissue also stores minerals and produces blood cells.'},
@@ -48,9 +49,10 @@ export function varianceOf(name:string,system:SystemId):Variance{
 }
 export const VARIANCE_LABEL:Record<Variance,string>={1:'변이 낮음',2:'변이 높음',3:'변이 매우 높음'};
 export interface NeedleState {enabled:boolean;depthRatio:number;revision:number}
-export interface RegionFocus {center:[number,number,number];radiusMm:number;revision:number;viewHint?:'dorsal-foot'}
+/** needle-side frames the whole shaft from an oblique angle so its depth reads; the others look down the skin normal. */
+export interface RegionFocus {center:[number,number,number];radiusMm:number;revision:number;viewHint?:'dorsal-foot'|'needle-side'}
 export interface AcupunctureState {visible:boolean;selectedCode:string;showAll:boolean;showLines:boolean}
-export interface SceneState {inspectorOpen?:boolean;locatorGuide?:boolean;hiddenParts?:string[];needlePlayback?:boolean;explode:number;visible:SystemId[];selected:string[];isolate:boolean;view:View;rotate:boolean;reset:number;needle?:NeedleState;acupuncture?:AcupunctureState;regionFocus?:RegionFocus}
+export interface SceneState {/** Unobstructed viewport (px from each edge) the focused region is framed into. */viewInsets?:{top:number;right:number;bottom:number;left:number};inspectorOpen?:boolean;locatorGuide?:boolean;hiddenParts?:string[];needlePlayback?:boolean;explode:number;visible:SystemId[];selected:string[];isolate:boolean;view:View;rotate:boolean;reset:number;needle?:NeedleState;acupuncture?:AcupunctureState;regionFocus?:RegionFocus}
 const KOREAN_ANATOMY_TERMS:Record<string,string>={
  'abductor digiti minimi of foot':'소지외전근','abductor hallucis':'무지외전근','adductor brevis':'단내전근','adductor longus':'장내전근','adductor magnus':'대내전근','adductor minimus':'소내전근','adductor hallucis':'무지내전근',
  'biceps femoris':'대퇴이두근','long head of biceps femoris':'대퇴이두근 장두','short head of biceps femoris':'대퇴이두근 단두','deltoid':'삼각근','acromial part of deltoid':'삼각근 견봉부','clavicular part of deltoid':'삼각근 쇄골부','spinal part of deltoid':'삼각근 견갑극부',
@@ -70,12 +72,13 @@ const KOREAN_ANATOMY_TERMS:Record<string,string>={
  'levator labii superioris':'상순거근','levator labii superioris alaeque nasi':'상순비익거근','levator anguli oris':'구각거근','depressor anguli oris':'구각하체근','depressor labii inferioris':'하순하체근','zygomaticus major':'대관골근','zygomaticus minor':'소관골근','risorius':'소근','mentalis':'이근',
  'latissimus dorsi':'광배근','subscapularis':'견갑하근','supraspinatus':'극상근','infraspinatus':'극하근','teres major':'대원근','teres minor':'소원근','iliotibial tract':'장경인대','flexor retinaculum of wrist':'굴근지지띠','upper lobe of lung':'폐 상엽','middle lobe of lung':'폐 중엽','lower lobe of lung':'폐 하엽','platysma':'넓은목근','manubrium':'복장뼈자루'
 };
+const BILINGUAL_NAME_CACHE=new Map<string,string>();
 export function bilingualPartName(name:string){
- const prefix=name.match(/^(Right|Left)\s+(.+)$/i),infix=name.match(/^(.+?)\s+of\s+(right|left)\s+(.+)$/i);
- const sideWord=prefix?.[1]??infix?.[2],side=sideWord?.toLowerCase()==='right'?'우측':sideWord?.toLowerCase()==='left'?'좌측':'';
- const base=(prefix?.[2]??(infix?`${infix[1]} of ${infix[3]}`:name)).toLowerCase();
- const korean=KOREAN_ANATOMY_TERMS[base];
- return korean?`${name} (${side?`${side} `:''}${korean})`:name;
+ const cached=BILINGUAL_NAME_CACHE.get(name);if(cached)return cached;
+ const korean=koreanAnatomyName(name,KOREAN_ANATOMY_TERMS);
+ const label=korean?`${korean} (${name})`:name;
+ BILINGUAL_NAME_CACHE.set(name,label);
+ return label;
 }
 // Start with the one layer being studied.  Adding every system by default made thin
 // vessels, nerves and connective sheets read as detached surface artefacts.

@@ -6,6 +6,7 @@
  */
 import {useEffect,useMemo,useRef,useState} from 'react';
 import {Maximize2,Minimize2} from 'lucide-react';
+import {focusTargetProps,type FocusHandlers,type StructureFocus} from './focus-channel';
 
 export type NeedleEyeStructure={
   id:string;label:string;english:string|null;kind:'nerve'|'artery'|'vein'|'bundle'|'boundary';relation:'cross'|'near'|'concept';
@@ -68,7 +69,9 @@ function depthLabel(structure:NeedleEyeStructure,currentMm:number|null){
   return `모델 깊이 ${structure.depthMm} mm${ahead}`;
 }
 
-export function NeedleEyeCompass({profile,references,depth,onSimulationGesture}:{profile:NeedleEyeProfile;references:NeedleEyeData['references'];depth:number;onSimulationGesture?:(direction:-1|1)=>void}){
+export function NeedleEyeCompass({profile,references,depth,onSimulationGesture,focus}:{profile:NeedleEyeProfile;references:NeedleEyeData['references'];depth:number;onSimulationGesture?:(direction:-1|1)=>void;focus?:FocusHandlers}){
+  // The listed structures are the hazards around the shaft: hovering or tapping one shows it in the scene.
+  const focusOf=(structure:NeedleEyeStructure,pinned:boolean):StructureFocus=>({key:`eye:${structure.id}`,label:structure.label,partIds:focus?.partIdsFor(structure.english??structure.label)??[],depthMm:structure.depthMm,tone:structure.kind==="boundary"?"layer":"hazard",source:"compass",pinned});
   const currentMm=needleEyeDepthMm(profile,depth);
   const pinchDistance=useRef<number|null>(null);
   const visibleStructures=useMemo(()=>profile.structures
@@ -111,11 +114,11 @@ export function NeedleEyeCompass({profile,references,depth,onSimulationGesture}:
     </div>
     <div className="compass-reading" aria-live="polite">
       <div className="compass-structure-list">
-        {profile.structures.map(structure=><span key={structure.id} style={{opacity:Math.max(.34,structureOpacity(currentMm,depth,structure))}} title={structure.note??undefined}>
+        {profile.structures.map(structure=><span key={structure.id} className={`${focus?.pinned?.key===`eye:${structure.id}`?"focused":""}${focus?" pickable":""}`} {...focusTargetProps(focus,pinned=>focusOf(structure,pinned))} style={{opacity:Math.max(.34,structureOpacity(currentMm,depth,structure))}} title={structure.note??undefined}>
           <i className={`legend ${structure.kind}-legend`}/>
           <b>{structure.label}</b>
           <em>{relationLabel(structure)}{depthLabel(structure,currentMm)}</em>
-          {structure.refs.length?<small className="structure-refs">근거{' '}{structure.refs.map((id,order)=>{const reference=references[id];return reference?<a key={id} href={reference.url} target="_blank" rel="noreferrer" title={`${reference.citation} — ${reference.claim}`}>{order?' · ':''}{reference.short}</a>:null;})}</small>:null}
+          {structure.refs.length?<small className="structure-refs">근거{' '}{structure.refs.map((id,order)=>{const reference=references[id];return reference?<a key={id} href={reference.url} target="_blank" rel="noreferrer" onClick={event=>event.stopPropagation()} title={`${reference.citation} — ${reference.claim}`}>{order?' · ':''}{reference.short}</a>:null;})}</small>:null}
         </span>)}
       </div>
       <small>링은 상대 거리 구역입니다. 수치는 환자 안전거리가 아니라 출처가 표시된 모델·문헌 깊이입니다.</small>
@@ -123,12 +126,12 @@ export function NeedleEyeCompass({profile,references,depth,onSimulationGesture}:
   </section>;
 }
 
-export function NeedleEyeHud({profile,references,depth,pointCode,pointName,expanded,onExpand,onSimulationGesture}:{profile:NeedleEyeProfile;references:NeedleEyeData['references'];depth:number;pointCode:string;pointName:string;expanded:boolean;onExpand:()=>void;onSimulationGesture:(direction:-1|1)=>void}){
+export function NeedleEyeHud({profile,references,depth,pointCode,pointName,expanded,onExpand,onSimulationGesture,focus}:{profile:NeedleEyeProfile;references:NeedleEyeData['references'];depth:number;pointCode:string;pointName:string;expanded:boolean;onExpand:()=>void;onSimulationGesture:(direction:-1|1)=>void;focus?:FocusHandlers}){
   const mm=needleEyeDepthMm(profile,depth),clamped=Math.max(0,Math.min(100,depth));
   return <aside className={`needle-eye-hud ${expanded?'is-expanded':''}`} aria-label="Needle's Eye 관찰 모드">
     <header><div><span>NEEDLE’S EYE</span><b>{pointCode} · {pointName}</b></div>
       <button type="button" aria-label={expanded?'Needle’s Eye 축소':'Needle’s Eye 확대'} onClick={onExpand}>{expanded?<Minimize2 size={15}/>:<Maximize2 size={15}/>}</button></header>
-    {!expanded&&<NeedleEyeCompass profile={profile} references={references} depth={depth} onSimulationGesture={onSimulationGesture}/>}
+    {!expanded&&<NeedleEyeCompass profile={profile} references={references} depth={depth} onSimulationGesture={onSimulationGesture} focus={focus}/>}
     <div className="hud-depth">
       <div><span>MODEL {mm==null?'—':mm.toFixed(1).replace(/\.0$/,'')} mm</span><small>재생 연동</small></div>
       <div className="hud-depth-track" aria-label={`모델 자침 진행 ${depth}%`}><i style={{width:`${clamped}%`}}/><b style={{left:`${clamped}%`}}/></div>
