@@ -661,18 +661,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03782,
-    1.25341,
-    0.12279
+    -0.052,
+    1.24661,
+    0.11056
    ],
    "outward": [
-    -0.25603,
+    -0.36999,
     0,
-    0.96667
+    0.92904
    ],
    "region": "thorax",
    "depthMm": 7.9,
-   "rule": "5th intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 5 (-12 mm)"
+   "rule": "5th intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 5 (-12 mm) · 2026-09-26 유두선 곡선 반영: from the CV16 level into the 5th intercostal space (reviewer, 2026-09-26); onto the curved mammillary-line scale, re-centred in intercostal space 5 (-16 mm)"
   },
   {
    "code": "KI23",
@@ -691,18 +691,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03825,
-    1.28648,
-    0.12133
+    -0.04928,
+    1.28448,
+    0.11468
    ],
    "outward": [
-    -0.26123,
+    -0.34362,
     0,
-    0.96528
+    0.93911
    ],
    "region": "thorax",
    "depthMm": 7.9,
-   "rule": "4th intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc)"
+   "rule": "4th intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc) · 2026-09-26 유두선 곡선 반영: onto the curved mammillary-line scale, re-centred in intercostal space 4 (-2 mm)"
   },
   {
    "code": "KI24",
@@ -721,18 +721,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03813,
-    1.31982,
-    0.1112
+    -0.04295,
+    1.32482,
+    0.10179
    ],
    "outward": [
-    -0.2791,
+    -0.33261,
     0,
-    0.96026
+    0.94306
    ],
    "region": "thorax",
    "depthMm": 8,
-   "rule": "3rd intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 3 (+0 mm)"
+   "rule": "3rd intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 3 (+0 mm) · 2026-09-26 유두선 곡선 반영: onto the curved mammillary-line scale, re-centred in intercostal space 3 (+5 mm)"
   },
   {
    "code": "KI25",
@@ -751,18 +751,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.03868,
-    1.3532,
-    0.09699
+    -0.03956,
+    1.3562,
+    0.08602
    ],
    "outward": [
-    -0.31391,
+    -0.3496,
     0,
-    0.94945
+    0.9369
    ],
    "region": "thorax",
    "depthMm": 7.7,
-   "rule": "2nd intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 2 (+4 mm)"
+   "rule": "2nd intercostal space measured on the 2 B-cun line · 2 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 2 (+4 mm) · 2026-09-26 유두선 곡선 반영: onto the curved mammillary-line scale, re-centred in intercostal space 2 (+3 mm)"
   },
   {
    "code": "KI26",

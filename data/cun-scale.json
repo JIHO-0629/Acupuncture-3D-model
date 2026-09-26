@@ -1,0 +1,413 @@
+{
+ "generated": "scripts/cun-scale.mjs",
+ "note": "WHO 2008 proportional bone (B-cun) spans measured once on this body. cunMm is millimetres per B-cun. Right side; mirror x for the left. Scales differ by direction: a transverse span only measures across the body.",
+ "spans": [
+  {
+   "id": "arm",
+   "label": "앞겨드랑주름~팔오금 9촌",
+   "cun": 9,
+   "from": [
+    -0.24074,
+    1.31262,
+    -0.03957
+   ],
+   "to": [
+    -0.24074,
+    1.15224,
+    -0.03957
+   ],
+   "lengthMm": 160.4,
+   "cunMm": 17.82,
+   "direction": "longitudinal",
+   "regions": [
+    "upper-arm"
+   ],
+   "usedBy": [
+    "acupoint-kit",
+    "li-landmarks"
+   ],
+   "note": "cubital crease = 1 B-cun above the lateral epicondyle (reviewer, 2026-09-15)"
+  },
+  {
+   "id": "forearm",
+   "label": "팔오금~손목주름 12촌",
+   "cun": 12,
+   "from": [
+    -0.24074,
+    1.15224,
+    -0.03957
+   ],
+   "to": [
+    -0.27664,
+    0.88395,
+    0.01795
+   ],
+   "lengthMm": 268.3,
+   "cunMm": 22.36,
+   "direction": "longitudinal",
+   "regions": [
+    "forearm",
+    "hand"
+   ],
+   "usedBy": [
+    "acupoint-kit",
+    "li-landmarks",
+    "lu",
+    "pc",
+    "ht",
+    "si",
+    "te"
+   ],
+   "note": "wrist crease at the radial styloid level"
+  },
+  {
+   "id": "chest-vertical",
+   "label": "흉골상절흔~흉골체하단 9촌",
+   "cun": 9,
+   "from": [
+    0.0025,
+    1.40052,
+    0.03856
+   ],
+   "to": [
+    0.00104,
+    1.26261,
+    0.10494
+   ],
+   "lengthMm": 137.9,
+   "cunMm": 15.32,
+   "direction": "longitudinal",
+   "regions": [
+    "thorax"
+   ],
+   "usedBy": [
+    "cv",
+    "ki",
+    "st"
+   ],
+   "note": null
+  },
+  {
+   "id": "upper-abdomen",
+   "label": "흉골체하단~배꼽 8촌",
+   "cun": 8,
+   "from": [
+    0.00104,
+    1.26261,
+    0.10494
+   ],
+   "to": [
+    0.0004,
+    1.02974,
+    0.05645
+   ],
+   "lengthMm": 232.9,
+   "cunMm": 29.11,
+   "direction": "longitudinal",
+   "regions": [
+    "thorax",
+    "pelvis"
+   ],
+   "usedBy": [
+    "cv",
+    "ki",
+    "st",
+    "sp"
+   ],
+   "note": null
+  },
+  {
+   "id": "lower-abdomen",
+   "label": "배꼽~치골결합 상연 5촌",
+   "cun": 5,
+   "from": [
+    0.0004,
+    1.02974,
+    0.05645
+   ],
+   "to": [
+    0,
+    0.88419,
+    0.02614
+   ],
+   "lengthMm": 145.6,
+   "cunMm": 29.11,
+   "direction": "longitudinal",
+   "regions": [
+    "pelvis"
+   ],
+   "usedBy": [
+    "cv",
+    "ki",
+    "st",
+    "sp"
+   ],
+   "note": null
+  },
+  {
+   "id": "abdomen-transverse",
+   "label": "앞정중선~쇄골중점 4촌 (배)",
+   "cun": 4,
+   "from": [
+    0,
+    0,
+    0
+   ],
+   "to": [
+    -0.07765,
+    0,
+    0
+   ],
+   "lengthMm": 77.6,
+   "cunMm": 19.41,
+   "direction": "transverse",
+   "regions": [
+    "pelvis",
+    "lumbar"
+   ],
+   "usedBy": [
+    "st",
+    "ki",
+    "sp",
+    "lu"
+   ],
+   "note": "abdomen and the clavicle level keep the clavicle-midpoint scale"
+  },
+  {
+   "id": "chest-transverse",
+   "label": "앞정중선~유두 4촌 (유두선, 제4늑간 높이)",
+   "cun": 4,
+   "from": [
+    0,
+    0,
+    0
+   ],
+   "to": [
+    -0.0922,
+    0,
+    0
+   ],
+   "lengthMm": 92.2,
+   "cunMm": 23.05,
+   "direction": "transverse",
+   "regions": [
+    "thorax"
+   ],
+   "usedBy": [
+    "st",
+    "ki",
+    "lr",
+    "pc",
+    "sp",
+    "gb"
+   ],
+   "note": "mammillary line curves from the clavicle midpoint out to the nipple (scripts/trunk-arc.mjs); this is its value at nipple height"
+  },
+  {
+   "id": "back-transverse",
+   "label": "뒤정중선~견갑골 내측연 3촌",
+   "cun": 3,
+   "from": [
+    0,
+    1.37693,
+    -0.09135
+   ],
+   "to": [
+    -0.0607,
+    1.37693,
+    -0.09135
+   ],
+   "lengthMm": 60.7,
+   "cunMm": 20.23,
+   "direction": "transverse",
+   "regions": [
+    "thorax",
+    "lumbar",
+    "shoulder"
+   ],
+   "usedBy": [
+    "bl"
+   ],
+   "note": "WHO: medial borders of the scapulae 6 B-cun apart"
+  },
+  {
+   "id": "thigh-anterior",
+   "label": "치골결합 상연~슬개골 바닥 18촌",
+   "cun": 18,
+   "from": [
+    0,
+    0.88419,
+    0.02614
+   ],
+   "to": [
+    -0.08526,
+    0.47891,
+    0.01267
+   ],
+   "lengthMm": 405.3,
+   "cunMm": 22.52,
+   "direction": "longitudinal",
+   "regions": [
+    "thigh"
+   ],
+   "usedBy": [
+    "st",
+    "lr",
+    "sp"
+   ],
+   "note": null
+  },
+  {
+   "id": "thigh-lateral",
+   "label": "대전자~오금주름 19촌",
+   "cun": 19,
+   "from": [
+    -0.14996,
+    0.8606,
+    -0.02313
+   ],
+   "to": [
+    -0.08875,
+    0.44819,
+    -0.09357
+   ],
+   "lengthMm": 412.4,
+   "cunMm": 21.71,
+   "direction": "longitudinal",
+   "regions": [
+    "thigh"
+   ],
+   "usedBy": [
+    "gb",
+    "bl"
+   ],
+   "note": null
+  },
+  {
+   "id": "leg-medial",
+   "label": "경골 내측과 하연~안쪽 복사 13촌",
+   "cun": 13,
+   "from": [
+    -0.03522,
+    0.43763,
+    -0.02286
+   ],
+   "to": [
+    -0.04493,
+    0.0859,
+    -0.01817
+   ],
+   "lengthMm": 351.7,
+   "cunMm": 27.06,
+   "direction": "longitudinal",
+   "regions": [
+    "leg",
+    "knee"
+   ],
+   "usedBy": [
+    "ki",
+    "lr",
+    "sp"
+   ],
+   "note": "ki/lr take SP9 as the upper end"
+  },
+  {
+   "id": "leg-lateral",
+   "label": "오금주름~바깥쪽 복사 16촌",
+   "cun": 16,
+   "from": [
+    -0.08875,
+    0.44819,
+    -0.09357
+   ],
+   "to": [
+    -0.10448,
+    0.07135,
+    -0.04006
+   ],
+   "lengthMm": 376.8,
+   "cunMm": 23.55,
+   "direction": "longitudinal",
+   "regions": [
+    "leg",
+    "knee"
+   ],
+   "usedBy": [
+    "gb",
+    "bl"
+   ],
+   "note": null
+  },
+  {
+   "id": "ankle",
+   "label": "바깥쪽 복사~발바닥 3촌",
+   "cun": 3,
+   "from": [
+    -0.10448,
+    0.07135,
+    -0.04006
+   ],
+   "to": [
+    -0.10448,
+    0,
+    -0.04006
+   ],
+   "lengthMm": 71.3,
+   "cunMm": 23.78,
+   "direction": "longitudinal",
+   "regions": [
+    "foot"
+   ],
+   "usedBy": [
+    "ki"
+   ],
+   "note": null
+  },
+  {
+   "id": "head-scalp",
+   "label": "전발제~후발제 12촌",
+   "cun": 12,
+   "lengthMm": null,
+   "cunMm": 30.401,
+   "direction": "longitudinal",
+   "regions": [
+    "head",
+    "face",
+    "neck"
+   ],
+   "usedBy": [
+    "head-cun",
+    "gv",
+    "bl",
+    "gb",
+    "st",
+    "te",
+    "lr"
+   ],
+   "note": "arc length on the skin (scripts/head-cun.mjs)"
+  },
+  {
+   "id": "head-forehead",
+   "label": "미간~전발제 3촌",
+   "cun": 3,
+   "lengthMm": null,
+   "cunMm": 18.289,
+   "direction": "longitudinal",
+   "regions": [
+    "head",
+    "face",
+    "neck"
+   ],
+   "usedBy": [
+    "head-cun",
+    "gv",
+    "bl",
+    "gb",
+    "st",
+    "te",
+    "lr"
+   ],
+   "note": "arc length on the skin (scripts/head-cun.mjs)"
+  }
+ ]
+}

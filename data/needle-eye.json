@@ -281,12 +281,6 @@
   }
  },
  "_excluded": {
-  "ST17": {
-   "why": "KCMRIC 원문이 禁鍼(『鍼灸甲乙經』)이다. 乳中은 자침하지 않는 표지점이다.",
-   "refs": [
-    "kcmric"
-   ]
-  },
   "BL27": {
    "why": "모든 구조가 관련성 검수에서 제외되어 Needle's Eye 대상에서 빠졌다.",
    "changes": [
@@ -387,8 +381,8 @@
    "orientation": {
     "up": "머리쪽",
     "down": "발쪽",
-    "right": "앞·안쪽",
-    "left": "뒤·가쪽",
+    "right": "안쪽",
+    "left": "가쪽",
     "view": "시술자 시점 — 침 손잡이에서 침끝 방향으로 본 단면"
    },
    "structures": [
@@ -425,8 +419,8 @@
    "orientation": {
     "up": "머리쪽",
     "down": "발쪽",
-    "right": "안쪽",
-    "left": "가쪽",
+    "right": "안쪽·앞",
+    "left": "가쪽·뒤",
     "view": "시술자 시점 — 침 손잡이에서 침끝 방향으로 본 단면"
    },
    "structures": [
@@ -749,8 +743,8 @@
      "english": "Pleura",
      "kind": "boundary",
      "relation": "cross",
-     "depthMm": 28.3,
-     "endMm": 28.4,
+     "depthMm": 24.2,
+     "endMm": 24.7,
      "literatureReferenceMm": null,
      "depthSource": "참조 모델",
      "emph": true,
@@ -762,7 +756,7 @@
       "yMm": 0,
       "distanceMm": 0
      },
-     "track": [[17,-0.4,-20.9],[18,8.5,-15],[19,13.9,-8.5],[20,5.5,-9],[21,5.5,-9],[22,4.2,-6.3],[23,4.2,-6.3],[24,5.7,-1.6],[25,5.7,-1.6],[26,5.7,-1.6],[27,3.8,-0.2],[28,0,0],[29,3.8,-0.2],[30,0,0]],
+     "track": [[15,-1.6,-18.4],[16,-1.6,-18.4],[17,4.5,-12.3],[18,1,-10.2],[19,0.6,-6.7],[20,0.6,-6.7],[21,-3.4,-4.9],[22,-3.4,-4.9],[23,-3.4,-4.9],[24,0,0],[25,0,0],[26,0,0],[27,-0.5,2.1],[28,-0.5,2.1],[29,-0.5,2.1],[30,-4.2,5.1]],
      "beyondReach": true,
      "beyondBone": false,
      "refs": [
@@ -792,8 +786,8 @@
      "english": "Pleura",
      "kind": "boundary",
      "relation": "cross",
-     "depthMm": 39.2,
-     "endMm": 39.6,
+     "depthMm": 37.3,
+     "endMm": 37.7,
      "literatureReferenceMm": null,
      "depthSource": "참조 모델",
      "emph": true,
@@ -805,7 +799,7 @@
       "yMm": 0,
       "distanceMm": 0
      },
-     "track": [[27,22.5,14.3],[28,19,18.4],[29,18.5,2.9],[30,18.5,2.9]],
+     "track": [[25,20.7,15.7],[26,20.7,15.7],[27,17,8.7],[28,16.8,1],[29,16.8,1],[30,16.8,1]],
      "beyondReach": true,
      "beyondBone": false,
      "refs": [
@@ -863,7 +857,7 @@
    "region": "chest",
    "pathSource": "reviewed",
    "modelMaxMm": 5.1,
-   "boneMm": null,
+   "boneMm": 28.9,
    "orientation": {
     "up": "머리쪽·뒤",
     "down": "발쪽·앞",
@@ -875,24 +869,19 @@
     {
      "id": "ST14-0",
      "label": "흉막·허파 (기흉 위험)",
-     "english": "Pleura",
+     "english": "Pleura / lung",
      "kind": "boundary",
-     "relation": "cross",
-     "depthMm": 37.6,
-     "endMm": 37.7,
+     "relation": "concept",
+     "depthMm": null,
+     "endMm": null,
      "literatureReferenceMm": null,
-     "depthSource": "참조 모델",
+     "depthSource": "해부 개념",
      "emph": true,
      "note": null,
      "basis": null,
-     "bearing": {
-      "status": "axis-crossing",
-      "xMm": 0,
-      "yMm": 0,
-      "distanceMm": 0
-     },
-     "track": [[29,18.3,27.3],[30,15,25.6]],
-     "beyondReach": true,
+     "bearing": null,
+     "track": null,
+     "beyondReach": false,
      "beyondBone": false,
      "refs": [
       "orahilly22",
@@ -921,8 +910,8 @@
      "english": "Pleura",
      "kind": "boundary",
      "relation": "cross",
-     "depthMm": 44.5,
-     "endMm": 45,
+     "depthMm": 43.6,
+     "endMm": 43.8,
      "literatureReferenceMm": null,
      "depthSource": "참조 모델",
      "emph": true,
@@ -964,8 +953,8 @@
      "english": "Pleura",
      "kind": "boundary",
      "relation": "cross",
-     "depthMm": 48.9,
-     "endMm": 49.1,
+     "depthMm": 48.7,
+     "endMm": 49.2,
      "literatureReferenceMm": null,
      "depthSource": "참조 모델",
      "emph": true,
@@ -1007,8 +996,8 @@
      "english": "Pleura",
      "kind": "boundary",
      "relation": "cross",
-     "depthMm": 34.2,
-     "endMm": 34.8,
+     "depthMm": 35.9,
+     "endMm": 36.4,
      "literatureReferenceMm": null,
      "depthSource": "참조 모델",
      "emph": true,
@@ -1020,7 +1009,7 @@
       "yMm": 0,
       "distanceMm": 0
      },
-     "track": [[26,5,-31.5],[27,5.1,-23.2],[28,0.7,-16.5],[29,12.1,-8.9],[30,11.3,-5.4]],
+     "track": [[28,15.5,-20.9],[29,10.8,-14.2],[30,10.8,-14.2]],
      "beyondReach": true,
      "beyondBone": false,
      "refs": [
@@ -1050,8 +1039,8 @@
      "english": "Pleura",
      "kind": "boundary",
      "relation": "cross",
-     "depthMm": 38.1,
-     "endMm": 38.9,
+     "depthMm": 39.8,
+     "endMm": 40.5,
      "literatureReferenceMm": null,
      "depthSource": "참조 모델",
      "emph": true,
@@ -1063,7 +1052,7 @@
       "yMm": 0,
       "distanceMm": 0
      },
-     "track": [[29,19.9,20.8],[30,19.9,20.8]],
+     "track": [],
      "beyondReach": true,
      "beyondBone": false,
      "refs": [
@@ -1120,8 +1109,8 @@
    "orientation": {
     "up": "머리쪽",
     "down": "발쪽",
-    "right": "안쪽",
-    "left": "가쪽",
+    "right": "앞·안쪽",
+    "left": "뒤·가쪽",
     "view": "시술자 시점 — 침 손잡이에서 침끝 방향으로 본 단면"
    },
    "structures": [
@@ -1131,8 +1120,8 @@
      "english": "Pleura",
      "kind": "boundary",
      "relation": "cross",
-     "depthMm": 44.6,
-     "endMm": 44.6,
+     "depthMm": 48.2,
+     "endMm": 48.4,
      "literatureReferenceMm": null,
      "depthSource": "참조 모델",
      "emph": true,
@@ -1174,8 +1163,8 @@
      "english": "Pleura",
      "kind": "boundary",
      "relation": "cross",
-     "depthMm": 34.1,
-     "endMm": 34.4,
+     "depthMm": 32.5,
+     "endMm": 33,
      "literatureReferenceMm": null,
      "depthSource": "참조 모델",
      "emph": true,
@@ -1187,7 +1176,7 @@
       "yMm": 0,
       "distanceMm": 0
      },
-     "track": [[20,-6.7,-31.7],[21,-4.7,-27.6],[22,5,-27.2],[23,-15.6,-22],[24,9.4,-24.4],[25,0,-20.4],[26,0,-20.4],[27,2.6,-16.2],[28,-3.6,-12.2],[29,2.9,-7.3],[30,2.9,-7.3]],
+     "track": [[16,-5.6,-34],[17,-5.6,-34],[18,-14.3,-29.4],[19,-14.3,-29.4],[20,-3.7,-24.4],[21,-3.7,-24.4],[22,-3.7,-24.4],[23,-3.7,-24.4],[24,-4.3,-17.9],[25,-7.4,-14.2],[26,3,-11.8],[27,-3.5,-11.2],[28,0.3,-9.4],[29,-2.8,-2.7],[30,-2.8,-2.7]],
      "beyondReach": true,
      "beyondBone": false,
      "refs": [
@@ -1217,8 +1206,8 @@
      "english": "Pleura",
      "kind": "boundary",
      "relation": "cross",
-     "depthMm": 56.3,
-     "endMm": 56.6,
+     "depthMm": 54.4,
+     "endMm": 54.8,
      "literatureReferenceMm": null,
      "depthSource": "참조 모델",
      "emph": true,
@@ -1245,26 +1234,26 @@
    "region": "chest",
    "pathSource": "reviewed",
    "modelMaxMm": 6.8,
-   "boneMm": null,
+   "boneMm": 45.2,
    "orientation": {
-    "up": "뒤·머리쪽",
-    "down": "앞·발쪽",
-    "right": "안쪽",
-    "left": "가쪽",
+    "up": "앞",
+    "down": "뒤",
+    "right": "가쪽",
+    "left": "안쪽",
     "view": "시술자 시점 — 침 손잡이에서 침끝 방향으로 본 단면"
    },
    "structures": [
     {
      "id": "SP20-0",
-     "label": "흉막·허파 (기흉 위험)",
-     "english": "Pleura",
-     "kind": "boundary",
+     "label": "겨드랑정맥",
+     "english": "axillary vein",
+     "kind": "vein",
      "relation": "cross",
-     "depthMm": 50.1,
-     "endMm": 50.7,
+     "depthMm": 11.8,
+     "endMm": 18.4,
      "literatureReferenceMm": null,
      "depthSource": "참조 모델",
-     "emph": true,
+     "emph": false,
      "note": null,
      "basis": null,
      "bearing": {
@@ -1273,8 +1262,29 @@
       "yMm": 0,
       "distanceMm": 0
      },
-     "track": [],
+     "track": [[7,-20.1,2.4],[8,-12.2,0],[9,-7.8,-2],[10,-1.2,-0.2],[11,-1.2,-0.2],[12,0,0],[13,0,0],[14,0,0],[15,0,0],[16,0,0],[17,0,0],[18,0,0],[19,-1.4,-1.4],[20,-1.4,-1.4],[21,3.5,0.7],[22,10.6,-0.2],[23,13.3,0.1],[24,15.7,0.5],[25,18.2,-0.6],[26,18.2,2],[27,21,2],[28,21,2],[29,22.2,-0.2],[30,23.7,4.1]],
      "beyondReach": true,
+     "beyondBone": false,
+     "refs": [
+      "peuker3"
+     ]
+    },
+    {
+     "id": "SP20-1",
+     "label": "흉막·허파 (기흉 위험)",
+     "english": "Pleura / lung",
+     "kind": "boundary",
+     "relation": "concept",
+     "depthMm": null,
+     "endMm": null,
+     "literatureReferenceMm": null,
+     "depthSource": "해부 개념",
+     "emph": true,
+     "note": null,
+     "basis": null,
+     "bearing": null,
+     "track": null,
+     "beyondReach": false,
      "beyondBone": false,
      "refs": [
       "orahilly22",
@@ -1346,8 +1356,8 @@
      "english": "Pleura",
      "kind": "boundary",
      "relation": "cross",
-     "depthMm": 36.6,
-     "endMm": 36.7,
+     "depthMm": 36.4,
+     "endMm": 36.5,
      "literatureReferenceMm": null,
      "depthSource": "참조 모델",
      "emph": true,
@@ -1359,7 +1369,7 @@
       "yMm": 0,
       "distanceMm": 0
      },
-     "track": [[29,23.5,23],[30,23.5,23]],
+     "track": [[29,21.2,24.8],[30,21.2,24.8]],
      "beyondReach": true,
      "beyondBone": false,
      "refs": [
@@ -1378,8 +1388,8 @@
    "orientation": {
     "up": "머리쪽",
     "down": "발쪽",
-    "right": "안쪽",
-    "left": "가쪽",
+    "right": "안쪽·앞",
+    "left": "가쪽·뒤",
     "view": "시술자 시점 — 침 손잡이에서 침끝 방향으로 본 단면"
    },
    "structures": [
@@ -1389,8 +1399,8 @@
      "english": "Pleura",
      "kind": "boundary",
      "relation": "cross",
-     "depthMm": 27.5,
-     "endMm": 28.1,
+     "depthMm": 31.4,
+     "endMm": 31.8,
      "literatureReferenceMm": null,
      "depthSource": "참조 모델",
      "emph": true,
@@ -1402,7 +1412,7 @@
       "yMm": 0,
       "distanceMm": 0
      },
-     "track": [[14,13,-17.9],[15,12.2,-13.9],[16,8.7,-14.9],[17,8.7,-14.9],[18,1.2,-17],[19,7.5,-7.4],[20,7.5,-7.4],[21,1.3,-10],[22,1.3,-10],[23,-3.5,-6.6],[24,-1,-3.9],[25,2.8,0.7],[26,2.8,0.7],[27,0,0],[28,0,0],[29,0,0],[30,0,0]],
+     "track": [[20,-0.4,-25.9],[21,4.1,-22.9],[22,4.8,-19.1],[23,4.8,-19.1],[24,1.7,-15.1],[25,4.6,-7.5],[26,4.6,-7.5],[27,-2.2,-6.2],[28,-2.2,-6.2],[29,-3.5,-3.3],[30,-3.5,-3.3]],
      "beyondReach": true,
      "beyondBone": false,
      "refs": [
@@ -1475,8 +1485,8 @@
      "english": "Pleura",
      "kind": "boundary",
      "relation": "cross",
-     "depthMm": 48.5,
-     "endMm": 48.6,
+     "depthMm": 49.5,
+     "endMm": 49.7,
      "literatureReferenceMm": null,
      "depthSource": "참조 모델",
      "emph": true,
@@ -3494,7 +3504,7 @@
      "english": "subclavian artery",
      "kind": "artery",
      "relation": "near",
-     "depthMm": 15.2,
+     "depthMm": 16.2,
      "endMm": null,
      "literatureReferenceMm": null,
      "depthSource": "참조 모델",
@@ -3503,11 +3513,11 @@
      "basis": null,
      "bearing": {
       "status": "model-nearest",
-      "xMm": 1.7,
-      "yMm": -1.1,
-      "distanceMm": 2
+      "xMm": 1.6,
+      "yMm": -0.9,
+      "distanceMm": 1.9
      },
-     "track": [[9,0.4,-6.1],[10,-1.2,-5.6],[11,-1.2,-5.6],[12,3.1,-0.6],[13,1.7,-1.1],[14,1.7,-1.1],[15,1.7,-1.1],[16,1.7,-1.1],[17,1.7,-1.1],[18,0.8,-2.6],[19,3.2,-1.2],[20,5.5,-0.7],[21,7.8,2],[22,12.8,5.4],[23,12.8,5.4],[24,12.8,5.4],[25,12.3,9],[26,15.5,14.9],[27,17.8,14.9],[28,17.8,14.9],[29,20.8,14.4],[30,23.7,19.2]],
+     "track": [[9,-1.4,-6.9],[10,2.3,-5.1],[11,5,-1],[12,1.3,-1.4],[13,-0.1,-1.9],[14,1.6,-0.9],[15,1.6,-0.9],[16,1.6,-0.9],[17,1.6,-0.9],[18,1.6,-0.9],[19,1.5,-2],[20,3.8,-1.5],[21,6.1,1.2],[22,11,4.6],[23,11,4.6],[24,11,4.6],[25,10.5,8.2],[26,13.8,14.2],[27,16,14.1],[28,16,14.1],[29,19,13.7],[30,22,18.4]],
      "beyondReach": true,
      "beyondBone": false,
      "refs": [

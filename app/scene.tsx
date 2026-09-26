@@ -43,6 +43,7 @@ interface Props {
   onError: (s: string) => void;
   onNeedleReport?: (report: NeedleReport) => void;
   onAnnotationFrame?: (frame: AnnotationFrame | null) => void;
+  onUserCameraAction?: (kind: "rotate" | "zoom") => void;
   /** Structure picked out in the panel; drawn through the tissue in front of it. */
   focus?: FocusChannel;
   /** A tap on a structure the needle path meets, while a point is in focus. */
@@ -57,6 +58,7 @@ export default function AnatomyScene({
   onError,
   onNeedleReport,
   onAnnotationFrame,
+  onUserCameraAction,
   focus,
   onPathPartTap,
 }: Props) {
@@ -66,6 +68,7 @@ export default function AnatomyScene({
     pointSelect = useRef(onPointSelect),
     needleReport = useRef(onNeedleReport),
     annotationFrame = useRef(onAnnotationFrame),
+    cameraAction = useRef(onUserCameraAction),
     pathPartTap = useRef(onPathPartTap);
   latest.current = state;
   pathPartTap.current = onPathPartTap;
@@ -73,6 +76,7 @@ export default function AnatomyScene({
   pointSelect.current = onPointSelect;
   needleReport.current = onNeedleReport;
   annotationFrame.current = onAnnotationFrame;
+  cameraAction.current = onUserCameraAction;
   useEffect(() => {
     const el = host.current!;
     let disposed = false,
@@ -84,6 +88,7 @@ export default function AnatomyScene({
       lastIsolate = "",
       lastRegion = "",
       lastInsets = "",
+      lastZoomCommand = -1,
       layoutKey = "",
       amount = 0;
     let lastState: SceneState | null = null,
@@ -156,12 +161,19 @@ export default function AnatomyScene({
       } else cameraTransitioning = true;
       dirty = true;
     };
+    let gestureAzimuth = 0, gestureDistance = 0, reportedRotate = false, reportedZoom = false;
     controls.addEventListener("change", () => {
       dirty = true;
+      if (!isControlling) return;
+      const azimuth = controls.getAzimuthalAngle(), distance = camera.position.distanceTo(controls.target);
+      if (!reportedRotate && Math.abs(azimuth - gestureAzimuth) > 0.12) { reportedRotate = true; cameraAction.current?.("rotate"); }
+      if (!reportedZoom && gestureDistance > 0 && Math.log(distance / gestureDistance) < -0.07) { reportedZoom = true; cameraAction.current?.("zoom"); }
     });
     controls.addEventListener("start", () => {
       cameraTransitioning = false;
       isControlling = true;
+      gestureAzimuth = controls.getAzimuthalAngle(); gestureDistance = camera.position.distanceTo(controls.target);
+      reportedRotate = false; reportedZoom = false;
       dirty = true;
     });
     controls.addEventListener("end", () => {
@@ -488,6 +500,32 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
       camera.setViewOffset(w, h, (right - left) / 2, (bottom - top) / 2, w, h);
       const free = Math.min(Math.max(120, w - left - right), Math.max(120, h - top - bottom));
       return T.MathUtils.clamp(h / free, 1, 3);
+    };
+    /** Whether anything drawn lies on the straight line from `eye` to `point` (short of the point itself). */
+    const occluded = (eye: T.Vector3, point: T.Vector3) => {
+      const toPoint = point.clone().sub(eye), length = toPoint.length(), ray = new T.Raycaster(eye, toPoint.normalize(), 0, length - 0.004), entry = new T.Vector3();
+      for (let i = 0; i < pickers.length; i++) {
+        const mesh = pickers[i];
+        // The skin counts even when hidden: the point sits on it, and a thumb's skin in the way is a thumb in the way.
+        if (!mesh || (data[i * 4 + 3] < 0.5 && atlas.parts[i].system !== "integumentary")) continue;
+        const box = bounds[i].clone().translate(mesh.position);
+        if (!box.containsPoint(eye) && (!ray.ray.intersectBox(box, entry) || entry.distanceTo(eye) > length)) continue;
+        if (ray.intersectObject(mesh, false).length) return true;
+      }
+      return false;
+    };
+    /** The preferred viewing direction if it sees the point, else the nearest one that does: the
+     *  outward normal alone can look through a thumb or the other leg (LI4 did). Tilts widen in steps. */
+    const clearDirection = (point: T.Vector3, preferred: T.Vector3, distance: number) => {
+      const base = preferred.clone().normalize(),
+        helper = Math.abs(base.y) < 0.9 ? new T.Vector3(0, 1, 0) : new T.Vector3(1, 0, 0),
+        u = new T.Vector3().crossVectors(base, helper).normalize(), v = new T.Vector3().crossVectors(base, u);
+      for (const tilt of [0, 20, 35, 50, 65]) for (let k = 0; k < (tilt ? 8 : 1); k++) {
+        const a = T.MathUtils.degToRad(tilt), phi = (k / 8) * Math.PI * 2,
+          direction = base.clone().multiplyScalar(Math.cos(a)).addScaledVector(u, Math.sin(a) * Math.cos(phi)).addScaledVector(v, Math.sin(a) * Math.sin(phi)).normalize();
+        if (!occluded(point.clone().addScaledVector(direction, distance), point)) return direction;
+      }
+      return base;
     };
     const fit = (view: string, extent = 0) => {
       if (latest.current.regionFocus) return;
@@ -1089,7 +1127,8 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
           object.label.visible = false;
           object.marker.material = selected ? selectedPointMaterial : pointMaterial;
           object.core.material = selected ? selectedPointCoreMaterial : pointCoreMaterial;
-          const markerScale=(selected ? 1.08 : 1)*(definition.code.startsWith('GB')?1:.3);
+          // Other meridians draw small so dense runs stay readable; the selected point keeps a size you can find.
+          const markerScale=selected?Math.max(0.8,definition.code.startsWith('GB')?1.08:.3):(definition.code.startsWith('GB')?1:.3);
           object.marker.userData.baseScale = markerScale;
           markerZoom = -1;
           if(meridianOf(definition.code)===meridianOf(config?.selectedCode??'GB34')) projectedBySide[side].push({code:definition.code,point:object.marker.position.clone()});
@@ -1666,6 +1705,12 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
         dirty = true;
       }
       lastInsets = insetsKey;
+      if(!s.zoomCommand)lastZoomCommand=-1;
+      if(s.zoomCommand && s.zoomCommand.revision!==lastZoomCommand){
+        lastZoomCommand=s.zoomCommand.revision;
+        const direction=camera.position.clone().sub(controls.target),distance=T.MathUtils.clamp(direction.length()*s.zoomCommand.factor,controls.minDistance,controls.maxDistance);
+        moveCamera(controls.target.clone(),controls.target.clone().add(direction.normalize().multiplyScalar(distance)));
+      }
       if (regionKey !== lastRegion) {
         if (!s.regionFocus && lastRegion && lastRegion !== "undefined" && !s.isolate) camera.clearViewOffset();
         if (s.regionFocus && s.regionFocus.viewHint === "needle-side" && needleActive) {
@@ -1685,7 +1730,8 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
             radius = Math.max(0.045, needleLimitMm / 1000 + 0.02),
             distance = (radius / (2 * Math.tan(T.MathUtils.degToRad(camera.fov / 2)))) * 1.35 * applyInsets(s.viewInsets);
           camera.up.set(0, 1, 0);
-          moveCamera(center, center.clone().addScaledVector(direction, distance));
+          const seen = clearDirection(needleSurface, direction, distance);
+          moveCamera(center, center.clone().addScaledVector(seen, distance));
         } else if (s.regionFocus) {
           const insetScale = applyInsets(s.viewInsets);
           const selectedSurface = s.acupuncture?.selectedCode
@@ -1717,8 +1763,9 @@ diffuseColor.rgb *= 1.0 - 0.07*max(wristBand,elbowBand);` : ""}`,
                       acupoints.find((point) => point.code === pointCode)?.outward ??
                       [-1, 0.08, 0.32],
                   )
-            ).normalize();
-          moveCamera(center, center.clone().addScaledVector(direction, distance));
+            ).normalize(),
+            seen = clearDirection(selectedSurface?.lengthSq() ? selectedSurface : center, direction, distance);
+          moveCamera(center, center.clone().addScaledVector(seen, distance));
         }
         lastRegion = regionKey;
       }

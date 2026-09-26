@@ -372,3 +372,10 @@ h1 .edition{font-family:inherit;font-weight:500;font-size:var(--text-caption);le
 .search-result-name,.structure-title,.member-list button,.scene-caption,.strata-label,.compass-structure-list,.compass-plot text{font-family:var(--font-body)!important}
 .strata-label .ko,.strata-now .ko{font-size:var(--text-footnote);font-weight:500;color:var(--strata-ink)}
 .strata-label .en,.strata-now .en{font-size:var(--text-caption);font-weight:400;color:var(--strata-ink-3);overflow-wrap:anywhere}
+/* Phones are for checking where a point is, not for the full study tools (2026-09-26): the camera
+   presets would sit over the scene they are meant to steer, so orbit and pinch do the work there. */
+@media(max-width:767px){.studio .view-controls{display:none}}
+@media(max-width:767px){.studio .sheet-peek>:not(.sheet-grabber):not(.acupuncture-panel-head){visibility:hidden}}
+/* Acupoints lead the structure search. */
+.search-result-point .search-result-name b{font-variant-numeric:tabular-nums;margin-right:4px}
+.search-result-point .search-result-name small{font-size:var(--text-caption);color:#7d8a79;margin-left:4px}

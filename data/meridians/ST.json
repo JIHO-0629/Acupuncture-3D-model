@@ -363,7 +363,7 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07921,
+    -0.07751,
     1.431,
     0.00927
    ],
@@ -374,7 +374,7 @@
    ],
    "region": "thorax",
    "depthMm": 6.6,
-   "rule": "greater supraclavicular fossa · on the vertical nipple line (4 B-cun) · depression above the clavicle"
+   "rule": "greater supraclavicular fossa · on the vertical nipple line (4 B-cun) · depression above the clavicle · 2026-09-26 검수 반영: on the mammillary line (clavicle-midpoint x) (reviewer, 2026-09-26)"
   },
   {
    "code": "ST13",
@@ -393,8 +393,8 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07921,
-    1.40525,
+    -0.07751,
+    1.40396,
     0.04597
    ],
    "outward": [
@@ -404,7 +404,7 @@
    ],
    "region": "thorax",
    "depthMm": 16,
-   "rule": "immediately inferior to the clavicle · on the vertical nipple line with ST12 (4 B-cun)"
+   "rule": "immediately inferior to the clavicle · on the vertical nipple line with ST12 (4 B-cun) · 2026-09-26 검수 반영: on the mammillary line, immediately against the lower edge of the clavicle (reviewer, 2026-09-26)"
   },
   {
    "code": "ST14",
@@ -423,18 +423,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07776,
-    1.40559,
-    0.05904
+    -0.07293,
+    1.39037,
+    0.05618
    ],
    "outward": [
-    -0.7013,
+    -0.69151,
     0,
-    0.71287
+    0.72236
    ],
    "region": "thorax",
    "depthMm": 7,
-   "rule": "1st intercostal space · 4 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 1 (+13 mm)"
+   "rule": "1st intercostal space · 4 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 1 (+13 mm) · 2026-09-26 유두선 곡선 반영: lowered out of the clavicle level to the middle of the 1st intercostal space on the rib bands (reviewer, 2026-09-26; the skin-normal ray scan reads the space at clavicle level here because the skin faces upward); on the curved mammillary-line scale"
   },
   {
    "code": "ST15",
@@ -453,18 +453,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07876,
-    1.37185,
-    0.08877
+    -0.07603,
+    1.37385,
+    0.06981
    ],
    "outward": [
-    -0.58647,
+    -0.64612,
     0,
-    0.80997
+    0.76323
    ],
    "region": "thorax",
    "depthMm": 7.6,
-   "rule": "2nd intercostal space · 4 B-cun lateral (skin arc) · below the 2nd rib at the sternal angle · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 2 (+15 mm)"
+   "rule": "2nd intercostal space · 4 B-cun lateral (skin arc) · below the 2nd rib at the sternal angle · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 2 (+15 mm) · 2026-09-26 유두선 곡선 반영: onto the curved mammillary-line scale, re-centred in intercostal space 2 (+2 mm)"
   },
   {
    "code": "ST16",
@@ -483,18 +483,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07788,
-    1.33339,
-    0.10646
+    -0.08454,
+    1.33739,
+    0.09018
    ],
    "outward": [
-    -0.52438,
+    -0.60876,
     0,
-    0.85149
+    0.79335
    ],
    "region": "thorax",
    "depthMm": 7.5,
-   "rule": "3rd intercostal space · 4 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 3 (+12 mm)"
+   "rule": "3rd intercostal space · 4 B-cun lateral (skin arc) · 2026-09-25 자침 경로 검수 반영: centred in intercostal space 3 (+12 mm) · 2026-09-26 유두선 곡선 반영: onto the curved mammillary-line scale, re-centred in intercostal space 3 (+4 mm)"
   },
   {
    "code": "ST17",
@@ -513,18 +513,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07822,
-    1.28078,
-    0.11913
+    -0.1034,
+    1.27343,
+    0.10768
    ],
    "outward": [
-    -0.49007,
+    -0.62932,
     0,
-    0.87169
+    0.77715
    ],
    "region": "thorax",
    "depthMm": 7.8,
-   "rule": "4th intercostal space · 4 B-cun lateral (skin arc) · centre of the nipple in males (WHO)"
+   "rule": "4th intercostal space · 4 B-cun lateral (skin arc) · centre of the nipple in males (WHO) · 2026-09-26 유두선 곡선 반영: centre of the nipple on the mammillary line"
   },
   {
    "code": "ST18",
@@ -543,18 +543,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07994,
-    1.24289,
-    0.11361
+    -0.10272,
+    1.23989,
+    0.0961
    ],
    "outward": [
-    -0.51344,
+    -0.66262,
     0,
-    0.85813
+    0.74896
    ],
    "region": "thorax",
    "depthMm": 8.1,
-   "rule": "5th intercostal space · 4 B-cun lateral (skin arc) · nipple line in males"
+   "rule": "5th intercostal space · 4 B-cun lateral (skin arc) · nipple line in males · 2026-09-26 유두선 곡선 반영: onto the curved mammillary-line scale, re-centred in intercostal space 5 (-3 mm)"
   },
   {
    "code": "ST19",

@@ -103,7 +103,7 @@ const GB_POINT_INPUTS:GbPointInput[]=[
  // medial, as it would with the arm raised. In this pose the axillary hollow leaves ~70 mm to serratus anterior.
  {code:'GB22',korean:'연액',hanja:'淵腋',english:'Yuanye',location:'팔을 든 자세에서 중간겨드랑선 위, 겨드랑 중심 아래 3촌의 제4늑간',basis:'팔을 든 자세를 가정한 중간겨드랑선의 제4늑간(모델은 팔 내림 자세라 가슴벽 바깥 9 mm에 둔 가정 체표). 2026-09-25 검수: 제4·5늑골 사이 중앙',seed:[-.134,1.318,.000],projection:'direct',outward:[-1,0,0],status:'registered'},
  {code:'GB23',korean:'첩근',hanja:'輒筋',english:'Zhejin',location:'가쪽가슴부위 제4늑간, 중간겨드랑선 앞쪽 1촌',basis:'팔을 든 자세를 가정한 제4늑간, 중간겨드랑선 앞 1촌(가슴벽 바깥 9 mm 가정 체표). 2026-09-25 검수: 제4·5늑골 사이',seed:[-.128,1.307,.024],projection:'direct',outward:[-.958,0,.287],status:'registered'},
- {code:'GB24',korean:'일월',hanja:'日月',english:'Riyue',location:'앞가슴부위 제7늑간, 앞정중선 가쪽 4촌',basis:'제7·8늑골과 늑간 공간',seed:[-.120,1.165,.087],projection:'anterior',status:'registered'},
+ {code:'GB24',korean:'일월',hanja:'日月',english:'Riyue',location:'앞가슴부위 제7늑간, 앞정중선 가쪽 4촌',basis:'제7·8늑골 사이 늑간, 유두선 바로 아래 (2026-09-26 유두선 곡선 반영: scripts/needling/relocate-mammillary-2026-09-26.mjs --gb)',seed:[-.10152,1.17704,.09315],projection:'anterior',status:'registered'},
  {code:'GB25',korean:'경문',hanja:'京門',english:'Jingmen',location:'옆배, 제12늑골 자유단 바로 아래쪽',basis:'제12늑골 자유단에서 가장 가까운 피부로 수직으로 올라온 점(2026-09-25 검수)',seed:[-.10618,1.0826,-.06078],projection:'direct',outward:[-.69049,-.23944,-.68257],status:'review'},
  // 2026-09-23: the old seed sat 30 mm below the umbilicus level and 40 mm lateral, where the needle met the iliac
  // crest at 14 mm. Now: vertically below the free end of the 11th rib (-0.108, 1.0888, -0.0049) at the height of

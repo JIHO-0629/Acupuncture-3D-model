@@ -420,18 +420,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.07974,
+    -0.09909,
     1.20868,
-    0.11396
+    0.09705
    ],
    "outward": [
-    -0.5115,
+    -0.64612,
     0,
-    0.85928
+    0.76323
    ],
    "region": "thorax",
    "depthMm": 8.2,
-   "rule": "6th intercostal space measured on the 4 B-cun line · 4 B-cun lateral (skin arc) · below the nipple"
+   "rule": "6th intercostal space measured on the 4 B-cun line · 4 B-cun lateral (skin arc) · below the nipple · 2026-09-26 유두선 곡선 반영: onto the curved mammillary-line scale, inside intercostal space 6"
   }
  ]
 }

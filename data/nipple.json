@@ -1,16 +1,15 @@
 {
- "generatedBy": "scripts/meridians/st.mjs",
- "rule": "internipple distance = 60 % of the thoracic width at the 4th intercostal level (male NAC anthropometry); height just above the 5th rib (4th intercostal space) at that x; right side, the viewer mirrors x for the left",
- "thoracicWidthMm": 327.4,
- "internippleMm": 196.5,
+ "generatedBy": "scripts/needling/relocate-mammillary-2026-09-26.mjs (definition: scripts/trunk-arc.mjs)",
+ "rule": "lower lateral edge of the pectoral mound: where the front chest contour turns past 25° (reviewer, 2026-09-26); height just above the 5th rib (4th intercostal space) on the clavicle-midpoint line; right side, the viewer mirrors x for the left",
+ "internippleMm": 219.4,
  "centre": [
-  -0.0982,
-  1.2799,
-  0.1178
+  -0.1097,
+  1.2734,
+  0.1155
  ],
  "normal": [
-  -0.3544,
-  0.0772,
-  0.9319
+  -0.6293,
+  0,
+  0.7771
  ]
 }

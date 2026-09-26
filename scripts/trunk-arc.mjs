@@ -88,7 +88,7 @@ export const lateralOnSkin = (y, cun) => {
   return cun === 0 ? ring[index].clone() : advance(ring, index, toRight, cun * TRUNK_CUN);
 };
 
-const ribParts = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh'].map((n) =>
+const ribParts = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth'].map((n) =>
   [`Right ${n} rib`, `Right ${n} costal cartilage`].filter(exists).map((name) => mesh(atlas, name)));
 const ribBand = (k, x) => {
   const column = ribParts[k - 1].flatMap((part) => pts(part, (p) => Math.abs(p.x - x) < 0.004 && p.z > 0.02));
@@ -116,3 +116,64 @@ export const clavicleLowOnLine = (cun) => {
   const x = lateralOnSkin(clavicleLevel, cun).x;
   return lowest(pts(clavicle, (p) => Math.abs(p.x - x) < 0.004)).y;
 };
+
+// ---------------------------------------------------------------- mammillary (nipple) line and the chest B-cun
+// Photo archive (ST12, ST14, ST16, LR14, GB24; reviewer, 2026-09-26): the 4 B-cun line leaves the clavicle where
+// it bends and, because the chest widens, curves outward to pass through the nipple; below the nipple LR14 and
+// GB24 sit straight down on it. On the chest, 4 B-cun is therefore the skin arc to this line at each height, and
+// the 2, 5 and 6 B-cun lines scale with it; the abdomen keeps TRUNK_CUN.
+// Where the nipple sits (reviewer on the model, 2026-09-26): at the lower lateral edge of the pectoral mound, where
+// the front chest contour turns. A ratio taken from the photos (1.18 × the clavicle midpoint) put it about 15 mm too
+// medial on this broad-chested body. At nipple height the contour runs within ~12° of the frontal plane out to
+// x ≈ 107 mm and then steepens past 25°; that turn is the nipple's x.
+export const PECTORAL_TURN_DEG = 25;
+/** x where the front skin contour at height y first leans more than PECTORAL_TURN_DEG from the frontal plane. */
+export const pectoralTurnX = (y) => {
+  const { ring, index, toRight } = trunkRing(y), step = toRight * 3;
+  let i = index, previous = ring[i];
+  for (let guard = 0; guard < ring.length; guard++) {
+    i = (i + step + ring.length) % ring.length;
+    const next = ring[i], dx = next.x - previous.x, dz = next.z - previous.z;
+    if (Math.hypot(dx, dz) < 1e-4) continue;
+    if (next.x < -0.06 && Math.atan2(-dz, -dx) * 180 / Math.PI >= PECTORAL_TURN_DEG) return next.x;
+    previous = next;
+    if (next.x < -0.2) break;
+  }
+  throw new Error(`no pectoral turn found at y=${y.toFixed(4)}`);
+};
+const MAMMILLARY_TOP = { y: clavicleLevel, x: clavicleMidX };
+/** Nipple height: just above the 5th rib (4th intercostal space) measured on the clavicle-midpoint line. Measured at
+ *  the nipple's own x the rib has climbed and the nipple rose 16 mm above where the reviewer marked it. */
+export const nippleY = ribBand(5, clavicleMidX).high + 0.004;
+export const nippleX = pectoralTurnX(nippleY);
+/** x of the mammillary line at height y: the clavicle midpoint at clavicle level, easing out to the nipple, straight below it. */
+export const mammillaryX = (y) => {
+  if (y >= MAMMILLARY_TOP.y) return MAMMILLARY_TOP.x;
+  // Below the nipple the chest wall narrows toward the costal margin; held at the nipple's x, LR14 and GB24 read as
+  // lateral (reviewer, 2026-09-26). From 30 mm below the nipple (under ST18) the line eases medially 1 mm per 8 mm.
+  if (y <= nippleY) return nippleX + Math.max(0, nippleY - 0.03 - y) / 8;
+  const t = (MAMMILLARY_TOP.y - y) / (MAMMILLARY_TOP.y - nippleY);
+  return MAMMILLARY_TOP.x + (nippleX - MAMMILLARY_TOP.x) * Math.pow(t, 1.5);
+};
+/** Millimetres of skin per chest B-cun at height y: the arc from the midline to the mammillary line is 4 B-cun. */
+export const chestCunAt = (y) => {
+  const { ring, index, toRight } = trunkRing(y);
+  return arcTo(ring, index, toRight, (p) => p.x <= mammillaryX(y)) / 4;
+};
+/** Skin point `cun` chest B-cun lateral to the anterior midline at height y. */
+export const chestLateralOnSkin = (y, cun) => {
+  const { ring, index, toRight } = trunkRing(y);
+  return advance(ring, index, toRight, cun * chestCunAt(y));
+};
+/** Height of intercostal space k on the `cun` chest B-cun line. */
+export const intercostalOnChestLine = (k, cun) => {
+  let x = mammillaryX(nippleY) * cun / 4;
+  let y = (ribBand(k, x).low + ribBand(k + 1, x).high) / 2;
+  for (let pass = 0; pass < 3; pass++) {
+    x = chestLateralOnSkin(y, cun).x;
+    y = (ribBand(k, x).low + ribBand(k + 1, x).high) / 2;
+  }
+  return y;
+};
+/** The nipple itself: on the skin at (nippleX, nippleY). */
+export const nippleSurface = () => chestLateralOnSkin(nippleY, 4);

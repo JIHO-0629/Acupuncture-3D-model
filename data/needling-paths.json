@@ -3,47 +3,46 @@
  "GB24": {
   "region": "chest",
   "direction": [
-   0.6876,
-   0.2824,
-   -0.669
+   0.4329,
+   0.2167,
+   -0.875
   ],
-  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 2° 차이)",
-  "faceDeviationDeg": 2,
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 4° 차이)",
+  "faceDeviationDeg": 4,
   "surface": [
-   -0.12,
-   1.165,
-   0.0855
+   -0.1015,
+   1.177,
+   0.1013
   ],
   "layers": [
    {
     "ko": "배바깥빗근",
     "en": "external oblique",
-    "mm": 8.7,
-    "end": 13.7,
+    "mm": 5.9,
+    "end": 11.5,
     "kind": "model",
     "atlas": "Right external oblique"
    },
    {
     "ko": "속갈비사이근",
     "en": "internal intercostal muscle",
-    "mm": 17.5,
-    "end": 20.4,
+    "mm": 14.3,
+    "end": 16.8,
     "kind": "model",
     "atlas": "internal intercostal muscle"
    },
    {
-    "ko": "배가로근",
-    "en": "transversus abdominis",
-    "mm": 23.6,
-    "end": 28.8,
-    "kind": "model",
-    "atlas": "Right transversus abdominis"
+    "ko": "근육 사이 결합조직·지방",
+    "en": "Connective tissue / fat (not modelled)",
+    "mm": 16.8,
+    "end": 28.1,
+    "kind": "void"
    },
    {
     "ko": "가로막",
     "en": "Diaphragm",
-    "mm": 28.8,
-    "end": 32.2,
+    "mm": 28.1,
+    "end": 31.5,
     "kind": "model",
     "atlas": "Diaphragm"
    },
@@ -59,7 +58,7 @@
    {
     "ko": "간",
     "en": "Hepatovenous segment V",
-    "mm": 33.6,
+    "mm": 32.5,
     "source": "model",
     "relation": "cross"
    },
@@ -78,47 +77,39 @@
  "LR14": {
   "region": "chest",
   "direction": [
-   0.2815,
-   0.0188,
-   -0.9594
+   0.4871,
+   -0.006,
+   -0.8733
   ],
-  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 2° 차이)",
-  "faceDeviationDeg": 2,
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 1° 차이)",
+  "faceDeviationDeg": 1,
   "surface": [
-   -0.0797,
+   -0.1044,
    1.2087,
-   0.114
+   0.1033
   ],
   "layers": [
    {
     "ko": "배바깥빗근",
     "en": "external oblique",
-    "mm": 6.2,
-    "end": 7.8,
+    "mm": 4.5,
+    "end": 9.7,
     "kind": "model",
     "atlas": "Right external oblique"
    },
    {
     "ko": "속갈비사이근",
     "en": "internal intercostal muscle",
-    "mm": 14.4,
-    "end": 16.4,
+    "mm": 17.7,
+    "end": 21,
     "kind": "model",
     "atlas": "internal intercostal muscle"
    },
    {
-    "ko": "배곧은근",
-    "en": "rectus abdominis",
-    "mm": 15.2,
-    "end": 19,
-    "kind": "model",
-    "atlas": "Right rectus abdominis"
-   },
-   {
     "ko": "가로막",
     "en": "Diaphragm",
-    "mm": 25.6,
-    "end": 28.8,
+    "mm": 30.5,
+    "end": 33.6,
     "kind": "model",
     "atlas": "Diaphragm"
    },
@@ -134,7 +125,7 @@
    {
     "ko": "간",
     "en": "Hepatovenous segment VIII",
-    "mm": 31,
+    "mm": 35.3,
     "source": "model",
     "relation": "cross"
    },
@@ -148,12 +139,6 @@
     "note": "제6늑간 흉막 아래오목(개념 표시)"
    }
   ],
-  "dropped": {
-   "names": [
-    "큰가슴근 배부분"
-   ],
-   "why": "큰가슴근 배부분 메시가 본체에서 떨어져 갈비활까지 뻗은 메시 오류"
-  },
   "modelMaxMm": 5.1
  },
  "LU2": {
@@ -414,41 +399,41 @@
  "KI22": {
   "region": "chest",
   "direction": [
-   -0.1581,
-   0.2946,
-   -0.9424
+   0.013,
+   0.291,
+   -0.9566
   ],
-  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 1° 차이)",
-  "faceDeviationDeg": 1,
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 3° 차이)",
+  "faceDeviationDeg": 3,
   "surface": [
-   -0.0374,
-   1.2534,
-   0.1213
+   -0.055,
+   1.2466,
+   0.118
   ],
   "layers": [
    {
     "ko": "큰가슴근 복장갈비부분",
     "en": "Sternocostal part of right pectoralis major",
-    "mm": 4.3,
-    "end": 18.9,
+    "mm": 0,
+    "end": 15.1,
     "kind": "model",
     "atlas": "Sternocostal part of right pectoralis major"
    },
    {
     "ko": "속갈비사이근",
     "en": "internal intercostal muscle",
-    "mm": 14.1,
-    "end": 17,
+    "mm": 12.4,
+    "end": 15.4,
     "kind": "model",
     "atlas": "internal intercostal muscle"
    },
    {
-    "ko": "가슴가로근",
-    "en": "transversus thoracis",
-    "mm": 22.6,
-    "end": 25.7,
+    "ko": "배곧은근",
+    "en": "rectus abdominis",
+    "mm": 15.3,
+    "end": 21.7,
     "kind": "model",
-    "atlas": "Right transversus thoracis"
+    "atlas": "Right rectus abdominis"
    },
    {
     "ko": "가슴속근막",
@@ -462,7 +447,7 @@
    {
     "ko": "흉막·허파 (기흉 위험)",
     "en": "Pleura",
-    "mm": 28.3,
+    "mm": 24.2,
     "source": "model",
     "relation": "cross",
     "emph": true
@@ -473,23 +458,23 @@
  "KI25": {
   "region": "chest",
   "direction": [
-   -0.051,
-   -0.4836,
-   -0.8738
+   -0.0118,
+   -0.5345,
+   -0.8451
   ],
-  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 2° 차이)",
-  "faceDeviationDeg": 2,
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 1° 차이)",
+  "faceDeviationDeg": 1,
   "surface": [
-   -0.0387,
-   1.3532,
-   0.0971
+   -0.0421,
+   1.3562,
+   0.0928
   ],
   "layers": [
    {
     "ko": "큰가슴근 복장갈비부분",
     "en": "Sternocostal part of right pectoralis major",
-    "mm": 8.5,
-    "end": 25.7,
+    "mm": 6.4,
+    "end": 24.1,
     "kind": "model",
     "atlas": "Sternocostal part of right pectoralis major"
    }
@@ -498,7 +483,7 @@
    {
     "ko": "흉막·허파 (기흉 위험)",
     "en": "Pleura",
-    "mm": 39.2,
+    "mm": 37.3,
     "source": "model",
     "relation": "cross",
     "emph": true
@@ -552,96 +537,86 @@
  "ST14": {
   "region": "chest",
   "direction": [
-   0.2479,
-   -0.7046,
-   -0.6649
+   0.2581,
+   -0.6679,
+   -0.6981
   ],
-  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 5° 차이)",
-  "faceDeviationDeg": 5,
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 2° 차이)",
+  "faceDeviationDeg": 2,
   "surface": [
-   -0.071,
-   1.4056,
-   0.0522
+   -0.0778,
+   1.3904,
+   0.0612
   ],
   "layers": [
    {
     "ko": "피하지방·얕은근막",
     "en": "Subcutaneous fat (not modelled)",
     "mm": 2,
-    "end": 14.5,
-    "kind": "void"
-   },
-   {
-    "ko": "큰가슴근 빗장부분",
-    "en": "Clavicular part of right pectoralis major",
-    "mm": 14.5,
-    "end": 22.4,
-    "kind": "model",
-    "atlas": "Clavicular part of right pectoralis major"
-   },
-   {
-    "ko": "바깥갈비사이근",
-    "en": "external intercostal muscle",
-    "mm": 29.7,
-    "end": 30.8,
-    "kind": "model",
-    "atlas": "external intercostal muscle"
-   },
-   {
-    "ko": "가슴속근막",
-    "en": "Endothoracic fascia",
-    "mm": null,
-    "end": null,
-    "kind": "concept"
-   }
-  ],
-  "hazards": [
-   {
-    "ko": "흉막·허파 (기흉 위험)",
-    "en": "Pleura",
-    "mm": 37.6,
-    "source": "model",
-    "relation": "cross",
-    "emph": true
-   }
-  ],
-  "modelMaxMm": 5.1
- },
- "ST15": {
-  "region": "chest",
-  "direction": [
-   0.2034,
-   -0.5948,
-   -0.7777
-  ],
-  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 1° 차이)",
-  "faceDeviationDeg": 1,
-  "surface": [
-   -0.0736,
-   1.3719,
-   0.0816
-  ],
-  "layers": [
-   {
-    "ko": "피하지방·얕은근막",
-    "en": "Subcutaneous fat (not modelled)",
-    "mm": 2,
-    "end": 11.5,
+    "end": 13.4,
     "kind": "void"
    },
    {
     "ko": "큰가슴근 복장갈비부분",
     "en": "Sternocostal part of right pectoralis major",
-    "mm": 11.5,
-    "end": 32.8,
+    "mm": 13.4,
+    "end": 24.2,
+    "kind": "model",
+    "atlas": "Sternocostal part of right pectoralis major"
+   }
+  ],
+  "hazards": [
+   {
+    "ko": "흉막·허파 (기흉 위험)",
+    "en": "Pleura / lung",
+    "mm": null,
+    "source": "concept",
+    "relation": "concept",
+    "emph": true
+   }
+  ],
+  "bone": {
+   "ko": "둘째갈비뼈",
+   "en": "second rib",
+   "mm": 28.9
+  },
+  "modelMaxMm": 5.1
+ },
+ "ST15": {
+  "region": "chest",
+  "direction": [
+   0.2518,
+   -0.6073,
+   -0.7535
+  ],
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 1° 차이)",
+  "faceDeviationDeg": 1,
+  "surface": [
+   -0.0807,
+   1.3739,
+   0.0754
+  ],
+  "layers": [
+   {
+    "ko": "피하지방·얕은근막",
+    "en": "Subcutaneous fat (not modelled)",
+    "mm": 2,
+    "end": 10.1,
+    "kind": "void"
+   },
+   {
+    "ko": "큰가슴근 복장갈비부분",
+    "en": "Sternocostal part of right pectoralis major",
+    "mm": 10.1,
+    "end": 31.1,
     "kind": "model",
     "atlas": "Sternocostal part of right pectoralis major"
    },
    {
     "ko": "바깥갈비사이근",
     "en": "external intercostal muscle",
-    "mm": 30.9,
-    "end": 32.2,
+    "mm": 29.9,
+    "end": 31.7,
     "kind": "model",
     "atlas": "external intercostal muscle"
    },
@@ -657,7 +632,7 @@
    {
     "ko": "흉막·허파 (기흉 위험)",
     "en": "Pleura",
-    "mm": 44.5,
+    "mm": 43.6,
     "source": "model",
     "relation": "cross",
     "emph": true
@@ -668,47 +643,47 @@
  "ST16": {
   "region": "chest",
   "direction": [
-   0.1963,
-   -0.374,
-   -0.9064
+   0.3398,
+   -0.4044,
+   -0.8491
   ],
-  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 2° 차이)",
-  "faceDeviationDeg": 2,
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 4° 차이)",
+  "faceDeviationDeg": 4,
   "surface": [
-   -0.0765,
-   1.3334,
-   0.1042
+   -0.0894,
+   1.3374,
+   0.0966
   ],
   "layers": [
    {
     "ko": "큰가슴근 복장갈비부분",
     "en": "Sternocostal part of right pectoralis major",
-    "mm": 8,
-    "end": 34.8,
+    "mm": 6.8,
+    "end": 34.6,
     "kind": "model",
     "atlas": "Sternocostal part of right pectoralis major"
    },
    {
     "ko": "바깥갈비사이근",
     "en": "external intercostal muscle",
-    "mm": 35,
-    "end": 35.8,
+    "mm": 35.3,
+    "end": 36.9,
     "kind": "model",
     "atlas": "external intercostal muscle"
    },
    {
     "ko": "속갈비사이근",
     "en": "internal intercostal muscle",
-    "mm": 35.3,
-    "end": 37.8,
+    "mm": 36.6,
+    "end": 39,
     "kind": "model",
     "atlas": "internal intercostal muscle"
    },
    {
     "ko": "맨속갈비사이근",
     "en": "innermost intercostal muscle",
-    "mm": 37.2,
-    "end": 39.7,
+    "mm": 37.5,
+    "end": 39.9,
     "kind": "model",
     "atlas": "innermost intercostal muscle"
    },
@@ -724,7 +699,7 @@
    {
     "ko": "흉막·허파 (기흉 위험)",
     "en": "Pleura",
-    "mm": 48.9,
+    "mm": 48.7,
     "source": "model",
     "relation": "cross",
     "emph": true
@@ -735,31 +710,31 @@
  "KI23": {
   "region": "chest",
   "direction": [
-   -0.1114,
-   -0.1394,
-   -0.984
+   0.0174,
+   -0.1437,
+   -0.9895
   ],
-  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 2° 차이)",
-  "faceDeviationDeg": 2,
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 0° 차이)",
+  "faceDeviationDeg": 0,
   "surface": [
-   -0.0383,
-   1.2865,
-   0.1213
+   -0.052,
+   1.2845,
+   0.122
   ],
   "layers": [
    {
     "ko": "큰가슴근 복장갈비부분",
     "en": "Sternocostal part of right pectoralis major",
-    "mm": 4.3,
-    "end": 24.1,
+    "mm": 3.9,
+    "end": 25.3,
     "kind": "model",
     "atlas": "Sternocostal part of right pectoralis major"
    },
    {
     "ko": "속갈비사이근",
     "en": "internal intercostal muscle",
-    "mm": 20.8,
-    "end": 23,
+    "mm": 22.8,
+    "end": 25.2,
     "kind": "model",
     "atlas": "internal intercostal muscle"
    },
@@ -775,7 +750,7 @@
    {
     "ko": "흉막·허파 (기흉 위험)",
     "en": "Pleura",
-    "mm": 34.2,
+    "mm": 35.9,
     "source": "model",
     "relation": "cross",
     "emph": true
@@ -786,31 +761,31 @@
  "KI24": {
   "region": "chest",
   "direction": [
-   -0.0958,
-   -0.4128,
-   -0.9058
+   -0.0035,
+   -0.4095,
+   -0.9123
   ],
-  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 1° 차이)",
-  "faceDeviationDeg": 1,
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 2° 차이)",
+  "faceDeviationDeg": 2,
   "surface": [
-   -0.0381,
-   1.3198,
-   0.1112
+   -0.0456,
+   1.3248,
+   0.1092
   ],
   "layers": [
    {
     "ko": "큰가슴근 복장갈비부분",
     "en": "Sternocostal part of right pectoralis major",
-    "mm": 6.2,
-    "end": 25.9,
+    "mm": 5.9,
+    "end": 26.9,
     "kind": "model",
     "atlas": "Sternocostal part of right pectoralis major"
    },
    {
     "ko": "속갈비사이근",
     "en": "internal intercostal muscle",
-    "mm": 24.4,
-    "end": 26.2,
+    "mm": 25.2,
+    "end": 27.6,
     "kind": "model",
     "atlas": "internal intercostal muscle"
    },
@@ -826,7 +801,7 @@
    {
     "ko": "흉막·허파 (기흉 위험)",
     "en": "Pleura",
-    "mm": 38.1,
+    "mm": 39.8,
     "source": "model",
     "relation": "cross",
     "emph": true
@@ -880,47 +855,54 @@
  "PC1": {
   "region": "chest",
   "direction": [
-   0.2216,
-   -0.376,
-   -0.8997
+   0.747,
+   0.0553,
+   -0.6625
   ],
   "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 2° 차이)",
   "faceDeviationDeg": 2,
   "surface": [
-   -0.0971,
-   1.2878,
-   0.1127
+   -0.1299,
+   1.2734,
+   0.0961
   ],
   "layers": [
    {
+    "ko": "피하지방·얕은근막",
+    "en": "Subcutaneous fat (not modelled)",
+    "mm": 2,
+    "end": 15.3,
+    "kind": "void"
+   },
+   {
     "ko": "큰가슴근 복장갈비부분",
     "en": "Sternocostal part of right pectoralis major",
-    "mm": 3.2,
-    "end": 32.3,
+    "mm": 15.3,
+    "end": 36.6,
     "kind": "model",
     "atlas": "Sternocostal part of right pectoralis major"
    },
    {
     "ko": "바깥갈비사이근",
     "en": "external intercostal muscle",
-    "mm": 33,
-    "end": 35,
+    "mm": 38.5,
+    "end": 39.8,
     "kind": "model",
     "atlas": "external intercostal muscle"
    },
    {
     "ko": "속갈비사이근",
     "en": "internal intercostal muscle",
-    "mm": 35.3,
-    "end": 37.8,
+    "mm": 39.4,
+    "end": 40.5,
     "kind": "model",
     "atlas": "internal intercostal muscle"
    },
    {
     "ko": "맨속갈비사이근",
     "en": "innermost intercostal muscle",
-    "mm": 36.5,
-    "end": 38.2,
+    "mm": 41.1,
+    "end": 42.1,
     "kind": "model",
     "atlas": "innermost intercostal muscle"
    },
@@ -936,7 +918,7 @@
    {
     "ko": "흉막·허파 (기흉 위험)",
     "en": "Pleura",
-    "mm": 44.6,
+    "mm": 48.2,
     "source": "model",
     "relation": "cross",
     "emph": true
@@ -947,64 +929,54 @@
  "SP17": {
   "region": "chest",
   "direction": [
-   0.6924,
-   0.2577,
-   -0.674
+   0.838,
+   0.2114,
+   -0.5031
   ],
-  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 3° 차이)",
-  "faceDeviationDeg": 3,
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 5° 차이)",
+  "faceDeviationDeg": 5,
   "surface": [
-   -0.1181,
-   1.2406,
-   0.0963
+   -0.1345,
+   1.2466,
+   0.0725
   ],
   "layers": [
    {
-    "ko": "피하지방·얕은근막",
-    "en": "Subcutaneous fat (not modelled)",
-    "mm": 2,
-    "end": 24.7,
-    "kind": "void"
-   },
-   {
-    "ko": "큰가슴근 배부분",
-    "en": "Abdominal part of right pectoralis major",
-    "mm": null,
-    "end": null,
-    "kind": "reordered",
-    "why": "모델 위치(8.1 mm)가 해부학 순서와 달라 순서대로 표시",
-    "atlas": "Abdominal part of right pectoralis major"
-   },
-   {
     "ko": "배바깥빗근",
     "en": "external oblique",
-    "mm": null,
-    "end": null,
-    "kind": "reordered",
-    "why": "모델 위치(6.4 mm)가 해부학 순서와 달라 순서대로 표시",
+    "mm": 4.7,
+    "end": 11.5,
+    "kind": "model",
     "atlas": "Right external oblique"
+   },
+   {
+    "ko": "근육 사이 결합조직·지방",
+    "en": "Connective tissue / fat (not modelled)",
+    "mm": 11.5,
+    "end": 25.4,
+    "kind": "void"
    },
    {
     "ko": "바깥갈비사이근",
     "en": "external intercostal muscle",
-    "mm": 24.7,
-    "end": 26.8,
+    "mm": 25.4,
+    "end": 27.4,
     "kind": "model",
     "atlas": "external intercostal muscle"
    },
    {
     "ko": "속갈비사이근",
     "en": "internal intercostal muscle",
-    "mm": 27.3,
-    "end": 30,
+    "mm": 27.5,
+    "end": 29.9,
     "kind": "model",
     "atlas": "internal intercostal muscle"
    },
    {
     "ko": "맨속갈비사이근",
     "en": "innermost intercostal muscle",
-    "mm": 29.5,
-    "end": 31.8,
+    "mm": 28.9,
+    "end": 31.9,
     "kind": "model",
     "atlas": "innermost intercostal muscle"
    },
@@ -1020,7 +992,7 @@
    {
     "ko": "흉막·허파 (기흉 위험)",
     "en": "Pleura",
-    "mm": 34.1,
+    "mm": 32.5,
     "source": "model",
     "relation": "cross",
     "emph": true
@@ -1031,69 +1003,62 @@
  "SP19": {
   "region": "chest",
   "direction": [
-   0.4807,
-   -0.4734,
-   -0.7381
+   0.4853,
+   -0.4779,
+   -0.7322
   ],
-  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 2° 차이)",
-  "faceDeviationDeg": 2,
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 3° 차이)",
+  "faceDeviationDeg": 3,
   "surface": [
-   -0.1225,
-   1.3565,
-   0.0701
+   -0.1219,
+   1.3576,
+   0.067
   ],
   "layers": [
    {
-    "ko": "피하지방·얕은근막",
-    "en": "Subcutaneous fat (not modelled)",
-    "mm": 2,
-    "end": 11.1,
-    "kind": "void"
-   },
-   {
     "ko": "큰가슴근 복장갈비부분",
     "en": "Sternocostal part of right pectoralis major",
-    "mm": 11.1,
-    "end": 20.7,
+    "mm": 9.7,
+    "end": 18.6,
     "kind": "model",
     "atlas": "Sternocostal part of right pectoralis major"
    },
    {
     "ko": "근육 사이 결합조직·지방",
     "en": "Connective tissue / fat (not modelled)",
-    "mm": 20.7,
-    "end": 33.7,
+    "mm": 18.6,
+    "end": 31.2,
     "kind": "void"
    },
    {
     "ko": "작은가슴근",
     "en": "pectoralis minor",
-    "mm": 33.7,
-    "end": 46.3,
+    "mm": 31.2,
+    "end": 44.3,
     "kind": "model",
     "atlas": "Right pectoralis minor"
    },
    {
     "ko": "바깥갈비사이근",
     "en": "external intercostal muscle",
-    "mm": 45.9,
-    "end": 47.8,
+    "mm": 44,
+    "end": 45.9,
     "kind": "model",
     "atlas": "external intercostal muscle"
    },
    {
     "ko": "속갈비사이근",
     "en": "internal intercostal muscle",
-    "mm": 48.6,
-    "end": 50.7,
+    "mm": 46.4,
+    "end": 49,
     "kind": "model",
     "atlas": "internal intercostal muscle"
    },
    {
     "ko": "맨속갈비사이근",
     "en": "innermost intercostal muscle",
-    "mm": 49,
-    "end": 51.6,
+    "mm": 47.8,
+    "end": 49.9,
     "kind": "model",
     "atlas": "innermost intercostal muscle"
    },
@@ -1107,16 +1072,9 @@
   ],
   "hazards": [
    {
-    "ko": "가쪽가슴신경",
-    "en": "Lateral pectoral nerve",
-    "mm": 13.7,
-    "source": "model",
-    "relation": "cross"
-   },
-   {
     "ko": "흉막·허파 (기흉 위험)",
     "en": "Pleura",
-    "mm": 56.3,
+    "mm": 54.4,
     "source": "model",
     "relation": "cross",
     "emph": true
@@ -1127,66 +1085,63 @@
  "SP20": {
   "region": "chest",
   "direction": [
-   0.2296,
-   -0.7906,
-   -0.5677
+   0.2126,
+   -0.8741,
+   -0.4368
   ],
-  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 3° 차이)",
-  "faceDeviationDeg": 3,
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 1° 차이)",
+  "faceDeviationDeg": 1,
   "surface": [
-   -0.1029,
-   1.406,
-   0.0375
+   -0.1153,
+   1.414,
+   0.0147
   ],
   "layers": [
    {
     "ko": "피하지방·얕은근막",
     "en": "Subcutaneous fat (not modelled)",
     "mm": 2,
-    "end": 13.8,
+    "end": 14.5,
     "kind": "void"
    },
    {
     "ko": "큰가슴근 빗장부분",
     "en": "Clavicular part of right pectoralis major",
-    "mm": 13.8,
-    "end": 25.7,
+    "mm": 14.5,
+    "end": 21.5,
     "kind": "model",
     "atlas": "Clavicular part of right pectoralis major"
-   },
-   {
-    "ko": "근육 사이 결합조직·지방",
-    "en": "Connective tissue / fat (not modelled)",
-    "mm": 25.7,
-    "end": 39.2,
-    "kind": "void"
-   },
-   {
-    "ko": "바깥갈비사이근",
-    "en": "external intercostal muscle",
-    "mm": 39.2,
-    "end": 41.4,
-    "kind": "model",
-    "atlas": "external intercostal muscle"
-   },
-   {
-    "ko": "가슴속근막",
-    "en": "Endothoracic fascia",
-    "mm": null,
-    "end": null,
-    "kind": "concept"
    }
   ],
   "hazards": [
    {
-    "ko": "흉막·허파 (기흉 위험)",
-    "en": "Pleura",
-    "mm": 50.1,
+    "ko": "겨드랑정맥",
+    "en": "axillary vein",
+    "mm": 11.8,
     "source": "model",
-    "relation": "cross",
+    "relation": "cross"
+   },
+   {
+    "ko": "가쪽가슴동맥",
+    "en": "lateral thoracic artery",
+    "mm": 34.1,
+    "source": "model",
+    "relation": "cross"
+   },
+   {
+    "ko": "흉막·허파 (기흉 위험)",
+    "en": "Pleura / lung",
+    "mm": null,
+    "source": "concept",
+    "relation": "concept",
     "emph": true
    }
   ],
+  "bone": {
+   "ko": "셋째갈비뼈",
+   "en": "third rib",
+   "mm": 45.2
+  },
   "modelMaxMm": 6.8
  },
  "SP21": {
@@ -1261,33 +1216,33 @@
  "ST13": {
   "region": "chest",
   "directionBasis": "피부 삼각형 면 법선(뷰어 기본)",
-  "faceDeviationDeg": 1,
+  "faceDeviationDeg": 0,
   "surface": [
-   -0.0792,
-   1.4053,
-   0.046
+   -0.0775,
+   1.404,
+   0.0479
   ],
   "layers": [
    {
     "ko": "피하지방·얕은근막",
     "en": "Subcutaneous fat (not modelled)",
     "mm": 2,
-    "end": 12.3,
+    "end": 12,
     "kind": "void"
    },
    {
     "ko": "큰가슴근 빗장부분",
     "en": "Clavicular part of right pectoralis major",
-    "mm": 12.3,
-    "end": 22,
+    "mm": 12,
+    "end": 21.4,
     "kind": "model",
     "atlas": "Clavicular part of right pectoralis major"
    },
    {
     "ko": "바깥갈비사이근",
     "en": "external intercostal muscle",
-    "mm": 28.3,
-    "end": 29.7,
+    "mm": 28.1,
+    "end": 29.4,
     "kind": "model",
     "atlas": "external intercostal muscle"
    },
@@ -1303,7 +1258,7 @@
    {
     "ko": "흉막·허파 (기흉 위험)",
     "en": "Pleura",
-    "mm": 36.6,
+    "mm": 36.4,
     "source": "model",
     "relation": "cross",
     "emph": true
@@ -1314,33 +1269,75 @@
  "ST18": {
   "region": "chest",
   "direction": [
-   0.1873,
-   0.3449,
-   -0.9198
+   0.5386,
+   0.2615,
+   -0.801
   ],
-  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 3° 차이)",
-  "faceDeviationDeg": 3,
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 6° 차이)",
+  "faceDeviationDeg": 6,
   "surface": [
-   -0.0799,
-   1.2429,
-   0.1136
+   -0.1081,
+   1.2399,
+   0.1021
   ],
   "layers": [
    {
+    "ko": "피하지방·얕은근막",
+    "en": "Subcutaneous fat (not modelled)",
+    "mm": 2,
+    "end": 21,
+    "kind": "void"
+   },
+   {
+    "ko": "큰가슴근 배부분",
+    "en": "Abdominal part of right pectoralis major",
+    "mm": null,
+    "end": null,
+    "kind": "reordered",
+    "why": "모델 위치(6 mm)가 해부학 순서와 달라 순서대로 표시",
+    "atlas": "Abdominal part of right pectoralis major"
+   },
+   {
     "ko": "큰가슴근 복장갈비부분",
     "en": "Sternocostal part of right pectoralis major",
-    "mm": 0,
-    "end": 19.6,
-    "kind": "model",
+    "mm": null,
+    "end": null,
+    "kind": "reordered",
+    "why": "모델 위치(18.4 mm)가 해부학 순서와 달라 순서대로 표시",
     "atlas": "Sternocostal part of right pectoralis major"
+   },
+   {
+    "ko": "배바깥빗근",
+    "en": "external oblique",
+    "mm": null,
+    "end": null,
+    "kind": "reordered",
+    "why": "모델 위치(4.7 mm)가 해부학 순서와 달라 순서대로 표시",
+    "atlas": "Right external oblique"
+   },
+   {
+    "ko": "바깥갈비사이근",
+    "en": "external intercostal muscle",
+    "mm": 21,
+    "end": 22.8,
+    "kind": "model",
+    "atlas": "external intercostal muscle"
    },
    {
     "ko": "속갈비사이근",
     "en": "internal intercostal muscle",
-    "mm": 17.1,
-    "end": 20.3,
+    "mm": 23.9,
+    "end": 26.3,
     "kind": "model",
     "atlas": "internal intercostal muscle"
+   },
+   {
+    "ko": "맨속갈비사이근",
+    "en": "innermost intercostal muscle",
+    "mm": 26.1,
+    "end": 28.5,
+    "kind": "model",
+    "atlas": "innermost intercostal muscle"
    },
    {
     "ko": "가슴속근막",
@@ -1352,16 +1349,9 @@
   ],
   "hazards": [
    {
-    "ko": "갈비사이신경",
-    "en": "Intercostal nerves",
-    "mm": 21.8,
-    "source": "model",
-    "relation": "cross"
-   },
-   {
     "ko": "흉막·허파 (기흉 위험)",
     "en": "Pleura",
-    "mm": 27.5,
+    "mm": 31.4,
     "source": "model",
     "relation": "cross",
     "emph": true
@@ -1371,29 +1361,34 @@
  },
  "ST17": {
   "region": "chest",
-  "directionBasis": "피부 삼각형 면 법선(뷰어 기본)",
-  "faceDeviationDeg": 1,
+  "direction": [
+   0.4249,
+   -0.0575,
+   -0.9034
+  ],
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 17° 차이)",
+  "faceDeviationDeg": 17,
   "surface": [
-   -0.0782,
-   1.2808,
-   0.1191
+   -0.1084,
+   1.2734,
+   0.1139
   ],
   "layers": [
    {
     "ko": "큰가슴근 복장갈비부분",
     "en": "Sternocostal part of right pectoralis major",
-    "mm": 2.3,
-    "end": 27.7,
+    "mm": 7.7,
+    "end": 35.2,
     "kind": "model",
     "atlas": "Sternocostal part of right pectoralis major"
    },
    {
-    "ko": "속갈비사이근",
-    "en": "internal intercostal muscle",
-    "mm": 28.4,
-    "end": 30.6,
+    "ko": "바깥갈비사이근",
+    "en": "external intercostal muscle",
+    "mm": 36.7,
+    "end": 37.8,
     "kind": "model",
-    "atlas": "internal intercostal muscle"
+    "atlas": "external intercostal muscle"
    },
    {
     "ko": "가슴속근막",
@@ -1403,15 +1398,12 @@
     "kind": "concept"
    }
   ],
-  "hazards": [
-   {
-    "ko": "흉막·허파",
-    "en": "Pleura",
-    "mm": 37.8,
-    "source": "model",
-    "relation": "cross"
-   }
-  ],
+  "hazards": [],
+  "bone": {
+   "ko": "다섯째갈비뼈",
+   "en": "fifth rib",
+   "mm": 37
+  },
   "modelMaxMm": null
  },
  "LU1": {
@@ -1508,47 +1500,55 @@
  "SP18": {
   "region": "chest",
   "direction": [
-   0.591,
-   -0.3258,
-   -0.738
+   0.6402,
+   -0.3014,
+   -0.7066
   ],
-  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 6° 차이)",
-  "faceDeviationDeg": 6,
+  "directionBasis": "같은 피부 영역 15 mm 평균 법선 (면 법선과 4° 차이)",
+  "faceDeviationDeg": 4,
   "surface": [
-   -0.1241,
+   -0.1294,
    1.3059,
-   0.0917
+   0.0876
   ],
   "layers": [
    {
     "ko": "큰가슴근 복장갈비부분",
     "en": "Sternocostal part of right pectoralis major",
-    "mm": 7,
-    "end": 33.8,
+    "mm": 7.4,
+    "end": 34.1,
     "kind": "model",
     "atlas": "Sternocostal part of right pectoralis major"
    },
    {
+    "ko": "작은가슴근",
+    "en": "pectoralis minor",
+    "mm": 35.5,
+    "end": 41.1,
+    "kind": "model",
+    "atlas": "Right pectoralis minor"
+   },
+   {
     "ko": "바깥갈비사이근",
     "en": "external intercostal muscle",
-    "mm": 38.9,
-    "end": 40.6,
+    "mm": 40.1,
+    "end": 42.1,
     "kind": "model",
     "atlas": "external intercostal muscle"
    },
    {
     "ko": "속갈비사이근",
     "en": "internal intercostal muscle",
-    "mm": 41.8,
-    "end": 43.4,
+    "mm": 42.8,
+    "end": 44.1,
     "kind": "model",
     "atlas": "internal intercostal muscle"
    },
    {
     "ko": "맨속갈비사이근",
     "en": "innermost intercostal muscle",
-    "mm": 43.3,
-    "end": 45.6,
+    "mm": 44.5,
+    "end": 46.7,
     "kind": "model",
     "atlas": "innermost intercostal muscle"
    },
@@ -1564,7 +1564,7 @@
    {
     "ko": "흉막·허파 (기흉 위험)",
     "en": "Pleura",
-    "mm": 48.5,
+    "mm": 49.5,
     "source": "model",
     "relation": "cross",
     "emph": true
@@ -5491,18 +5491,18 @@
  "ST12": {
   "region": "neck",
   "directionBasis": "피부 삼각형 면 법선(뷰어 기본)",
-  "faceDeviationDeg": 3,
+  "faceDeviationDeg": 2,
   "surface": [
-   -0.0792,
-   1.431,
-   0.0093
+   -0.0775,
+   1.4316,
+   0.0099
   ],
   "layers": [
    {
     "ko": "피하지방·얕은근막",
     "en": "Subcutaneous fat (not modelled)",
     "mm": 2,
-    "end": 10.6,
+    "end": 11.4,
     "kind": "void"
    },
    {
@@ -5515,33 +5515,25 @@
    {
     "ko": "넓은목근",
     "en": "platysma",
-    "mm": 10.6,
-    "end": 12.5,
+    "mm": 11.4,
+    "end": 13.3,
     "kind": "model",
     "atlas": "Right platysma"
    },
    {
     "ko": "앞톱니근",
     "en": "serratus anterior",
-    "mm": 18.7,
+    "mm": 18.9,
     "end": 20.8,
     "kind": "model",
     "atlas": "Right serratus anterior"
-   },
-   {
-    "ko": "바깥갈비사이근",
-    "en": "external intercostal muscle",
-    "mm": 24.6,
-    "end": 26.4,
-    "kind": "model",
-    "atlas": "external intercostal muscle"
    }
   ],
   "hazards": [
    {
     "ko": "빗장밑동맥",
     "en": "subclavian artery",
-    "mm": 15.2,
+    "mm": 16.2,
     "source": "model",
     "relation": "near",
     "emph": true

@@ -30,18 +30,18 @@
    "sourceValidation": null,
    "status": "implemented_unverified",
    "seed": [
-    -0.09706,
-    1.28783,
-    0.11274
+    -0.12399,
+    1.27343,
+    0.09085
    ],
    "outward": [
+    -0.74552,
     0,
-    0,
-    1
+    0.66648
    ],
    "region": "thorax",
    "depthMm": 28.5,
-   "rule": "4th intercostal space · 5 B-cun lateral to anterior median line (clavicle-midpoint = 4 B-cun)"
+   "rule": "4th intercostal space · 5 B-cun lateral to anterior median line (clavicle-midpoint = 4 B-cun) · 2026-09-26 유두선 곡선 반영: no clear intercostal space 4 found on the new line; height kept"
   },
   {
    "code": "PC2",
